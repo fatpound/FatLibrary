@@ -55,7 +55,7 @@ namespace fatpound::win32
                     {
                         WS_VISIBLE
 
-    #if IN_DEBUG or IS_FRAMEWORK
+#if IN_DEBUG or IS_FRAMEWORK
 
                         bitor WS_CAPTION
                         bitor WS_MINIMIZEBOX
@@ -75,7 +75,7 @@ namespace fatpound::win32
                     }
 #else
                         bitor WS_POPUP
-                };
+                    };
 
 #endif // IN_DEBUG or IS_FRAMEWORK
 
@@ -126,8 +126,8 @@ namespace fatpound::win32
         explicit WindowEx(const WindowEx& src) = delete;
         explicit WindowEx(WindowEx&& src) = delete;
 
-        auto operator = (const WindowEx& src)->WindowEx & = delete;
-        auto operator = (WindowEx&& src)->WindowEx & = delete;
+        auto operator = (const WindowEx& src) -> WindowEx& = delete;
+        auto operator = (WindowEx&& src)      -> WindowEx& = delete;
         virtual ~WindowEx() noexcept(false) final
         {
             [[maybe_unused]]
