@@ -18,7 +18,7 @@ namespace fatpound::win32::d3d11::factory
         bool ForFramework = false,
         bool Fullscreen = false
     >
-    auto Create_SwapChain_DESC(
+    static auto Create_SwapChain_DESC(
         const HWND hWnd,
         const FATSPACE_UTIL::ScreenSizeInfo gfxDimensions,
         [[maybe_unused]] const UINT msaaCount,
@@ -61,7 +61,7 @@ namespace fatpound::win32::d3d11::factory
         return desc;
     }
 
-    void Create_SwapChain(
+    static void Create_SwapChain(
         ID3D11Device* const pDevice,
         DXGI_SWAP_CHAIN_DESC& desc,
         ::Microsoft::WRL::ComPtr<IDXGISwapChain>& pSwapChain)
@@ -78,7 +78,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_SwapChain(FATSPACE_UTIL_GFX::ResourcePack& gfxResPack, DXGI_SWAP_CHAIN_DESC& desc)
+    static void Create_SwapChain(FATSPACE_UTIL_GFX::ResourcePack& gfxResPack, DXGI_SWAP_CHAIN_DESC& desc)
     {
         Create_SwapChain(gfxResPack.m_pDevice.Get(), desc, gfxResPack.m_pSwapChain);
     }

@@ -3,6 +3,7 @@
 #include "IWindow.hpp"
 #include "WndClassEx.hpp"
 
+#include "Concurrency/Concurrency.hpp"
 #include "IO/IO.hpp"
 #include "Math/Math.hpp"
 #include "Util/Util.hpp"

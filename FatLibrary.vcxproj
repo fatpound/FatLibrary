@@ -78,8 +78,6 @@
     <ClInclude Include="Util\ScreenSizeInfo.hpp" />
     <ClInclude Include="Util\Surface.hpp" />
     <ClInclude Include="Util\Timer.hpp" />
-    <ClInclude Include="Util\Time\AutoTimer.hpp" />
-    <ClInclude Include="Util\Time\Time.hpp" />
     <ClInclude Include="Util\Util.hpp" />
     <ClInclude Include="Util\ViewXM.hpp" />
     <ClInclude Include="Win32_\COM\COM.hpp" />
@@ -140,7 +138,6 @@
     <ClCompile Include="Math\Math.cpp" />
     <ClCompile Include="Util\Gfx\Gfx.cpp" />
     <ClCompile Include="Util\Surface.cpp" />
-    <ClCompile Include="Util\Time\AutoTimer.cpp" />
     <ClCompile Include="Util\ViewXM.cpp" />
   </ItemGroup>
   <ItemGroup>

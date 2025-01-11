@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::factory
 {
-    void Create_RenderTargetView(
+    static void Create_RenderTargetView(
         IDXGISwapChain* const pSwapChain,
         ID3D11Device* const pDevice,
         ::Microsoft::WRL::ComPtr<ID3D11RenderTargetView>& pRenderTargetView)
@@ -38,7 +38,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_RenderTargetView(FATSPACE_UTIL_GFX::ResourcePack& gfxResPack)
+    static void Create_RenderTargetView(FATSPACE_UTIL_GFX::ResourcePack& gfxResPack)
     {
         Create_RenderTargetView(
             gfxResPack.m_pSwapChain.Get(),

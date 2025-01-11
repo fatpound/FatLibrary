@@ -10,9 +10,6 @@
 
 #include <wrl.h>
 
-#pragma comment(lib, "d3d11")
-#pragma comment(lib, "D3DCompiler")
-
 #include "Core/Core.hpp"
 #include "Pipeline/Pipeline.hpp"
 #include "Visual/Visual.hpp"
@@ -23,9 +20,13 @@
 
 #include <cstring>
 
+#include <array>
 #include <utility>
 #include <memory>
 #include <stdexcept>
+
+#pragma comment(lib, "d3d11")
+#pragma comment(lib, "D3DCompiler")
 
 namespace dx  = DirectX;
 namespace wrl = Microsoft::WRL;

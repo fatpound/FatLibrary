@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::factory
 {
-    constexpr auto Create_RasterizerState_DESC() noexcept -> D3D11_RASTERIZER_DESC
+    static constexpr auto Create_RasterizerState_DESC() noexcept -> D3D11_RASTERIZER_DESC
     {
         D3D11_RASTERIZER_DESC desc{};
         desc.FillMode = D3D11_FILL_SOLID;
@@ -31,7 +31,7 @@ namespace fatpound::win32::d3d11::factory
         return desc;
     }
 
-    void Create_RasterizerState(
+    static void Create_RasterizerState(
         ID3D11Device* const pDevice,
         const D3D11_RASTERIZER_DESC& desc,
         ::Microsoft::WRL::ComPtr<ID3D11RasterizerState>& pRasterizerState)
@@ -44,7 +44,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_RasterizerState(
+    static void Create_RasterizerState(
         const FATSPACE_UTIL_GFX::ResourcePack& gfxResPack,
         const D3D11_RASTERIZER_DESC& desc,
         ::Microsoft::WRL::ComPtr<ID3D11RasterizerState>& pRasterizerState)

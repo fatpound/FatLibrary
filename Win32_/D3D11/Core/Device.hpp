@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::core
 {
-    void Create_Device(
+    static void Create_Device(
         ::Microsoft::WRL::ComPtr<ID3D11Device>& pDevice,
         ::Microsoft::WRL::ComPtr<ID3D11DeviceContext>& pImmediateContext)
     {
@@ -55,7 +55,7 @@ namespace fatpound::win32::d3d11::core
         }
     }
 
-    void Create_Device(FATSPACE_UTIL_GFX::ResourcePack& gfxResPack)
+    static void Create_Device(FATSPACE_UTIL_GFX::ResourcePack& gfxResPack)
     {
         Create_Device(gfxResPack.m_pDevice, gfxResPack.m_pImmediateContext);
     }

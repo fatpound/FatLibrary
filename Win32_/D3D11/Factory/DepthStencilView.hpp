@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::factory
 {
-    constexpr auto Create_DepthStencilView_DESC(const UINT msaaCount) noexcept -> D3D11_DEPTH_STENCIL_VIEW_DESC
+    static constexpr auto Create_DepthStencilView_DESC(const UINT msaaCount) noexcept -> D3D11_DEPTH_STENCIL_VIEW_DESC
     {
         D3D11_DEPTH_STENCIL_VIEW_DESC desc{};
         desc.Format = DXGI_FORMAT_D32_FLOAT;
@@ -33,7 +33,7 @@ namespace fatpound::win32::d3d11::factory
         return desc;
     }
 
-    void Create_DepthStencilView(
+    static void Create_DepthStencilView(
         ID3D11Device* const pDevice,
         const ::Microsoft::WRL::ComPtr<ID3D11Texture2D>& pDepthStencil,
         const D3D11_DEPTH_STENCIL_VIEW_DESC& desc,
@@ -47,7 +47,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_DepthStencilView(
+    static void Create_DepthStencilView(
         FATSPACE_UTIL_GFX::ResourcePack& gfxResPack,
         const ::Microsoft::WRL::ComPtr<ID3D11Texture2D>& pDepthStencil,
         const D3D11_DEPTH_STENCIL_VIEW_DESC& desc)

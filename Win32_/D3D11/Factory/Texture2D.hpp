@@ -15,7 +15,7 @@
 namespace fatpound::win32::d3d11::factory
 {
     template <bool ForShaderResource = false>
-    constexpr auto Create_Texture2D_DESC(
+    static constexpr auto Create_Texture2D_DESC(
         const FATSPACE_UTIL::ScreenSizeInfo gfxDimensions,
         const UINT msaaCount,
         const UINT msaaQuality) noexcept -> D3D11_TEXTURE2D_DESC
@@ -47,7 +47,7 @@ namespace fatpound::win32::d3d11::factory
         return desc;
     }
 
-    void Create_Texture2D(
+    static void Create_Texture2D(
         ID3D11Device* const pDevice,
         const D3D11_TEXTURE2D_DESC& desc,
         ::Microsoft::WRL::ComPtr<ID3D11Texture2D>& pTexture2D)
@@ -60,7 +60,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_Texture2D(FATSPACE_UTIL_GFX::FrameworkResourcePack& gfxFwkResPack, const D3D11_TEXTURE2D_DESC& desc)
+    static void Create_Texture2D(FATSPACE_UTIL_GFX::FrameworkResourcePack& gfxFwkResPack, const D3D11_TEXTURE2D_DESC& desc)
     {
         Create_Texture2D(gfxFwkResPack.m_pDevice.Get(), desc, gfxFwkResPack.m_pSysBufferTexture);
     }

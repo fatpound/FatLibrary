@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::factory
 {
-    constexpr auto Create_SamplerState_DESC() noexcept -> D3D11_SAMPLER_DESC
+    static constexpr auto Create_SamplerState_DESC() noexcept -> D3D11_SAMPLER_DESC
     {
         D3D11_SAMPLER_DESC desc{};
         desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
@@ -28,7 +28,7 @@ namespace fatpound::win32::d3d11::factory
         return desc;
     }
 
-    void Create_SamplerState(
+    static void Create_SamplerState(
         ID3D11Device* const pDevice,
         D3D11_SAMPLER_DESC desc,
         ::Microsoft::WRL::ComPtr<ID3D11SamplerState>& pSamplerState)
@@ -41,7 +41,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_SamplerState(
+    static void Create_SamplerState(
         const FATSPACE_UTIL_GFX::ResourcePack& gfxResPack,
         D3D11_SAMPLER_DESC desc,
         ::Microsoft::WRL::ComPtr<ID3D11SamplerState>& pSamplerState)

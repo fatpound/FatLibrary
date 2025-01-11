@@ -15,7 +15,7 @@
 namespace fatpound::win32::d3d11::factory
 {
     template <bool ForFramework = true>
-    constexpr auto Create_ShaderResourceView_DESC(
+    static constexpr auto Create_ShaderResourceView_DESC(
         const DXGI_FORMAT format,
         [[maybe_unused]] const UINT msaaCount) noexcept -> D3D11_SHADER_RESOURCE_VIEW_DESC
     {
@@ -42,7 +42,7 @@ namespace fatpound::win32::d3d11::factory
         return desc;
     }
 
-    void Create_ShaderResourceView(
+    static void Create_ShaderResourceView(
         ID3D11Device* const pDevice,
         ID3D11Texture2D* pSysBufferTexture,
         D3D11_SHADER_RESOURCE_VIEW_DESC desc,
@@ -56,7 +56,7 @@ namespace fatpound::win32::d3d11::factory
         }
     }
 
-    void Create_ShaderResourceView(
+    static void Create_ShaderResourceView(
         const FATSPACE_UTIL_GFX::FrameworkResourcePack& gfxFwkResPack,
         D3D11_SHADER_RESOURCE_VIEW_DESC desc,
         ::Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>& pSysBufferTextureView)
