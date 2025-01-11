@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FatRules.ruleset" />
+    <None Include="_props\FatBoost.props" />
+    <None Include="_props\FatCpp.props" />
+    <None Include="_props\FatCppM.props" />
+    <None Include="_props\FatCppM_Debug.props" />
+    <None Include="_props\FatCppM_Release.props" />
+    <None Include="_props\FatCpp_Debug.props" />
+    <None Include="_props\FatCpp_Release.props" />
+    <None Include="_props\FatCV4.props" />
+    <None Include="_props\FatCV4_Debug.props" />
+    <None Include="_props\FatCV4_Release.props" />
+    <None Include="_props\FatLibrary.props" />
+    <None Include="_props\FatLibraryM.props" />
+    <None Include="_props\FatZMQ.props" />
+    <None Include="_props\FatZMQ_Debug.props" />
+    <None Include="_props\FatZMQ_Release.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Automata\Automata.hpp" />
+    <ClInclude Include="Automata\CFG.hpp" />
+    <ClInclude Include="Automata\TLT.hpp" />
+    <ClInclude Include="Automata\TLT_v2.hpp" />
+    <ClInclude Include="Concurrency\Concurrency.hpp" />
+    <ClInclude Include="Concurrency\TaskQueue.hpp" />
+    <ClInclude Include="DSA\DSA.hpp" />
+    <ClInclude Include="DSA\LinkedList\Doubly.hpp" />
+    <ClInclude Include="DSA\LinkedList\DoublyCircular.hpp" />
+    <ClInclude Include="DSA\LinkedList\LinkedList.hpp" />
+    <ClInclude Include="DSA\LinkedList\Singly.hpp" />
+    <ClInclude Include="DSA\LinkedList\SinglyCircular.hpp" />
+    <ClInclude Include="DSA\Tree\Binary\AVL.hpp" />
+    <ClInclude Include="DSA\Tree\Binary\Binary.hpp" />
+    <ClInclude Include="DSA\Tree\Binary\BST.hpp" />
+    <ClInclude Include="DSA\Tree\Binary\IPR.hpp" />
+    <ClInclude Include="DSA\Tree\N_ary\B.hpp" />
+    <ClInclude Include="DSA\Tree\N_ary\B_Plus.hpp" />
+    <ClInclude Include="DSA\Tree\N_ary\N_ary.hpp" />
+    <ClInclude Include="DSA\Tree\Tree.hpp" />
+    <ClInclude Include="FatFrameworkMacros.hpp" />
+    <ClInclude Include="FatLibraryS.hpp" />
+    <ClInclude Include="FatNamespaces.hpp" />
+    <ClInclude Include="IO\IO.hpp" />
+    <ClInclude Include="IO\Keyboard.hpp" />
+    <ClInclude Include="IO\KeyEvent.hpp" />
+    <ClInclude Include="IO\Mouse.hpp" />
+    <ClInclude Include="IO\MouseEvent.hpp" />
+    <ClInclude Include="Math\Math.hpp" />
+    <ClInclude Include="Math\Multiplicable.hpp" />
+    <ClInclude Include="Math\Numset\Numset.hpp" />
+    <ClInclude Include="Math\Numset\Rational.hpp" />
+    <ClInclude Include="Math\RectF.hpp" />
+    <ClInclude Include="Memory\Memory.hpp" />
+    <ClInclude Include="Util\Color.hpp" />
+    <ClInclude Include="Util\Gfx\FullScreenQuad.hpp" />
+    <ClInclude Include="Util\Gfx\Gfx.hpp" />
+    <ClInclude Include="Util\Gfx\ResourcePack.hpp" />
+    <ClInclude Include="Util\ScreenSizeInfo.hpp" />
+    <ClInclude Include="Util\Surface.hpp" />
+    <ClInclude Include="Util\Timer.hpp" />
+    <ClInclude Include="Util\Time\AutoTimer.hpp" />
+    <ClInclude Include="Util\Time\Time.hpp" />
+    <ClInclude Include="Util\Util.hpp" />
+    <ClInclude Include="Util\ViewXM.hpp" />
+    <ClInclude Include="Win32_\COM\COM.hpp" />
+    <ClInclude Include="Win32_\COM\Manager.hpp" />
+    <ClInclude Include="Win32_\D2D\D2D.hpp" />
+    <ClInclude Include="Win32_\D2D\Graphics.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\Core.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\Device.hpp" />
+    <ClInclude Include="Win32_\D3D11\D3D11.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\DepthStencilView.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\Factory.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\RasterizerState.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\RenderTargetView.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\SamplerState.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\ShaderResourceView.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\SwapChain.hpp" />
+    <ClInclude Include="Win32_\D3D11\Factory\Texture2D.hpp" />
+    <ClInclude Include="Win32_\D3D11\Graphics.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Bindable.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\Element.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\InputLayout.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\PixelShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\Topology.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\CBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Resource.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\StaticBindableVec.hpp" />
+    <ClInclude Include="Win32_\D3D11\Visual\Drawable.hpp" />
+    <ClInclude Include="Win32_\D3D11\Visual\DrawableBase.hpp" />
+    <ClInclude Include="Win32_\D3D11\Visual\Visual.hpp" />
+    <ClInclude Include="Win32_\FatWin32.hpp" />
+    <ClInclude Include="Win32_\FatWin32_Settings.hpp" />
+    <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />
+    <ClInclude Include="Win32_\GDI_Plus\Manager.hpp" />
+    <ClInclude Include="Win32_\IWindow.hpp" />
+    <ClInclude Include="Win32_\MessageMap.hpp" />
+    <ClInclude Include="Win32_\Win32_.hpp" />
+    <ClInclude Include="Win32_\WindowEx.hpp" />
+    <ClInclude Include="Win32_\WMF\Manager.hpp" />
+    <ClInclude Include="Win32_\WMF\WMF.hpp" />
+    <ClInclude Include="Win32_\WndClassEx.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Automata\CFG.cpp" />
+    <ClCompile Include="Automata\TLT.cpp" />
+    <ClCompile Include="Automata\TLT_v2.cpp" />
+    <ClCompile Include="Concurrency\TaskQueue.cpp" />
+    <ClCompile Include="IO\Keyboard.cpp" />
+    <ClCompile Include="IO\Mouse.cpp" />
+    <ClCompile Include="Math\Math.cpp" />
+    <ClCompile Include="Util\Gfx\Gfx.cpp" />
+    <ClCompile Include="Util\Surface.cpp" />
+    <ClCompile Include="Util\Time\AutoTimer.cpp" />
+    <ClCompile Include="Util\ViewXM.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Win32_\D3D11\Shader\VSFrameBuffer.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{1eeae2b9-daa3-45e2-8570-b6ecd8fd9685}</ProjectGuid>
+    <RootNamespace>FatLibrary</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_props\FatCpp_Debug.props" />
+    <Import Project="_props\FatLibrary.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_props\FatCpp_Release.props" />
+    <Import Project="_props\FatLibrary.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_props\FatCpp_Debug.props" />
+    <Import Project="_props\FatLibrary.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="_props\FatCpp_Release.props" />
+    <Import Project="_props\FatLibrary.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
