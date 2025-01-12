@@ -41,7 +41,7 @@ namespace fatpound::util
 
 
     public:
-        static auto CalculatePixelPitch(const unsigned int width, const unsigned int alignBytes) -> unsigned int;
+        static auto CalculatePixelPitch(const unsigned int width, const unsigned int alignBytes) noexcept -> unsigned int;
 
 
     public:
@@ -79,7 +79,7 @@ namespace fatpound::util
 
             return m_pBuffer_[y * m_pixel_pitch_ + x];
         }
-        template <std::integral N = int_t> __forceinline void PutPixel(const N x, const N y, const Color color)
+        template <std::integral N = int_t> __forceinline void PutPixel(const N x, const N y, const Color color) noexcept
         {
             if constexpr (std::signed_integral<N>)
             {
@@ -95,19 +95,19 @@ namespace fatpound::util
 
 
     public:
-        auto ReleaseBuffer() -> Color*;
+        auto ReleaseBuffer() noexcept -> Color*;
 
-        auto GetScreenSizeInfo() -> ScreenSizeInfo;
+        auto GetScreenSizeInfo() noexcept -> ScreenSizeInfo;
 
-        void Fill(const Color& color);
-        void Clear();
+        void Fill(const Color& color) noexcept;
+        void Clear() noexcept;
 
 
     protected:
 
 
     private:
-        void DeepCopyFrom_(const Surface& src);
+        void DeepCopyFrom_(const Surface& src) noexcept;
 
 
     private:

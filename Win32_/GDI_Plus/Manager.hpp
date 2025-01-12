@@ -10,17 +10,25 @@
 
 #pragma comment(lib, "gdiplus")
 
+#include <stdexcept>
+
 namespace fatpound::win32::gdi_plus
 {
     class Manager final
     {
     public:
-        Manager(const DWORD initFlags = COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)
+        Manager()
         {
             if (s_ref_count_ == 0)
             {
-                ::Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-                ::Gdiplus::GdiplusStartup(&s_gdiPlus_token_, &gdiplusStartupInput, nullptr);
+                const ::Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+
+                const auto success = ::Gdiplus::GdiplusStartup(&s_gdiPlus_token_, &gdiplusStartupInput, nullptr);
+
+                if (success not_eq ::Gdiplus::Ok)
+                {
+                    throw std::runtime_error("GDI+ initialization failed");
+                }
             }
 
             ++s_ref_count_;
