@@ -7,7 +7,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>opencv_world4100.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world4110.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(FATCV4_FOLDER)\x64\vc17\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
