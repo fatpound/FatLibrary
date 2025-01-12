@@ -40,7 +40,7 @@ namespace fatpound::win32::d3d11::visual
 
             for (const auto& b : this->s_static_binds_)
             {
-                const auto ptr = dynamic_cast<FATSPACE_PIPELINE_ELEMENT::IndexBuffer*>(b.get());
+                const auto* const ptr = dynamic_cast<FATSPACE_PIPELINE_ELEMENT::IndexBuffer*>(b.get());
 
                 if (ptr not_eq nullptr)
                 {
