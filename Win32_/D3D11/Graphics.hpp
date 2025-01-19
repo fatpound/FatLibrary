@@ -177,7 +177,7 @@ namespace fatpound::win32::d3d11
             return m_extra_pSurface_.get();
         }
 
-        auto GetHwnd() const -> HWND
+        auto GetHwnd() const noexcept -> HWND
         {
             return mc_hWnd_;
         }
