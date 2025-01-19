@@ -54,7 +54,7 @@ namespace fatpound::io
 
 
     private:
-        void OnMouseMove_(int x, int y);
+        void OnMouseMove_(const int x, const int y);
         void OnMouseEnter_();
         void OnMouseLeave_();
 
@@ -66,7 +66,7 @@ namespace fatpound::io
         void OnWheelReleased_();
         void OnWheelUp_();
         void OnWheelDown_();
-        void OnWheelDelta_(int delta);
+        void OnWheelDelta_(const int delta);
 
         void TrimBuffer_() noexcept;
 
