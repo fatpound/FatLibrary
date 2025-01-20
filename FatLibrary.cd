@@ -4,7 +4,7 @@
     <Position X="113.906" Y="17.934" Height="0.75" Width="33.749" />
   </Comment>
   <Comment CommentText="Visual">
-    <Position X="108.772" Y="17.932" Height="0.75" Width="2.653" />
+    <Position X="109.075" Y="17.973" Height="0.75" Width="2.873" />
   </Comment>
   <Comment CommentText="D3D11">
     <Position X="105.659" Y="16.261" Height="0.75" Width="41.999" />
@@ -266,7 +266,7 @@
   <Class Name="fatpound::io::Keyboard">
     <Position X="59.75" Y="16" Width="2" />
     <TypeIdentifier>
-      <HashCode>ABYgCAAAAAgACAAAAAAAAAAAghAiACAAAAAgAQAKCgA=</HashCode>
+      <HashCode>AB4gCAAAAAgACAACAAAAAAAAghAiACAAAAAgAQAKCgA=</HashCode>
       <FileName>IO\Keyboard.hpp</FileName>
     </TypeIdentifier>
   </Class>
@@ -434,7 +434,7 @@
   <Class Name="fatpound::io::Mouse">
     <Position X="57.25" Y="16" Width="2" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAiAIAIAQAAGAAAkwAABIUEBhIBgAgAQQIaAI=</HashCode>
+      <HashCode>QAAAAAAAiAIAIAQAQGAgAkwAABIUEBhIBgAgAQQIaAI=</HashCode>
       <FileName>IO\Mouse.hpp</FileName>
     </TypeIdentifier>
   </Class>
