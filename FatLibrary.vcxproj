@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="FatLibrary.cd" />
     <None Include="FatRules.ruleset" />
     <None Include="_props\FatBoost.props" />
     <None Include="_props\FatCpp.props" />
@@ -58,7 +59,7 @@
     <ClInclude Include="DSA\Tree\N_ary\N_ary.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
     <ClInclude Include="FatFrameworkMacros.hpp" />
-    <ClInclude Include="FatLibraryS.hpp" />
+    <ClInclude Include="FatLibrary.hpp" />
     <ClInclude Include="FatNamespaces.hpp" />
     <ClInclude Include="IO\IO.hpp" />
     <ClInclude Include="IO\Keyboard.hpp" />

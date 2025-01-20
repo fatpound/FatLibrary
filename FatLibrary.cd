@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Pipeline">
+    <Position X="113.906" Y="17.934" Height="0.75" Width="33.749" />
+  </Comment>
+  <Comment CommentText="Visual">
+    <Position X="108.772" Y="17.932" Height="0.75" Width="2.653" />
+  </Comment>
+  <Comment CommentText="D3D11">
+    <Position X="105.659" Y="16.261" Height="0.75" Width="41.999" />
+  </Comment>
+  <Comment CommentText="D2D">
+    <Position X="102" Y="16.25" Height="0.75" Width="2.783" />
+  </Comment>
+  <Comment CommentText="COM">
+    <Position X="99.044" Y="16.271" Height="0.75" Width="1.971" />
+  </Comment>
+  <Comment CommentText="GDI_Plus">
+    <Position X="96.294" Y="16.251" Height="0.75" Width="2.013" />
+  </Comment>
+  <Comment CommentText="WMF">
+    <Position X="93.544" Y="16.24" Height="0.75" Width="1.898" />
+  </Comment>
+  <Comment CommentText="Win32_">
+    <Position X="87.185" Y="14.5" Height="0.75" Width="60.476" />
+  </Comment>
+  <Comment CommentText="Util">
+    <Position X="67.25" Y="14.5" Height="0.75" Width="18.325" />
+  </Comment>
+  <Comment CommentText="Gfx">
+    <Position X="80.724" Y="16.082" Height="0.75" Width="4.893" />
+  </Comment>
+  <Comment CommentText="Math">
+    <Position X="63.51" Y="14.5" Height="0.75" Width="2.263" />
+  </Comment>
+  <Comment CommentText="IO">
+    <Position X="52.76" Y="14.5" Height="0.75" Width="9.044" />
+  </Comment>
+  <Comment CommentText="DSA">
+    <Position X="37.274" Y="14.482" Height="0.75" Width="13.844" />
+  </Comment>
+  <Comment CommentText="Binary">
+    <Position X="43.447" Y="17.281" Height="0.75" Width="2.068" />
+  </Comment>
+  <Comment CommentText="N_ary">
+    <Position X="46.033" Y="17.284" Height="0.75" Width="5.089" />
+  </Comment>
+  <Comment CommentText="Tree">
+    <Position X="43.29" Y="15.918" Height="0.75" Width="7.823" />
+  </Comment>
+  <Comment CommentText="LinkedList">
+    <Position X="37.264" Y="15.912" Height="0.75" Width="5.331" />
+  </Comment>
+  <Comment CommentText="Concurrency">
+    <Position X="33.763" Y="14.482" Height="0.75" Width="2.3" />
+  </Comment>
+  <Comment CommentText="Automata">
+    <Position X="24.76" Y="14.5" Height="0.75" Width="7.695" />
+  </Comment>
+  <Comment CommentText="FatLibrary">
+    <Position X="24.726" Y="12.835" Height="0.75" Width="122.936" />
+  </Comment>
+  <Class Name="fatpound::win32::d3d11::pipeline::Bindable">
+    <Position X="132" Y="19.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAABAAAAAAAAAAAAIAAAAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Bindable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::StaticBindableVec&lt;T&gt;">
+    <Position X="114" Y="19.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAgABAACAAAAAAAQAAAAAEAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\StaticBindableVec.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::element::IndexBuffer">
+    <Position X="133" Y="22" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABQAgAAAAAAAAAAAAAAAEAABAAAAAAAAAAAgIAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::element::InputLayout">
+    <Position X="118.25" Y="22" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAIAAAAAAAAAAACAAAAgAgAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Element\InputLayout.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::element::Topology">
+    <Position X="121.25" Y="22" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAAAwAAIAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Element\Topology.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::element::VertexBuffer">
+    <Position X="130" Y="22" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAggAAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAAEAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Element\VertexBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::visual::DrawableBase&lt;T&gt;">
+    <Position X="109.25" Y="23.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAIAAQAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Visual\DrawableBase.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::visual::Drawable">
+    <Position X="109.5" Y="19.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAAAAAgAAAACABAAAAAQACAQAgAAgAAAAAAI=</HashCode>
+      <FileName>Win32_\D3D11\Visual\Drawable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::element::VertexShader">
+    <Position X="124" Y="22" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAgAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAgAAAEAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Element\VertexShader.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::element::PixelShader">
+    <Position X="127" Y="22" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAgAAAAAAAAAAAAAAAABAAAAgAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Element\PixelShader.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::resource::VertexCBuffer&lt;T&gt;">
+    <Position X="139" Y="25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAiAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::resource::TransformCBuffer&lt;T&gt;">
+    <Position X="145" Y="22" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAQAAAAAAAAAAgAAACAAAIAAAAAAgAAAAABA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::resource::PixelCBuffer&lt;T&gt;">
+    <Position X="142" Y="25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAABEAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Resource\PixelCBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::resource::PixelSBuffer&lt;T&gt;">
+    <Position X="136" Y="25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAABABAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::resource::SBuffer&lt;T&gt;">
+    <Position X="136.25" Y="22" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAgIAAAQ=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Resource\SBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::pipeline::resource::CBuffer&lt;T&gt;">
+    <Position X="140.75" Y="22" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAIAAAAAAAAAAAACAAAAAIgAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Pipeline\Resource\CBuffer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d3d11::Graphics&lt;Framework&gt;">
+    <Position X="105.75" Y="18" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACABAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Win32_\D3D11\Graphics.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::d2d::Graphics">
+    <Position X="102" Y="18" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACAEAAAAAAEAAATAAAAAAAACAEAAAAAAEAgAAAAAAE=</HashCode>
+      <FileName>Win32_\D2D\Graphics.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::com::Manager">
+    <Position X="99" Y="18" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Win32_\COM\Manager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::gdi_plus::Manager">
+    <Position X="96.25" Y="18" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAEABAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Win32_\GDI_Plus\Manager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::wmf::Manager">
+    <Position X="93.5" Y="18" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Win32_\WMF\Manager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::IWindow">
+    <Position X="87.25" Y="16.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAEAAAAAAAQAAAAAAAAAAAAAAIAAAAgIEAAAAA=</HashCode>
+      <FileName>Win32_\IWindow.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::WndClassEx">
+    <Position X="90.25" Y="16.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQAAAAAARAAAABAAQAAABAAAAAAAAAAgIAAAAAQ=</HashCode>
+      <FileName>Win32_\WndClassEx.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::win32::WindowEx">
+    <Position X="87.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Win32_\WindowEx.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::util::ViewXM">
+    <Position X="77.75" Y="16" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAEAAAEAEAAAAIQAAAAAAgAAAAAAAABAAAAgAAAAAAA=</HashCode>
+      <FileName>Util\ViewXM.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::util::Color">
+    <Position X="72" Y="16" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAkgAQAAAAEQAAAAAQAAAABAAhqAEAAAA=</HashCode>
+      <FileName>Util\Color.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::util::Surface">
+    <Position X="74.5" Y="16" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAgBAAAQAAAQCEANAIIIUABEAAAICAQAAAAgAEBAAAI=</HashCode>
+      <FileName>Util\Surface.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::util::Timer">
+    <Position X="69.25" Y="16" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAgAAAAAAAEAACAAAAAAMAAgAEAEAAA=</HashCode>
+      <FileName>Util\Timer.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::math::RectF">
+    <Position X="63.5" Y="16" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CEAAAAAAAAAAAAAAAACAAIIAIACAAAAAAAQgAAAAAAA=</HashCode>
+      <FileName>Math\RectF.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::io::Keyboard">
+    <Position X="59.75" Y="16" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABYgCAAAAAgACAAAAAAAAAAAghAiACAAAAAgAQAKCgA=</HashCode>
+      <FileName>IO\Keyboard.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::tree::binary::AVL&lt;T&gt;">
+    <Position X="43.5" Y="31.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAQAEAAAAgAAAAAAAAAAAAACAEAAAAAAAAEAAAAAEA=</HashCode>
+      <FileName>DSA\Tree\Binary\AVL.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::tree::binary::BST&lt;T&gt;">
+    <Position X="43.5" Y="18.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::dsa::tree::binary::BST&lt;T&gt;::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>DSA\Tree\Binary\BST.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAKAEAAAIAKAAAEAUgCAAAAydEEEAAAAAAghAh0oJA=</HashCode>
+      <FileName>DSA\Tree\Binary\BST.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::tree::binary::IPR&lt;T&gt;">
+    <Position X="43.75" Y="34.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DSA\Tree\Binary\IPR.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::tree::n_ary::B&lt;T, C&gt;">
+    <Position X="46" Y="18.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::dsa::tree::n_ary::B&lt;T, C&gt;::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>DSA\Tree\N_ary\B.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAAAAEBAAAAAAAAAAAAAAAIACIAAAAAAAAAgBAFAAAA=</HashCode>
+      <FileName>DSA\Tree\N_ary\B.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::tree::n_ary::B_Plus&lt;T, I, S&gt;">
+    <Position X="48.75" Y="18.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::dsa::tree::n_ary::B_Plus&lt;T, I, S&gt;::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>DSA\Tree\N_ary\B_Plus.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAIAECEAAAAAAAAAAAAAAIACAAAABAAAEAgBABQAAA=</HashCode>
+      <FileName>DSA\Tree\N_ary\B_Plus.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::linkedlist::SinglyCircular&lt;T&gt;">
+    <Position X="40.25" Y="24.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACBAAAAAAAAAAAAEAAgAAAAAAiAAAEAAA=</HashCode>
+      <FileName>DSA\LinkedList\SinglyCircular.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::linkedlist::Singly&lt;T&gt;">
+    <Position X="40.5" Y="17.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::dsa::linkedlist::Singly&lt;T&gt;::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>DSA\LinkedList\Singly.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAECAAAAACAIAAAgAAQAAAiAAAUAIA=</HashCode>
+      <FileName>DSA\LinkedList\Singly.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::linkedlist::DoublyCircular&lt;T&gt;">
+    <Position X="37.25" Y="24.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAEAAAAAAAAAAAAAAgAAAAAAiAAAkAAA=</HashCode>
+      <FileName>DSA\LinkedList\DoublyCircular.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::dsa::linkedlist::Doubly&lt;T&gt;">
+    <Position X="37.25" Y="17.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::dsa::linkedlist::Doubly&lt;T&gt;::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>DSA\LinkedList\Doubly.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAECAAAAEAAIAACgAAQAAAiAAAUAAA=</HashCode>
+      <FileName>DSA\LinkedList\Doubly.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::concurrency::TaskQueue">
+    <Position X="33.75" Y="15.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAABAAAgAAAAAAAAEAAAgAAAAgAAAACAE=</HashCode>
+      <FileName>Concurrency\TaskQueue.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::automata::CFG">
+    <Position X="24.75" Y="15.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAIAAEAAAAAAAAAAAgAAAAAAAgAAAAQAAgAIACAAA=</HashCode>
+      <FileName>Automata\CFG.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::automata::TLT">
+    <Position X="27.75" Y="15.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::automata::TLT::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>Automata\TLT.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABAAAwAAAAAAAAQAAECEAAIAAAAAAATAAAgAAFAAAA=</HashCode>
+      <FileName>Automata\TLT.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::automata::TLT_v2">
+    <Position X="30.25" Y="15.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::automata::TLT_v2::Node_">
+        <TypeIdentifier>
+          <NewMemberFileName>Automata\TLT_v2.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAgAAgAAAAIAAAAAEACAAAIgAAAAAAQAAAgAABAAAA=</HashCode>
+      <FileName>Automata\TLT_v2.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fatpound::io::Mouse">
+    <Position X="57.25" Y="16" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAiAIAIAQAAGAAAkwAABIUEBhIBgAgAQQIaAI=</HashCode>
+      <FileName>IO\Mouse.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="fatpound::util::ScreenSizeInfo">
+    <Position X="67.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\ScreenSizeInfo.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fatpound::util::gfx::FullScreenQuad">
+    <Position X="80.75" Y="17.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="fatpound::util::gfx::FullScreenQuad::Vertex">
+        <TypeIdentifier>
+          <NewMemberFileName>Util\Gfx\FullScreenQuad.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\Gfx\FullScreenQuad.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fatpound::util::gfx::ResourcePack">
+    <Position X="83.5" Y="17.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAIAAAAAAAAAAAAAAAAAICAAAAAAAAAAI=</HashCode>
+      <FileName>Util\Gfx\ResourcePack.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fatpound::util::gfx::FrameworkResourcePack">
+    <Position X="83.25" Y="19.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAACAAAAAAAAAAAAAAAAAAAAAAAEAAQAAAAAAA=</HashCode>
+      <FileName>Util\Gfx\ResourcePack.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fatpound::io::KeyEvent">
+    <Position X="55" Y="16" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="fatpound::io::KeyEvent::Type">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\KeyEvent.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IO\KeyEvent.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fatpound::io::MouseEvent">
+    <Position X="52.75" Y="16" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="fatpound::io::MouseEvent::Type">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\MouseEvent.hpp</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIAAABAAAAAAAAAAAACAIIAAAAABAAABAAAAAAAAAAA=</HashCode>
+      <FileName>IO\MouseEvent.hpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

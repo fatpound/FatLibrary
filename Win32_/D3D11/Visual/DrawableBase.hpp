@@ -13,7 +13,7 @@
 namespace fatpound::win32::d3d11::visual
 {
     template <typename T>
-    class DrawableBase : public Drawable, public FATSPACE_PIPELINE::StaticBindableVec<DrawableBase<T>>
+    class DrawableBase : public Drawable, public pipeline::StaticBindableVec<DrawableBase<T>> // removed FATSPACE_PIPELINE macro from here for Class Designer to find that base class
     {
     public:
         explicit DrawableBase() = default;
