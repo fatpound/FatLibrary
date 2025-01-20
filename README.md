@@ -1,3 +1,3 @@
-Class Diagram
+### Class Diagram
 
-![FatLibrary](https://github.com/user-attachments/assets/12026df3-8d17-42c0-84a1-7d5f33e73cd3)
+![FatLibrary](https://github.com/user-attachments/assets/8ad721e9-1bb9-4d4e-a1db-6aec472766eb)
