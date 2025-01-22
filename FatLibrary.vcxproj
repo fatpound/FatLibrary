@@ -102,7 +102,6 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Resource.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D_SRV.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp" />

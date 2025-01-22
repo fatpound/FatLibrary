@@ -280,9 +280,6 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D_SRV.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Automata\CFG.cpp">

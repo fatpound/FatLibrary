@@ -10,5 +10,4 @@
 #include "VertexCBuffer.hpp"
 
 #include "Texture2D.hpp"
-#include "Texture2D_SRV.hpp"
 #include "Sampler.hpp"
