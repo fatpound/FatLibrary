@@ -74,8 +74,8 @@ namespace fatpound::util
                 assert(y >= 0);
             }
 
-            assert(x < static_cast<N>(m_width_));
-            assert(y < static_cast<N>(m_height_));
+            assert(x < GetWidth<N>());
+            assert(y < GetHeight<N>());
 
             return m_pBuffer_[y * m_pixel_pitch_ + x];
         }
@@ -87,8 +87,8 @@ namespace fatpound::util
                 assert(y >= 0);
             }
             
-            assert(x < static_cast<N>(m_width_));
-            assert(y < static_cast<N>(m_height_));
+            assert(x < GetWidth<N>());
+            assert(y < GetHeight<N>());
 
             m_pBuffer_[y * m_pixel_pitch_ + x] = color;
         }
@@ -97,7 +97,9 @@ namespace fatpound::util
     public:
         auto ReleaseBuffer() noexcept -> Color*;
 
-        auto GetScreenSizeInfo() noexcept -> ScreenSizeInfo;
+        auto GetScreenSizeInfo() const noexcept -> ScreenSizeInfo;
+
+		auto IsEmpty() const noexcept -> bool;
 
         void Fill(const Color& color) noexcept;
         void Clear() noexcept;

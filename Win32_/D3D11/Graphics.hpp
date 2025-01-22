@@ -10,10 +10,8 @@
 
 #include <wrl.h>
 
-#include "Core/Core.hpp"
 #include "Pipeline/Pipeline.hpp"
 #include "Visual/Visual.hpp"
-#include "Factory/Factory.hpp"
 
 #include <Math/Math.hpp>
 #include <Util/Util.hpp>
@@ -59,7 +57,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND hWnd, const ScreenSizeInfo& dimensions) requires(Framework)
+        explicit Graphics(const HWND hWnd, const ScreenSizeInfo& dimensions)  requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
@@ -84,11 +82,11 @@ namespace fatpound::win32::d3d11
         ~Graphics() noexcept = default;
         ~Graphics() noexcept requires(Framework)
         {
-            if (m_res_pack_.m_pImmediateContext not_eq nullptr) [[likely]]
+            if (GetImmediateContext() not_eq nullptr) [[likely]]
             {
                 try
                 {
-                    m_res_pack_.m_pImmediateContext->ClearState();
+                    GetImmediateContext()->ClearState();
                 }
                 catch (...)
                 {
@@ -99,11 +97,11 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        template <FATSPACE_MATH::numset::Rational Q> auto GetWidth()  const noexcept
+        template <FATSPACE_MATH::numset::Rational Q> constexpr auto GetWidth()  const noexcept
         {
             return static_cast<Q>(mc_dimensions_.m_width);
         }
-        template <FATSPACE_MATH::numset::Rational Q> auto GetHeight() const noexcept
+        template <FATSPACE_MATH::numset::Rational Q> constexpr auto GetHeight() const noexcept
         {
             return static_cast<Q>(mc_dimensions_.m_height);
         }
@@ -128,7 +126,7 @@ namespace fatpound::win32::d3d11
             void* const ptr = ::std::memset(
                 m_res_pack_.m_surface,
                 GrayToneValue,
-                sizeof(Color) * mc_dimensions_.m_width * mc_dimensions_.m_height
+                sizeof(Color) * GetWidth<UINT>() * GetHeight<UINT>()
             );
         }
 
@@ -144,7 +142,7 @@ namespace fatpound::win32::d3d11
                 GetImmediateContext()->Draw(6u, 0u);
             }
 
-            const auto& hr = m_res_pack_.m_pSwapChain->Present(static_cast<UINT>(VSynced), 0u);
+            const auto& hr = GetSwapChain()->Present(static_cast<UINT>(VSynced), 0u);
 
             if (FAILED(hr)) [[unlikely]]
             {
@@ -157,8 +155,8 @@ namespace fatpound::win32::d3d11
         {
             constexpr std::array<const float_t, 4> colors{ red, green, blue, alpha };
 
-            m_res_pack_.m_pImmediateContext->ClearRenderTargetView(m_res_pack_.m_pRTV.Get(), colors.data());
-            m_res_pack_.m_pImmediateContext->ClearDepthStencilView(m_res_pack_.m_pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
+            GetImmediateContext()->ClearRenderTargetView(GetRenderTargetView(), colors.data());
+            GetImmediateContext()->ClearDepthStencilView(GetDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
         }
 
         template <std::floating_point T = float_t>
@@ -166,15 +164,15 @@ namespace fatpound::win32::d3d11
         {
             const std::array<const T, 4> colors{ red, green, blue, alpha };
 
-            m_res_pack_.m_pImmediateContext->ClearRenderTargetView(m_res_pack_.m_pRTV.Get(), colors.data());
-            m_res_pack_.m_pImmediateContext->ClearDepthStencilView(m_res_pack_.m_pDSV.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
+            GetImmediateContext()->ClearRenderTargetView(GetRenderTargetView(), colors.data());
+            GetImmediateContext()->ClearDepthStencilView(GetDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
         }
 
 
     public:
         auto GetSurface() -> Surface*
         {
-            return m_extra_pSurface_.get();
+            return m_pSurface_.get();
         }
 
         auto GetHwnd() const noexcept -> HWND
@@ -184,6 +182,10 @@ namespace fatpound::win32::d3d11
         auto GetDevice() const noexcept -> ID3D11Device*
         {
             return m_res_pack_.m_pDevice.Get();
+        }
+        auto GetSwapChain() const -> IDXGISwapChain*
+        {
+            return m_res_pack_.m_pSwapChain.Get();
         }
         auto GetImmediateContext() const noexcept -> ID3D11DeviceContext*
         {
@@ -199,26 +201,26 @@ namespace fatpound::win32::d3d11
         }
         auto GetSysbufferTexture() const noexcept -> ID3D11Texture2D* requires(Framework)
         {
-            return m_res_pack_.m_pSysBufferTexture.Get();
+            return m_res_pack_.m_pSysbufferTex2d.Get();
         }
 
         void BindSurface(std::unique_ptr<Surface> pSurface) requires(Framework)
         {
-            if (m_extra_pSurface_ not_eq nullptr)
+            if (m_pSurface_ not_eq nullptr)
             {
-                m_extra_pSurface_->Clear();
+                m_pSurface_->Clear();
             }
 
-            m_extra_pSurface_ = std::move(pSurface);
+            m_pSurface_ = std::move(pSurface);
         }
         void CopySurfaceToSysbuffer() requires(Framework)
         {
-            if (const void* const pSrc = *m_extra_pSurface_)
+            if (const void* const pSrc = *m_pSurface_)
             {
                 ::std::memcpy(
                     m_res_pack_.m_surface,
                     pSrc,
-                    sizeof(Color) * mc_dimensions_.m_width * mc_dimensions_.m_height
+                    sizeof(Color) * GetWidth<UINT>() * GetHeight<UINT>()
                 );
             }
         }
@@ -226,11 +228,11 @@ namespace fatpound::win32::d3d11
         void PutPixel(const int x, const int y, const Color color) noexcept requires(Framework)
         {
             assert(x >= 0);
-            assert(x < static_cast<int>(mc_dimensions_.m_width));
+            assert(x < GetWidth<int>());
             assert(y >= 0);
-            assert(y < static_cast<int>(mc_dimensions_.m_height));
+            assert(y < GetHeight<int>());
 
-            m_res_pack_.m_surface[mc_dimensions_.m_width * y + x] = color;
+            m_res_pack_.m_surface[GetWidth<UINT>() * y + x] = color;
         }
 
 
@@ -240,28 +242,39 @@ namespace fatpound::win32::d3d11
     private:
         void InitCommon_()
         {
-            core::Create_Device(m_res_pack_);
-
+            InitDevice_();
             InitMSAA_Settings_();
-            
-            {
-                auto&& scdesc = factory::Create_SwapChain_DESC<Framework, IN_RELEASE>(GetHwnd(), mc_dimensions_, m_msaa_count_, m_msaa_quality_);
-                factory::Create_SwapChain(m_res_pack_, scdesc);
-            }
-
-            ToggleAltEnterMode_();
-
+            InitSwapChain_();
             InitRenderTarget_();
             InitViewport_();
+
+            ToggleAltEnterMode_();
         }
         void InitFramework_() requires(Framework)
         {
-            InitShaderResourceView_();
-            InitSampler_();
-
             std::vector<std::unique_ptr<FATSPACE_PIPELINE::Bindable>> binds;
+            
+            {
+                auto pVS = std::make_unique<FATSPACE_PIPELINE_ELEMENT::VertexShader>(GetDevice(), L"..\\FatLibrary\\VSFrameBuffer.cso");
+                auto pBlob = pVS->GetBytecode();
 
-            InitFrameworkBinds_(binds);
+                binds.push_back(std::move(pVS));
+                binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::PixelShader>(GetDevice(), L"..\\FatLibrary\\PSFrameBuffer.cso"));
+                binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::VertexBuffer>(GetDevice(), FATSPACE_UTIL_GFX::FullScreenQuad::sc_vertices));
+                binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::Topology>(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
+                binds.push_back(std::make_unique<FATSPACE_PIPELINE_RESOURCE::Texture2D_SRV<Framework>>(GetDevice(), GetWidth<UINT>(), GetHeight<UINT>(), m_msaa_count_, m_msaa_quality_));
+                binds.push_back(std::make_unique<FATSPACE_PIPELINE_RESOURCE::Sampler<Framework>>(GetDevice()));
+
+                const std::vector<D3D11_INPUT_ELEMENT_DESC> iedesc =
+                {
+                    {
+                        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+                        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+                    }
+                };
+
+                binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::InputLayout>(GetDevice(), iedesc, pBlob));
+            }
 
             auto* const pImmediateContext = GetImmediateContext();
 
@@ -270,37 +283,55 @@ namespace fatpound::win32::d3d11
                 bindable->Bind(pImmediateContext);
             }
         }
-        void InitFrameworkBinds_(std::vector<std::unique_ptr<FATSPACE_PIPELINE::Bindable>>& binds) requires(Framework)
+        void InitDevice_()
         {
-            auto pVS = std::make_unique<FATSPACE_PIPELINE_ELEMENT::VertexShader>(GetDevice(), L"..\\FatModules\\VSFrameBuffer.cso");
-            auto pBlob = pVS->GetBytecode();
+            static constinit UINT swapCreateFlags;
 
-            binds.push_back(std::move(pVS));
-            binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::PixelShader>(GetDevice(), L"..\\FatModules\\PSFrameBuffer.cso"));
-            binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::VertexBuffer>(GetDevice(), FATSPACE_UTIL_GFX::FullScreenQuad::sc_vertices));
-            binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::Topology>(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
-
-            const std::vector<D3D11_INPUT_ELEMENT_DESC> iedesc =
+            if constexpr (IN_RELEASE)
             {
-                {
-                    { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-                    { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-                }
-            };
+                swapCreateFlags = 0u;
+            }
+            else
+            {
+                swapCreateFlags = D3D11_CREATE_DEVICE_DEBUG;
+            }
 
-            binds.push_back(std::make_unique<FATSPACE_PIPELINE_ELEMENT::InputLayout>(GetDevice(), iedesc, pBlob));
+            D3D_FEATURE_LEVEL featureLevel{};
+
+            const auto& hr = ::D3D11CreateDevice(
+                nullptr,
+                D3D_DRIVER_TYPE_HARDWARE,
+                nullptr,
+                swapCreateFlags,
+                nullptr,
+                0u,
+                D3D11_SDK_VERSION,
+                &m_res_pack_.m_pDevice,
+                &featureLevel,
+                &m_res_pack_.m_pImmediateContext
+            );
+
+            if (FAILED(hr)) [[unlikely]]
+            {
+                throw std::runtime_error("Could NOT create Direct3D Device!");
+            }
+
+            if (featureLevel not_eq D3D_FEATURE_LEVEL_11_0)
+            {
+                throw std::runtime_error("Direct3D Feature Level 11 is unsupported!");
+            }
         }
         void InitMSAA_Settings_()
         {
             constexpr std::array<const UINT, 4> msaa_counts{ 32u, 16u, 8u, 4u };
 
-            for (auto i = 0u; i < msaa_counts.size(); ++i)
+            for (const auto& count : msaa_counts)
             {
-                m_res_pack_.m_pDevice->CheckMultisampleQualityLevels(DXGI_FORMAT_B8G8R8A8_UNORM, msaa_counts[i], &m_msaa_quality_);
+                m_res_pack_.m_pDevice->CheckMultisampleQualityLevels(DXGI_FORMAT_B8G8R8A8_UNORM, count, &m_msaa_quality_);
 
                 if (m_msaa_quality_ > 0)
                 {
-                    m_msaa_count_ = msaa_counts[i];
+                    m_msaa_count_ = count;
 
                     break;
                 }
@@ -311,34 +342,96 @@ namespace fatpound::win32::d3d11
                 throw std::runtime_error{ "MSAA Quality is NOT valid!" };
             }
         }
-
-        void InitRasterizer_() requires(NotFramework)
+        void InitSwapChain_()
         {
-            ::wrl::ComPtr<ID3D11RasterizerState> pRasterizerState{};
+            DXGI_SWAP_CHAIN_DESC scDesc{};
+            scDesc.BufferDesc.Width  = GetWidth<UINT>();
+            scDesc.BufferDesc.Height = GetHeight<UINT>();
+            scDesc.BufferDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+            scDesc.BufferDesc.RefreshRate.Numerator = 0u;
+            scDesc.BufferDesc.RefreshRate.Denominator = 0u;
+            scDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+            scDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+            scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+            scDesc.BufferCount = 1u;
+            scDesc.OutputWindow = GetHwnd();
+            scDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+            scDesc.Flags = 0u;
 
+            if constexpr (Framework)
             {
-                const auto& descRS = factory::Create_RasterizerState_DESC();
-                factory::Create_RasterizerState(m_res_pack_, descRS, pRasterizerState);
+                scDesc.SampleDesc.Count   = 1u;
+                scDesc.SampleDesc.Quality = 0u;
+            }
+            else
+            {
+                scDesc.SampleDesc.Count   = m_msaa_count_;
+                scDesc.SampleDesc.Quality = m_msaa_quality_ - 1u;
             }
 
-            GetImmediateContext()->RSSetState(pRasterizerState.Get());
+            if constexpr (IN_RELEASE and NotFramework)
+            {
+                scDesc.Windowed = false;
+            }
+            else
+            {
+                scDesc.Windowed = true;
+            }
+
+            const auto& hr = FATSPACE_UTIL::gfx::GetDXGIFactory(GetDevice())->CreateSwapChain(
+                GetDevice(),
+                &scDesc,
+                m_res_pack_.m_pSwapChain.GetAddressOf()
+            );
+
+            if (FAILED(hr)) [[unlikely]]
+            {
+                throw std::runtime_error("Could NOT create Direct3D SwapChain!");
+            }
         }
         void InitRenderTarget_()
         {
-            factory::Create_RenderTargetView(m_res_pack_);
+            ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
+
+            HRESULT hr;
+
+            hr = GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), &pBackBufferTexture2D);
+
+            if (FAILED(hr)) [[unlikely]]
+            {
+                throw std::runtime_error("Could NOT get the buffer from SwapChain!");
+            }
+
+            hr = GetDevice()->CreateRenderTargetView(pBackBufferTexture2D.Get(), nullptr, &m_res_pack_.m_pRTV);
+
+            if (FAILED(hr)) [[unlikely]]
+            {
+                throw std::runtime_error("Could NOT create RenderTargetView!");
+            }
 
             if constexpr (NotFramework)
             {
-                ::wrl::ComPtr<ID3D11Texture2D> pTexture2D{};
+                FATSPACE_PIPELINE_RESOURCE::Texture2D<Framework> tx2d(GetDevice(), GetWidth<UINT>(), GetHeight<UINT>(), m_msaa_count_, m_msaa_quality_);
 
+                D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc{};
+                dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
+
+                if (m_msaa_count_ == 1u)
                 {
-                    const auto& descTex2D = factory::Create_Texture2D_DESC(mc_dimensions_, m_msaa_count_, m_msaa_quality_);
-                    factory::Create_Texture2D(GetDevice(), descTex2D, pTexture2D);
+                    dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+                    dsvDesc.Texture2D.MipSlice = 0u;
+                }
+                else
+                {
+                    dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS;
+                    dsvDesc.Texture2D.MipSlice = 1u;
                 }
 
+                const auto& hr = GetDevice()->CreateDepthStencilView(tx2d.Get(), &dsvDesc, &m_res_pack_.m_pDSV);
+
+                if (FAILED(hr)) [[unlikely]]
                 {
-                    const auto& descDSV = factory::Create_DepthStencilView_DESC(m_msaa_count_);
-                    factory::Create_DepthStencilView(m_res_pack_, pTexture2D, descDSV);
+                    throw std::runtime_error("Could NOT create DepthStencilView!");
                 }
             }
 
@@ -347,8 +440,8 @@ namespace fatpound::win32::d3d11
         void InitViewport_()
         {
             D3D11_VIEWPORT vp{};
-            vp.Width = static_cast<FLOAT>(mc_dimensions_.m_width);
-            vp.Height = static_cast<FLOAT>(mc_dimensions_.m_height);
+            vp.Width  = GetWidth<FLOAT>();
+            vp.Height = GetHeight<FLOAT>();
             vp.MinDepth = 0.0f;
             vp.MaxDepth = 1.0f;
             vp.TopLeftX = 0.0f;
@@ -356,30 +449,30 @@ namespace fatpound::win32::d3d11
 
             GetImmediateContext()->RSSetViewports(1u, &vp);
         }
-        void InitShaderResourceView_() requires(Framework)
+        void InitRasterizer_() requires(NotFramework)
         {
-            ::wrl::ComPtr<ID3D11ShaderResourceView> pSysBufferTextureView{};
+            D3D11_RASTERIZER_DESC rDesc{};
+            rDesc.FillMode = D3D11_FILL_SOLID;
+            rDesc.CullMode = D3D11_CULL_BACK;
+            rDesc.FrontCounterClockwise = false;
+            rDesc.DepthBias = 0;
+            rDesc.DepthBiasClamp = 0.0f;
+            rDesc.SlopeScaledDepthBias = 0.0f;
+            rDesc.DepthClipEnable = true;
+            rDesc.ScissorEnable = false;
+            rDesc.MultisampleEnable = true;
+            rDesc.AntialiasedLineEnable = true;
 
+            ::wrl::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
+
+            const auto& hr = GetDevice()->CreateRasterizerState(&rDesc, &m_pRasterizerState_);
+
+            if (FAILED(hr)) [[unlikely]]
             {
-                const auto& t2dDesc = factory::Create_Texture2D_DESC<Framework>(mc_dimensions_, m_msaa_count_, m_msaa_quality_);
-                factory::Create_Texture2D(m_res_pack_, t2dDesc);
-
-                const auto& srvDesc = factory::Create_ShaderResourceView_DESC<Framework>(t2dDesc.Format, m_msaa_count_);
-                factory::Create_ShaderResourceView(m_res_pack_, srvDesc, pSysBufferTextureView);
+                throw std::runtime_error("Could NOT create RasterizerState!");
             }
 
-            GetImmediateContext()->PSSetShaderResources(0u, 1u, pSysBufferTextureView.GetAddressOf());
-        }
-        void InitSampler_() requires(Framework)
-        {
-            ::wrl::ComPtr<ID3D11SamplerState> pSamplerState{};
-
-            {
-                const auto& sampDesc = factory::Create_SamplerState_DESC();
-                factory::Create_SamplerState(m_res_pack_, sampDesc, pSamplerState);
-            }
-
-            GetImmediateContext()->PSSetSamplers(0u, 1u, pSamplerState.GetAddressOf());
+            GetImmediateContext()->RSSetState(m_pRasterizerState_.Get());
         }
 
         void MapSubresource_() requires(Framework)
@@ -433,6 +526,6 @@ namespace fatpound::win32::d3d11
 
         UINT m_dxgi_mode_{};
 
-        std::unique_ptr<Surface> m_extra_pSurface_;
+        std::unique_ptr<Surface> m_pSurface_;
     };
 }

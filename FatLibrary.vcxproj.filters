@@ -166,36 +166,6 @@
     <ClInclude Include="Win32_\D2D\Graphics.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Core\Core.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Core\Device.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\DepthStencilView.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\Factory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\RasterizerState.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\RenderTargetView.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\SamplerState.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\ShaderResourceView.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\SwapChain.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Factory\Texture2D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\Element.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -302,6 +272,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FatNamespaces.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D_SRV.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

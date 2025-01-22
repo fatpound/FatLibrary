@@ -166,9 +166,14 @@ namespace fatpound::util
         return m_pBuffer_.release();
     }
 
-    auto Surface::GetScreenSizeInfo() noexcept -> ScreenSizeInfo
+    auto Surface::GetScreenSizeInfo() const noexcept -> ScreenSizeInfo
     {
         return { m_width_, m_height_ };
+    }
+
+    auto Surface::IsEmpty() const noexcept -> bool
+    {
+        return m_pBuffer_ == nullptr;
     }
 
     void Surface::Fill(const Color& color) noexcept
