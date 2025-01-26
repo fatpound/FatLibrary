@@ -2,13 +2,15 @@
 
 #include "CFG.hpp"
 
+using std::literals::string_literals::operator ""s;
+
 namespace fatpound::automata
 {
     class TLT_v2 final
     {
-        static constexpr auto scx_RecurseLimit_ = 1u;
+        static constexpr auto scx_RecursionLimit_ = 1u;
 
-    public: 
+    public:
         using Result_t = std::vector<std::pair<std::string, bool>>;
 
 
@@ -49,7 +51,7 @@ namespace fatpound::automata
 
     private:
         [[nodiscard]]
-        auto GenerateResults_(std::string init_str = "", std::size_t index = 0u, std::size_t recursed = 0u) const -> Result_t;
+        auto GenerateResults_(std::string init_str = ""s, std::size_t index = 0u, std::size_t recursed = 0u) const -> Result_t;
 
         [[nodiscard]]
         auto IsTerminal_(const std::string& str) const -> bool;
