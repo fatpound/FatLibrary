@@ -3,6 +3,7 @@
 #include "Numset/Numset.hpp"
 
 #include "Multiplicable.hpp"
+#include "Primes.hpp"
 
 #include <DirectXMath.h>
 
@@ -21,9 +22,9 @@ namespace fatpound::math
     template <std::floating_point N>
     inline constexpr auto Gaussian(const N x, const N rho)
     {
-        const auto rhoSq2 = Square(rho) * 2.0;
+        const auto rhoSq2 = Square<>(rho) * 2.0;
 
-        return (1.0 / ::std::sqrt(rhoSq2 * ::std::numbers::pi_v<N>)) * ::std::exp(-(Square(x) / rhoSq2));
+        return (1.0 / ::std::sqrt(rhoSq2 * ::std::numbers::pi_v<N>)) * ::std::exp(-(Square<>(x) / rhoSq2));
     }
 
     auto GetDifferenceVector(const ::DirectX::XMVECTOR pos1_vec, const ::DirectX::XMVECTOR pos2_vec) noexcept -> ::DirectX::XMVECTOR;

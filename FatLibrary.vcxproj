@@ -55,6 +55,7 @@
     <ClInclude Include="Math\Multiplicable.hpp" />
     <ClInclude Include="Math\Numset\Numset.hpp" />
     <ClInclude Include="Math\Numset\Rational.hpp" />
+    <ClInclude Include="Math\Primes.hpp" />
     <ClInclude Include="Math\RectF.hpp" />
     <ClInclude Include="Memory\Memory.hpp" />
     <ClInclude Include="Util\Color.hpp" />
