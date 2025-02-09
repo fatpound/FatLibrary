@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FatRules.ruleset" />
-    <None Include="FatLibrary.cd" />
+    <None Include="_misc\FatRules.ruleset" />
+    <None Include="_misc\FatLibrary.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automata\Automata.hpp">

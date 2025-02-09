@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FatLibrary.cd" />
-    <None Include="FatRules.ruleset" />
+    <None Include="_misc\FatLibrary.cd" />
+    <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automata\Automata.hpp" />
