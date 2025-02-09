@@ -15,21 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_props\FatBoost.props" />
-    <None Include="_props\FatCpp.props" />
-    <None Include="_props\FatCpp_Debug.props" />
-    <None Include="_props\FatCpp_Release.props" />
-    <None Include="_props\FatCppM.props" />
-    <None Include="_props\FatCppM_Debug.props" />
-    <None Include="_props\FatCppM_Release.props" />
-    <None Include="_props\FatCV4.props" />
-    <None Include="_props\FatCV4_Debug.props" />
-    <None Include="_props\FatCV4_Release.props" />
-    <None Include="_props\FatLibrary.props" />
-    <None Include="_props\FatLibraryM.props" />
-    <None Include="_props\FatZMQ.props" />
-    <None Include="_props\FatZMQ_Debug.props" />
-    <None Include="_props\FatZMQ_Release.props" />
     <None Include="FatRules.ruleset" />
     <None Include="FatLibrary.cd" />
   </ItemGroup>
