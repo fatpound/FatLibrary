@@ -66,11 +66,12 @@ namespace fatpound::win32
                         bitor WS_SYSMENU
                     };
 
-                    RECT rect{};
-                    rect.left = 0l;
-                    rect.right = rect.left + static_cast<LONG>(mc_client_size_.m_width);
-                    rect.top = 0l;
-                    rect.bottom = rect.top + static_cast<LONG>(mc_client_size_.m_height);
+                    RECT rect{
+                        .left   = 0l,
+                        .top    = 0l,
+                        .right  = rect.left + static_cast<LONG>(mc_client_size_.m_width),
+                        .bottom = rect.top  + static_cast<LONG>(mc_client_size_.m_height)
+                    };
 
                     {
                         [[maybe_unused]]
@@ -282,7 +283,7 @@ namespace fatpound::win32
 
 
     protected:
-        __forceinline void Process_WM_MOUSEMOVE_ (const WPARAM wParam, const LPARAM lParam)
+        __forceinline void Process_WM_MOUSEMOVE_  (const WPARAM wParam, const LPARAM lParam)
         {
             const POINTS pt = MAKEPOINTS(lParam);
 
@@ -337,7 +338,7 @@ namespace fatpound::win32
         {
             m_pMouse->OnWheelReleased_();
         }
-        __forceinline void Process_WM_MOUSEWHEEL_(const int delta)
+        __forceinline void Process_WM_MOUSEWHEEL_ (const int delta)
         {
             m_pMouse->OnWheelDelta_(delta);
         }

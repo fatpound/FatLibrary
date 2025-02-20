@@ -87,7 +87,7 @@ namespace fatpound::automata
 
                             std::string tempstr = strPair.first;
 
-                            if (tempstr == "")
+                            if (tempstr.empty())
                             {
                                 continue;
                             }

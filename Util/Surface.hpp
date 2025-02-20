@@ -19,7 +19,7 @@ namespace fatpound::util
     {
     public:
         explicit Surface(const std::wstring& filename, const unsigned int alignBytes = FAT_DEFAULT_ALIGNMENT);
-        explicit Surface(const ScreenSizeInfo dimensions, const unsigned int alignBytes = FAT_DEFAULT_ALIGNMENT);
+        explicit Surface(const ScreenSizeInfo& dimensions, const unsigned int alignBytes = FAT_DEFAULT_ALIGNMENT);
         explicit Surface(const unsigned int width, const unsigned int height, const unsigned int alignBytes = FAT_DEFAULT_ALIGNMENT);
 
         explicit Surface() noexcept;

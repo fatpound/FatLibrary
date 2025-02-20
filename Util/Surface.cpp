@@ -20,7 +20,7 @@
 
 namespace fatpound::util
 {
-	 Surface::Surface(const std::wstring& filename, const unsigned int alignBytes)
+	Surface::Surface(const std::wstring& filename, const unsigned int alignBytes)
         :
         m_pBuffer_(nullptr, nullptr)
     {
@@ -51,7 +51,7 @@ namespace fatpound::util
 
         *this = std::move(surf);
     }
-    Surface::Surface(const ScreenSizeInfo dimensions, const unsigned int alignBytes)
+    Surface::Surface(const ScreenSizeInfo& dimensions, const unsigned int alignBytes)
         :
         Surface(dimensions.m_width, dimensions.m_height, alignBytes)
     {

@@ -53,7 +53,7 @@ namespace fatpound::automata
 
     private:
         void ReadFirstLine_ (std::ifstream& inputFile, Alphabet_t& alphabet);
-        void ReadSecondLine_(std::ifstream& inputFile, Alphabet_t& alphabet);
+        void ReadSecondLine_(std::ifstream& inputFile, const Alphabet_t& alphabet);
 
 
     private:
