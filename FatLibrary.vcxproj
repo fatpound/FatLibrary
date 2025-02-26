@@ -62,6 +62,7 @@
     <ClInclude Include="Util\Gfx\FullScreenQuad.hpp" />
     <ClInclude Include="Util\Gfx\Gfx.hpp" />
     <ClInclude Include="Util\Gfx\ResourcePack.hpp" />
+    <ClInclude Include="Util\Random.hpp" />
     <ClInclude Include="Util\ScreenSizeInfo.hpp" />
     <ClInclude Include="Util\Surface.hpp" />
     <ClInclude Include="Util\Timer.hpp" />

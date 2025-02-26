@@ -4,7 +4,7 @@
 
 namespace fatpound::math
 {
-    template <std::unsigned_integral N> static constexpr auto IsPrime  (const N& num) noexcept -> bool
+    template <std::unsigned_integral N> constexpr auto IsPrime   (const N& num) noexcept -> bool
     {
         if (num < 4)
         {
@@ -26,32 +26,33 @@ namespace fatpound::math
 
         return true;
     }
-    template <std::unsigned_integral N> static constexpr auto NextPrime(const N& num) noexcept -> N
+    template <std::unsigned_integral N> constexpr auto NextPrime (const N& num) noexcept -> N
     {
-        if (num < 2)
+        if (num < 5)
         {
-            return 2;
+            return 2 + (num > 2 ? 3 : (num == 2));
         }
 
         N x{num};
 
-        if (x % 2 == 0)
+        if (num % 2 == 0)
         {
             ++x;
         }
 
-        while (not IsPrime<>(x))
+        do
         {
             x += 2;
         }
+        while (not IsPrime<>(x));
 
         return x;
     }
-    template <std::unsigned_integral N> static constexpr auto PrevPrime(const N& num) noexcept -> N
+    template <std::unsigned_integral N> constexpr auto PrevPrime (const N& num) noexcept -> N
     {
-        if (num <= 2)
+        if (num < 5)
         {
-            return 0;
+            return num > 2 ? (num - 1) : 0;
         }
 
         N x{num};
@@ -61,18 +62,19 @@ namespace fatpound::math
             --x;
         }
 
-        while (not IsPrime<>(x))
+        do
         {
             x -= 2;
         }
+        while (not IsPrime<>(x));
 
         return x;
     }
-    template <std::unsigned_integral N> static constexpr auto NthPrime (const N& num) noexcept -> N
+    template <std::unsigned_integral N> constexpr auto NthPrime  (const N& num) noexcept -> N
     {
-        if (num == 1)
+        if (num < 2)
         {
-            return 2;
+            return (num == 1) ? 2 : 0;
         }
 
         N i = 3;
