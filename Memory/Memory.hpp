@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include <memory>
+#include <stdexcept>
 
 namespace fatpound::memory
 {
