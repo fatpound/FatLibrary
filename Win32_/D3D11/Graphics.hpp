@@ -104,11 +104,11 @@ namespace fatpound::win32::d3d11
             return static_cast<Q>(mc_dimensions_.m_height);
         }
 
-        template <std::integral I> __forceinline auto GetPixel(const I& x, const I& y) const -> Color               requires(Framework)
+        template <std::integral I> __forceinline auto GetPixel(const I& x, const I& y) const -> FATSPACE_UTIL::Color               requires(Framework)
         {
             return m_res_pack_.m_surface.GetPixel<>(x, y);
         }
-        template <std::integral I> __forceinline void PutPixel(const I& x, const I& y, const Color& color) noexcept requires(Framework)
+        template <std::integral I> __forceinline void PutPixel(const I& x, const I& y, const FATSPACE_UTIL::Color& color) noexcept requires(Framework)
         {
             m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }
