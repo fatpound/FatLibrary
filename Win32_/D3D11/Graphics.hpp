@@ -4,19 +4,19 @@
 
 #include <FatWin32.hpp>
 
-#include <DirectXMath.h>
-
 #include <d3d11.h>
 
 #include <wrl.h>
+
+#include <DirectXMath.h>
 
 #include "Pipeline/Pipeline.hpp"
 #include "Visual/Visual.hpp"
 
 #include <Math/Numbers/Sets.hpp>
+#include <Util/Gfx/Gfx.hpp>
 #include <Util/Color.hpp>
 #include <Util/Surface.hpp>
-#include <Util/Gfx/Gfx.hpp>
 
 #include <cstring>
 

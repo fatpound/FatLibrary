@@ -4,6 +4,7 @@
 
 #include "FullScreenQuad.hpp"
 #include "ResourcePack.hpp"
+#include "SizePack.hpp"
 
 #include <d3d11.h>
 

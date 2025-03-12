@@ -1,13 +1,13 @@
 #pragma once
 
+#include <DirectXMath.h>
+
 #include "Geometry/Geometry.hpp"
 #include "Numbers/Numbers.hpp"
 
 #include "Common.hpp"
 #include "Multiplicative.hpp"
 #include "Rect.hpp"
-
-#include <DirectXMath.h>
 
 #include <cmath>
 
