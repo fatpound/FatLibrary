@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Include="_misc\FatRules.ruleset" />
     <None Include="_misc\FatLibrary.cd" />
+    <None Include="Math\AngularConv.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automata\Automata.hpp">
@@ -268,13 +269,19 @@
     <ClInclude Include="Math\Numbers\Numbers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\Geometry.hpp">
+    <ClInclude Include="Math\Geometry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="File\File.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Util\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitwise\Bitwise.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitwise\Concepts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

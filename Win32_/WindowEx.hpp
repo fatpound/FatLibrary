@@ -3,6 +3,7 @@
 #include "IWindow.hpp"
 #include "WndClassEx.hpp"
 
+#include <Bitwise/Concepts.hpp>
 #include <Concurrency/Concurrency.hpp>
 #include <IO/IO.hpp>
 #include <Math/Numbers/Sets.hpp>
@@ -171,13 +172,13 @@ namespace fatpound::win32
 
 
     public:
-        template <FATSPACE_NUMBERS::Rational Q> __forceinline auto GetClientWidth()  const noexcept
+        template <bitwise::Integral_Or_Floating T> __forceinline auto GetClientWidth()  const noexcept -> T
         {
-            return static_cast<Q>(mc_client_size_.m_width);
+            return static_cast<T>(mc_client_size_.m_width);
         }
-        template <FATSPACE_NUMBERS::Rational Q> __forceinline auto GetClientHeight() const noexcept
+        template <bitwise::Integral_Or_Floating T> __forceinline auto GetClientHeight() const noexcept -> T
         {
-            return static_cast<Q>(mc_client_size_.m_height);
+            return static_cast<T>(mc_client_size_.m_height);
         }
 
 

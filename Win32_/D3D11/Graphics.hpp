@@ -13,6 +13,7 @@
 #include "Pipeline/Pipeline.hpp"
 #include "Visual/Visual.hpp"
 
+#include <Bitwise/Concepts.hpp>
 #include <Math/Numbers/Sets.hpp>
 #include <Util/Gfx/Gfx.hpp>
 #include <Util/Color.hpp>
@@ -95,20 +96,20 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetWidth()  const noexcept
+        template <bitwise::Integral_Or_Floating T> constexpr auto GetWidth () const noexcept -> T
         {
-            return static_cast<Q>(mc_dimensions_.m_width);
+            return static_cast<T>(mc_dimensions_.m_width);
         }
-        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetHeight() const noexcept
+        template <bitwise::Integral_Or_Floating T> constexpr auto GetHeight() const noexcept -> T
         {
-            return static_cast<Q>(mc_dimensions_.m_height);
+            return static_cast<T>(mc_dimensions_.m_height);
         }
 
-        template <std::integral I> __forceinline auto GetPixel(const I& x, const I& y) const -> FATSPACE_UTIL::Color               requires(Framework)
+        template <::std::integral T> __forceinline auto GetPixel(const T& x, const T& y) const -> Color               requires(Framework)
         {
             return m_res_pack_.m_surface.GetPixel<>(x, y);
         }
-        template <std::integral I> __forceinline void PutPixel(const I& x, const I& y, const FATSPACE_UTIL::Color& color) noexcept requires(Framework)
+        template <::std::integral T> __forceinline void PutPixel(const T& x, const T& y, const Color& color) noexcept requires(Framework)
         {
             m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }

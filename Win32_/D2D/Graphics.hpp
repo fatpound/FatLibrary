@@ -10,14 +10,13 @@
 
 #include <DirectXMath.h>
 
+#include <Bitwise/Concepts.hpp>
 #include <Math/Numbers/Sets.hpp>
 #include <Util/Gfx/SizePack.hpp>
 
 #define SOFT_COLOR_EFFECT false
 
 #pragma comment(lib, "d2d1")
-
-namespace dx = DirectX;
 
 namespace fatpound::win32::d2d
 {
@@ -66,13 +65,13 @@ namespace fatpound::win32::d2d
 
 
     public:
-        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetWidth()  const noexcept
+        template <bitwise::Integral_Or_Floating T> constexpr auto GetWidth()  const noexcept -> T
         {
-            return static_cast<Q>(mc_dimensions_.m_width);
+            return static_cast<T>(mc_dimensions_.m_width);
         }
-        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetHeight() const noexcept
+        template <bitwise::Integral_Or_Floating T> constexpr auto GetHeight() const noexcept -> T
         {
-            return static_cast<Q>(mc_dimensions_.m_height);
+            return static_cast<T>(mc_dimensions_.m_height);
         }
 
         template <bool Clear = true>
@@ -126,17 +125,19 @@ namespace fatpound::win32::d2d
         }
         void DrawClosedPolyLine(const std::vector<::DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F color, ::DirectX::XMMATRIX transform) noexcept
         {
+            namespace dx = ::DirectX;
+
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 
             for (std::size_t i = 1u; i < vertices.size() + 1u; ++i)
             {
-                const auto& vec0 = ::dx::XMVector2TransformCoord(::dx::XMLoadFloat2(&vertices[i - 1u]), transform);
-                const auto& vec1 = ::dx::XMVector2TransformCoord(::dx::XMLoadFloat2(&vertices[i % vertices.size()]), transform);
+                const auto& vec0 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i - 1u]), transform);
+                const auto& vec1 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i % vertices.size()]), transform);
 
-                ::dx::XMFLOAT2 transformed0;
-                ::dx::XMFLOAT2 transformed1;
-                ::dx::XMStoreFloat2(&transformed0, vec0);
-                ::dx::XMStoreFloat2(&transformed1, vec1);
+                dx::XMFLOAT2 transformed0;
+                dx::XMFLOAT2 transformed1;
+                dx::XMStoreFloat2(&transformed0, vec0);
+                dx::XMStoreFloat2(&transformed1, vec1);
 
                 DrawLine(
                     D2D1::Point2F(transformed0.x, transformed0.y),
