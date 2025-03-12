@@ -9,6 +9,7 @@
 #include "../Bindable.hpp"
 
 #include <vector>
+#include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline::element
 {

@@ -6,7 +6,7 @@
 
 namespace fatpound::util
 {
-    auto ToWString(const std::string& str) -> std::wstring
+    static auto ToWString(const std::string& str) -> std::wstring
     {
         std::wstring wstr(str.size(), '\0');
 

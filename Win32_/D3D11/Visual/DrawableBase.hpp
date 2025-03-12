@@ -25,6 +25,19 @@ namespace fatpound::win32::d3d11::visual
         virtual ~DrawableBase() noexcept = default;
 
 
+    public:
+        static auto IsStaticInitialized_() -> bool
+        {
+            return not tl_bindable_vec_.empty();
+        }
+        static void AddStaticBind_(std::unique_ptr<FATSPACE_PIPELINE::Bindable> bind) noexcept(IN_RELEASE)
+        {
+            assert((typeid(*bind) not_eq typeid(FATSPACE_PIPELINE_ELEMENT::IndexBuffer)) && "*Must* use AddIndexBuffer_() method to bind it!");
+
+            tl_bindable_vec_.push_back(std::move(bind));
+        }
+
+
     protected:
         virtual void AddStaticIndexBuffer_(std::unique_ptr<FATSPACE_PIPELINE_ELEMENT::IndexBuffer> idxbuf) noexcept(IN_RELEASE) final
         {

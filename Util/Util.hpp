@@ -20,7 +20,7 @@ namespace fatpound::util
         ::std::floating_point F = float
     >
     FAT_CMATH_CONSTEXPR23
-    auto HourMinuteHandAngle(U hours, U minutes) -> F
+    static auto HourMinuteHandAngle(U hours, U minutes) -> F
     {
         hours   %= 12;
         minutes %= 60;

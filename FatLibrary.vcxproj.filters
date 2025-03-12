@@ -294,13 +294,13 @@
     <ClCompile Include="IO\Mouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Util\Gfx\Gfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Util\ViewXM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="File\File.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\Gfx\Gfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
