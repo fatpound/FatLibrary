@@ -8,6 +8,8 @@
 
 #include <wrl.h>
 
+#include "SizePack.hpp"
+
 #include <Util/Surface.hpp>
 
 namespace fatpound::util::gfx
@@ -27,7 +29,7 @@ namespace fatpound::util::gfx
         ::D3D11_MAPPED_SUBRESOURCE                  m_mappedSysbufferTexture2d{};
         FATSPACE_UTIL::Surface                      m_surface;
 
-        FrameworkResourcePack(const FATSPACE_UTIL::ScreenSizeInfo& dimensions)
+        FrameworkResourcePack(const SizePack& dimensions)
             :
             m_surface(dimensions)
         {

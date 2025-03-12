@@ -11,7 +11,7 @@ namespace fatpound::win32::com
     class Manager final
     {
     public:
-        Manager(const DWORD initFlags = COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)
+        explicit Manager(const DWORD initFlags = COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)
         {
             const auto hr = ::CoInitializeEx(nullptr, initFlags);
 
@@ -20,13 +20,11 @@ namespace fatpound::win32::com
                 throw std::runtime_error("Failed to initialize Media Foundation.");
             }
         }
+        explicit Manager(const Manager&)     = delete;
+        explicit Manager(Manager&&) noexcept = delete;
 
-        Manager() = delete;
-        Manager(const Manager& src) = delete;
-        Manager(Manager&& src) = delete;
-
-        auto operator = (const Manager& src) -> Manager& = delete;
-        auto operator = (Manager&& src)      -> Manager& = delete;
+        auto operator = (const Manager&)     -> Manager& = delete;
+        auto operator = (Manager&&) noexcept -> Manager& = delete;
         ~Manager() noexcept
         {
             ::CoUninitialize();

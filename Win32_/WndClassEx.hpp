@@ -46,12 +46,12 @@ namespace fatpound::win32
             }
         }
 
-        explicit WndClassEx() = delete;
-        explicit WndClassEx(const WndClassEx& src) = delete;
-        explicit WndClassEx(WndClassEx&& src) = delete;
+        explicit WndClassEx()                      = delete;
+        explicit WndClassEx(const WndClassEx&)     = delete;
+        explicit WndClassEx(WndClassEx&&) noexcept = delete;
 
-        auto operator = (const WndClassEx& src) -> WndClassEx& = delete;
-        auto operator = (WndClassEx&& src)      -> WndClassEx& = delete;
+        auto operator = (const WndClassEx&)     -> WndClassEx& = delete;
+        auto operator = (WndClassEx&&) noexcept -> WndClassEx& = delete;
         ~WndClassEx() noexcept
         {
             [[maybe_unused]]

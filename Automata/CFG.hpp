@@ -34,13 +34,13 @@ namespace fatpound::automata
         //
         explicit CFG(const std::string& inputFilename);
 
-        explicit CFG() = delete;
-        explicit CFG(const CFG& src) = delete;
-        explicit CFG(CFG&& src) = delete;
+        explicit CFG()               = delete;
+        explicit CFG(const CFG&)     = delete;
+        explicit CFG(CFG&&) noexcept = delete;
 
-        auto operator = (const CFG& src) -> CFG& = delete;
-        auto operator = (CFG&& src)      -> CFG& = delete;
-        ~CFG() noexcept = default;
+        auto operator = (const CFG&)     -> CFG& = delete;
+        auto operator = (CFG&&) noexcept -> CFG& = delete;
+        ~CFG() noexcept                          = default;
 
 
     public:
@@ -52,7 +52,7 @@ namespace fatpound::automata
 
 
     private:
-        void ReadFirstLine_ (std::ifstream& inputFile, Alphabet_t& alphabet);
+        void ReadFirstLine_ (std::ifstream& inputFile,       Alphabet_t& alphabet);
         void ReadSecondLine_(std::ifstream& inputFile, const Alphabet_t& alphabet);
 
 

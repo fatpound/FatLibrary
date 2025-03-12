@@ -13,7 +13,7 @@
 namespace fatpound::win32::d3d11::visual
 {
     template <typename T>
-    class DrawableBase : public Drawable, public pipeline::StaticBindableVec<DrawableBase<T>> // removed FATSPACE_PIPELINE macro from here for Class Designer to find that base class
+    class DrawableBase : public Drawable
     {
     public:
         explicit DrawableBase() = default;
@@ -32,13 +32,13 @@ namespace fatpound::win32::d3d11::visual
 
             m_pCIndexBuffer_ = idxbuf.get();
 
-            this->s_static_binds_.push_back(std::move(idxbuf));
+            tl_bindable_vec_.push_back(std::move(idxbuf));
         }
         virtual void SetIndexFromStatic_() noexcept(IN_RELEASE) final
         {
             assert("Attempting to add index buffer a second time" && m_pCIndexBuffer_ == nullptr);
 
-            for (const auto& b : this->s_static_binds_)
+            for (const auto& b : GetStaticBinds_())
             {
                 const auto* const ptr = dynamic_cast<FATSPACE_PIPELINE_ELEMENT::IndexBuffer*>(b.get());
 
@@ -57,7 +57,11 @@ namespace fatpound::win32::d3d11::visual
     private:
         virtual auto GetStaticBinds_() const noexcept(IN_RELEASE) -> const BindableVec_t& override
         {
-            return this->s_static_binds_;
+            return tl_bindable_vec_;
         }
+
+
+    private:
+        inline static thread_local std::vector<BindablePtr_t> tl_bindable_vec_;
     };
 }

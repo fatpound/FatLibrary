@@ -17,7 +17,7 @@ namespace fatpound::automata
 
         Alphabet_t alphabet;
 
-        ReadFirstLine_ (inputFile, alphabet);
+        ReadFirstLine_(inputFile, alphabet);
         ReadSecondLine_(inputFile, alphabet);
     }
 
@@ -25,8 +25,8 @@ namespace fatpound::automata
     {
         return m_grammar_;
     }
-    
-    void CFG::ReadFirstLine_ (std::ifstream& inputFile, Alphabet_t& alphabet)
+
+    void CFG::ReadFirstLine_(std::ifstream& inputFile, Alphabet_t& alphabet)
     {
         // duzelt?
         {

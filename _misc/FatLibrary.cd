@@ -438,11 +438,11 @@
       <FileName>IO\Mouse.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="fatpound::util::ScreenSizeInfo">
+  <Struct Name="fatpound::util::SizePack">
     <Position X="67.25" Y="16" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
-      <FileName>Util\ScreenSizeInfo.hpp</FileName>
+      <FileName>Util\SizePack.hpp</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="fatpound::util::gfx::FullScreenQuad">

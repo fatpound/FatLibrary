@@ -12,12 +12,12 @@ namespace fatpound::dsa::tree::n_ary
     class B final
     {
     public:
-        explicit B() = default;
-        explicit B(const B& src) = delete;
-        explicit B(B&& src) = delete;
+        explicit B()             = default;
+        explicit B(const B&)     = delete;
+        explicit B(B&&) noexcept = delete;
 
-        auto operator = (const B& src) -> B& = delete;
-        auto operator = (B&& src)      -> B& = delete;
+        auto operator = (const B&)     -> B& = delete;
+        auto operator = (B&&) noexcept -> B& = delete;
         ~B() noexcept
         {
             Clear_();

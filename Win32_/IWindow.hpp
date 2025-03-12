@@ -14,13 +14,13 @@ namespace fatpound::win32
         friend WndClassEx;
 
     public:
-        explicit IWindow() = default;
-        explicit IWindow(const IWindow& src) = delete;
-        explicit IWindow(IWindow&& src) = delete;
+        explicit IWindow()                   = default;
+        explicit IWindow(const IWindow&)     = delete;
+        explicit IWindow(IWindow&&) noexcept = delete;
 
-        auto operator = (const IWindow& src)->IWindow & = delete;
-        auto operator = (IWindow&& src)->IWindow & = delete;
-        virtual ~IWindow() noexcept(false) = default;
+        auto operator = (const IWindow&)     -> IWindow& = delete;
+        auto operator = (IWindow&&) noexcept -> IWindow& = delete;
+        virtual ~IWindow() noexcept(false)               = default;
 
 
     public:

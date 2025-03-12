@@ -3,13 +3,13 @@
 #include "IWindow.hpp"
 #include "WndClassEx.hpp"
 
-#include "Concurrency/Concurrency.hpp"
-#include "IO/IO.hpp"
-#include "Math/Math.hpp"
-#include "Util/Util.hpp"
+#include <Concurrency/Concurrency.hpp>
+#include <IO/IO.hpp>
+#include <Math/Numbers/Sets.hpp>
+#include <Util/Util.hpp>
 
 #include <FatNamespaces.hpp>
-#include <FatFrameworkMacros.hpp>
+#include <FatMacros.hpp>
 
 #include <FatWin32.hpp>
 
@@ -31,7 +31,7 @@ namespace fatpound::win32
         explicit WindowEx(
             std::shared_ptr<WndClassEx>            pWndClassEx,
             const std::wstring                     title,
-            const FATSPACE_UTIL::ScreenSizeInfo    clientDimensions,
+            const FATSPACE_UTIL_GFX::SizePack      clientDimensions,
             std::shared_ptr<FATSPACE_IO::Mouse>    pMouse    = std::make_shared<FATSPACE_IO::Mouse>(),
             std::shared_ptr<FATSPACE_IO::Keyboard> pKeyboard = std::make_shared<FATSPACE_IO::Keyboard>(),
             const std::optional<::DirectX::XMINT2> position  = std::nullopt)
@@ -58,7 +58,7 @@ namespace fatpound::win32
                     {
                         WS_VISIBLE
 
-#if IN_DEBUG or IS_FRAMEWORK
+#if IN_DEBUG or IS_GFX_FRAMEWORK
 
                         bitor WS_CAPTION
                         bitor WS_MINIMIZEBOX
@@ -81,7 +81,7 @@ namespace fatpound::win32
                         bitor WS_POPUP
                     };
 
-#endif // IN_DEBUG or IS_FRAMEWORK
+#endif // IN_DEBUG or IS_GFX_FRAMEWORK
 
                     const auto hModule = ::GetModuleHandle(nullptr);
 
@@ -98,7 +98,7 @@ namespace fatpound::win32
                         position.has_value() ? position->x : CW_USEDEFAULT,
                         position.has_value() ? position->y : CW_USEDEFAULT,
 
-#if IN_DEBUG or IS_FRAMEWORK
+#if IN_DEBUG or IS_GFX_FRAMEWORK
 
                         rect.right - rect.left,
                         rect.bottom - rect.top,
@@ -106,7 +106,7 @@ namespace fatpound::win32
                         static_cast<LONG>(mc_client_size_.m_width),
                         static_cast<LONG>(mc_client_size_.m_height),
 
-#endif // IN_DEBUG or IS_FRAMEWORK
+#endif // IN_DEBUG or IS_GFX_FRAMEWORK
 
                         nullptr,
                         nullptr,
@@ -126,12 +126,12 @@ namespace fatpound::win32
             future.get();
         }
 
-        explicit WindowEx() = delete;
-        explicit WindowEx(const WindowEx& src) = delete;
-        explicit WindowEx(WindowEx&& src) = delete;
+        explicit WindowEx()                    = delete;
+        explicit WindowEx(const WindowEx&)     = delete;
+        explicit WindowEx(WindowEx&&) noexcept = delete;
 
-        auto operator = (const WindowEx& src) -> WindowEx& = delete;
-        auto operator = (WindowEx&& src)      -> WindowEx& = delete;
+        auto operator = (const WindowEx&)     -> WindowEx& = delete;
+        auto operator = (WindowEx&&) noexcept -> WindowEx& = delete;
         virtual ~WindowEx() noexcept(false)
         {
             [[maybe_unused]]
@@ -171,11 +171,11 @@ namespace fatpound::win32
 
 
     public:
-        template <FATSPACE_MATH::numset::Rational Q> __forceinline auto GetClientWidth()  const noexcept
+        template <FATSPACE_NUMBERS::Rational Q> __forceinline auto GetClientWidth()  const noexcept
         {
             return static_cast<Q>(mc_client_size_.m_width);
         }
-        template <FATSPACE_MATH::numset::Rational Q> __forceinline auto GetClientHeight() const noexcept
+        template <FATSPACE_NUMBERS::Rational Q> __forceinline auto GetClientHeight() const noexcept
         {
             return static_cast<Q>(mc_client_size_.m_height);
         }
@@ -388,7 +388,7 @@ namespace fatpound::win32
 
         std::shared_ptr<WndClassEx> m_pWndClassEx_;
 
-        const FATSPACE_UTIL::ScreenSizeInfo mc_client_size_;
+        const FATSPACE_UTIL_GFX::SizePack mc_client_size_;
 
         HWND m_hWnd_{};
 

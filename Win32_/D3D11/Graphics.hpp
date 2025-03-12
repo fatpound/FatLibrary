@@ -13,8 +13,10 @@
 #include "Pipeline/Pipeline.hpp"
 #include "Visual/Visual.hpp"
 
-#include <Math/Math.hpp>
-#include <Util/Util.hpp>
+#include <Math/Numbers/Sets.hpp>
+#include <Util/Color.hpp>
+#include <Util/Surface.hpp>
+#include <Util/Gfx/Gfx.hpp>
 
 #include <cstring>
 
@@ -25,13 +27,6 @@
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "D3DCompiler")
-
-namespace dx  = DirectX;
-namespace wrl = Microsoft::WRL;
-
-using FATSPACE_UTIL::Color;
-using FATSPACE_UTIL::Surface;
-using FATSPACE_UTIL::ScreenSizeInfo;
 
 namespace fatpound::win32::d3d11
 {
@@ -45,7 +40,7 @@ namespace fatpound::win32::d3d11
         using float_t = float;
 
     public:
-        explicit Graphics(const HWND hWnd, const ScreenSizeInfo& dimensions)
+        explicit Graphics(const HWND hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)
             :
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
@@ -57,7 +52,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND hWnd, const ScreenSizeInfo& dimensions)  requires(Framework)
+        explicit Graphics(const HWND hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)  requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
@@ -66,20 +61,20 @@ namespace fatpound::win32::d3d11
             InitCommon_();
             InitFramework_();
         }
-        explicit Graphics(const HWND hWnd, std::unique_ptr<Surface> pSurface) requires(Framework)
+        explicit Graphics(const HWND hWnd, std::unique_ptr<FATSPACE_UTIL::Surface> pSurface) requires(Framework)
             :
-            Graphics(hWnd, pSurface->GetScreenSizeInfo())
+            Graphics(hWnd, pSurface->GetSizePack())
         {
             BindSurface(std::move(pSurface));
         }
 
-        explicit Graphics() = delete;
-        explicit Graphics(const Graphics& src) = delete;
-        explicit Graphics(Graphics&& src) = delete;
+        explicit Graphics()                    = delete;
+        explicit Graphics(const Graphics&)     = delete;
+        explicit Graphics(Graphics&&) noexcept = delete;
 
-        auto operator = (const Graphics& src) -> Graphics& = delete;
-        auto operator = (Graphics&& src)      -> Graphics& = delete;
-        ~Graphics() noexcept = default;
+        auto operator = (const Graphics&)     -> Graphics& = delete;
+        auto operator = (Graphics&&) noexcept -> Graphics& = delete;
+        ~Graphics() noexcept                               = default;
         ~Graphics() noexcept requires(Framework)
         {
             if (GetImmediateContext() not_eq nullptr) [[likely]]
@@ -97,11 +92,11 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        template <FATSPACE_MATH::numset::Rational Q> constexpr auto GetWidth()  const noexcept
+        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetWidth()  const noexcept
         {
             return static_cast<Q>(mc_dimensions_.m_width);
         }
-        template <FATSPACE_MATH::numset::Rational Q> constexpr auto GetHeight() const noexcept
+        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetHeight() const noexcept
         {
             return static_cast<Q>(mc_dimensions_.m_height);
         }
@@ -126,7 +121,7 @@ namespace fatpound::win32::d3d11
             void* const ptr = ::std::memset(
                 m_res_pack_.m_surface,
                 GrayToneValue,
-                sizeof(Color) * GetWidth<UINT>() * GetHeight<UINT>()
+                sizeof(FATSPACE_UTIL::Color) * GetWidth<UINT>() * GetHeight<UINT>()
             );
         }
 
@@ -137,9 +132,7 @@ namespace fatpound::win32::d3d11
             {
                 MapSubresource_();
                 CopySysbufferToMappedSubresource_();
-
-                GetImmediateContext()->Unmap(GetSysbufferTexture(), 0u);
-                GetImmediateContext()->Draw(6u, 0u);
+                UnMapSubresourceAndDraw_();
             }
 
             const auto& hr = GetSwapChain()->Present(static_cast<UINT>(VSynced), 0u);
@@ -170,78 +163,78 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        auto GetSurface() -> Surface*
+        auto GetSurface() -> FATSPACE_UTIL::Surface*
         {
             return m_pSurface_.get();
         }
 
-        auto GetHwnd() const noexcept -> HWND
+        auto GetHwnd             () const noexcept -> HWND
         {
             return mc_hWnd_;
         }
-        auto GetDevice() const noexcept -> ID3D11Device*
+        auto GetDevice           () const noexcept -> ID3D11Device*
         {
             return m_res_pack_.m_pDevice.Get();
         }
-        auto GetSwapChain() const -> IDXGISwapChain*
+        auto GetSwapChain        () const -> IDXGISwapChain*
         {
             return m_res_pack_.m_pSwapChain.Get();
         }
-        auto GetImmediateContext() const noexcept -> ID3D11DeviceContext*
+        auto GetImmediateContext () const noexcept -> ID3D11DeviceContext*
         {
             return m_res_pack_.m_pImmediateContext.Get();
         }
-        auto GetRenderTargetView() const noexcept -> ID3D11RenderTargetView*
+        auto GetRenderTargetView () const noexcept -> ID3D11RenderTargetView*
         {
             return m_res_pack_.m_pRTV.Get();
         }
-        auto GetDepthStencilView() const noexcept -> ID3D11DepthStencilView*
+        auto GetDepthStencilView () const noexcept -> ID3D11DepthStencilView*
         {
             return m_res_pack_.m_pDSV.Get();
         }
-        auto GetSysbufferTexture() const noexcept -> ID3D11Texture2D* requires(Framework)
+        auto GetSysbufferTexture () const noexcept -> ID3D11Texture2D* requires(Framework)
         {
             return m_res_pack_.m_pSysbufferTex2d.Get();
         }
 
-        auto GetMSAACount() const noexcept
+        auto GetMSAACount        () const noexcept
         {
             return m_msaa_count_;
         }
-        auto GetMSAAQuality() const noexcept
+        auto GetMSAAQuality      () const noexcept
         {
             return m_msaa_quality_;
         }
 
-        void BindSurface(std::unique_ptr<Surface> pSurface) requires(Framework)
+        void BindSurface(std::unique_ptr<FATSPACE_UTIL::Surface> pSurface) requires(Framework)
         {
             if (m_pSurface_ not_eq nullptr)
             {
-                m_pSurface_->Clear();
+                m_pSurface_->Reset();
             }
 
             m_pSurface_ = std::move(pSurface);
         }
-        void CopySurfaceToSysbuffer() requires(Framework)
+        void CopySurfaceToSysbuffer()                       requires(Framework)
         {
             if (const void* const pSrc = *m_pSurface_)
             {
                 ::std::memcpy(
                     m_res_pack_.m_surface,
                     pSrc,
-                    sizeof(Color) * GetWidth<UINT>() * GetHeight<UINT>()
+                    sizeof(FATSPACE_UTIL::Color) * GetWidth<UINT>() * GetHeight<UINT>()
                 );
             }
         }
 
-        void PutPixel(const int x, const int y, const Color color) noexcept requires(Framework)
+        void PutPixel(const int x, const int y, const FATSPACE_UTIL::Color color) noexcept requires(Framework)
         {
             assert(x >= 0);
             assert(x < GetWidth<int>());
             assert(y >= 0);
             assert(y < GetHeight<int>());
 
-            m_res_pack_.m_surface.PutPixel(x, y, color);
+            m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }
 
 
@@ -249,7 +242,7 @@ namespace fatpound::win32::d3d11
 
 
     private:
-        void InitCommon_()
+        void InitCommon_              ()
         {
             InitDevice_();
             InitMSAA_Settings_();
@@ -259,7 +252,7 @@ namespace fatpound::win32::d3d11
 
             ToggleAltEnterMode_();
         }
-        void InitFramework_() requires(Framework)
+        void InitFramework_           () requires(Framework)
         {
             InitFrameworkBackbuffer_();
 
@@ -292,7 +285,7 @@ namespace fatpound::win32::d3d11
                 bindable->Bind(pImmediateContext);
             }
         }
-        void InitFrameworkBackbuffer_() requires(Framework)
+        void InitFrameworkBackbuffer_ () requires(Framework)
         {
             D3D11_TEXTURE2D_DESC texDesc{
                 .Width              = GetWidth<UINT>(),
@@ -319,7 +312,7 @@ namespace fatpound::win32::d3d11
                 }
             }
 
-            ::wrl::ComPtr<ID3D11ShaderResourceView> pSRV;
+            ::Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pSRV;
 
             D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc{
                 .Format              = texDesc.Format,
@@ -339,7 +332,7 @@ namespace fatpound::win32::d3d11
             GetImmediateContext()->PSSetShaderResources(0u, 1u, pSRV.GetAddressOf());
 
             {
-                ::wrl::ComPtr<ID3D11SamplerState> pSS;
+                ::Microsoft::WRL::ComPtr<ID3D11SamplerState> pSS;
 
                 D3D11_SAMPLER_DESC sDesc{
                     .Filter = D3D11_FILTER_MIN_MAG_MIP_POINT,
@@ -361,7 +354,7 @@ namespace fatpound::win32::d3d11
                 GetImmediateContext()->PSSetSamplers(0, 1, pSS.GetAddressOf());
             }
         }
-        void InitDevice_()
+        void InitDevice_              ()
         {
             static constinit UINT swapCreateFlags;
 
@@ -399,7 +392,7 @@ namespace fatpound::win32::d3d11
                 throw std::runtime_error("Direct3D Feature Level 11 is unsupported!");
             }
         }
-        void InitMSAA_Settings_()
+        void InitMSAA_Settings_       ()
         {
             constexpr std::array<const UINT, 4> msaa_counts{ 32u, 16u, 8u, 4u };
 
@@ -420,7 +413,7 @@ namespace fatpound::win32::d3d11
                 throw std::runtime_error{ "MSAA Quality is NOT valid!" };
             }
         }
-        void InitSwapChain_()
+        void InitSwapChain_           ()
         {
             DXGI_SWAP_CHAIN_DESC scDesc{
                 .BufferDesc   = {
@@ -472,7 +465,7 @@ namespace fatpound::win32::d3d11
                 throw std::runtime_error("Could NOT create Direct3D SwapChain!");
             }
         }
-        void InitRenderTarget_()
+        void InitRenderTarget_        ()
         {
             ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
 
@@ -496,7 +489,7 @@ namespace fatpound::win32::d3d11
 
             if constexpr (NotFramework)
             {
-                ::wrl::ComPtr<ID3D11Texture2D> pTexture2d;
+                ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture2d;
 
                 D3D11_TEXTURE2D_DESC tex2dDesc{
                     .Width      = GetWidth<UINT>(),
@@ -546,7 +539,7 @@ namespace fatpound::win32::d3d11
 
             GetImmediateContext()->OMSetRenderTargets(1u, m_res_pack_.m_pRTV.GetAddressOf(), GetDepthStencilView());
         }
-        void InitViewport_()
+        void InitViewport_            ()
         {
             const D3D11_VIEWPORT vp{
                 .TopLeftX = 0.0f,
@@ -559,7 +552,7 @@ namespace fatpound::win32::d3d11
 
             GetImmediateContext()->RSSetViewports(1u, &vp);
         }
-        void InitRasterizer_() requires(NotFramework)
+        void InitRasterizer_          () requires(NotFramework)
         {
             D3D11_RASTERIZER_DESC rDesc{
                 .FillMode              = D3D11_FILL_SOLID,
@@ -574,7 +567,7 @@ namespace fatpound::win32::d3d11
                 .AntialiasedLineEnable = true
             };
 
-            ::wrl::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
+            ::Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
 
             {
                 const auto& hr = GetDevice()->CreateRasterizerState(&rDesc, &m_pRasterizerState_);
@@ -588,7 +581,7 @@ namespace fatpound::win32::d3d11
             GetImmediateContext()->RSSetState(m_pRasterizerState_.Get());
         }
 
-        void MapSubresource_() requires(Framework)
+        void MapSubresource_                   () requires(Framework)
         {
             const auto& hr = GetImmediateContext()->Map(
                 GetSysbufferTexture(),
@@ -603,13 +596,13 @@ namespace fatpound::win32::d3d11
                 throw std::runtime_error("Could NOT Map the ImmediateContext!");
             }
         }
-        void CopySysbufferToMappedSubresource_() requires(Framework)
+        void CopySysbufferToMappedSubresource_ () requires(Framework)
         {
-            Color* const pDst = static_cast<Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
+            auto* const pDst = static_cast<FATSPACE_UTIL::Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
 
-            const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(Color);
+            const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(FATSPACE_UTIL::Color);
             const auto srcPitch = mc_dimensions_.m_width;
-            const auto rowBytes = srcPitch * sizeof(Color);
+            const auto rowBytes = srcPitch * sizeof(FATSPACE_UTIL::Color);
 
             for (auto y = 0u; y < mc_dimensions_.m_height; ++y)
             {
@@ -619,6 +612,11 @@ namespace fatpound::win32::d3d11
                     rowBytes
                 );
             }
+        }
+        void UnMapSubresourceAndDraw_          () requires(Framework)
+        {
+            GetImmediateContext()->Unmap(GetSysbufferTexture(), 0u);
+            GetImmediateContext()->Draw(6u, 0u);
         }
 
         void ToggleAltEnterMode_()
@@ -632,13 +630,12 @@ namespace fatpound::win32::d3d11
 
         const HWND mc_hWnd_;
         
-        const ScreenSizeInfo mc_dimensions_;
+        const FATSPACE_UTIL_GFX::SizePack mc_dimensions_;
 
         UINT m_msaa_count_{};
         UINT m_msaa_quality_{};
-
         UINT m_dxgi_mode_{};
 
-        std::unique_ptr<Surface> m_pSurface_;
+        std::unique_ptr<FATSPACE_UTIL::Surface> m_pSurface_;
     };
 }

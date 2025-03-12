@@ -10,8 +10,8 @@ namespace fatpound::dsa::linkedlist
         using typename Doubly<T>::Node_;
 
     public:
-        explicit DoublyCircular() = default;
-        explicit DoublyCircular(const DoublyCircular& src) = delete;
+        explicit DoublyCircular()                      = default;
+        explicit DoublyCircular(const DoublyCircular&) = delete;
         DoublyCircular(DoublyCircular&& src) noexcept
             :
             Doubly<T>(std::move(src))
@@ -19,7 +19,7 @@ namespace fatpound::dsa::linkedlist
 
         }
 
-        auto operator = (const DoublyCircular& src) -> DoublyCircular& = delete;
+        auto operator = (const DoublyCircular&) -> DoublyCircular& = delete;
         auto operator = (DoublyCircular&& src) noexcept -> DoublyCircular&
         {
             if ((this not_eq std::addressof(src)) and (typeid(src) == typeid(*this)) and (src.m_list_ not_eq nullptr))

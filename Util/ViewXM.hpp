@@ -7,13 +7,13 @@ namespace fatpound::util
     class ViewXM final
     {
     public:
-        explicit ViewXM() = default;
-        explicit ViewXM(const ViewXM& src) = delete;
-        explicit ViewXM(ViewXM&& src) = delete;
+        explicit ViewXM()              = default;
+        explicit ViewXM(const ViewXM&) = delete;
+        explicit ViewXM(ViewXM&&)      = delete;
 
-        auto operator = (const ViewXM& src) -> ViewXM& = delete;
-        auto operator = (ViewXM&& src)      -> ViewXM& = delete;
-        ~ViewXM() noexcept = default;
+        auto operator = (const ViewXM&) -> ViewXM& = delete;
+        auto operator = (ViewXM&&)      -> ViewXM& = delete;
+        ~ViewXM() noexcept                         = default;
 
 
     public:

@@ -28,9 +28,6 @@
     <ClInclude Include="Automata\TLT.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Automata\TLT_v2.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Concurrency\Concurrency.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -94,19 +91,13 @@
     <ClInclude Include="IO\MouseEvent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Numset\Numset.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Numset\Rational.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Math\Math.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Multiplicable.hpp">
+    <ClInclude Include="Math\Multiplicative.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\RectF.hpp">
+    <ClInclude Include="Math\Rect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Memory\Memory.hpp">
@@ -124,7 +115,7 @@
     <ClInclude Include="Util\Color.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\ScreenSizeInfo.hpp">
+    <ClInclude Include="Util\Gfx\SizePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Util\Surface.hpp">
@@ -199,9 +190,6 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\StaticBindableVec.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Win32_\D3D11\Visual\Drawable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -250,7 +238,7 @@
     <ClInclude Include="Win32_\WndClassEx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatFrameworkMacros.hpp">
+    <ClInclude Include="FatMacros.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FatLibrary.hpp">
@@ -265,10 +253,28 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Primes.hpp">
+    <ClInclude Include="Math\Numbers\Primes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Random.hpp">
+    <ClInclude Include="Random\Random.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Numbers\Sets.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Numbers\Numbers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Geometry\Geometry.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="File\File.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -277,9 +283,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Automata\TLT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Automata\TLT_v2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Concurrency\TaskQueue.cpp">
@@ -291,16 +294,13 @@
     <ClCompile Include="IO\Mouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Util\Gfx\Gfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Util\Surface.cpp">
+    <ClCompile Include="Util\ViewXM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Util\ViewXM.cpp">
+    <ClCompile Include="File\File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

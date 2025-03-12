@@ -11,13 +11,13 @@ namespace fatpound::concurrency
         using WrappedTask = std::move_only_function<void()>;
 
     public:
-        explicit TaskQueue() = default;
-        explicit TaskQueue(const TaskQueue& src) = delete;
-        explicit TaskQueue(TaskQueue&& src) = delete;
+        explicit TaskQueue()                     = default;
+        explicit TaskQueue(const TaskQueue&)     = delete;
+        explicit TaskQueue(TaskQueue&&) noexcept = delete;
 
-        auto operator = (const TaskQueue& src) -> TaskQueue& = delete;
-        auto operator = (TaskQueue&& src)      -> TaskQueue& = delete;
-        ~TaskQueue() noexcept = default;
+        auto operator = (const TaskQueue&)     -> TaskQueue& = delete;
+        auto operator = (TaskQueue&&) noexcept -> TaskQueue& = delete;
+        ~TaskQueue() noexcept                                = default;
 
 
     public:
@@ -25,14 +25,14 @@ namespace fatpound::concurrency
 
 
     public:
-        template <typename F, typename... Args>
-        requires std::invocable<F, Args...>
-        auto Push(F&& function, Args&&... args) -> auto
+        template <typename... Args>
+        auto Push(std::invocable<Args...> auto&& func, Args&&... args) -> auto
         {
+            using F = decltype(func);
             using T = std::invoke_result_t<F, Args...>;
 
-            auto pkgTask = std::packaged_task<T(Args...)>{ std::bind(std::forward<F>(function), std::forward<Args>(args)...) };
-            auto future  = pkgTask.get_future();
+            auto pkgTask = std::packaged_task<T(Args...)>{ std::bind(std::forward<F>(func), std::forward<Args>(args)...) };
+            auto future = pkgTask.get_future();
 
             Push_([&, task = std::move(pkgTask)]() mutable -> void { static_cast<void>(task(args...)); });
 

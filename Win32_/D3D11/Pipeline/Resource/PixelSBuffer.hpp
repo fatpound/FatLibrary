@@ -16,13 +16,13 @@ namespace fatpound::win32::d3d11::pipeline::resource
         using SBuffer<T>::SBuffer;
 
     public:
-        explicit PixelSBuffer() = delete;
-        explicit PixelSBuffer(const PixelSBuffer& src) = delete;
-        explicit PixelSBuffer(PixelSBuffer&& src) = delete;
+        explicit PixelSBuffer()                        = delete;
+        explicit PixelSBuffer(const PixelSBuffer&)     = delete;
+        explicit PixelSBuffer(PixelSBuffer&&) noexcept = delete;
 
-        auto operator = (const PixelSBuffer& src) -> PixelSBuffer& = delete;
-        auto operator = (PixelSBuffer&& src)      -> PixelSBuffer& = delete;
-        virtual ~PixelSBuffer() noexcept final = default;
+        auto operator = (const PixelSBuffer&)     -> PixelSBuffer& = delete;
+        auto operator = (PixelSBuffer&&) noexcept -> PixelSBuffer& = delete;
+        virtual ~PixelSBuffer() noexcept final                     = default;
 
 
     public:

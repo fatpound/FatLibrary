@@ -20,17 +20,18 @@ namespace fatpound::win32::d3d11::visual
     class Drawable
     {
     public:
-        using BindableVec_t = std::vector<std::unique_ptr<FATSPACE_PIPELINE::Bindable>>;
+        using BindablePtr_t = std::unique_ptr<FATSPACE_PIPELINE::Bindable>;
+        using BindableVec_t = std::vector<BindablePtr_t>;
 
 
     public:
-        explicit Drawable() = default;
-        explicit Drawable(const Drawable& src) = delete;
-        explicit Drawable(Drawable&& src) = delete;
+        explicit Drawable()                    = default;
+        explicit Drawable(const Drawable&)     = delete;
+        explicit Drawable(Drawable&&) noexcept = delete;
 
-        auto operator = (const Drawable& src) -> Drawable& = delete;
-        auto operator = (Drawable&& src)      -> Drawable& = delete;
-        virtual ~Drawable() noexcept = default;
+        auto operator = (const Drawable&)     -> Drawable& = delete;
+        auto operator = (Drawable&&) noexcept -> Drawable& = delete;
+        virtual ~Drawable() noexcept                       = default;
 
 
     public:

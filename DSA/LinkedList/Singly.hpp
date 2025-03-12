@@ -13,8 +13,8 @@ namespace fatpound::dsa::linkedlist
     class Singly
     {
     public:
-        explicit Singly() = default;
-        explicit Singly(const Singly& src) = delete;
+        explicit Singly()              = default;
+        explicit Singly(const Singly&) = delete;
         Singly(Singly&& src) noexcept
             :
             m_list_(std::exchange(src.m_list_, nullptr)),
@@ -24,7 +24,7 @@ namespace fatpound::dsa::linkedlist
 
         }
 
-        auto operator = (const Singly& src) -> Singly& = delete;
+        auto operator = (const Singly&) -> Singly& = delete;
         auto operator = (Singly&& src) noexcept -> Singly&
         {
             if ((this not_eq std::addressof(src)) and (typeid(src) == typeid(*this)) and (src.m_list_ not_eq nullptr))

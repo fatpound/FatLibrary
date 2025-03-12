@@ -21,16 +21,16 @@ namespace fatpound::win32::d3d11::pipeline::element
             :
             m_stride_(sizeof(T))
         {
-            D3D11_BUFFER_DESC bd{};
-            bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-            bd.Usage = D3D11_USAGE_DEFAULT;
-            bd.CPUAccessFlags = 0u;
-            bd.MiscFlags = 0u;
-            bd.ByteWidth = static_cast<UINT>(m_stride_ * vertices.size());
-            bd.StructureByteStride = m_stride_;
+            const D3D11_BUFFER_DESC bd{
+                .ByteWidth           = static_cast<UINT>(m_stride_ * vertices.size()),
+                .Usage               = D3D11_USAGE_DEFAULT,
+                .BindFlags           = D3D11_BIND_VERTEX_BUFFER,
+                .CPUAccessFlags      = 0u,
+                .MiscFlags           = 0u,
+                .StructureByteStride = m_stride_
+            };
 
-            D3D11_SUBRESOURCE_DATA sd{};
-            sd.pSysMem = vertices.data();
+            const D3D11_SUBRESOURCE_DATA sd{ .pSysMem = vertices.data() };
 
             const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pVertexBuffer_);
 
@@ -40,13 +40,13 @@ namespace fatpound::win32::d3d11::pipeline::element
             }
         }
 
-        explicit VertexBuffer() = delete;
-        explicit VertexBuffer(const VertexBuffer& src) = delete;
-        explicit VertexBuffer(VertexBuffer&& src) = delete;
+        explicit VertexBuffer()                        = delete;
+        explicit VertexBuffer(const VertexBuffer&)     = delete;
+        explicit VertexBuffer(VertexBuffer&&) noexcept = delete;
 
-        auto operator = (const VertexBuffer& src) -> VertexBuffer& = delete;
-        auto operator = (VertexBuffer&& src)      -> VertexBuffer& = delete;
-        virtual ~VertexBuffer() noexcept final = default;
+        auto operator = (const VertexBuffer&)     -> VertexBuffer& = delete;
+        auto operator = (VertexBuffer&&) noexcept -> VertexBuffer& = delete;
+        virtual ~VertexBuffer() noexcept final                     = default;
 
 
     public:

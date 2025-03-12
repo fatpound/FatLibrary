@@ -18,13 +18,13 @@ namespace fatpound::win32::d3d11::pipeline::element
 
         }
 
-        explicit Topology() = delete;
-        explicit Topology(const Topology& src) = delete;
-        explicit Topology(Topology&& src) = delete;
+        explicit Topology()                    = delete;
+        explicit Topology(const Topology&)     = delete;
+        explicit Topology(Topology&&) noexcept = delete;
 
-        auto operator = (const Topology& src) -> Topology& = delete;
-        auto operator = (Topology&& src)      -> Topology& = delete;
-        virtual ~Topology() noexcept final = default;
+        auto operator = (const Topology&)     -> Topology& = delete;
+        auto operator = (Topology&&) noexcept -> Topology& = delete;
+        virtual ~Topology() noexcept final                 = default;
 
 
     public:

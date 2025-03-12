@@ -10,8 +10,8 @@
 
 #include <DirectXMath.h>
 
-#include <Math/Math.hpp>
-#include <Util/Util.hpp>
+#include <Math/Numbers/Sets.hpp>
+#include <Util/Gfx/SizePack.hpp>
 
 #define SOFT_COLOR_EFFECT false
 
@@ -24,7 +24,7 @@ namespace fatpound::win32::d2d
     class Graphics final
     {
     public:
-        explicit Graphics(const HWND hWnd, const FATSPACE_UTIL::ScreenSizeInfo& dimensions)
+        explicit Graphics(const HWND hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)
             :
             mc_dimensions_(dimensions)
         {
@@ -56,21 +56,21 @@ namespace fatpound::win32::d2d
             }
         }
 
-        explicit Graphics() = delete;
-        explicit Graphics(const Graphics& src) = delete;
-        explicit Graphics(Graphics&& src) = delete;
+        explicit Graphics()                    = delete;
+        explicit Graphics(const Graphics&)     = delete;
+        explicit Graphics(Graphics&&) noexcept = delete;
 
-        auto operator = (const Graphics& src) -> Graphics& = delete;
-        auto operator = (Graphics&& src)      -> Graphics& = delete;
-        ~Graphics() noexcept = default;
+        auto operator = (const Graphics&)     -> Graphics& = delete;
+        auto operator = (Graphics&&) noexcept -> Graphics& = delete;
+        ~Graphics() noexcept                               = default;
 
 
     public:
-        template <FATSPACE_MATH::numset::Rational Q> constexpr auto GetWidth()  const noexcept
+        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetWidth()  const noexcept
         {
             return static_cast<Q>(mc_dimensions_.m_width);
         }
-        template <FATSPACE_MATH::numset::Rational Q> constexpr auto GetHeight() const noexcept
+        template <FATSPACE_NUMBERS::Rational Q> constexpr auto GetHeight() const noexcept
         {
             return static_cast<Q>(mc_dimensions_.m_height);
         }
@@ -158,6 +158,6 @@ namespace fatpound::win32::d2d
         ::Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
         ::Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
 
-        const FATSPACE_UTIL::ScreenSizeInfo             mc_dimensions_;
+        const FATSPACE_UTIL_GFX::SizePack               mc_dimensions_;
     };
 }

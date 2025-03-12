@@ -24,13 +24,13 @@ namespace fatpound::io
 
 
     public:
-        explicit Mouse() = default;
-        explicit Mouse(const Mouse& src) = delete;
-        explicit Mouse(Mouse&& src) = delete;
+        explicit Mouse()                 = default;
+        explicit Mouse(const Mouse&)     = delete;
+        explicit Mouse(Mouse&&) noexcept = delete;
 
-        auto operator = (const Mouse& src) -> Mouse& = delete;
-        auto operator = (Mouse&& src)      -> Mouse& = delete;
-        ~Mouse() noexcept = default;
+        auto operator = (const Mouse&)     -> Mouse& = delete;
+        auto operator = (Mouse&&) noexcept -> Mouse& = delete;
+        ~Mouse() noexcept                            = default;
 
 
     public:

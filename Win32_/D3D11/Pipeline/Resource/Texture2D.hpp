@@ -11,23 +11,21 @@ namespace fatpound::win32::d3d11::pipeline::resource
     class Texture2D final : public Bindable
     {
     public:
-        Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc, std::shared_ptr<FATSPACE_UTIL::Surface> pSurface = {})
+        explicit Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc, std::shared_ptr<FATSPACE_UTIL::Surface> pSurface = {})
         {
             ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture;
 
-            const D3D11_SUBRESOURCE_DATA* pSubresourceData{};
-
-            if (pSurface not_eq nullptr)
             {
-                D3D11_SUBRESOURCE_DATA sd{};
-                sd.pSysMem = *pSurface;
-                sd.SysMemPitch = pSurface->GetPitch<UINT>();
+                const D3D11_SUBRESOURCE_DATA sd{
+                    .pSysMem     = *pSurface,
+                    .SysMemPitch =  pSurface->GetPitch<UINT>()
+                };
 
-                pSubresourceData = &sd;
-            }
-
-            {
-                const auto& hr = pDevice->CreateTexture2D(&tex2dDesc, pSubresourceData, &pTexture);
+                const auto& hr = pDevice->CreateTexture2D(
+                    &tex2dDesc,
+                    sd.pSysMem not_eq nullptr ? &sd : nullptr,
+                    &pTexture
+                );
 
                 if (FAILED(hr)) [[unlikely]]
                 {
@@ -44,6 +42,14 @@ namespace fatpound::win32::d3d11::pipeline::resource
                 }
             }
         }
+
+        explicit Texture2D()                     = delete;
+        explicit Texture2D(const Texture2D&)     = delete;
+        explicit Texture2D(Texture2D&&) noexcept = delete;
+
+        auto operator = (const Texture2D&)     -> Texture2D& = delete;
+        auto operator = (Texture2D&&) noexcept -> Texture2D& = delete;
+        virtual ~Texture2D() noexcept final                  = default;
 
 
     public:

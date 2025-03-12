@@ -2,4 +2,8 @@
 
 #include "CFG.hpp"
 #include "TLT.hpp"
-#include "TLT_v2.hpp"
+
+namespace fatpound::automata
+{
+    using namespace details_v1;
+}
