@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatMacros.hpp>
+#include <FatDefines.hpp>
 
 #include "../Common.hpp"
 

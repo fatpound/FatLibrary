@@ -9,7 +9,7 @@
 #include <Util/Util.hpp>
 
 #include <FatNamespaces.hpp>
-#include <FatMacros.hpp>
+#include <FatDefines.hpp>
 
 #include <FatWin32.hpp>
 

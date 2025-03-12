@@ -238,7 +238,7 @@
     <ClInclude Include="Win32_\WndClassEx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatMacros.hpp">
+    <ClInclude Include="FatDefines.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FatLibrary.hpp">

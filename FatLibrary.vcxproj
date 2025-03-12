@@ -42,7 +42,7 @@
     <ClInclude Include="DSA\Tree\N_ary\B_Plus.hpp" />
     <ClInclude Include="DSA\Tree\N_ary\N_ary.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
-    <ClInclude Include="FatMacros.hpp" />
+    <ClInclude Include="FatDefines.hpp" />
     <ClInclude Include="FatLibrary.hpp" />
     <ClInclude Include="FatNamespaces.hpp" />
     <ClInclude Include="File\File.hpp" />
