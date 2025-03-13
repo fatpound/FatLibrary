@@ -10,8 +10,6 @@
 #include "Multiplicative.hpp"
 #include "Rect.hpp"
 
-#include <cmath>
-
 namespace fatpound::math
 {
     static auto GetDifferenceVector(const ::DirectX::XMVECTOR pos1_vec, const ::DirectX::XMVECTOR pos2_vec) noexcept -> ::DirectX::XMVECTOR

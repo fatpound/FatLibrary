@@ -14,7 +14,6 @@
 #include "Visual/Visual.hpp"
 
 #include <Bitwise/Concepts.hpp>
-#include <Math/Numbers/Sets.hpp>
 #include <Util/Gfx/Gfx.hpp>
 #include <Util/Color.hpp>
 #include <Util/Surface.hpp>

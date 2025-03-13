@@ -20,7 +20,7 @@ namespace fatpound::math::inline geometry
     }
     template <bitwise::Unsigned_Integral_Or_Floating T> constexpr auto CircleArea        (const T& radius) -> T
     {
-        return Square<>(radius) * ::std::numbers::pi_v<T>;
+        return Square<>(radius) * numbers::Pi<T>;
     }
     template <bitwise::Unsigned_Integral_Or_Floating T> constexpr auto CirclePerimeter   (const T& radius) -> T
     {

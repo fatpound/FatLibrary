@@ -11,7 +11,6 @@
 #include <DirectXMath.h>
 
 #include <Bitwise/Concepts.hpp>
-#include <Math/Numbers/Sets.hpp>
 #include <Util/Gfx/SizePack.hpp>
 
 #define SOFT_COLOR_EFFECT false

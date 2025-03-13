@@ -8,7 +8,6 @@
 #undef FATPOUND_FULL_WIN_TARGETED
 
 #include <Bitwise/Concepts.hpp>
-#include <Math/Numbers/Sets.hpp>
 #include <Memory/Memory.hpp>
 #include <Win32_/GDI_Plus/Manager.hpp>
 
