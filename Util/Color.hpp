@@ -1,5 +1,7 @@
 #pragma once
 
+#include <FatDefines.hpp>
+
 #include <cstdint>
 
 namespace fatpound
@@ -57,36 +59,36 @@ namespace fatpound
 
 
         public:
-            [[nodiscard]] __forceinline constexpr auto GetA() const -> unsigned char
+            [[nodiscard]] FAT_FORCEINLINE constexpr auto GetA() const -> unsigned char
             {
                 return dword >> 24u;
             }
-            [[nodiscard]] __forceinline constexpr auto GetR() const -> unsigned char
+            [[nodiscard]] FAT_FORCEINLINE constexpr auto GetR() const -> unsigned char
             {
                 return (dword >> 16u) bitand 0xFFu;
             }
-            [[nodiscard]] __forceinline constexpr auto GetG() const -> unsigned char
+            [[nodiscard]] FAT_FORCEINLINE constexpr auto GetG() const -> unsigned char
             {
                 return (dword >> 8u) bitand 0xFFu;
             }
-            [[nodiscard]] __forceinline constexpr auto GetB() const -> unsigned char
+            [[nodiscard]] FAT_FORCEINLINE constexpr auto GetB() const -> unsigned char
             {
                 return dword bitand 0xFFu;
             }
 
-            __forceinline void SetA(unsigned char alpha) noexcept
+            FAT_FORCEINLINE void SetA(unsigned char alpha) noexcept
             {
                 dword = ((dword bitand 0x00'FF'FF'FFu) bitor (static_cast<::std::uint32_t>(alpha) << 24u));
             }
-            __forceinline void SetR(unsigned char red) noexcept
+            FAT_FORCEINLINE void SetR(unsigned char red) noexcept
             {
                 dword = ((dword bitand 0xFF'00'FF'FFu) bitor (static_cast<::std::uint32_t>(red) << 16u));
             }
-            __forceinline void SetG(unsigned char green) noexcept
+            FAT_FORCEINLINE void SetG(unsigned char green) noexcept
             {
                 dword = ((dword bitand 0xFF'FF'00'FFu) bitor (static_cast<::std::uint32_t>(green) << 8u));
             }
-            __forceinline void SetB(unsigned char blue) noexcept
+            FAT_FORCEINLINE void SetB(unsigned char blue) noexcept
             {
                 dword = ((dword bitand 0xFF'FF'FF'00u) bitor static_cast<::std::uint32_t>(blue));
             }

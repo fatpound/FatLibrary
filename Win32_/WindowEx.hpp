@@ -1,5 +1,8 @@
 #pragma once
 
+#include <FatNamespaces.hpp>
+#include <FatDefines.hpp>
+
 #include "IWindow.hpp"
 #include "WndClassEx.hpp"
 
@@ -7,9 +10,6 @@
 #include <Concurrency/Concurrency.hpp>
 #include <IO/IO.hpp>
 #include <Util/Util.hpp>
-
-#include <FatNamespaces.hpp>
-#include <FatDefines.hpp>
 
 #include <FatWin32.hpp>
 
@@ -171,11 +171,11 @@ namespace fatpound::win32
 
 
     public:
-        template <bitwise::Integral_Or_Floating T> __forceinline auto GetClientWidth()  const noexcept -> T
+        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE auto GetClientWidth()  const noexcept -> T
         {
             return static_cast<T>(mc_client_size_.m_width);
         }
-        template <bitwise::Integral_Or_Floating T> __forceinline auto GetClientHeight() const noexcept -> T
+        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE auto GetClientHeight() const noexcept -> T
         {
             return static_cast<T>(mc_client_size_.m_height);
         }
@@ -283,7 +283,7 @@ namespace fatpound::win32
 
 
     protected:
-        __forceinline void Process_WM_MOUSEMOVE_  (const WPARAM wParam, const LPARAM lParam)
+        FAT_FORCEINLINE void Process_WM_MOUSEMOVE_  (const WPARAM wParam, const LPARAM lParam)
         {
             const POINTS pt = MAKEPOINTS(lParam);
 
@@ -314,63 +314,63 @@ namespace fatpound::win32
                 }
             }
         }
-        __forceinline void Process_WM_LBUTTONDOWN_()
+        FAT_FORCEINLINE void Process_WM_LBUTTONDOWN_()
         {
             m_pMouse->OnLeftPressed_();
         }
-        __forceinline void Process_WM_LBUTTONUP_  ()
+        FAT_FORCEINLINE void Process_WM_LBUTTONUP_  ()
         {
             m_pMouse->OnLeftReleased_();
         }
-        __forceinline void Process_WM_RBUTTONDOWN_()
+        FAT_FORCEINLINE void Process_WM_RBUTTONDOWN_()
         {
             m_pMouse->OnRightPressed_();
         }
-        __forceinline void Process_WM_RBUTTONUP_  ()
+        FAT_FORCEINLINE void Process_WM_RBUTTONUP_  ()
         {
             m_pMouse->OnRightReleased_();
         }
-        __forceinline void Process_WM_MBUTTONDOWN_()
+        FAT_FORCEINLINE void Process_WM_MBUTTONDOWN_()
         {
             m_pMouse->OnWheelPressed_();
         }
-        __forceinline void Process_WM_MBUTTONUP_  ()
+        FAT_FORCEINLINE void Process_WM_MBUTTONUP_  ()
         {
             m_pMouse->OnWheelReleased_();
         }
-        __forceinline void Process_WM_MOUSEWHEEL_ (const int delta)
+        FAT_FORCEINLINE void Process_WM_MOUSEWHEEL_ (const int delta)
         {
             m_pMouse->OnWheelDelta_(delta);
         }
 
-        __forceinline void Process_WM_KILLFOCUS_ () noexcept
+        FAT_FORCEINLINE void Process_WM_KILLFOCUS_ () noexcept
         {
             m_pKeyboard->ClearKeyStateBitset_();
         }
-        __forceinline void Process_WM_KEYDOWN_   (const WPARAM wParam, const LPARAM lParam)
+        FAT_FORCEINLINE void Process_WM_KEYDOWN_   (const WPARAM wParam, const LPARAM lParam)
         {
             Process_WM_SYSKEYDOWN_(wParam, lParam);
         }
-        __forceinline void Process_WM_SYSKEYDOWN_(const WPARAM wParam, const LPARAM lParam)
+        FAT_FORCEINLINE void Process_WM_SYSKEYDOWN_(const WPARAM wParam, const LPARAM lParam)
         {
             if ((not (lParam bitand 0x40000000)) or m_pKeyboard->AutoRepeatIsEnabled())
             {
                 m_pKeyboard->OnKeyPressed_(static_cast<unsigned char>(wParam));
             }
         }
-        __forceinline void Process_WM_KEYUP_     (const WPARAM wParam)
+        FAT_FORCEINLINE void Process_WM_KEYUP_     (const WPARAM wParam)
         {
             Process_WM_SYSKEYUP_(wParam);
         }
-        __forceinline void Process_WM_SYSKEYUP_  (const WPARAM wParam)
+        FAT_FORCEINLINE void Process_WM_SYSKEYUP_  (const WPARAM wParam)
         {
             m_pKeyboard->OnKeyReleased_(static_cast<unsigned char>(wParam));
         }
-        __forceinline void Process_WM_CHAR_      (const WPARAM wParam)
+        FAT_FORCEINLINE void Process_WM_CHAR_      (const WPARAM wParam)
         {
             m_pKeyboard->OnChar_(static_cast<unsigned char>(wParam));
         }
-        __forceinline void Process_WM_SYSCOMMAND_(const WPARAM wParam) noexcept
+        FAT_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM wParam) noexcept
         {
             if ((wParam bitand 0xFFF0u) == SC_CLOSE)
             {

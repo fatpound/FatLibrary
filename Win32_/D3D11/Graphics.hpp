@@ -1,6 +1,7 @@
 #pragma once
 
 #include <FatNamespaces.hpp>
+#include <FatDefines.hpp>
 
 #include <FatWin32.hpp>
 
@@ -95,20 +96,20 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        template <bitwise::Integral_Or_Floating T> constexpr auto GetWidth () const noexcept -> T
+        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE constexpr auto GetWidth () const noexcept -> T
         {
             return static_cast<T>(mc_dimensions_.m_width);
         }
-        template <bitwise::Integral_Or_Floating T> constexpr auto GetHeight() const noexcept -> T
+        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE constexpr auto GetHeight() const noexcept -> T
         {
             return static_cast<T>(mc_dimensions_.m_height);
         }
 
-        template <::std::integral T> __forceinline auto GetPixel(const T& x, const T& y) const -> FATSPACE_UTIL::Color               requires(Framework)
+        template <::std::integral T> FAT_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> FATSPACE_UTIL::Color               requires(Framework)
         {
             return m_res_pack_.m_surface.GetPixel<>(x, y);
         }
-        template <::std::integral T> __forceinline void PutPixel(const T& x, const T& y, const FATSPACE_UTIL::Color& color) noexcept requires(Framework)
+        template <::std::integral T> FAT_FORCEINLINE void PutPixel(const T& x, const T& y, const FATSPACE_UTIL::Color& color) noexcept requires(Framework)
         {
             m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }
