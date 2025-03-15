@@ -1,6 +1,8 @@
 #pragma once
 
+#if defined(_MSC_VER)
 #include <DirectXMath.h>
+#endif
 
 #include "Numbers/Numbers.hpp"
 
@@ -9,6 +11,8 @@
 #include "Geometry.hpp"
 #include "Multiplicative.hpp"
 #include "Rect.hpp"
+
+#if defined(_MSC_VER)
 
 namespace fatpound::math
 {
@@ -40,3 +44,5 @@ namespace fatpound::math
         );
     }
 }
+
+#endif

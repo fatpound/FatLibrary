@@ -1,6 +1,10 @@
 #pragma once
 
+#if defined(_MSC_VER)
 #include <FatWin32.hpp>
+#endif
+
+#if defined(_MSC_VER)
 
 #include <string>
 
@@ -22,3 +26,5 @@ namespace fatpound::util
         return wstr;
     }
 }
+
+#endif

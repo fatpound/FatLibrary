@@ -2,6 +2,8 @@
 
 #include <Bitwise/Concepts.hpp>
 
+#include <utility>
+
 namespace fatpound::math
 {
     template <bitwise::Integral_Or_Floating T>

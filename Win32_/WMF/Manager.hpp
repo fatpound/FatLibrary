@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatWin32.hpp>
 
 #include <mfapi.h>
@@ -37,3 +39,5 @@ namespace fatpound::win32::wmf
     private:
     };
 }
+
+#endif

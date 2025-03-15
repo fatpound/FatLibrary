@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatNamespaces.hpp>
 
 #include "../Pipeline/Pipeline.hpp"
@@ -78,3 +80,5 @@ namespace fatpound::win32::d3d11::visual
         inline static thread_local std::vector<BindablePtr_t> tl_bindable_vec_;
     };
 }
+
+#endif

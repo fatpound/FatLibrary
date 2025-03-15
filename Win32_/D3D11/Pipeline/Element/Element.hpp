@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include "Topology.hpp"
 #include "InputLayout.hpp"
 
@@ -8,3 +10,5 @@
 
 #include "PixelShader.hpp"
 #include "VertexShader.hpp"
+
+#endif

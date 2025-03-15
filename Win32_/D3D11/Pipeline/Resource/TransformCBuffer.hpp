@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatNamespaces.hpp>
 
 #include <FatWin32.hpp>
@@ -65,3 +67,5 @@ namespace fatpound::win32::d3d11::pipeline::resource
         FATSPACE_UTIL::ViewXM& m_viewXM_;
     };
 }
+
+#endif

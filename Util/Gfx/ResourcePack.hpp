@@ -1,12 +1,14 @@
 #pragma once
 
+#if defined(_MSC_VER)
 #include <FatNamespaces.hpp>
 
 #include <FatWin32.hpp>
-
 #include <d3d11.h>
-
 #include <wrl.h>
+#endif
+
+#if defined(_MSC_VER)
 
 #include "SizePack.hpp"
 
@@ -37,3 +39,5 @@ namespace fatpound::util::gfx
         }
     };
 }
+
+#endif

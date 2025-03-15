@@ -2,6 +2,8 @@
 
 #include <FatDefines.hpp>
 
+#include "Multiplicative.hpp"
+
 #include <Bitwise/Concepts.hpp>
 
 #include <cmath>

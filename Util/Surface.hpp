@@ -3,14 +3,17 @@
 #include <FatNamespaces.hpp>
 #include <FatDefines.hpp>
 
+#if defined(_MSC_VER)
 #define FATPOUND_FULL_WIN_TARGETED
 #include <FatWin32.hpp>
 #include <gdiplus.h>
+#include <Win32_/GDI_Plus/Manager.hpp>
 #undef FATPOUND_FULL_WIN_TARGETED
+#pragma comment(lib, "gdiplus")
+#endif
 
 #include <Bitwise/Concepts.hpp>
 #include <Memory/Memory.hpp>
-#include <Win32_/GDI_Plus/Manager.hpp>
 
 #include "Gfx/SizePack.hpp"
 
@@ -18,13 +21,10 @@
 #include "Color.hpp"
 
 #include <cassert>
-#include <cstdlib>
 #include <cstdint>
 
 #include <string>
 #include <filesystem>
-
-#pragma comment(lib, "gdiplus")
 
 namespace fatpound::util
 {
@@ -39,6 +39,7 @@ namespace fatpound::util
 
 
     public:
+#if defined(_MSC_VER)
         explicit Surface(const std::filesystem::path& path,         const Size_t& alignBytes = scx_DefaultAlignment)
             :
             Surface(path.wstring(), alignBytes)
@@ -82,9 +83,10 @@ namespace fatpound::util
 
             *this = std::move(surf);
         }
+#endif
         explicit Surface(const gfx::SizePack& dimensions,           const Size_t& alignBytes = scx_DefaultAlignment)
             :
-            m_pBuffer_((assert(dimensions.m_width > 0u), assert(dimensions.m_height > 0), FATSPACE_MEMORY::AlignedUniquePtr<Color[]>::Make(alignBytes, dimensions.m_width * dimensions.m_height))),
+            m_pBuffer_(FATSPACE_MEMORY::AlignedUniquePtr<Color[]>::Make(alignBytes, dimensions.m_width * dimensions.m_height)),
             m_size_pack_(dimensions),
             m_align_byte_(alignBytes),
             m_pixel_pitch_(CalculatePixelPitch(GetWidth<>(), GetAlignment<>()))

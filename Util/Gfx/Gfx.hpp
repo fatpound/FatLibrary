@@ -1,14 +1,16 @@
 #pragma once
 
+#if defined(_MSC_VER)
 #include <FatWin32.hpp>
+#include <d3d11.h>
+#include <wrl.h>
+#endif
 
 #include "FullScreenQuad.hpp"
 #include "ResourcePack.hpp"
 #include "SizePack.hpp"
 
-#include <d3d11.h>
-
-#include <wrl.h>
+#if defined(_MSC_VER)
 
 namespace fatpound::util::gfx
 {
@@ -16,3 +18,5 @@ namespace fatpound::util::gfx
 
     void ToggleDXGI_AltEnterMode(ID3D11Device* const pDevice, const HWND hWnd, UINT& flag);
 }
+
+#endif

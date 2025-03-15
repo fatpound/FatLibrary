@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatNamespaces.hpp>
 
 #include <FatWin32.hpp>
@@ -84,3 +86,5 @@ namespace fatpound::win32::d3d11::visual
         BindableVec_t m_binds_;
     };
 }
+
+#endif

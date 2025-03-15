@@ -9,4 +9,7 @@
 #include "Math/Math.hpp"
 #include "Random/Random.hpp"
 #include "Util/Util.hpp"
+
+#if defined(_MSC_VER)
 #include "Win32_/Win32_.hpp"
+#endif

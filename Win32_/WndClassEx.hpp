@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include "IWindow.hpp"
 
 #include <FatWin32.hpp>
@@ -116,3 +118,5 @@ namespace fatpound::win32
         ATOM m_atom_;
     };
 }
+
+#endif

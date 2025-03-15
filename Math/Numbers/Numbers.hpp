@@ -3,6 +3,7 @@
 #include <FatDefines.hpp>
 
 #include "../Common.hpp"
+#include "../Multiplicative.hpp"
 
 #include "Primes.hpp"
 #include "Sets.hpp"

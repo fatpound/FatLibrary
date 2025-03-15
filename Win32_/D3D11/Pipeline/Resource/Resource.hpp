@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include "CBuffer.hpp"
 #include "SBuffer.hpp"
 
@@ -11,3 +13,5 @@
 
 #include "Texture2D.hpp"
 #include "Sampler.hpp"
+
+#endif

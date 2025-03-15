@@ -1,5 +1,7 @@
 #include "Gfx.hpp"
 
+#if defined(_MSC_VER)
+
 namespace wrl = Microsoft::WRL;
 
 namespace fatpound::util::gfx
@@ -34,3 +36,5 @@ namespace fatpound::util::gfx
         GetDXGIFactory(pDevice)->MakeWindowAssociation(hWnd, flag);
     }
 }
+
+#endif

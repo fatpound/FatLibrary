@@ -1,5 +1,6 @@
 #pragma once
 
+#if defined(_MSC_VER)
 #include <DirectXMath.h>
 
 namespace fatpound::util
@@ -32,3 +33,5 @@ namespace fatpound::util
         ::DirectX::XMMATRIX m_projection_{};
     };
 }
+
+#endif

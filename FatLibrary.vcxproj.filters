@@ -295,12 +295,6 @@
     <ClCompile Include="Concurrency\TaskQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IO\Keyboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IO\Mouse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Util\ViewXM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

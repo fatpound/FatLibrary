@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <deque>
 #include <future>
 #include <functional>
@@ -53,3 +55,5 @@ namespace fatpound::concurrency
         std::mutex m_mtx_;
     };
 }
+
+#endif

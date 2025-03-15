@@ -1,11 +1,10 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #define FATPOUND_FULL_WIN_TARGETED
-
 #include <FatWin32.hpp>
-
 #include <gdiplus.h>
-
 #undef FATPOUND_FULL_WIN_TARGETED
 
 #pragma comment(lib, "gdiplus")
@@ -58,3 +57,5 @@ namespace fatpound::win32::gdi_plus
         inline static int s_ref_count_{};
     };
 }
+
+#endif

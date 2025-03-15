@@ -1,3 +1,5 @@
+#if defined(_MSC_VER)
+
 #include "TaskQueue.hpp" 
 
 namespace fatpound::concurrency
@@ -24,3 +26,5 @@ namespace fatpound::concurrency
         m_tasks_.push_back(std::move(wtask));
     }
 }
+
+#endif

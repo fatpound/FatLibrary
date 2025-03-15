@@ -1,3 +1,5 @@
+#if defined(_MSC_VER)
+
 #include "ViewXM.hpp"
 
 namespace dx = DirectX;
@@ -22,3 +24,5 @@ namespace fatpound::util
         m_projection_ = projection;
     }
 }
+
+#endif

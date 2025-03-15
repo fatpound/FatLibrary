@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatWin32.hpp>
 
 // some secret messages
@@ -245,3 +247,5 @@ namespace fatpound::win32
         std::unordered_map<DWORD, std::wstring> m_map_;
     };
 }
+
+#endif

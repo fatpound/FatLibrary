@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatWin32.hpp>
 
 #include <string>
@@ -38,3 +40,5 @@ namespace fatpound::win32
     private:
     };
 }
+
+#endif

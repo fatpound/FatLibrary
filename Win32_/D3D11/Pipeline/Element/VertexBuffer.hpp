@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatWin32.hpp>
 
 #include <d3d11.h>
@@ -67,3 +69,5 @@ namespace fatpound::win32::d3d11::pipeline::element
     private:
     };
 }
+
+#endif

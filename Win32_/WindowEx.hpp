@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include <FatNamespaces.hpp>
 #include <FatDefines.hpp>
 
@@ -423,3 +425,5 @@ namespace fatpound::win32
         }
     };
 }
+
+#endif

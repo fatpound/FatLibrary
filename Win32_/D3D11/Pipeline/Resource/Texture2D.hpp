@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
 #include "../Bindable.hpp"
 
 #include <Util/Surface.hpp>
@@ -66,3 +68,5 @@ namespace fatpound::win32::d3d11::pipeline::resource
         ::Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pSRV_;
     };
 }
+
+#endif

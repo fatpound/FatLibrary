@@ -26,6 +26,10 @@ namespace fatpound::math::inline geometry
     {
         return radius * numbers::twoPi<T>;
     }
+    template <bitwise::Unsigned_Integral_Or_Floating T> constexpr auto TrianglePerimeter (const T& a, const T& b, const T& c) -> T
+    {
+        return a + b + c;
+    }
     template <bitwise::Unsigned_Integral_Or_Floating T> constexpr auto TriangleArea      (const T& height, const T& base) -> T
     {
         return (base * height) / 2.0;
@@ -35,9 +39,5 @@ namespace fatpound::math::inline geometry
         const auto s = TrianglePerimeter<>(a, b, c) / static_cast<T>(2);
 
         return std::sqrt(s * (s - a) * (s - b) * (s - c));
-    }
-    template <bitwise::Unsigned_Integral_Or_Floating T> constexpr auto TrianglePerimeter (const T& a, const T& b, const T& c) -> T
-    {
-        return a + b + c;
     }
 }

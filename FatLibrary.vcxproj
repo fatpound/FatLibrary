@@ -118,8 +118,6 @@
     <ClCompile Include="Automata\TLT.cpp" />
     <ClCompile Include="Concurrency\TaskQueue.cpp" />
     <ClCompile Include="File\File.cpp" />
-    <ClCompile Include="IO\Keyboard.cpp" />
-    <ClCompile Include="IO\Mouse.cpp" />
     <ClCompile Include="Util\Gfx\Gfx.cpp" />
     <ClCompile Include="Util\ViewXM.cpp" />
   </ItemGroup>
