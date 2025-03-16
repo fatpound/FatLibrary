@@ -7,16 +7,14 @@ namespace fatpound::dsa::tree::binary
     template <std::totally_ordered T>
     class IPR final : public AVL<T>
     {
-        using typename BST<T>::Node_;
-
         using AVL<T>::Balance_;
 
     public:
-        using SizeType = AVL<T>::SizeType;
+        using Size_t = AVL<T>::Size_t;
 
 
     public:
-        virtual void Insert(const T new_item) override final
+        virtual void Insert(const T& new_item) override final
         {
             [[maybe_unused]] Node_* const new_node = AVL<T>::Insert_(nullptr, this->m_pRoot_, new_item);
 
@@ -34,8 +32,9 @@ namespace fatpound::dsa::tree::binary
 
 
     protected:
+        using typename BST<T>::Node_;
 
-
+        
     private:
         // NOLINTBEGIN(readability-identifier-length)
 
@@ -50,9 +49,9 @@ namespace fatpound::dsa::tree::binary
 
             while (last->parent not_eq nullptr) // Going up
             {
-                SizeType na{};
-                SizeType nb{};
-                SizeType nc{};
+                Size_t na{};
+                Size_t nb{};
+                Size_t nc{};
 
                 // false => left, true => right
                 bool a_location{};

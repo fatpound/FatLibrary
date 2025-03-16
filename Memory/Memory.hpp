@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) or FAT_BUILD_ON_WINDOWS
 #include <cstdlib>
 #ifndef FAT_MEMORY_ALIGNED_ALLOCATE_WITH
     #define FAT_MEMORY_ALIGNED_ALLOCATE_WITH(align, size) (::_aligned_malloc(size, align))

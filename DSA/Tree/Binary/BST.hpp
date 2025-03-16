@@ -11,7 +11,7 @@ namespace fatpound::dsa::tree::binary
     class BST
     {
     public:
-        using SizeType = std::size_t;
+        using Size_t = std::size_t;
 
 
     public:
@@ -70,7 +70,7 @@ namespace fatpound::dsa::tree::binary
 
 
     public:
-        virtual void Insert(const T new_item)
+        virtual void Insert(const T& new_item)
         {
             [[maybe_unused]] Node_* new_node = Insert_(nullptr, m_pRoot_, new_item);
 
@@ -81,7 +81,7 @@ namespace fatpound::dsa::tree::binary
 
             ++m_node_count_;
         }
-        virtual void Delete(const T old_item) noexcept
+        virtual void Delete(const T& old_item) noexcept
         {
             Node_* node = Find_(m_pRoot_, old_item);
 
@@ -94,12 +94,12 @@ namespace fatpound::dsa::tree::binary
 
     public:
         [[nodiscard]]
-        auto GetTotalNodeCount() const -> SizeType
+        auto GetTotalNodeCount() const -> Size_t
         {
             return m_node_count_;
         }
 
-        auto Contains(const T item) const -> bool
+        auto Contains(const T& item) const -> bool
         {
             return Find_(m_pRoot_, item) not_eq nullptr;
         }
@@ -156,7 +156,7 @@ namespace fatpound::dsa::tree::binary
         {
             const auto height = GetDepth_(m_pRoot_, 0);
 
-            for (SizeType i = 1u; i <= height; ++i)
+            for (Size_t i = 1u; i <= height; ++i)
             {
                 std::cout << "Level " << i << " : ";
 
@@ -353,7 +353,7 @@ namespace fatpound::dsa::tree::binary
 
             return node;
         }
-        auto GetDepth_     (const Node_* const node, const SizeType depth) const noexcept -> SizeType
+        auto GetDepth_     (const Node_* const node, const Size_t depth) const noexcept -> Size_t
         {
             if (node == nullptr)
             {
@@ -365,21 +365,21 @@ namespace fatpound::dsa::tree::binary
 
             return std::max(left_val, right_val);
         }
-        auto GetDepthLeft_ (const Node_* const node, const SizeType depth) const noexcept -> SizeType
+        auto GetDepthLeft_ (const Node_* const node, const Size_t depth) const noexcept -> Size_t
         {
             return node
                 ? GetDepthLeft_(node->left, depth + 1)
                 : depth
                 ;
         }
-        auto GetDepthRight_(const Node_* const node, const SizeType depth) const noexcept -> SizeType
+        auto GetDepthRight_(const Node_* const node, const Size_t depth) const noexcept -> Size_t
         {
             return node
                 ? GetDepthLeft_(node->right, depth + 1)
                 : depth
                 ;
         }
-        auto GetNodeCount_ (const Node_* const node) const noexcept -> SizeType
+        auto GetNodeCount_ (const Node_* const node) const noexcept -> Size_t
         {
             if (node == nullptr)
             {
@@ -513,7 +513,7 @@ namespace fatpound::dsa::tree::binary
                 ListLeavesReverse_(m_pRoot_->left);
             }
         }
-        void ListLevelorder_       (const Node_* const node, SizeType level) const
+        void ListLevelorder_       (const Node_* const node, Size_t level) const
         {
             if (node not_eq nullptr)
             {
@@ -537,7 +537,7 @@ namespace fatpound::dsa::tree::binary
     protected:
         Node_* m_pRoot_{};
 
-        SizeType m_node_count_{};
+        Size_t m_node_count_{};
 
 
     private:

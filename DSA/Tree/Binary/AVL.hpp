@@ -7,14 +7,12 @@ namespace fatpound::dsa::tree::binary
     template <std::totally_ordered T>
     class AVL : public BST<T>
     {
-        using typename BST<T>::Node_;
-
     public:
-        using SizeType = BST<T>::SizeType;
+        using Size_t = BST<T>::Size_t;
 
 
     public:
-        virtual void Insert(const T new_item) override
+        virtual void Insert(const T& new_item) override
         {
             [[maybe_unused]] Node_* new_node = Insert_(nullptr, this->m_pRoot_, new_item);
 
@@ -29,7 +27,7 @@ namespace fatpound::dsa::tree::binary
 
             ++(this->m_node_count_);
         }
-        virtual void Delete(const T old_item) noexcept override
+        virtual void Delete(const T& old_item) noexcept override
         {
             Node_* node = BST<T>::Find_(this->m_pRoot_, old_item);
 
@@ -47,6 +45,10 @@ namespace fatpound::dsa::tree::binary
                 Balance_(BST<T>::Delete_(node));
             }
         }
+
+
+    protected:
+        using typename BST<T>::Node_;
 
 
     protected:
