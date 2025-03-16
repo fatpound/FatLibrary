@@ -30,6 +30,9 @@ namespace fatpound::util
 {
     class Surface final
     {
+        using Color_t = Color[];
+        using Ptr_t = memory::AlignedUniquePtr<Color_t>;
+
     public:
         using Size_t = ::std::uint32_t;
 
@@ -86,7 +89,7 @@ namespace fatpound::util
 #endif
         explicit Surface(const gfx::SizePack& dimensions,           const Size_t& alignBytes = scx_DefaultAlignment)
             :
-            m_pBuffer_(FATSPACE_MEMORY::AlignedUniquePtr<Color[]>::Make(alignBytes, dimensions.m_width * dimensions.m_height)),
+            m_pBuffer_(memory::MakeAlignedUniquePtr<Color_t>(alignBytes, dimensions.m_width * dimensions.m_height)),
             m_size_pack_(dimensions),
             m_align_byte_(alignBytes),
             m_pixel_pitch_(CalculatePixelPitch(GetWidth<>(), GetAlignment<>()))
@@ -128,7 +131,7 @@ namespace fatpound::util
             {
                 Reset();
 
-                m_pBuffer_     = FATSPACE_MEMORY::AlignedUniquePtr<Color[]>::Make(src.GetAlignment(), src.GetWidth<>() * src.GetHeight<>());
+                m_pBuffer_     = memory::MakeAlignedUniquePtr<Color_t>(src.GetAlignment(), src.GetWidth<>() * src.GetHeight<>());
 
                 m_size_pack_   = src.GetSizePack();
                 m_align_byte_  = src.GetAlignment<>();
@@ -308,7 +311,7 @@ namespace fatpound::util
 
 
     private:
-        FATSPACE_MEMORY::AlignedUniquePtr_t<Color[]> m_pBuffer_;
+        Ptr_t m_pBuffer_;
 
         gfx::SizePack m_size_pack_;
 
