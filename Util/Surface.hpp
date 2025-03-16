@@ -22,6 +22,7 @@
 
 #include <cassert>
 #include <cstdint>
+#include <cstdlib>
 
 #include <string>
 #include <filesystem>
@@ -294,6 +295,8 @@ namespace fatpound::util
     private:
         void DeepCopyFrom_(const Surface& src) noexcept
         {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
                   Color* const pDest = *this;
             const Color* const pSrc  = src;
 
@@ -307,6 +310,7 @@ namespace fatpound::util
                     srcPitch
                 );
             }
+#pragma clang diagnostic pop
         }
 
 

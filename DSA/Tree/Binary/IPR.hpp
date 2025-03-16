@@ -4,7 +4,7 @@
 
 namespace fatpound::dsa::tree::binary
 {
-	template <std::totally_ordered T>
+    template <std::totally_ordered T>
     class IPR final : public AVL<T>
     {
         using typename BST<T>::Node_;

@@ -178,7 +178,7 @@ namespace fatpound::dsa::linkedlist
 
 
     protected:
-        struct Node_ final
+        struct alignas(sizeof nullptr) Node_ final
         {
             explicit Node_(T new_item)
                 :

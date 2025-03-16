@@ -6,7 +6,7 @@
 
 namespace fatpound::util
 {
-	class Timer final
+    class Timer final
     {
     public:
         explicit Timer()                 = default;

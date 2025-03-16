@@ -34,8 +34,8 @@ namespace fatpound::util
         hours   %= 12;
         minutes %= 60;
 
-        const auto angle = ::std::fabs((11 * minutes - 60 * hours) / 2);
+        const auto& angle = ::std::fabs(static_cast<FP>(11 * minutes - 60 * hours) / static_cast<FP>(2));
 
-        return (angle > 180) ? (360 - angle) : angle;
+        return (angle > 180) ? static_cast<FP>(360 - angle) : angle;
     }
 }

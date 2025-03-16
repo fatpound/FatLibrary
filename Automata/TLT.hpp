@@ -40,7 +40,7 @@ namespace fatpound::automata
 
 
         private:
-            struct alignas(64) Node_ final
+            struct alignas(16) Node_ final
             {
                 explicit Node_(const std::string& item);
 
@@ -106,7 +106,7 @@ namespace fatpound::automata
 
 
         private:
-            struct alignas(64) Node_ final
+            struct alignas(16) Node_ final
             {
                 explicit Node_(const std::pair<std::string, std::vector<std::string>>& tree);
                 explicit Node_(const std::string& str);
