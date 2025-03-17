@@ -10,6 +10,6 @@
 #include "Random/Random.hpp"
 #include "Util/Util.hpp"
 
-#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
+#if FAT_BUILD_ONLY_WITH_MSVC
 #include "Win32_/Win32_.hpp"
 #endif

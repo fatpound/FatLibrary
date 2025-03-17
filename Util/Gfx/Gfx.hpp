@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
+#if FAT_BUILD_ONLY_WITH_MSVC
 #include <FatWin32.hpp>
 #include <d3d11.h>
 #include <wrl.h>
@@ -10,7 +10,7 @@
 #include "ResourcePack.hpp"
 #include "SizePack.hpp"
 
-#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
+#if FAT_BUILD_ONLY_WITH_MSVC
 
 namespace fatpound::util::gfx
 {
