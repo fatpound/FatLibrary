@@ -9,7 +9,7 @@
 #include <atomic>
 #include <optional>
 
-#if FAT_BUILD_ONLY_WITH_MSVC
+#if FAT_BUILDING_WITH_MSVC
 namespace fatpound::win32
 {
     class WindowEx;
@@ -20,7 +20,7 @@ namespace fatpound::io
 {
     class Keyboard final
     {
-#if FAT_BUILD_ONLY_WITH_MSVC
+#if FAT_BUILDING_WITH_MSVC
         friend FATSPACE_WIN32::WindowEx;
 #endif
 

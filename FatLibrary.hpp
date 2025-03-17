@@ -10,6 +10,6 @@
 #include "Random/Random.hpp"
 #include "Util/Util.hpp"
 
-#if FAT_BUILD_ONLY_WITH_MSVC
+#if FAT_BUILDING_WITH_MSVC
 #include "Win32_/Win32_.hpp"
 #endif

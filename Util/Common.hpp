@@ -1,10 +1,8 @@
 #pragma once
 
-#if FAT_BUILD_ONLY_WITH_MSVC
-#include <FatWin32.hpp>
-#endif
+#if FAT_BUILDING_WITH_MSVC
 
-#if FAT_BUILD_ONLY_WITH_MSVC
+#include <FatWin32.hpp>
 
 #include <string>
 
