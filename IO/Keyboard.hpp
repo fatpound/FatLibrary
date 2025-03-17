@@ -56,7 +56,16 @@ namespace fatpound::io
         }
         auto GetChar()  noexcept -> std::optional<unsigned char>
         {
-            return std::optional<unsigned char>();
+            if (m_char_buffer_.empty())
+            {
+                return std::nullopt;
+            }
+            
+            auto ch = m_char_buffer_.front();
+
+            m_char_buffer_.pop();
+
+            return ch;
         }
 
         auto KeyIsPressed(keycode_t code) const noexcept -> bool
@@ -70,11 +79,11 @@ namespace fatpound::io
 
         auto KeyBufferIsEmpty()  const noexcept -> bool
         {
-            return false;
+            return m_key_event_queue_.empty();
         }
         auto CharBufferIsEmpty() const noexcept -> bool
         {
-            return false;
+            return m_char_buffer_.empty();
         }
 
         void EnableAutoRepeat()  noexcept
@@ -106,7 +115,7 @@ namespace fatpound::io
         {
             m_key_states_[keycode] = true;
 
-            m_key_event_queue_.push(KeyEvent{ KeyEvent::Type::Press, keycode });
+            m_key_event_queue_.push(KeyEvent{ .type = KeyEvent::Type::Press, .code = keycode });
 
             TrimBuffer_(m_key_event_queue_);
         }
@@ -114,7 +123,7 @@ namespace fatpound::io
         {
             m_key_states_[keycode] = false;
 
-            m_key_event_queue_.push(KeyEvent{ KeyEvent::Type::Release, keycode });
+            m_key_event_queue_.push(KeyEvent{ .type = KeyEvent::Type::Release, .code = keycode });
 
             TrimBuffer_(m_key_event_queue_);
         }
@@ -132,11 +141,11 @@ namespace fatpound::io
 
 
     private:
-        std::queue<KeyEvent> m_key_event_queue_{};
-        std::queue<unsigned char> m_char_buffer_{};
+        std::queue<KeyEvent> m_key_event_queue_;
+        std::queue<unsigned char> m_char_buffer_;
 
-        std::bitset<std::numeric_limits<keycode_t>::max()> m_key_states_{};
+        std::bitset<std::numeric_limits<keycode_t>::max()> m_key_states_;
 
-        std::atomic_bool m_auto_repeat_enabled_{};
+        std::atomic_bool m_auto_repeat_enabled_;
     };
 }

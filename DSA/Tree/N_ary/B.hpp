@@ -82,7 +82,7 @@ namespace fatpound::dsa::tree::n_ary
 
 
     private:
-        struct Node_ final
+        struct alignas(64) Node_ final
         {
             explicit Node_(std::pair<T, Node_*>* new_item, Node_* new_parent = nullptr)
                 :
@@ -203,8 +203,8 @@ namespace fatpound::dsa::tree::n_ary
 
             const std::size_t center = (C * 2u + 1u) / 2u;
 
-            std::vector<std::pair<T, Node_*>*> temp_vec_less;
-            std::vector<std::pair<T, Node_*>*> temp_vec_more;
+            std::vector<std::pair<T, Node_*>*> temp_vec_less(center);
+            std::vector<std::pair<T, Node_*>*> temp_vec_more((C * 2u) - center + 1u);
 
             for (std::size_t i = 0u; i < center; ++i)
             {

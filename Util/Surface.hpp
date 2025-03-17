@@ -226,7 +226,7 @@ namespace fatpound::util
             assert(x < GetWidth<T>());
             assert(y < GetHeight<T>());
 
-            return m_pBuffer_[y * m_pixel_pitch_ + x];
+            return m_pBuffer_[(y * m_pixel_pitch_) + x];
         }
         template <::std::integral T> FAT_FORCEINLINE void PutPixel(const T& x, const T& y, const Color& color) noexcept
         {

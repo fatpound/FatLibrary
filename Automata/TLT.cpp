@@ -7,7 +7,7 @@
 
 namespace fatpound::automata
 {
-    namespace details_v1
+    inline namespace details_v1
     {
         // TLT
 
@@ -84,12 +84,12 @@ namespace fatpound::automata
             std::cout << '\n';
         }
 
-        bool TLT::IsTerminal_(const std::string& word) noexcept
+        auto TLT::IsTerminal_(const std::string& word) noexcept -> bool
         {
             return std::all_of<>(word.cbegin(), word.cend(), [](const auto& ch) noexcept -> bool { return std::islower(ch) not_eq 0; });
         }
 
-        void TLT::CreateTree_(Node_* node)
+        void TLT::CreateTree_(Node_* const node)
         {
             m_results_.reserve(node->m_leaves.size());
 
@@ -105,21 +105,21 @@ namespace fatpound::automata
                 CreateInnerTree_(leaf);
             }
         }
-        void TLT::CreateInnerTree_(Node_* node)
+        void TLT::CreateInnerTree_(Node_* const node)
         {
             for (std::size_t i = 0u; i < node->m_item.size(); ++i)
             {
                 const auto& ch = node->m_item[i];
 
-                if (not std::isupper(ch))
+                if (not static_cast<bool>(std::isupper(ch)))
                 {
                     continue;
                 }
 
                 const auto& cfg_it = std::find_if(mc_cfgrammar_.cbegin(), mc_cfgrammar_.cend(), [&](const auto& pair) { return pair.first[0] == ch; });
 
-                std::string leftstr(node->m_item.cbegin(), node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i));
-                std::string rightstr(node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i + 1u), node->m_item.cend());
+                const std::string leftstr(node->m_item.cbegin(), node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i));
+                const std::string rightstr(node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i + 1u), node->m_item.cend());
 
                 const std::size_t index = static_cast<std::size_t>(cfg_it - mc_cfgrammar_.cbegin());
 
@@ -251,7 +251,7 @@ namespace fatpound::automata
             }
         }
 
-        auto TLT::GenerateResults_(std::string init_str, std::size_t index, std::size_t recursed) const -> Result_t
+        auto TLT::GenerateResults_(const std::string& init_str, const std::size_t& index, const std::size_t& recursed) const -> Result_t
         {
             Result_t strings;
 
@@ -288,7 +288,7 @@ namespace fatpound::automata
 
                                 // bool deleted = false;
 
-                                std::string tempstr = strPair.first;
+                                const std::string tempstr = strPair.first;
 
                                 if (tempstr.empty())
                                 {
@@ -323,7 +323,7 @@ namespace fatpound::automata
             return strings;
         }
 
-        bool TLT::IsTerminal_(const std::string& str) const
+        auto TLT::IsTerminal_(const std::string& str) const -> bool
         {
             for (const auto& tree : m_trees_)
             {

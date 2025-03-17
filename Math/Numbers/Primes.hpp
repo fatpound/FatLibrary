@@ -156,7 +156,12 @@ namespace fatpound::math::numbers
     {
         if (idx < 3)
         {
-            return idx == 0 ? 0 : (idx == 1 ? 3 : 5);
+            if (idx == 0)
+            {
+                return 0;
+            }
+            
+            return idx == 1 ? 3 : 5;
         }
 
         return NthSuperPrime_GT2<>(idx);

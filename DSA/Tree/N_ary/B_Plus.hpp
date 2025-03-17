@@ -128,7 +128,7 @@ namespace fatpound::dsa::tree::n_ary
 
 
     private:
-        struct Node_ final
+        struct alignas(64) Node_ final
         {
             std::vector<std::pair<T, Node_*>*> items;
 

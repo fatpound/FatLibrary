@@ -10,7 +10,7 @@
 
 namespace fatpound::automata
 {
-    namespace details_v1
+    inline namespace details_v1
     {
         class TLT final
         {
@@ -40,7 +40,7 @@ namespace fatpound::automata
 
 
         private:
-            struct alignas(16) Node_ final
+            struct alignas(128) Node_ final
             {
                 explicit Node_(const std::string& item);
 
@@ -68,7 +68,7 @@ namespace fatpound::automata
 
             std::vector<std::size_t> m_recursers_;
 
-            Node_* m_pTree_ = nullptr;
+            Node_* m_pTree_{};
         };
     }
 
@@ -106,7 +106,7 @@ namespace fatpound::automata
 
 
         private:
-            struct alignas(16) Node_ final
+            struct alignas(128) Node_ final
             {
                 explicit Node_(const std::pair<std::string, std::vector<std::string>>& tree);
                 explicit Node_(const std::string& str);
@@ -119,7 +119,7 @@ namespace fatpound::automata
 
         private:
             [[nodiscard]]
-            auto GenerateResults_(std::string init_str = "", std::size_t index = 0u, std::size_t recursed = 0u) const -> Result_t;
+            auto GenerateResults_(const std::string& init_str = "", const std::size_t& index = {}, const std::size_t& recursed = {}) const -> Result_t;
 
             [[nodiscard]]
             auto IsTerminal_(const std::string& str) const -> bool;

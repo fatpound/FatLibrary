@@ -176,7 +176,7 @@ namespace fatpound::dsa::tree::binary
 
 
     protected:
-        struct Node_ final
+        struct alignas(32) Node_ final
         {
             Node_(const T new_item, Node_* const new_parent) noexcept
                 :
