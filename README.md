@@ -16,6 +16,7 @@ This repo can be used directly as a (static) library project in Visual Studio 20
 No warnings on `Clang++19` with options `-Wall -Wextra -Weverything -pedantic` and `-Wno-c++98-compat` `-Wno-c++98-compat-pedantic` `-Wno-c++20-compat` `-Wno-c++20-extensions` `-Wno-padded`\
 No warnings on `MSVC v19.43.34808` with options `/Wall /permissive-` [except these](https://github.com/fatpound/FatProps/blob/main/FatCpp.props#L17)\
 No warnings with `Microsoft C++ Native Recommended Rules` and [some optional rules](https://github.com/fatpound/FatLibrary/blob/main/_misc/FatRules.ruleset)\
+No warnings in `clang-tidy 19` with [these](https://github.com/fatpound/FatLibrary/blob/main/_misc/.clang-tidy) options\
 No warnings in `PVS-Studio v7.35`
 
 `Class Diagram`
