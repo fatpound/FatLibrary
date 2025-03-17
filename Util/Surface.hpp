@@ -31,7 +31,9 @@ namespace fatpound::util
 {
     class Surface final
     {
+        // NOLINTBEGIN(modernize-avoid-c-arrays)
         using Color_t = Color[];
+        // NOLINTEND(modernize-avoid-c-arrays)
         using Ptr_t = memory::AlignedUniquePtr<Color_t>;
 
     public:

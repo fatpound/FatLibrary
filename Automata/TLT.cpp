@@ -4,6 +4,7 @@
 #include <deque>
 #include <algorithm>
 #include <stdexcept>
+#include <ranges>
 
 namespace fatpound::automata
 {
@@ -53,11 +54,11 @@ namespace fatpound::automata
             
             for (const auto& str : m_results_)
             {
-                if (std::find<>(finals.cbegin(), finals.cend(), str) == finals.cend())
+                if (std::ranges::find(finals, str) == finals.cend())
                 {
                     finals.push_back(str);
                 }
-                else if (std::find<>(repeaters.cbegin(), repeaters.cend(), str) == repeaters.cend())
+                else if (std::ranges::find(repeaters, str) == repeaters.cend())
                 {
                     repeaters.push_back(str);
                 }
@@ -86,7 +87,7 @@ namespace fatpound::automata
 
         auto TLT::IsTerminal_(const std::string& word) noexcept -> bool
         {
-            return std::all_of<>(word.cbegin(), word.cend(), [](const auto& ch) noexcept -> bool { return std::islower(ch) not_eq 0; });
+            return std::ranges::all_of(word, [](const auto& ch) noexcept -> bool { return std::islower(ch) not_eq 0; });
         }
 
         void TLT::CreateTree_(Node_* const node)
@@ -116,7 +117,7 @@ namespace fatpound::automata
                     continue;
                 }
 
-                const auto& cfg_it = std::find_if(mc_cfgrammar_.cbegin(), mc_cfgrammar_.cend(), [&](const auto& pair) { return pair.first[0] == ch; });
+                const auto& cfg_it = std::ranges::find_if(mc_cfgrammar_, [&](const auto& pair) { return pair.first[0] == ch; });
 
                 const std::string leftstr(node->m_item.cbegin(), node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i));
                 const std::string rightstr(node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i + 1u), node->m_item.cend());
@@ -271,7 +272,7 @@ namespace fatpound::automata
 
                         const auto insertedindex = newTempStrings.size() - 1;
 
-                        const auto it = std::find_if(m_trees_.cbegin() + static_cast<std::ptrdiff_t>(index), m_trees_.cend(), [&](const auto& tree) -> bool { return ch == tree->m_item[0]; });
+                        const auto it = std::find_if<>(m_trees_.cbegin() + static_cast<std::ptrdiff_t>(index), m_trees_.cend(), [&](const auto& tree) -> bool { return ch == tree->m_item[0]; });
 
                         if (it == m_trees_.cend())
                         {
@@ -327,7 +328,7 @@ namespace fatpound::automata
         {
             for (const auto& tree : m_trees_)
             {
-                if (std::any_of(str.cbegin(), str.cend(), [&](const auto& ch) -> bool { return ch == (tree->m_item[0]); }))
+                if (std::ranges::any_of(str, [&](const auto& ch) -> bool { return ch == (tree->m_item[0]); }))
                 {
                     return false;
                 }

@@ -43,11 +43,13 @@ namespace fatpound::memory
             using ptr_type = ::std::unique_ptr<T,   decltype(&FAT_MEMORY_ALIGNED_FREER)>;
         };
 
+        // NOLINTBEGIN(modernize-avoid-c-arrays)
         template <typename T>
         struct AlignedUPtr<T[]>
         {
             using ptr_type = ::std::unique_ptr<T[], decltype(&FAT_MEMORY_ALIGNED_FREER)>;
         };
+        // NOLINTEND(modernize-avoid-c-arrays)
     }
 
     template <typename T>

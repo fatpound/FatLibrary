@@ -4,6 +4,7 @@
 
 #include <sstream>
 #include <algorithm>
+#include <ranges>
 
 namespace fatpound::automata
 {
@@ -40,7 +41,7 @@ namespace fatpound::automata
 
                 ss << str;
 
-                char ch;
+                char ch{};
 
                 while (ss >> ch)
                 {
@@ -49,11 +50,11 @@ namespace fatpound::automata
             }
         }
 
-        std::sort<>(alphabet.begin(), alphabet.end());
+        std::ranges::sort(alphabet);
 
-        const auto it = std::unique<>(alphabet.begin(), alphabet.end());
+        const auto& it = std::ranges::unique(alphabet);
 
-        alphabet.erase(it, alphabet.end());
+        alphabet.erase(it.begin(), alphabet.end());
     }
     void CFG::ReadSecondLine_(std::ifstream& inputFile, const Alphabet_t& alphabet)
     {
@@ -62,9 +63,9 @@ namespace fatpound::automata
         while (std::getline(inputFile, str, scx_LanguageDelimiter_))
         {
             {
-                const auto& it = std::remove_if<>(str.begin(), str.end(), [](const auto& ch) noexcept -> bool { return std::isspace(ch) not_eq 0; });
+                const auto& it = std::ranges::remove_if(str, [](const auto& ch) noexcept -> bool { return std::isspace(ch) not_eq 0; });
 
-                str.erase(it, str.end());
+                str.erase(it.begin(), str.end());
             }
 
             const auto& index = str.find(scx_LanguageContentIndicator_);
@@ -85,13 +86,13 @@ namespace fatpound::automata
 
                 std::string tempstr;
 
-                while (std::getline(iss, tempstr, scx_SymbolDelimiter_))
+                while (std::getline<>(iss, tempstr, scx_SymbolDelimiter_))
                 {
-                    if (std::find(leaves.begin(), leaves.end(), tempstr) == leaves.cend())
+                    if (std::ranges::find(leaves, tempstr) == leaves.cend())
                     {
                         for (const auto& ch : tempstr)
                         {
-                            if (std::islower(ch) and std::find<>(alphabet.cbegin(), alphabet.cend(), ch) == alphabet.cend())
+                            if (static_cast<bool>(std::islower(ch)) and std::ranges::find(alphabet, ch) == alphabet.cend())
                             {
                                 throw std::runtime_error("The letter " + std::string{ ch } + " is not in the alphabet!");
                             }
