@@ -44,10 +44,6 @@ Checks: '
     -readability-magic-numbers,
     -readability-redundant-access-specifiers
 '
-
-CheckOptions:
-  - key: modernize-use-override.AllowOverrideAndFinal
-    value: true
     
 WarningsAsErrors: false
 HeaderFilterRegex: '(.*\.hpp)'
