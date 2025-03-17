@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
 #include <DirectXMath.h>
 #endif
 
@@ -12,7 +12,7 @@
 #include "Multiplicative.hpp"
 #include "Rect.hpp"
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
 
 namespace fatpound::math
 {

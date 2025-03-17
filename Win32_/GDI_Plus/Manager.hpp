@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
 
 #define FATPOUND_FULL_WIN_TARGETED
 #include <FatWin32.hpp>

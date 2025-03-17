@@ -2,7 +2,7 @@
 
 #include <FatNamespaces.hpp>
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
 #include <FatWin32.hpp>
 #else
 #ifndef WHEEL_DELTA
@@ -16,7 +16,7 @@
 #include <utility>
 #include <optional>
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
 namespace fatpound::win32
 {
     class WindowEx;
@@ -27,7 +27,7 @@ namespace fatpound::io
 {
     class Mouse final
     {
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
         friend FATSPACE_WIN32::WindowEx;
 #endif
 

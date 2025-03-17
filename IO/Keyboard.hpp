@@ -9,7 +9,7 @@
 #include <atomic>
 #include <optional>
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
 namespace fatpound::win32
 {
     class WindowEx;
@@ -20,7 +20,7 @@ namespace fatpound::io
 {
     class Keyboard final
     {
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) and not defined(__clang__) and not defined(__GNUC__)
         friend FATSPACE_WIN32::WindowEx;
 #endif
 
