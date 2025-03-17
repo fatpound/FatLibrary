@@ -10,7 +10,7 @@ namespace fatpound::dsa::tree::n_ary
     template <std::totally_ordered T, std::size_t I, std::size_t S>
     class B_Plus final
     {
-        using SizeType = std::size_t;
+        using Size_t = std::size_t;
         
     public:
         explicit B_Plus()                  = default;
@@ -19,13 +19,14 @@ namespace fatpound::dsa::tree::n_ary
 
         auto operator = (const B_Plus&)     -> B_Plus& = delete;
         auto operator = (B_Plus&&) noexcept -> B_Plus& = delete;
-        ~B_Plus() noexcept
+        ~B_Plus() noexcept(false)
         {
             Clear_();
         }
 
 
     public:
+        // NOLINTBEGIN(readability-function-cognitive-complexity)
         auto Contains(const T& item) -> bool
         {
             if (root_ not_eq nullptr)
@@ -34,7 +35,7 @@ namespace fatpound::dsa::tree::n_ary
 
                 while (node->lesser not_eq nullptr)
                 {
-                    std::size_t idx = 0u;
+                    std::size_t idx = 0U;
 
                     for (; idx < node->items.size(); ++idx)
                     {
@@ -44,12 +45,12 @@ namespace fatpound::dsa::tree::n_ary
                         }
                     }
 
-                    if (idx not_eq 0u)
+                    if (idx not_eq 0U)
                     {
                         --idx;
                     }
 
-                    if (idx == 0u)
+                    if (idx == 0U)
                     {
                         if ((node->items[idx]->first > item) or (node->items[idx]->second not_eq nullptr))
                         {
@@ -62,11 +63,11 @@ namespace fatpound::dsa::tree::n_ary
                     }
                     else
                     {
-                        node = node->items[node->items[idx]->first > item ? (idx - 1u) : idx]->second;
+                        node = node->items[node->items[idx]->first > item ? (idx - 1U) : idx]->second;
                     }
                 }
 
-                for (std::size_t i = 0u; i < node->items.size(); ++i)
+                for (std::size_t i = 0U; i < node->items.size(); ++i)
                 {
                     if (node->items[i]->first > item)
                     {
@@ -82,6 +83,7 @@ namespace fatpound::dsa::tree::n_ary
 
             return false;
         }
+        // NOLINTEND(readability-function-cognitive-complexity)
 
         void Insert(const T& new_item)
         {
@@ -109,9 +111,9 @@ namespace fatpound::dsa::tree::n_ary
                 return;
             }
 
-            const SizeType height = GetDepth_(root_);
+            const Size_t height = GetDepth_(root_);
 
-            for (SizeType i = 1u; i <= height; ++i)
+            for (Size_t i = 1U; i <= height; ++i)
             {
                 std::cout << "Level " << i << " : ";
 
@@ -132,8 +134,8 @@ namespace fatpound::dsa::tree::n_ary
         {
             std::vector<std::pair<T, Node_*>*> items;
 
-            Node_* lesser = nullptr;
-            Node_* parent = nullptr;
+            Node_* lesser{};
+            Node_* parent{};
 
             explicit Node_() = default;
 
@@ -163,7 +165,7 @@ namespace fatpound::dsa::tree::n_ary
 
 
     private:
-        auto GetDepth_(Node_* node, std::size_t depth = 0u) const -> std::size_t
+        auto GetDepth_(Node_* node, std::size_t depth = 0U) const -> std::size_t
         {
             if (node == nullptr)
             {
@@ -173,10 +175,14 @@ namespace fatpound::dsa::tree::n_ary
             return GetDepth_(node->lesser, depth + 1);
         }
 
+        // NOLINTBEGIN(clang-analyzer-cplusplus.NewDeleteLeaks)
         void Insert_(Node_* node, T new_item)
         {
             Insert_(node, new std::pair<T, Node_*>(new_item, nullptr), nullptr, false);
         }
+        // NOLINTEND(clang-analyzer-cplusplus.NewDeleteLeaks)
+
+        // NOLINTBEGIN(readability-function-cognitive-complexity)
         void Insert_(Node_* node, std::pair<T, Node_*>* new_pair, Node_* extend_node, bool extend, bool create = true)
         {
             if (node == nullptr)
@@ -206,9 +212,9 @@ namespace fatpound::dsa::tree::n_ary
                 goto control;
             }
 
-            index = 0u;
+            index = 0U;
 
-            for (std::size_t i = 0u; i < node->items.size(); ++i)
+            for (std::size_t i = 0U; i < node->items.size(); ++i)
             {
                 if (new_pair->first > node->items[i]->first)
                 {
@@ -231,7 +237,7 @@ namespace fatpound::dsa::tree::n_ary
         sequence:
 
 
-            if (node->items.size() == S * 2u)
+            if (node->items.size() == S * 2U)
             {
                 Overflow_(node, new_pair, nullptr, false);
             }
@@ -239,7 +245,7 @@ namespace fatpound::dsa::tree::n_ary
             {
                 node->items.push_back(new_pair);
 
-                if (node->items.size() > 1u)
+                if (node->items.size() > 1U)
                 {
                     std::ranges::sort(node->items, [](const auto& pair1, const auto& pair2) -> bool { return pair1->first < pair2->first; });
                 }
@@ -251,7 +257,7 @@ namespace fatpound::dsa::tree::n_ary
         extension:
 
 
-            if (node->items.size() == I * 2u)
+            if (node->items.size() == I * 2U)
             {
                 if (create)
                 {
@@ -275,12 +281,14 @@ namespace fatpound::dsa::tree::n_ary
                     new_pair->second = extend_node;
                 }
 
-                if (node->items.size() > 1u)
+                if (node->items.size() > 1U)
                 {
                     std::ranges::sort(node->items, [](const auto& pair1, const auto& pair2) -> bool { return pair1->first < pair2->first; });
                 }
             }
         }
+        // NOLINTEND(readability-function-cognitive-complexity)
+        
         void Overflow_(Node_* node, std::pair<T, Node_*>* new_pair, Node_* extend_node, bool extend)
         {
             const auto indexOrSetCount = (node->lesser == nullptr ? S : I);
@@ -290,13 +298,13 @@ namespace fatpound::dsa::tree::n_ary
 
             std::ranges::sort(node->items, [](const auto& pair1, const auto& pair2) -> bool { return pair1->first < pair2->first; });
 
-            const auto center = (indexOrSetCount * 2u + 1u) / 2u;
+            const auto center = (indexOrSetCount * 2U + 1U) / 2U;
 
             auto* const new_node = new Node_();
 
-            new_node->items.reserve(indexOrSetCount * 2u);
+            new_node->items.reserve(indexOrSetCount * 2U);
 
-            for (std::size_t i = center + 1u; i <= indexOrSetCount * 2u; ++i)
+            for (std::size_t i = center + 1U; i <= indexOrSetCount * 2U; ++i)
             {
                 new_node->items.push_back(node->items[i]);
             }
@@ -328,7 +336,7 @@ namespace fatpound::dsa::tree::n_ary
                 //new_pair->second = extend_node;
                 new_node->parent = node->parent;
 
-                for (std::size_t i = 0u; i < new_node->items.size(); ++i)
+                for (std::size_t i = 0U; i < new_node->items.size(); ++i)
                 {
                     if (new_node->items[i]->second not_eq nullptr)
                     {
@@ -341,7 +349,7 @@ namespace fatpound::dsa::tree::n_ary
             else
             {
                 new_node->parent = node->parent;
-                node->items.resize(center + 1u);
+                node->items.resize(center + 1U);
 
                 Insert_(node->parent, node->items[center], new_node, true);
             }
@@ -350,26 +358,26 @@ namespace fatpound::dsa::tree::n_ary
         {
             if (node not_eq nullptr)
             {
-                if (level == 1u)
+                if (level == 1U)
                 {
-                    for (std::size_t i = 0u; i < node->items.size(); ++i)
+                    for (std::size_t i = 0U; i < node->items.size(); ++i)
                     {
                         std::cout << node->items[i]->first << ' ';
                     }
                 }
-                else if (level > 1u)
+                else if (level > 1U)
                 {
-                    ListLevelorder_(node->lesser, level - 1u);
+                    ListLevelorder_(node->lesser, level - 1U);
 
-                    for (std::size_t i = 0u; i < node->items.size(); ++i)
+                    for (std::size_t i = 0U; i < node->items.size(); ++i)
                     {
-                        ListLevelorder_(node->items[i]->second, level - 1u);
+                        ListLevelorder_(node->items[i]->second, level - 1U);
 
                         std::cout << '\t';
                     }
                 }
             }
-            else if (level == 1u)
+            else if (level == 1U)
             {
                 std::cout << "x ";
             }
@@ -398,7 +406,7 @@ namespace fatpound::dsa::tree::n_ary
                     queue.push(node->lesser);
                 }
 
-                for (std::size_t i = 0u; i < node->items.size(); ++i)
+                for (std::size_t i{}; i < node->items.size(); ++i)
                 {
                     if (node->items[i]->second not_eq nullptr)
                     {
@@ -416,8 +424,8 @@ namespace fatpound::dsa::tree::n_ary
 
 
     private:
-        Node_* root_ = nullptr;
+        Node_* root_{};
 
-        std::size_t item_count_ = 0u;
+        std::size_t item_count_{};
     };
 }

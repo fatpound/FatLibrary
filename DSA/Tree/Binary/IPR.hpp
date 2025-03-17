@@ -65,15 +65,15 @@ namespace fatpound::dsa::tree::binary
                     a_location = true;
                 }
 
-                if (a_location == false)
-                {
-                    nb = BST<T>::GetNodeCount_(last->left);
-                    nc = BST<T>::GetNodeCount_(last->right);
-                }
-                else
+                if (a_location)
                 {
                     nb = BST<T>::GetNodeCount_(last->right);
                     nc = BST<T>::GetNodeCount_(last->left);
+                }
+                else
+                {
+                    nb = BST<T>::GetNodeCount_(last->left);
+                    nc = BST<T>::GetNodeCount_(last->right);
                 }
 
                 /*
@@ -84,7 +84,8 @@ namespace fatpound::dsa::tree::binary
                 std::cout << "nc      : " << nc << '\n' << '\n';
                 */
 
-                if ((nc > na) and (a_location == false))
+                // NOLINTBEGIN(readability-simplify-boolean-expr)
+                if      ((nc > na) and (a_location == false))
                 {
                     AVL<T>::RotateLeft_(last->parent, last);
                 }
@@ -102,6 +103,7 @@ namespace fatpound::dsa::tree::binary
                     AVL<T>::RotateLeft_(last, last->right);
                     AVL<T>::RotateRight_(last->parent->parent, last->parent);
                 }
+                // NOLINTEND(readability-simplify-boolean-expr)
 
                 if (last->parent == nullptr)
                 {

@@ -20,12 +20,12 @@ namespace fatpound::util::gfx
         {
             return ::std::vector<Vertex>
             {
-                Vertex{ .x = -1.0f, .y =  1.0f,  .z = 0.5f,  .u = 0.0f,  .v = 0.0f },
-                Vertex{ .x =  1.0f, .y =  1.0f,  .z = 0.5f,  .u = 1.0f,  .v = 0.0f },
-                Vertex{ .x =  1.0f, .y = -1.0f,  .z = 0.5f,  .u = 1.0f,  .v = 1.0f },
-                Vertex{ .x = -1.0f, .y =  1.0f,  .z = 0.5f,  .u = 0.0f,  .v = 0.0f },
-                Vertex{ .x =  1.0f, .y = -1.0f,  .z = 0.5f,  .u = 1.0f,  .v = 1.0f },
-                Vertex{ .x = -1.0f, .y = -1.0f,  .z = 0.5f,  .u = 0.0f,  .v = 1.0f }
+                Vertex{ .x = -1.0F, .y =  1.0F,  .z = 0.5F,  .u = 0.0F,  .v = 0.0F },
+                Vertex{ .x =  1.0F, .y =  1.0F,  .z = 0.5F,  .u = 1.0F,  .v = 0.0F },
+                Vertex{ .x =  1.0F, .y = -1.0F,  .z = 0.5F,  .u = 1.0F,  .v = 1.0F },
+                Vertex{ .x = -1.0F, .y =  1.0F,  .z = 0.5F,  .u = 0.0F,  .v = 0.0F },
+                Vertex{ .x =  1.0F, .y = -1.0F,  .z = 0.5F,  .u = 1.0F,  .v = 1.0F },
+                Vertex{ .x = -1.0F, .y = -1.0F,  .z = 0.5F,  .u = 0.0F,  .v = 1.0F }
             };
         }
     };

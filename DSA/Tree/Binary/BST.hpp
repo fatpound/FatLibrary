@@ -29,7 +29,7 @@ namespace fatpound::dsa::tree::binary
             if (src.m_pRoot_ not_eq nullptr)
             {
                 m_pRoot_ = std::exchange(src.m_pRoot_, nullptr);
-                m_node_count_ = std::exchange(src.m_node_count_, 0u);
+                m_node_count_ = std::exchange(src.m_node_count_, 0U);
             }
         }
 
@@ -58,7 +58,7 @@ namespace fatpound::dsa::tree::binary
                 }
 
                 m_pRoot_ = std::exchange(src.m_pRoot_, nullptr);
-                m_node_count_ = std::exchange(src.m_node_count_, 0u);
+                m_node_count_ = std::exchange(src.m_node_count_, 0U);
             }
 
             return *this;
@@ -157,7 +157,7 @@ namespace fatpound::dsa::tree::binary
         {
             const auto height = GetDepth_(m_pRoot_, 0);
 
-            for (Size_t i = 1u; i <= height; ++i)
+            for (Size_t i = 1U; i <= height; ++i)
             {
                 std::cout << "Level " << i << " : ";
 
@@ -547,7 +547,7 @@ namespace fatpound::dsa::tree::binary
             DeleteSubTree_(m_pRoot_);
 
             m_pRoot_ = nullptr;
-            m_node_count_ = 0u;
+            m_node_count_ = 0U;
         }
         void DeleteSubTree_(Node_* const root) noexcept
         {

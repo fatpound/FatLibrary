@@ -24,7 +24,7 @@ namespace fatpound::io
         friend FATSPACE_WIN32::WindowEx;
 #endif
 
-        static constexpr auto scx_bufferSize_ = 16u;
+        static constexpr auto scx_bufferSize_ = 16U;
 
     public:
         using keycode_t = decltype(KeyEvent::code);

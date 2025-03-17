@@ -108,7 +108,7 @@ namespace fatpound::automata
         }
         void TLT::CreateInnerTree_(Node_* const node)
         {
-            for (std::size_t i = 0u; i < node->m_item.size(); ++i)
+            for (std::size_t i{}; i < node->m_item.size(); ++i)
             {
                 const auto& ch = node->m_item[i];
 
@@ -120,7 +120,7 @@ namespace fatpound::automata
                 const auto& cfg_it = std::ranges::find_if(mc_cfgrammar_, [&](const auto& pair) { return pair.first[0] == ch; });
 
                 const std::string leftstr(node->m_item.cbegin(), node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i));
-                const std::string rightstr(node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i + 1u), node->m_item.cend());
+                const std::string rightstr(node->m_item.cbegin() + static_cast<std::ptrdiff_t>(i + 1U), node->m_item.cend());
 
                 const std::size_t index = static_cast<std::size_t>(cfg_it - mc_cfgrammar_.cbegin());
 
@@ -136,7 +136,7 @@ namespace fatpound::automata
                     {
                         if (m_recursers_[index] >= scx_recurse_limit_)
                         {
-                            // const auto [first, last] = rn::remove_if(str, [](const auto& ch) { return std::isupper(ch); });
+                            // const auto& [first, last] = std::ranges::remove_if(str, [](const auto& ch) { return std::isupper(ch); });
                             // 
                             // str.erase(first, last);
 
@@ -148,19 +148,24 @@ namespace fatpound::automata
                         ++m_recursers_[index];
                     }
 
-                    const std::string& newstr = leftstr + cfgstr + rightstr;
-
-                    auto* newnode = new Node_(newstr);
-
-                    node->m_leaves.push_back(newnode);
-
-                    if (recursed or (not IsTerminal_(newstr)))
                     {
-                        CreateInnerTree_(newnode);
-                    }
-                    else
-                    {
-                        m_results_.push_back(newstr);
+                        std::string newstr = leftstr;
+
+                        newstr += cfgstr;
+                        newstr += rightstr;
+    
+                        auto* newnode = new Node_(newstr);
+    
+                        node->m_leaves.push_back(newnode);
+    
+                        if (recursed or (not IsTerminal_(newstr)))
+                        {
+                            CreateInnerTree_(newnode);
+                        }
+                        else
+                        {
+                            m_results_.push_back(newstr);
+                        }
                     }
 
                     if (recursed)
@@ -200,9 +205,9 @@ namespace fatpound::automata
 
         // TLT::Node_
 
-        TLT::Node_::Node_(const std::string& item)
+        TLT::Node_::Node_(std::string item)
             :
-            m_item(item)
+            m_item(std::move<>(item))
         {
 
         }
@@ -223,7 +228,7 @@ namespace fatpound::automata
                 }
             }
 
-            m_results_ = GenerateResults_("", 0u, 0u);
+            m_results_ = GenerateResults_("", 0U, 0U);
         }
         TLT::TLT(const std::string& inputFilename)
             :
@@ -245,13 +250,14 @@ namespace fatpound::automata
         {
             for (const auto& item : m_results_)
             {
-                if (item.second == true)
+                if (item.second)
                 {
                     std::cout << item.first << '\n';
                 }
             }
         }
 
+        // NOLINTBEGIN(readability-function-cognitive-complexity)
         auto TLT::GenerateResults_(const std::string& init_str, const std::size_t& index, const std::size_t& recursed) const -> Result_t
         {
             Result_t strings;
@@ -323,6 +329,7 @@ namespace fatpound::automata
 
             return strings;
         }
+        // NOLINTEND(readability-function-cognitive-complexity)
 
         auto TLT::IsTerminal_(const std::string& str) const -> bool
         {
@@ -382,9 +389,9 @@ namespace fatpound::automata
                 m_leaves.push_back(new Node_(str));
             }
         }
-        TLT::Node_::Node_(const std::string& str)
+        TLT::Node_::Node_(std::string str)
             :
-            m_item(str)
+            m_item(std::move<>(str))
         {
 
         }

@@ -25,7 +25,7 @@ namespace fatpound::util
         }
         [[nodiscard]] FAT_FORCEINLINE auto GetElapsed_s()  const noexcept -> float
         {
-            return GetElapsed_ms() / 1000.0f;
+            return GetElapsed_ms() / 1000.0F;
         }
 
         FAT_FORCEINLINE void Start() noexcept

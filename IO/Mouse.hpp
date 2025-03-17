@@ -6,7 +6,9 @@
 #include <FatWin32.hpp>
 #else
 #ifndef WHEEL_DELTA
+// NOLINTBEGIN(cppcoreguidelines-macro-usage)
 #define WHEEL_DELTA 120
+// NOLINTEND(cppcoreguidelines-macro-usage)
 #endif
 #endif
 
@@ -31,7 +33,7 @@ namespace fatpound::io
         friend FATSPACE_WIN32::WindowEx;
 #endif
 
-        static constexpr auto scx_bufferSize_ = 16u;
+        static constexpr auto scx_bufferSize_ = 16U;
 
     public:
         using pos_t = decltype(MouseEvent::pos_x);
@@ -207,6 +209,7 @@ namespace fatpound::io
 
                 OnWheelDown_();
             }
+#undef WHEEL_DELTA
         }
 
         void TrimBuffer_() noexcept

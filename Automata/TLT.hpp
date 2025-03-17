@@ -14,7 +14,7 @@ namespace fatpound::automata
     {
         class TLT final
         {
-            static constexpr auto scx_recurse_limit_ = 1u;
+            static constexpr auto scx_recurse_limit_ = 1U;
 
         public:
             explicit TLT(const CFG& cfgs);
@@ -42,7 +42,7 @@ namespace fatpound::automata
         private:
             struct alignas(128) Node_ final
             {
-                explicit Node_(const std::string& item);
+                explicit Node_(std::string item);
 
                 std::vector<Node_*> m_leaves;
 
@@ -76,7 +76,7 @@ namespace fatpound::automata
     {
         class TLT final
         {
-            static constexpr auto scx_RecursionLimit_ = 1u;
+            static constexpr auto scx_RecursionLimit_ = 1U;
 
         public:
             using Result_t = std::vector<std::pair<std::string, bool>>;
@@ -109,7 +109,7 @@ namespace fatpound::automata
             struct alignas(128) Node_ final
             {
                 explicit Node_(const std::pair<std::string, std::vector<std::string>>& tree);
-                explicit Node_(const std::string& str);
+                explicit Node_(std::string str);
 
                 std::vector<Node_*> m_leaves;
 
