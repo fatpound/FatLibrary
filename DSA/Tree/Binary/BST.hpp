@@ -99,6 +99,7 @@ namespace fatpound::dsa::tree::binary
             return m_node_count_;
         }
 
+        [[nodiscard]]
         auto Contains(const T& item) const -> bool
         {
             return Find_(m_pRoot_, item) not_eq nullptr;

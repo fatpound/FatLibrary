@@ -3,6 +3,7 @@
 #include <iostream>
 #include <deque>
 #include <algorithm>
+#include <stdexcept>
 
 namespace fatpound::automata
 {
@@ -15,7 +16,7 @@ namespace fatpound::automata
             mc_cfgrammar_(cfg.GetGrammar()),
             m_recursers_(mc_cfgrammar_.size(), 0)
         {
-            if (mc_cfgrammar_.size() < 1)
+            if (mc_cfgrammar_.empty())
             {
                 throw std::runtime_error("There is no input!");
             }
@@ -40,7 +41,7 @@ namespace fatpound::automata
             Clear_();
         }
 
-        auto TLT::GetWords() const noexcept -> std::vector<std::string>
+        auto TLT::GetWords() const -> std::vector<std::string>
         {
             return m_results_;
         }
@@ -62,7 +63,7 @@ namespace fatpound::automata
                 }
             }
 
-            if (finals.size() > 0u)
+            if (not finals.empty())
             {
                 for (const auto& str : finals)
                 {
@@ -70,7 +71,7 @@ namespace fatpound::automata
                 }
             }
 
-            if (repeaters.size() > 0u)
+            if (not repeaters.empty())
             {
                 std::cout << "\nRepeaters :\n\n";
 
@@ -148,7 +149,7 @@ namespace fatpound::automata
 
                     const std::string& newstr = leftstr + cfgstr + rightstr;
 
-                    Node_* newnode = new Node_(newstr);
+                    auto* newnode = new Node_(newstr);
 
                     node->m_leaves.push_back(newnode);
 
@@ -180,7 +181,7 @@ namespace fatpound::automata
 
             nodes.push_back(m_pTree_);
 
-            while (nodes.size() > 0u)
+            while (not nodes.empty())
             {
                 Node_* const node = nodes.back();
 
@@ -234,7 +235,7 @@ namespace fatpound::automata
             Clear_();
         }
 
-        auto TLT::GetWords() const noexcept -> Result_t
+        auto TLT::GetWords() const -> Result_t
         {
             return m_results_;
         }
@@ -350,7 +351,7 @@ namespace fatpound::automata
                     continue;
                 }
 
-                while (nodes.size() > 0)
+                while (not nodes.empty())
                 {
                     Node_* node = nodes.back();
 

@@ -46,6 +46,7 @@ namespace fatpound::dsa::linkedlist
 
 
     public:
+        [[nodiscard]]
         virtual auto Contains(const T& item) const -> bool final
         {
             return Find_(item) not_eq nullptr;
@@ -173,6 +174,7 @@ namespace fatpound::dsa::linkedlist
 
 
     protected:
+        [[nodiscard]]
         virtual auto Find_(const T& item) const -> Node_* final
         {
             if (m_item_count_ == 0u)

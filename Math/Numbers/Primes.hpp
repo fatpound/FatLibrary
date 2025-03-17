@@ -112,7 +112,7 @@ namespace fatpound::math::numbers
         
         if (num < 7)
         {
-            return 3 + static_cast<T>(num == 6) * 2;
+            return 3 + (static_cast<T>(num == 6) * 2);
         }
 
         return ClosestPrime_GT5<>(num);

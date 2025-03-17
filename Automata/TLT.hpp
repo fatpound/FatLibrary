@@ -31,7 +31,7 @@ namespace fatpound::automata
 
         public:
             [[nodiscard]]
-            auto GetWords() const noexcept -> std::vector<std::string>;
+            auto GetWords() const -> std::vector<std::string>;
 
             void PrintWords() const;
 
@@ -97,7 +97,7 @@ namespace fatpound::automata
 
         public:
             [[nodiscard]]
-            auto GetWords() const noexcept -> Result_t;
+            auto GetWords() const -> Result_t;
 
             void PrintWords() const;
 

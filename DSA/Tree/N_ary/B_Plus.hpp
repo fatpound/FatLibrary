@@ -388,7 +388,7 @@ namespace fatpound::dsa::tree::n_ary
 
             queue.push(root_);
 
-            while (queue.size() > 0u)
+            while (not queue.empty())
             {
                 auto* const node = queue.front();
                 queue.pop();

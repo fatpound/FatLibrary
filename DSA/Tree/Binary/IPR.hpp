@@ -36,8 +36,6 @@ namespace fatpound::dsa::tree::binary
 
         
     private:
-        // NOLINTBEGIN(readability-identifier-length)
-
         virtual void Balance_(Node_* const latest) noexcept override final
         {
             if (latest == nullptr)
@@ -113,7 +111,5 @@ namespace fatpound::dsa::tree::binary
                 last = last->parent;
             }
         }
-
-        // NOLINTEND(readability-identifier-length)
     };
 }

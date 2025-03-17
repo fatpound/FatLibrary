@@ -51,7 +51,7 @@ namespace fatpound::dsa::tree::n_ary
 
             queue.push(m_root_);
 
-            while (queue.size() > 0u)
+            while (not queue.empty())
             {
                 Node_* node = queue.front();
                 queue.pop();
@@ -201,7 +201,7 @@ namespace fatpound::dsa::tree::n_ary
 
             std::ranges::sort(temp_vec, [](const auto& pair1, const auto& pair2) -> bool { return pair1->first < pair2->first; });
 
-            std::size_t center = (C * 2u + 1u) / 2u;
+            const std::size_t center = (C * 2u + 1u) / 2u;
 
             std::vector<std::pair<T, Node_*>*> temp_vec_less;
             std::vector<std::pair<T, Node_*>*> temp_vec_more;
@@ -256,7 +256,7 @@ namespace fatpound::dsa::tree::n_ary
 
             queue.push(m_root_);
 
-            while (queue.size() > 0u)
+            while (not queue.empty())
             {
                 Node_* node = queue.front();
                 queue.pop();

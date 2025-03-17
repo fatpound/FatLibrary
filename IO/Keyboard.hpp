@@ -137,6 +137,6 @@ namespace fatpound::io
 
         std::bitset<std::numeric_limits<keycode_t>::max()> m_key_states_{};
 
-        std::atomic<bool> m_auto_repeat_enabled_{};
+        std::atomic_bool m_auto_repeat_enabled_{};
     };
 }

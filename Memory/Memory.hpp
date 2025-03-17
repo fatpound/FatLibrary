@@ -31,10 +31,8 @@ namespace fatpound::memory
         {
             return ptr;
         }
-        else
-        {
-            throw ::std::runtime_error{ "Aligned allocation failed!" };
-        }
+
+        throw ::std::runtime_error{ "Aligned allocation failed!" };
     }
     
     namespace details

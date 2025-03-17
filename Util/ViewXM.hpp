@@ -18,8 +18,8 @@ namespace fatpound::util
 
 
     public:
-        auto GetCameraXM()     const noexcept -> ::DirectX::XMMATRIX;
-        auto GetProjectionXM() const noexcept -> ::DirectX::XMMATRIX;
+        [[nodiscard]] auto GetCameraXM()     const noexcept -> ::DirectX::XMMATRIX;
+        [[nodiscard]] auto GetProjectionXM() const noexcept -> ::DirectX::XMMATRIX;
 
         void SetCameraXM(const ::DirectX::XMMATRIX& camera) noexcept;
         void SetProjectionXM(const ::DirectX::XMMATRIX& projection) noexcept;

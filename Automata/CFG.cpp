@@ -1,7 +1,8 @@
 #include "CFG.hpp"
 
+#include <cstddef>
+
 #include <sstream>
-#include <iostream>
 #include <algorithm>
 
 namespace fatpound::automata
@@ -21,7 +22,7 @@ namespace fatpound::automata
         ReadSecondLine_(inputFile, alphabet);
     }
 
-    auto CFG::GetGrammar() const noexcept -> Grammar_t
+    auto CFG::GetGrammar() const -> Grammar_t
     {
         return m_grammar_;
     }
@@ -32,7 +33,7 @@ namespace fatpound::automata
         {
             std::string str;
 
-            std::getline(inputFile, str);
+            std::getline<>(inputFile, str);
 
             {
                 std::stringstream ss;
@@ -48,9 +49,9 @@ namespace fatpound::automata
             }
         }
 
-        std::sort(alphabet.begin(), alphabet.end());
+        std::sort<>(alphabet.begin(), alphabet.end());
 
-        const auto it = std::unique(alphabet.begin(), alphabet.end());
+        const auto it = std::unique<>(alphabet.begin(), alphabet.end());
 
         alphabet.erase(it, alphabet.end());
     }
@@ -61,7 +62,7 @@ namespace fatpound::automata
         while (std::getline(inputFile, str, scx_LanguageDelimiter_))
         {
             {
-                const auto& it = std::remove_if(str.begin(), str.end(), [](const auto& ch) noexcept -> bool { return std::isspace(ch) not_eq 0; });
+                const auto& it = std::remove_if<>(str.begin(), str.end(), [](const auto& ch) noexcept -> bool { return std::isspace(ch) not_eq 0; });
 
                 str.erase(it, str.end());
             }
@@ -90,7 +91,7 @@ namespace fatpound::automata
                     {
                         for (const auto& ch : tempstr)
                         {
-                            if (std::islower(ch) and std::find(alphabet.cbegin(), alphabet.cend(), ch) == alphabet.cend())
+                            if (std::islower(ch) and std::find<>(alphabet.cbegin(), alphabet.cend(), ch) == alphabet.cend())
                             {
                                 throw std::runtime_error("The letter " + std::string{ ch } + " is not in the alphabet!");
                             }
@@ -100,7 +101,7 @@ namespace fatpound::automata
                     }
                 }
 
-                m_grammar_.emplace_back(std::move(word), std::move(leaves));
+                m_grammar_.emplace_back(std::move<>(word), std::move<>(leaves));
             }
         }
     }

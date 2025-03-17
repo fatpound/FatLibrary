@@ -129,8 +129,6 @@ namespace fatpound::dsa::tree::binary
             }
         }
 
-        // NOLINTBEGIN(readability-identifier-length)
-
         void RotateLeft_ (Node_* X, Node_* Y) noexcept
         {
             Node_* parent_of_parent = X->parent;
@@ -195,8 +193,6 @@ namespace fatpound::dsa::tree::binary
                 }
             }
         }
-
-        // NOLINTEND(readability-identifier-length)
 
 
     protected:

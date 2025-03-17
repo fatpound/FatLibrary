@@ -99,7 +99,7 @@ namespace fatpound::util
         }
         explicit Surface(const Size_t& width, const Size_t& height, const Size_t& alignBytes = scx_DefaultAlignment)
             :
-            Surface(gfx::SizePack{ width, height }, alignBytes)
+            Surface(gfx::SizePack{ .m_width = width, .m_height = height }, alignBytes)
         {
 
         }
@@ -189,28 +189,28 @@ namespace fatpound::util
             const auto pixelsPerAlign = alignBytes / static_cast<Size_t>(sizeof(Color));
             const auto overrunCount   = width % pixelsPerAlign;
 
-            return width + (pixelsPerAlign - overrunCount) % pixelsPerAlign;
+            return width + ((pixelsPerAlign - overrunCount) % pixelsPerAlign);
         }
 
 
     public:
-        template <bitwise::Integral_Or_Floating T = Size_t> FAT_FORCEINLINE auto GetWidth      () const noexcept -> T
+        template <bitwise::Integral_Or_Floating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetWidth      () const noexcept -> T
         {
             return static_cast<T>(m_size_pack_.m_width);
         }
-        template <bitwise::Integral_Or_Floating T = Size_t> FAT_FORCEINLINE auto GetHeight     () const noexcept -> T
+        template <bitwise::Integral_Or_Floating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetHeight     () const noexcept -> T
         {
             return static_cast<T>(m_size_pack_.m_height);
         }
-        template <bitwise::Integral_Or_Floating T = Size_t> FAT_FORCEINLINE auto GetAlignment  () const noexcept -> T
+        template <bitwise::Integral_Or_Floating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetAlignment  () const noexcept -> T
         {
             return static_cast<T>(m_align_byte_);
         }
-        template <bitwise::Integral_Or_Floating T = Size_t> FAT_FORCEINLINE auto GetPixelPitch () const noexcept -> T
+        template <bitwise::Integral_Or_Floating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetPixelPitch () const noexcept -> T
         {
             return static_cast<T>(m_pixel_pitch_);
         }
-        template <bitwise::Integral_Or_Floating T = Size_t> FAT_FORCEINLINE auto GetPitch      () const noexcept -> T
+        template <bitwise::Integral_Or_Floating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetPitch      () const noexcept -> T
         {
             return static_cast<T>(m_pixel_pitch_ * sizeof(Color));
         }
@@ -239,7 +239,7 @@ namespace fatpound::util
             assert(x < GetWidth<T>());
             assert(y < GetHeight<T>());
 
-            m_pBuffer_[y * m_pixel_pitch_ + x] = color;
+            m_pBuffer_[(y * m_pixel_pitch_) + x] = color;
         }
 
 
@@ -253,16 +253,16 @@ namespace fatpound::util
             return ptr;
         }
 
-        auto GetSizePack() const noexcept -> gfx::SizePack
+        [[nodiscard]] auto GetSizePack() const noexcept -> gfx::SizePack
         {
             return m_size_pack_;
         }
 
-        auto IsEmpty() const noexcept -> bool
+        [[nodiscard]] auto IsEmpty() const noexcept -> bool
         {
             return m_pBuffer_ == nullptr;
         }
-        auto IsNotEmpty() const noexcept -> bool
+        [[nodiscard]] auto IsNotEmpty() const noexcept -> bool
         {
             return not IsEmpty();
         }

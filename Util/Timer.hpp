@@ -19,11 +19,11 @@ namespace fatpound::util
 
 
     public:
-        FAT_FORCEINLINE auto GetElapsed_ms() const noexcept -> float
+        [[nodiscard]] FAT_FORCEINLINE auto GetElapsed_ms() const noexcept -> float
         {
             return std::chrono::duration<float, std::milli>(m_last_ - m_start_).count();
         }
-        FAT_FORCEINLINE auto GetElapsed_s()  const noexcept -> float
+        [[nodiscard]] FAT_FORCEINLINE auto GetElapsed_s()  const noexcept -> float
         {
             return GetElapsed_ms() / 1000.0f;
         }

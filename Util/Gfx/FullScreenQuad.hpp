@@ -6,7 +6,7 @@ namespace fatpound::util::gfx
 {
     struct FullScreenQuad final
     {
-        struct Vertex final
+        struct alignas(32) Vertex final
         {
             float x;
             float y;
@@ -20,12 +20,12 @@ namespace fatpound::util::gfx
         {
             return ::std::vector<Vertex>
             {
-                Vertex{ -1.0f,  1.0f,  0.5f,  0.0f,  0.0f },
-                Vertex{  1.0f,  1.0f,  0.5f,  1.0f,  0.0f },
-                Vertex{  1.0f, -1.0f,  0.5f,  1.0f,  1.0f },
-                Vertex{ -1.0f,  1.0f,  0.5f,  0.0f,  0.0f },
-                Vertex{  1.0f, -1.0f,  0.5f,  1.0f,  1.0f },
-                Vertex{ -1.0f, -1.0f,  0.5f,  0.0f,  1.0f }
+                Vertex{ .x = -1.0f, .y =  1.0f,  .z = 0.5f,  .u = 0.0f,  .v = 0.0f },
+                Vertex{ .x =  1.0f, .y =  1.0f,  .z = 0.5f,  .u = 1.0f,  .v = 0.0f },
+                Vertex{ .x =  1.0f, .y = -1.0f,  .z = 0.5f,  .u = 1.0f,  .v = 1.0f },
+                Vertex{ .x = -1.0f, .y =  1.0f,  .z = 0.5f,  .u = 0.0f,  .v = 0.0f },
+                Vertex{ .x =  1.0f, .y = -1.0f,  .z = 0.5f,  .u = 1.0f,  .v = 1.0f },
+                Vertex{ .x = -1.0f, .y = -1.0f,  .z = 0.5f,  .u = 0.0f,  .v = 1.0f }
             };
         }
     };
