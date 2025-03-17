@@ -1,10 +1,12 @@
 Checks: '
     *,
-    -altera-unroll-loops,
+
     -altera-id-dependent-backward-branch,
+    -altera-unroll-loops,
+
+    -bugprone-easily-swappable-parameters,
 
     -boost-use-ranges,
-    -bugprone-easily-swappable-parameters,
 
     -cppcoreguidelines-avoid-do-while,
     -cppcoreguidelines-avoid-goto,
@@ -15,39 +17,32 @@ Checks: '
 
     -fuchsia-default-arguments-calls,
     -fuchsia-default-arguments-declarations,
-    -fuchsia-overloaded-operator,
     -fuchsia-trailing-return,
-
+    -fuchsia-overloaded-operator,
+    
     -google-readability-namespace-comments,
-    
-    -hicpp-use-override,
+
     -hicpp-avoid-goto,
-    -hicpp-uppercase-literal-suffix,
-    
+    -hicpp-use-override,
+
     -llvm-header-guard,
-    -llvm-inline-function-decl,
     -llvm-include-order,
     -llvm-namespace-comment,
-    
+
     -llvmlibc-callee-namespace,
     -llvmlibc-implementation-in-namespace,
     -llvmlibc-inline-function-decl,
     -llvmlibc-restrict-system-libc-headers,
-    
+
     -misc-no-recursion,
-    -misc-include-cleaner,
     -misc-non-private-member-variables-in-classes,
+    -misc-include-cleaner,
     
     -modernize-use-override,
-    -modernize-use-ranges,
     
-    -readability-function-cognitive-complexity,
     -readability-identifier-length,
     -readability-magic-numbers,
-    -readability-redundant-access-specifiers,
-    -readability-redundant-inline-specifier,
-    -readability-simplify-boolean-expr,
-    -readability-uppercase-literal-suffix
+    -readability-redundant-access-specifiers
 '
 
 CheckOptions:
