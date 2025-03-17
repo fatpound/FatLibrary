@@ -31,7 +31,7 @@ namespace fatpound::dsa::tree::n_ary
         {
             if (root_ not_eq nullptr)
             {
-                Node_* node = root_;
+                auto* node = root_;
 
                 while (node->lesser not_eq nullptr)
                 {
@@ -67,7 +67,7 @@ namespace fatpound::dsa::tree::n_ary
                     }
                 }
 
-                for (std::size_t i = 0U; i < node->items.size(); ++i)
+                for (std::size_t i{}; i < node->items.size(); ++i)
                 {
                     if (node->items[i]->first > item)
                     {
@@ -214,7 +214,7 @@ namespace fatpound::dsa::tree::n_ary
 
             index = 0U;
 
-            for (std::size_t i = 0U; i < node->items.size(); ++i)
+            for (std::size_t i{}; i < node->items.size(); ++i)
             {
                 if (new_pair->first > node->items[i]->first)
                 {
@@ -336,7 +336,7 @@ namespace fatpound::dsa::tree::n_ary
                 //new_pair->second = extend_node;
                 new_node->parent = node->parent;
 
-                for (std::size_t i = 0U; i < new_node->items.size(); ++i)
+                for (std::size_t i{}; i < new_node->items.size(); ++i)
                 {
                     if (new_node->items[i]->second not_eq nullptr)
                     {
@@ -360,7 +360,7 @@ namespace fatpound::dsa::tree::n_ary
             {
                 if (level == 1U)
                 {
-                    for (std::size_t i = 0U; i < node->items.size(); ++i)
+                    for (std::size_t i{}; i < node->items.size(); ++i)
                     {
                         std::cout << node->items[i]->first << ' ';
                     }
@@ -369,7 +369,7 @@ namespace fatpound::dsa::tree::n_ary
                 {
                     ListLevelorder_(node->lesser, level - 1U);
 
-                    for (std::size_t i = 0U; i < node->items.size(); ++i)
+                    for (std::size_t i{}; i < node->items.size(); ++i)
                     {
                         ListLevelorder_(node->items[i]->second, level - 1U);
 

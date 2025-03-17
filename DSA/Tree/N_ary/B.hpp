@@ -55,7 +55,7 @@ namespace fatpound::dsa::tree::n_ary
 
             while (not queue.empty())
             {
-                Node_* node = queue.front();
+                auto* node = queue.front();
                 queue.pop();
 
                 if (node->lesser not_eq nullptr)
@@ -126,10 +126,10 @@ namespace fatpound::dsa::tree::n_ary
             {
                 if (add_first_time)
                 {
-                    std::size_t idx = 0U;
-                    bool flag = false;
+                    std::size_t idx{};
+                    bool flag{};
 
-                    for (std::size_t i = 0U; i < node->items.size(); ++i)
+                    for (std::size_t i{}; i < node->items.size(); ++i)
                     {
                         if ((pair->first > node->items[i]->first) and (node->items[i]->second not_eq nullptr))
                         {
@@ -263,7 +263,7 @@ namespace fatpound::dsa::tree::n_ary
 
             while (not queue.empty())
             {
-                Node_* node = queue.front();
+                auto* node = queue.front();
                 queue.pop();
 
                 if (node->lesser not_eq nullptr)

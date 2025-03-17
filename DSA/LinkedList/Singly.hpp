@@ -213,7 +213,7 @@ namespace fatpound::dsa::linkedlist
 
             Node_* temp = m_list_;
 
-            for (std::size_t i = 0U; i < m_item_count_; ++i)
+            for (std::size_t i{}; i < m_item_count_; ++i)
             {
                 if (temp->item == item)
                 {
