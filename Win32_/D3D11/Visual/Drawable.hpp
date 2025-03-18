@@ -53,7 +53,7 @@ namespace fatpound::win32::d3d11::visual
                 static_bindable->Bind(pImmediateContext);
             }
 
-            pImmediateContext->DrawIndexed(m_pCIndexBuffer_->GetCount(), 0u, 0);
+            pImmediateContext->DrawIndexed(m_pCIndexBuffer_->GetCount(), 0U, 0);
         }
 
         
@@ -62,7 +62,7 @@ namespace fatpound::win32::d3d11::visual
         {
             assert((typeid(*bind) not_eq typeid(FATSPACE_PIPELINE_ELEMENT::IndexBuffer)) && "*Must* use AddIndexBuffer_() method to bind it!");
 
-            m_binds_.push_back(std::move(bind));
+            m_binds_.push_back(std::move<>(bind));
         }
         virtual void AddIndexBuffer_(std::unique_ptr<FATSPACE_PIPELINE_ELEMENT::IndexBuffer> idxbuf) noexcept(IN_RELEASE) final
         {
@@ -70,7 +70,7 @@ namespace fatpound::win32::d3d11::visual
 
             m_pCIndexBuffer_ = idxbuf.get();
 
-            m_binds_.push_back(std::move(idxbuf));
+            m_binds_.push_back(std::move<>(idxbuf));
         }
 
 

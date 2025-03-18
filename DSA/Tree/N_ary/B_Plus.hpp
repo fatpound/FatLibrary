@@ -35,7 +35,7 @@ namespace fatpound::dsa::tree::n_ary
 
                 while (node->lesser not_eq nullptr)
                 {
-                    std::size_t idx = 0U;
+                    std::size_t idx{};
 
                     for (; idx < node->items.size(); ++idx)
                     {
@@ -228,7 +228,7 @@ namespace fatpound::dsa::tree::n_ary
 
                 return;
             }
-            
+
             
             node = node->items[index]->second;
             goto control;
@@ -288,7 +288,7 @@ namespace fatpound::dsa::tree::n_ary
             }
         }
         // NOLINTEND(readability-function-cognitive-complexity)
-        
+
         void Overflow_(Node_* node, std::pair<T, Node_*>* new_pair, Node_* extend_node, bool extend)
         {
             const auto indexOrSetCount = (node->lesser == nullptr ? S : I);

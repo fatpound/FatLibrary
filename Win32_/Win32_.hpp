@@ -12,6 +12,4 @@
 #include "IWindow.hpp"
 #include "WindowEx.hpp"
 
-#include "MessageMap.hpp"
-
 #endif

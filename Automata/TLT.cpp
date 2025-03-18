@@ -178,7 +178,7 @@ namespace fatpound::automata
 
         void TLT::Clear_()
         {
-            if (m_pTree_ == nullptr) [[unlikely]]
+            if (m_pTree_ == nullptr)
             {
                 return;
             }
@@ -205,7 +205,7 @@ namespace fatpound::automata
 
         // TLT::Node_
 
-        TLT::Node_::Node_(std::string item)
+        TLT::Node_::Node_(std::string item) noexcept
             :
             m_item(std::move<>(item))
         {
@@ -389,7 +389,7 @@ namespace fatpound::automata
                 m_leaves.push_back(new Node_(str));
             }
         }
-        TLT::Node_::Node_(std::string str)
+        TLT::Node_::Node_(std::string str) noexcept
             :
             m_item(std::move<>(str))
         {

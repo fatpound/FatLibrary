@@ -36,7 +36,7 @@ namespace fatpound::dsa::tree::binary
     protected:
         using typename BST<T>::Node_;
 
-        
+
     private:
         virtual void Balance_(Node_* const latest) noexcept override final
         {

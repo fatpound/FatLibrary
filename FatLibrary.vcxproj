@@ -106,7 +106,6 @@
     <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\Manager.hpp" />
     <ClInclude Include="Win32_\IWindow.hpp" />
-    <ClInclude Include="Win32_\MessageMap.hpp" />
     <ClInclude Include="Win32_\Win32_.hpp" />
     <ClInclude Include="Win32_\WindowEx.hpp" />
     <ClInclude Include="Win32_\WMF\Manager.hpp" />

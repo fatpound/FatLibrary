@@ -28,17 +28,6 @@
 
 namespace fatpound::memory
 {
-    template <typename T>
-    static auto AlignedAlloc(const ::std::size_t& alignBytes, const ::std::size_t& size) -> T*
-    {
-        if (auto* const ptr = static_cast<T*>(FAT_MEMORY_ALIGNED_ALLOCATE_WITH(alignBytes, (size * sizeof(T)))))
-        {
-            return ptr;
-        }
-
-        throw ::std::runtime_error{ "Aligned allocation failed!" };
-    }
-    
     namespace details
     {
         template <typename T>
@@ -58,6 +47,17 @@ namespace fatpound::memory
 
     template <typename T>
     using AlignedUniquePtr = details::AlignedUPtr<T>::ptr_type;
+
+    template <typename T>
+    static auto AlignedAlloc(const ::std::size_t& alignBytes, const ::std::size_t& size) -> T*
+    {
+        if (auto* const ptr = static_cast<T*>(FAT_MEMORY_ALIGNED_ALLOCATE_WITH(alignBytes, (size * sizeof(T)))))
+        {
+            return ptr;
+        }
+
+        throw ::std::runtime_error{ "Aligned allocation failed!" };
+    }
 
     template <typename T>
     static auto MakeAlignedUniquePtr(const ::std::size_t& alignBytes, [[maybe_unused]] const ::std::size_t& size)

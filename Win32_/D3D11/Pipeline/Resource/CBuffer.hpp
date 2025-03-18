@@ -20,38 +20,36 @@ namespace fatpound::win32::d3d11::pipeline::resource
     public:
         explicit CBuffer(ID3D11Device* const pDevice, const T& consts)
         {
-            const D3D11_BUFFER_DESC cbd{
+            const D3D11_BUFFER_DESC bd
+            {
                 .ByteWidth           = sizeof(T),
                 .Usage               = D3D11_USAGE_DYNAMIC,
                 .BindFlags           = D3D11_BIND_CONSTANT_BUFFER,
                 .CPUAccessFlags      = D3D11_CPU_ACCESS_WRITE,
-                .MiscFlags           = 0u,
-                .StructureByteStride = 0u
+                .MiscFlags           = 0U,
+                .StructureByteStride = 0U
             };
 
-            const D3D11_SUBRESOURCE_DATA csd{ .pSysMem = &consts };
+            const D3D11_SUBRESOURCE_DATA sd{ .pSysMem = &consts };
 
-            const auto& hr = pDevice->CreateBuffer(&cbd, &csd, &m_pConstantBuffer_);
-
-            if (FAILED(hr))
+            if (const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pConstantBuffer_); FAILED(hr))
             {
                 throw std::runtime_error("Could NOT Create Direct3D CBuffer in function: " __FUNCSIG__);
             }
         }
         explicit CBuffer(ID3D11Device* const pDevice)
         {
-            const D3D11_BUFFER_DESC cbd{
+            const D3D11_BUFFER_DESC bd
+            {
                 .ByteWidth           = sizeof(T),
                 .Usage               = D3D11_USAGE_DYNAMIC,
                 .BindFlags           = D3D11_BIND_CONSTANT_BUFFER,
                 .CPUAccessFlags      = D3D11_CPU_ACCESS_WRITE,
-                .MiscFlags           = 0u,
-                .StructureByteStride = 0u
+                .MiscFlags           = 0U,
+                .StructureByteStride = 0U
             };
 
-            const auto& hr = pDevice->CreateBuffer(&cbd, nullptr, &m_pConstantBuffer_);
-
-            if (FAILED(hr))
+            if (const auto& hr = pDevice->CreateBuffer(&bd, nullptr, &m_pConstantBuffer_); FAILED(hr))
             {
                 throw std::runtime_error("Could NOT Create Direct3D CBuffer in function: " __FUNCSIG__);
             }
@@ -73,15 +71,15 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
             pImmediateContext->Map(
                 m_pConstantBuffer_.Get(),
-                0u,
+                0U,
                 D3D11_MAP_WRITE_DISCARD,
-                0u,
+                0U,
                 &msr
             );
 
             ::std::memcpy(msr.pData, &consts, sizeof(consts));
 
-            pImmediateContext->Unmap(m_pConstantBuffer_.Get(), 0u);
+            pImmediateContext->Unmap(m_pConstantBuffer_.Get(), 0U);
         }
 
 

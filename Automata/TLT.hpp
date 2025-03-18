@@ -43,7 +43,7 @@ namespace fatpound::automata
             // NOLINTBEGIN(altera-struct-pack-align)
             struct alignas(64) Node_ final
             {
-                explicit Node_(std::string item);
+                explicit Node_(std::string item) noexcept;
 
                 std::vector<Node_*> m_leaves;
 
@@ -112,7 +112,7 @@ namespace fatpound::automata
             struct alignas(64) Node_ final
             {
                 explicit Node_(const std::pair<std::string, std::vector<std::string>>& tree);
-                explicit Node_(std::string str);
+                explicit Node_(std::string str) noexcept;
 
                 std::vector<Node_*> m_leaves;
 

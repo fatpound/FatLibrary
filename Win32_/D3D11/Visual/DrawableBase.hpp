@@ -36,7 +36,7 @@ namespace fatpound::win32::d3d11::visual
         {
             assert((typeid(*bind) not_eq typeid(FATSPACE_PIPELINE_ELEMENT::IndexBuffer)) && "*Must* use AddIndexBuffer_() method to bind it!");
 
-            tl_bindable_vec_.push_back(std::move(bind));
+            tl_bindable_vec_.push_back(std::move<>(bind));
         }
 
 
@@ -47,7 +47,7 @@ namespace fatpound::win32::d3d11::visual
 
             m_pCIndexBuffer_ = idxbuf.get();
 
-            tl_bindable_vec_.push_back(std::move(idxbuf));
+            tl_bindable_vec_.push_back(std::move<>(idxbuf));
         }
         virtual void SetIndexFromStatic_() noexcept(IN_RELEASE) final
         {

@@ -23,14 +23,11 @@ namespace fatpound::win32::d3d11::pipeline::element
         {
             ::D3DReadFileToBlob(path.c_str(), &m_pBytecodeBlob_);
 
-            const auto& hr = pDevice->CreateVertexShader(
+            if (const auto& hr = pDevice->CreateVertexShader(
                 m_pBytecodeBlob_->GetBufferPointer(),
                 m_pBytecodeBlob_->GetBufferSize(),
                 nullptr,
-                &m_pVertexShader_
-            );
-
-            if (FAILED(hr))
+                &m_pVertexShader_); FAILED(hr))
             {
                 throw std::runtime_error("Could NOT Create Direct3D VertexShader in function: " __FUNCSIG__);
             }
@@ -48,7 +45,7 @@ namespace fatpound::win32::d3d11::pipeline::element
     public:
         virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
         {
-            pImmediateContext->VSSetShader(m_pVertexShader_.Get(), nullptr, 0u);
+            pImmediateContext->VSSetShader(m_pVertexShader_.Get(), nullptr, 0U);
         }
 
 

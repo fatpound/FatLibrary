@@ -18,30 +18,24 @@ namespace fatpound::win32::d3d11::pipeline::resource
             ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture;
 
             {
-                const D3D11_SUBRESOURCE_DATA sd{
+                const D3D11_SUBRESOURCE_DATA sd
+                {
                     .pSysMem     = *pSurface,
                     .SysMemPitch =  pSurface->GetPitch<UINT>()
                 };
 
-                const auto& hr = pDevice->CreateTexture2D(
+                if (const auto& hr = pDevice->CreateTexture2D(
                     &tex2dDesc,
                     sd.pSysMem not_eq nullptr ? &sd : nullptr,
-                    &pTexture
-                );
-
-                if (FAILED(hr)) [[unlikely]]
+                    &pTexture); FAILED(hr))
                 {
                     throw std::runtime_error("Could NOT create Texture2D!");
                 }
             }
 
+            if (const auto& hr = pDevice->CreateShaderResourceView(pTexture.Get(), &srvDesc, &m_pSRV_); FAILED(hr))
             {
-                const auto& hr = pDevice->CreateShaderResourceView(pTexture.Get(), &srvDesc, &m_pSRV_);
-
-                if (FAILED(hr)) [[unlikely]]
-                {
-                    throw std::runtime_error("Could NOT create ShaderResourceView!");
-                }
+                throw std::runtime_error("Could NOT create ShaderResourceView!");
             }
         }
 

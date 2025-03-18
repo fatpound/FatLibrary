@@ -76,9 +76,9 @@ namespace fatpound::util
 
             Surface surf(width, height, alignBytes);
 
-            for (auto y = 0u; y < height; ++y)
+            for (auto y = 0U; y < height; ++y)
             {
-                for (auto x = 0u; x < width; ++x)
+                for (auto x = 0U; x < width; ++x)
                 {
                     ::Gdiplus::Color c;
 
@@ -190,8 +190,8 @@ namespace fatpound::util
             assert(alignBytes >= sizeof(Color));
             assert(alignBytes <= width);
 
-            const auto pixelsPerAlign = alignBytes / static_cast<Size_t>(sizeof(Color));
-            const auto overrunCount   = width % pixelsPerAlign;
+            const auto& pixelsPerAlign = alignBytes / static_cast<Size_t>(sizeof(Color));
+            const auto& overrunCount   = width % pixelsPerAlign;
 
             return width + ((pixelsPerAlign - overrunCount) % pixelsPerAlign);
         }
@@ -233,7 +233,7 @@ namespace fatpound::util
 
             m_pBuffer_[(y * m_pixel_pitch_) + x] = color;
         }
-        
+
         template <::std::signed_integral   T> [[nodiscard]] FAT_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> Color
         {
             assert(x >= 0);
@@ -255,7 +255,7 @@ namespace fatpound::util
                 color
             );
         }
-        
+
 
     public:
         auto ReleaseAndReset() noexcept -> Color*

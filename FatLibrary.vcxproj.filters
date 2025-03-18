@@ -227,9 +227,6 @@
     <ClInclude Include="Win32_\IWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\MessageMap.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Win32_\Win32_.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

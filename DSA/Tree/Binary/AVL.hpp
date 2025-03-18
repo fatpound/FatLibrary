@@ -199,7 +199,7 @@ namespace fatpound::dsa::tree::binary
 
 
     protected:
-        Node_* m_last_added_ = nullptr;
+        Node_* m_last_added_{};
 
 
     private:

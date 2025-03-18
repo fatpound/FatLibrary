@@ -17,9 +17,9 @@ namespace fatpound::dsa::linkedlist
         explicit Doubly(const Doubly&) = delete;
         Doubly(Doubly&& src) noexcept
             :
-            m_list_(std::exchange(src.m_list_, nullptr)),
-            m_end_(std::exchange(src.m_end_, nullptr)),
-            m_item_count_(std::exchange(src.m_item_count_, 0U))
+            m_list_(std::exchange<>(src.m_list_, nullptr)),
+            m_end_(std::exchange<>(src.m_end_, nullptr)),
+            m_item_count_(std::exchange<>(src.m_item_count_, 0U))
         {
 
         }
@@ -27,14 +27,14 @@ namespace fatpound::dsa::linkedlist
         auto operator = (const Doubly&) -> Doubly& = delete;
         auto operator = (Doubly&& src) noexcept -> Doubly&
         {
-            if ((this not_eq std::addressof(src)) and (typeid(src) == typeid(*this)) and (src.m_list_ not_eq nullptr))
+            if ((this not_eq std::addressof<>(src)) and (typeid(src) == typeid(*this)) and (src.m_list_ not_eq nullptr))
             {
                 Delete_();
 
-                m_list_ = std::exchange(src.m_list_, nullptr);
-                m_end_  = std::exchange(src.m_end_,  nullptr);
+                m_list_ = std::exchange<>(src.m_list_, nullptr);
+                m_end_  = std::exchange<>(src.m_end_,  nullptr);
 
-                m_item_count_ = std::exchange(src.m_item_count_, 0U);
+                m_item_count_ = std::exchange<>(src.m_item_count_, 0U);
             }
 
             return *this;
@@ -130,7 +130,7 @@ namespace fatpound::dsa::linkedlist
 
             while (temp->next not_eq nullptr)
             {
-                std::swap(temp->prev, temp->next);
+                std::swap<>(temp->prev, temp->next);
                 temp = temp->prev;
             }
 

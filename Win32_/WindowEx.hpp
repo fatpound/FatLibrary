@@ -38,9 +38,9 @@ namespace fatpound::win32
             std::shared_ptr<FATSPACE_IO::Keyboard> pKeyboard = std::make_shared<FATSPACE_IO::Keyboard>(),
             const std::optional<::DirectX::XMINT2> position  = std::nullopt)
             :
-            m_pMouse{ std::move(pMouse) },
-            m_pKeyboard{ std::move(pKeyboard) },
-            m_pWndClassEx_{ std::move(pWndClassEx) },
+            m_pMouse{ std::move<>(pMouse) },
+            m_pKeyboard{ std::move<>(pKeyboard) },
+            m_pWndClassEx_{ std::move<>(pWndClassEx) },
             mc_client_size_{ .m_width = clientDimensions.m_width, .m_height = clientDimensions.m_height },
             ///////////////////////////////////////////////
 #pragma region (thread w/o C4355)
@@ -69,8 +69,8 @@ namespace fatpound::win32
                     };
 
                     RECT rect{
-                        .left   = 0l,
-                        .top    = 0l,
+                        .left   = 0L,
+                        .top    = 0L,
                         .right  = rect.left + static_cast<LONG>(mc_client_size_.m_width),
                         .bottom = rect.top  + static_cast<LONG>(mc_client_size_.m_height)
                     };
@@ -87,7 +87,7 @@ namespace fatpound::win32
 
                     const auto hModule = ::GetModuleHandle(nullptr);
 
-                    if (hModule == nullptr) [[unlikely]]
+                    if (hModule == nullptr)
                     {
                         throw std::runtime_error("Error occured when obtaining hModule!");
                     }
@@ -102,7 +102,7 @@ namespace fatpound::win32
 
 #if IN_DEBUG or IS_GFX_FRAMEWORK
 
-                        rect.right - rect.left,
+                        rect.right  - rect.left,
                         rect.bottom - rect.top,
 #else
                         static_cast<LONG>(mc_client_size_.m_width),
@@ -116,7 +116,7 @@ namespace fatpound::win32
                         this
                     );
 
-                    if (m_hWnd_ == nullptr) [[unlikely]]
+                    if (m_hWnd_ == nullptr)
                     {
                         throw std::runtime_error("Error occured when creating HWND!");
                     }
@@ -374,7 +374,7 @@ namespace fatpound::win32
         }
         FAT_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM wParam) noexcept
         {
-            if ((wParam bitand 0xFFF0u) == SC_CLOSE)
+            if ((wParam bitand 0xFFF0U) == SC_CLOSE)
             {
                 ::PostMessage(m_hWnd_, WM_CLOSE, 0, 0);
             }
@@ -403,7 +403,7 @@ namespace fatpound::win32
     private:
         void NotifyTaskDispatch_() const
         {
-            const auto&& retval = ::PostMessage(m_hWnd_, scx_customTaskMsgId_, 0u, 0);
+            const auto&& retval = ::PostMessage(m_hWnd_, scx_customTaskMsgId_, 0U, 0);
 
             if (retval == 0)
             {
@@ -417,7 +417,7 @@ namespace fatpound::win32
 
             MSG msg{};
 
-            while (::GetMessage(&msg, m_hWnd_, 0u, 0u) not_eq 0)
+            while (::GetMessage(&msg, m_hWnd_, 0U, 0U) not_eq 0)
             {
                 ::TranslateMessage(&msg);
                 ::DispatchMessage(&msg);

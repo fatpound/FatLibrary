@@ -29,29 +29,17 @@ namespace fatpound::win32::d2d
         {
             ::Microsoft::WRL::ComPtr<ID2D1Factory> pFactory;
 
+            if (const auto& hr = ::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory); FAILED(hr))
             {
-                const auto& hr = ::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory);
-
-                if (FAILED(hr)) [[unlikely]]
-                {
-                    throw std::runtime_error("A problem occured when creating the D2D1 factory!");
-                }
+                throw std::runtime_error("A problem occured when creating the D2D1 factory!");
             }
 
+            if (const auto& hr = pFactory->CreateHwndRenderTarget(
+                ::D2D1::RenderTargetProperties(),
+                ::D2D1::HwndRenderTargetProperties(hWnd, ::D2D1::SizeU(dimensions.m_width, dimensions.m_height)),
+                &m_pRenderTarget_); FAILED(hr))
             {
-                RECT rect{};
-                ::GetClientRect(hWnd, &rect);
-
-                const auto& hr = pFactory->CreateHwndRenderTarget(
-                    ::D2D1::RenderTargetProperties(),
-                    ::D2D1::HwndRenderTargetProperties(hWnd, ::D2D1::SizeU(static_cast<UINT32>(rect.right), static_cast<UINT32>(rect.bottom))),
-                    &m_pRenderTarget_
-                );
-
-                if (FAILED(hr)) [[unlikely]]
-                {
-                    throw std::runtime_error("A problem occured when creating the HwndRenderTarget!");
-                }
+                throw std::runtime_error("A problem occured when creating the HwndRenderTarget!");
             }
         }
 
@@ -65,11 +53,11 @@ namespace fatpound::win32::d2d
 
 
     public:
-        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE constexpr auto GetWidth()  const noexcept -> T
+        template <bitwise::Integral_Or_Floating T> [[nodiscard]] FAT_FORCEINLINE constexpr auto GetWidth()  const noexcept -> T
         {
             return static_cast<T>(mc_dimensions_.m_width);
         }
-        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE constexpr auto GetHeight() const noexcept -> T
+        template <bitwise::Integral_Or_Floating T> [[nodiscard]] FAT_FORCEINLINE constexpr auto GetHeight() const noexcept -> T
         {
             return static_cast<T>(mc_dimensions_.m_height);
         }
@@ -85,7 +73,7 @@ namespace fatpound::win32::d2d
             }
         }
 
-        template <float r = 0.0f, float g = 0.0f, float b = 0.0f>
+        template <float r = 0.0F, float g = 0.0F, float b = 0.0F>
         void ClearScreen() noexcept
         {
             m_pRenderTarget_->Clear(::D2D1::ColorF(r, g, b));
@@ -112,10 +100,10 @@ namespace fatpound::win32::d2d
         {
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 
-            for (std::size_t i = 0u; i < vertices.size(); ++i)
+            for (std::size_t i{}; i < vertices.size(); ++i)
             {
                 const auto& current = vertices[i];
-                const auto& next = vertices[(i + 1u) % vertices.size()];
+                const auto& next = vertices[(i + 1U) % vertices.size()];
 
                 DrawLine(
                     D2D1::Point2F(current.x, current.y),
@@ -129,9 +117,9 @@ namespace fatpound::win32::d2d
 
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 
-            for (std::size_t i = 1u; i < vertices.size() + 1u; ++i)
+            for (std::size_t i = 1U; i < vertices.size() + 1U; ++i)
             {
-                const auto& vec0 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i - 1u]), transform);
+                const auto& vec0 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i - 1U]), transform);
                 const auto& vec1 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i % vertices.size()]), transform);
 
                 dx::XMFLOAT2 transformed0;
