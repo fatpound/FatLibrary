@@ -70,6 +70,7 @@ namespace fatpound::dsa::tree::binary
 
 
     public:
+        // NOLINTBEGIN(clang-analyzer-cplusplus.NewDeleteLeaks)
         virtual void Insert(const T& new_item)
         {
             [[maybe_unused]] Node_* new_node = Insert_(nullptr, m_pRoot_, new_item);
@@ -81,6 +82,8 @@ namespace fatpound::dsa::tree::binary
 
             ++m_node_count_;
         }
+        // NOLINTEND(clang-analyzer-cplusplus.NewDeleteLeaks)
+
         virtual void Delete(const T& old_item) noexcept
         {
             Node_* node = Find_(m_pRoot_, old_item);

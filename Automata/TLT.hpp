@@ -40,7 +40,8 @@ namespace fatpound::automata
 
 
         private:
-            struct alignas(128) Node_ final
+            // NOLINTBEGIN(altera-struct-pack-align)
+            struct alignas(64) Node_ final
             {
                 explicit Node_(std::string item);
 
@@ -48,6 +49,7 @@ namespace fatpound::automata
 
                 std::string m_item;
             };
+            // NOLINTEND(altera-struct-pack-align)
 
 
         private:
@@ -106,7 +108,8 @@ namespace fatpound::automata
 
 
         private:
-            struct alignas(128) Node_ final
+            // NOLINTBEGIN(altera-struct-pack-align)
+            struct alignas(64) Node_ final
             {
                 explicit Node_(const std::pair<std::string, std::vector<std::string>>& tree);
                 explicit Node_(std::string str);
@@ -115,6 +118,7 @@ namespace fatpound::automata
 
                 std::string m_item;
             };
+            // NOLINTEND(altera-struct-pack-align)
 
 
         private:
