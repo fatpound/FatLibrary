@@ -293,7 +293,7 @@ namespace fatpound::win32::d3d11
         void InitFrameworkBackbuffer_ () requires(Framework)
         {
             {
-                ::wrl::ComPtr<ID3D11ShaderResourceView> pSRV;
+                ::Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pSRV;
 
                 {
                     const D3D11_TEXTURE2D_DESC texDesc
@@ -334,7 +334,7 @@ namespace fatpound::win32::d3d11
                 GetImmediateContext()->PSSetShaderResources(0U, 1U, pSRV.GetAddressOf());
             }
 
-            ::wrl::ComPtr<ID3D11SamplerState> pSS;
+            ::Microsoft::WRL::ComPtr<ID3D11SamplerState> pSS;
 
             {
                 const D3D11_SAMPLER_DESC sDesc
@@ -442,7 +442,7 @@ namespace fatpound::win32::d3d11
         void InitRenderTarget_        ()
         {
             {
-                ::wrl::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
+                ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
 
                 if (const auto& hr = GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), &pBackBufferTexture2D); FAILED(hr))
                 {
@@ -457,7 +457,7 @@ namespace fatpound::win32::d3d11
 
             if constexpr (NotFramework)
             {
-                ::wrl::ComPtr<ID3D11Texture2D> pTexture2d;
+                ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture2d;
 
                 {
                     D3D11_TEXTURE2D_DESC tex2dDesc
@@ -512,7 +512,7 @@ namespace fatpound::win32::d3d11
         }
         void InitRasterizer_          () requires(NotFramework)
         {
-            ::wrl::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
+            ::Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
 
             {
                 D3D11_RASTERIZER_DESC rDesc
@@ -555,11 +555,11 @@ namespace fatpound::win32::d3d11
         }
         void CopySysbufferToMappedSubresource_ () requires(Framework)
         {
-            auto* const pDst = static_cast<Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
+            auto* const pDst = static_cast<FATSPACE_UTIL::Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
 
-            const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(Color);
+            const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(FATSPACE_UTIL::Color);
             const auto srcPitch = mc_dimensions_.m_width;
-            const auto rowBytes = srcPitch * sizeof(Color);
+            const auto rowBytes = srcPitch * sizeof(FATSPACE_UTIL::Color);
 
             for (auto y = 0U; y < mc_dimensions_.m_height; ++y)
             {
@@ -578,7 +578,7 @@ namespace fatpound::win32::d3d11
 
         void ToggleAltEnterMode_()
         {
-            FATSPACE_UTIL::gfx::ToggleDXGI_AltEnterMode(GetDevice(), GetHwnd(), m_dxgi_mode_);
+            FATSPACE_UTIL_GFX::ToggleDXGI_AltEnterMode(GetDevice(), GetHwnd(), m_dxgi_mode_);
         }
 
 
@@ -587,13 +587,13 @@ namespace fatpound::win32::d3d11
 
         const ::HWND mc_hWnd_;
         
-        const SizePack mc_dimensions_;
+        const FATSPACE_UTIL_GFX::SizePack mc_dimensions_;
 
         ::UINT m_msaa_count_{};
         ::UINT m_msaa_quality_{};
         ::UINT m_dxgi_mode_{};
 
-        ::std::unique_ptr<Surface> m_pSurface_;
+        ::std::unique_ptr<FATSPACE_UTIL::Surface> m_pSurface_;
     };
 }
 
