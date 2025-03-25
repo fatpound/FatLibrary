@@ -22,3 +22,10 @@ No warnings in `PVS-Studio v7.35`
 `Class Diagram`
 ---------------
 ![FatLibrary](https://github.com/user-attachments/assets/8ad721e9-1bb9-4d4e-a1db-6aec472766eb)
+
+`Notes about this branch`
+-------------------------
+This branch is made for FatSim project, and need to be used only on Windows OS\
+You need to install ZeroMQ library to Program Files (x86)\
+You need to copy [cppzmq](https://github.com/zeromq/cppzmq) headers to the ZeroMQ installation directory
+
