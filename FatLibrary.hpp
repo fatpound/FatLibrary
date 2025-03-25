@@ -13,3 +13,5 @@
 #if FAT_BUILDING_WITH_MSVC
 #include "Win32_/Win32_.hpp"
 #endif
+
+#include "_experimental/FatX.hpp"

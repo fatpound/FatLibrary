@@ -111,6 +111,10 @@
     <ClInclude Include="Win32_\WMF\Manager.hpp" />
     <ClInclude Include="Win32_\WMF\WMF.hpp" />
     <ClInclude Include="Win32_\WndClassEx.hpp" />
+    <ClInclude Include="_experimental\FatX.hpp" />
+    <ClInclude Include="_experimental\ZeroMQ\Publisher.hpp" />
+    <ClInclude Include="_experimental\ZeroMQ\Subscriber.hpp" />
+    <ClInclude Include="_experimental\ZeroMQ\ZeroMQ.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Automata\CFG.cpp" />
@@ -119,6 +123,8 @@
     <ClCompile Include="File\File.cpp" />
     <ClCompile Include="Util\Gfx\Gfx.cpp" />
     <ClCompile Include="Util\ViewXM.cpp" />
+    <ClCompile Include="_experimental\ZeroMQ\Publisher.cpp" />
+    <ClCompile Include="_experimental\ZeroMQ\Subscriber.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl">
@@ -177,21 +183,25 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="_misc\FatProps\FatCpp_Debug.props" />
     <Import Project="_misc\FatProps\FatLibrary.props" />
+    <Import Project="_misc\FatProps\FatZMQ_Debug.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="_misc\FatProps\FatCpp_Release.props" />
     <Import Project="_misc\FatProps\FatLibrary.props" />
+    <Import Project="_misc\FatProps\FatZMQ_Release.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="_misc\FatProps\FatCpp_Debug.props" />
     <Import Project="_misc\FatProps\FatLibrary.props" />
+    <Import Project="_misc\FatProps\FatZMQ_Debug.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="_misc\FatProps\FatCpp_Release.props" />
     <Import Project="_misc\FatProps\FatLibrary.props" />
+    <Import Project="_misc\FatProps\FatZMQ_Release.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

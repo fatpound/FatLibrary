@@ -281,6 +281,18 @@
     <ClInclude Include="Bitwise\Concepts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="_experimental\FatX.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_experimental\ZeroMQ\Publisher.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_experimental\ZeroMQ\Subscriber.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_experimental\ZeroMQ\ZeroMQ.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Automata\CFG.cpp">
@@ -299,6 +311,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Util\Gfx\Gfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_experimental\ZeroMQ\Publisher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_experimental\ZeroMQ\Subscriber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
