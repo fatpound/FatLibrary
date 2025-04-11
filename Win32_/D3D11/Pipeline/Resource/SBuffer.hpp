@@ -62,7 +62,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
         auto operator = (const SBuffer&)     -> SBuffer& = delete;
         auto operator = (SBuffer&&) noexcept -> SBuffer& = delete;
-        virtual ~SBuffer() noexcept                      = default;
+        virtual ~SBuffer() noexcept override             = default;
 
 
     protected:

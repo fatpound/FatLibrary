@@ -42,7 +42,7 @@ namespace fatpound::win32::d3d11::pipeline::element
 
         auto operator = (const PixelShader&)     -> PixelShader& = delete;
         auto operator = (PixelShader&&) noexcept -> PixelShader& = delete;
-        virtual ~PixelShader() noexcept final                    = default;
+        virtual ~PixelShader() noexcept override final           = default;
 
 
     public:

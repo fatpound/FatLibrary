@@ -113,10 +113,6 @@
     <ClInclude Include="Win32_\WndClassEx.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Automata\CFG.cpp" />
-    <ClCompile Include="Automata\TLT.cpp" />
-    <ClCompile Include="Concurrency\TaskQueue.cpp" />
-    <ClCompile Include="File\File.cpp" />
     <ClCompile Include="Util\Gfx\Gfx.cpp" />
     <ClCompile Include="Util\ViewXM.cpp" />
   </ItemGroup>

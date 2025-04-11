@@ -24,7 +24,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
         auto operator = (const PixelCBuffer&)     -> PixelCBuffer& = delete;
         auto operator = (PixelCBuffer&&) noexcept -> PixelCBuffer& = delete;
-        virtual ~PixelCBuffer() noexcept final                     = default;
+        virtual ~PixelCBuffer() noexcept override final            = default;
 
 
     public:

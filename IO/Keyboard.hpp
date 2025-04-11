@@ -43,7 +43,7 @@ namespace fatpound::io
     public:
         auto GetEvent() noexcept -> std::optional<KeyEvent>
         {
-            if (m_key_event_queue_.empty())
+            if (KeyBufferIsEmpty())
             {
                 return std::nullopt;
             }

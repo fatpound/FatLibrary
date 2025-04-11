@@ -46,7 +46,7 @@ namespace fatpound::win32::d3d11::pipeline::element
 
         auto operator = (const IndexBuffer&)     -> IndexBuffer& = delete;
         auto operator = (IndexBuffer&&) noexcept -> IndexBuffer& = delete;
-        virtual ~IndexBuffer() noexcept final                    = default;
+        virtual ~IndexBuffer() noexcept override final           = default;
 
 
     public:

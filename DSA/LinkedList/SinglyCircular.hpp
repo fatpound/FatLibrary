@@ -34,7 +34,7 @@ namespace fatpound::dsa::linkedlist
 
             return *this;
         }
-        virtual ~SinglyCircular() noexcept override
+        virtual ~SinglyCircular() noexcept override final
         {
             Delete_();
 

@@ -45,7 +45,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
         auto operator = (const Texture2D&)     -> Texture2D& = delete;
         auto operator = (Texture2D&&) noexcept -> Texture2D& = delete;
-        virtual ~Texture2D() noexcept final                  = default;
+        virtual ~Texture2D() noexcept override final         = default;
 
 
     public:

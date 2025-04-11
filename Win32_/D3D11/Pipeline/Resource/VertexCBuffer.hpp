@@ -24,7 +24,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
         auto operator = (const VertexCBuffer&)     -> VertexCBuffer& = delete;
         auto operator = (VertexCBuffer&&) noexcept -> VertexCBuffer& = delete;
-        virtual ~VertexCBuffer() noexcept final                      = default;
+        virtual ~VertexCBuffer() noexcept override final             = default;
 
 
     public:
