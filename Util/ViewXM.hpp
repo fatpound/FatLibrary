@@ -1,11 +1,12 @@
 #pragma once
 
 #if FAT_BUILDING_WITH_MSVC
+
 #include <DirectXMath.h>
 
 namespace fatpound::util
 {
-    class ViewXM final
+    class [[nodiscard]] ViewXM final
     {
     public:
         explicit ViewXM()              = default;
@@ -18,11 +19,23 @@ namespace fatpound::util
 
 
     public:
-        [[nodiscard]] auto GetCameraXM()     const noexcept -> ::DirectX::XMMATRIX;
-        [[nodiscard]] auto GetProjectionXM() const noexcept -> ::DirectX::XMMATRIX;
+        [[nodiscard]] auto GetCameraXM()     const noexcept -> ::DirectX::XMMATRIX
+        {
+            return m_camera_;
+        }
+        [[nodiscard]] auto GetProjectionXM() const noexcept -> ::DirectX::XMMATRIX
+        {
+            return m_projection_;
+        }
 
-        void SetCameraXM(const ::DirectX::XMMATRIX& camera) noexcept;
-        void SetProjectionXM(const ::DirectX::XMMATRIX& projection) noexcept;
+        void SetCameraXM(const ::DirectX::XMMATRIX& camera) noexcept
+        {
+            m_camera_ = camera;
+        }
+        void SetProjectionXM(const ::DirectX::XMMATRIX& projection) noexcept
+        {
+            m_projection_ = projection;
+        }
 
 
     protected:

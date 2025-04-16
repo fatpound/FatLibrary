@@ -38,18 +38,17 @@ namespace fatpound::win32
             std::shared_ptr<FATSPACE_IO::Keyboard> pKeyboard = std::make_shared<FATSPACE_IO::Keyboard>(),
             const std::optional<::DirectX::XMINT2> position  = std::nullopt)
             :
-            m_pMouse{ std::move<>(pMouse) },
-            m_pKeyboard{ std::move<>(pKeyboard) },
-            m_pWndClassEx_{ std::move<>(pWndClassEx) },
+            m_pMouse{ std::move(pMouse) },
+            m_pKeyboard{ std::move(pKeyboard) },
+            m_pWndClassEx_{ std::move(pWndClassEx) },
             mc_client_size_{ .m_width = clientDimensions.m_width, .m_height = clientDimensions.m_height },
-            ///////////////////////////////////////////////
+            /////////////////////
 #pragma region (thread w/o C4355)
 #pragma warning (push)
 #pragma warning (disable : 4355)
             m_msg_jthread_{ &WindowEx::MessageKernel_, this }
 #pragma warning (pop)
 #pragma endregion
-            ///////////////////////////////////////////////
         {
             auto future = DispatchTaskToQueue_<false>(
                 [=, this]() -> void
@@ -83,7 +82,7 @@ namespace fatpound::win32
                         bitor WS_POPUP
                     };
 
-#endif // IN_DEBUG or IS_GFX_FRAMEWORK
+#endif
 
                     const auto hModule = ::GetModuleHandle(nullptr);
 
@@ -108,7 +107,7 @@ namespace fatpound::win32
                         static_cast<LONG>(mc_client_size_.m_width),
                         static_cast<LONG>(mc_client_size_.m_height),
 
-#endif // IN_DEBUG or IS_GFX_FRAMEWORK
+#endif
 
                         nullptr,
                         nullptr,
@@ -194,12 +193,12 @@ namespace fatpound::win32
         auto DispatchTaskToQueue_(F&& function, Args&&... args) -> auto
         {
             auto future = m_tasks_.Push<>(std::forward<F>(function), std::forward<Args>(args)...);
-        
+
             if constexpr (Notify)
             {
                 NotifyTaskDispatch_();
             }
-        
+
             return future;
         }
 
@@ -272,7 +271,8 @@ namespace fatpound::win32
                 m_tasks_.ExecuteFirstAndPopOff();
                 return 0;
 
-            case WM_SYSCOMMAND: // also controls window movement
+            // this also controls window movement
+            case WM_SYSCOMMAND:
                 Process_WM_SYSCOMMAND_(wParam);
                 break;
 
@@ -295,59 +295,59 @@ namespace fatpound::win32
                 and pt.y < GetClientHeight<SHORT>()
                 )
             {
-                m_pMouse->OnMouseMove_(pt.x, pt.y);
+                m_pMouse->AddMouseMoveEvent(pt.x, pt.y);
 
                 if (not m_pMouse->IsInWindow())
                 {
                     ::SetCapture(m_hWnd_);
-                    m_pMouse->OnMouseEnter_();
+                    m_pMouse->AddMouseEnterEvent();
                 }
             }
             else
             {
                 if (wParam bitand (MK_LBUTTON bitor MK_RBUTTON))
                 {
-                    m_pMouse->OnMouseMove_(pt.x, pt.y);
+                    m_pMouse->AddMouseMoveEvent(pt.x, pt.y);
                 }
                 else
                 {
                     ::ReleaseCapture();
-                    m_pMouse->OnMouseLeave_();
+                    m_pMouse->AddMouseLeaveEvent();
                 }
             }
         }
         FAT_FORCEINLINE void Process_WM_LBUTTONDOWN_()
         {
-            m_pMouse->OnLeftPressed_();
+            m_pMouse->AddLeftPressEvent();
         }
         FAT_FORCEINLINE void Process_WM_LBUTTONUP_  ()
         {
-            m_pMouse->OnLeftReleased_();
+            m_pMouse->AddLeftReleaseEvent();
         }
         FAT_FORCEINLINE void Process_WM_RBUTTONDOWN_()
         {
-            m_pMouse->OnRightPressed_();
+            m_pMouse->AddRightPressEvent();
         }
         FAT_FORCEINLINE void Process_WM_RBUTTONUP_  ()
         {
-            m_pMouse->OnRightReleased_();
+            m_pMouse->AddRightReleaseEvent();
         }
         FAT_FORCEINLINE void Process_WM_MBUTTONDOWN_()
         {
-            m_pMouse->OnWheelPressed_();
+            m_pMouse->AddWheelPressEvent();
         }
         FAT_FORCEINLINE void Process_WM_MBUTTONUP_  ()
         {
-            m_pMouse->OnWheelReleased_();
+            m_pMouse->AddWheelReleaseEvent();
         }
         FAT_FORCEINLINE void Process_WM_MOUSEWHEEL_ (const int delta)
         {
-            m_pMouse->OnWheelDelta_(delta);
+            m_pMouse->ProcessWheelDelta(delta);
         }
 
         FAT_FORCEINLINE void Process_WM_KILLFOCUS_ () noexcept
         {
-            m_pKeyboard->ClearKeyStateBitset_();
+            m_pKeyboard->ClearKeyStateBitset();
         }
         FAT_FORCEINLINE void Process_WM_KEYDOWN_   (const WPARAM wParam, const LPARAM lParam)
         {
@@ -357,7 +357,7 @@ namespace fatpound::win32
         {
             if ((not (lParam bitand 0x40000000)) or m_pKeyboard->AutoRepeatIsEnabled())
             {
-                m_pKeyboard->OnKeyPressed_(static_cast<unsigned char>(wParam));
+                m_pKeyboard->AddKeyPressEvent(static_cast<unsigned char>(wParam));
             }
         }
         FAT_FORCEINLINE void Process_WM_KEYUP_     (const WPARAM wParam)
@@ -366,11 +366,11 @@ namespace fatpound::win32
         }
         FAT_FORCEINLINE void Process_WM_SYSKEYUP_  (const WPARAM wParam)
         {
-            m_pKeyboard->OnKeyReleased_(static_cast<unsigned char>(wParam));
+            m_pKeyboard->AddKeyReleaseEvent(static_cast<unsigned char>(wParam));
         }
         FAT_FORCEINLINE void Process_WM_CHAR_      (const WPARAM wParam)
         {
-            m_pKeyboard->OnChar_(static_cast<unsigned char>(wParam));
+            m_pKeyboard->AddChar(static_cast<unsigned char>(wParam));
         }
         FAT_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM wParam) noexcept
         {

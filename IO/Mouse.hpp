@@ -18,25 +18,14 @@
 #include <utility>
 #include <optional>
 
-#if FAT_BUILDING_WITH_MSVC
-namespace fatpound::win32
-{
-    class WindowEx;
-}
-#endif
-
 namespace fatpound::io
 {
     class Mouse final
     {
-#if FAT_BUILDING_WITH_MSVC
-        friend FATSPACE_WIN32::WindowEx;
-#endif
-
         static constexpr auto scx_bufferSize_ = 16U;
 
     public:
-        using pos_t = decltype(MouseEvent::pos_x);
+        using Position_t = decltype(MouseEvent::pos_x);
 
 
     public:
@@ -63,17 +52,15 @@ namespace fatpound::io
             return mouseE;
         }
 
-        [[nodiscard]]
-        auto GetPos() const noexcept -> std::pair<pos_t, pos_t>
+        [[nodiscard]] auto GetPos() const noexcept -> std::pair<Position_t, Position_t>
         {
-            return { m_pos_x_, m_pos_y_ };
+            return { GetPosX(), GetPosY() };
         }
-
-        [[nodiscard]] auto GetPosX() const noexcept -> pos_t
+        [[nodiscard]] auto GetPosX() const noexcept -> Position_t
         {
             return m_pos_x_;
         }
-        [[nodiscard]] auto GetPosY() const noexcept -> pos_t
+        [[nodiscard]] auto GetPosY() const noexcept -> Position_t
         {
             return m_pos_y_;
         }
@@ -101,12 +88,7 @@ namespace fatpound::io
             return m_wheel_is_pressed_;
         }
 
-
-    protected:
-
-
-    private:
-        void OnMouseMove_(const int x, const int y)
+        void AddMouseMoveEvent(const int x, const int y)
         {
             m_pos_x_ = x;
             m_pos_y_ = y;
@@ -115,7 +97,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnMouseEnter_()
+        void AddMouseEnterEvent()
         {
             m_is_in_window_ = true;
 
@@ -123,7 +105,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnMouseLeave_()
+        void AddMouseLeaveEvent()
         {
             m_is_in_window_ = false;
 
@@ -132,7 +114,7 @@ namespace fatpound::io
             TrimBuffer_();
         }
 
-        void OnLeftPressed_()
+        void AddLeftPressEvent    ()
         {
             m_left_is_pressed_ = true;
 
@@ -140,7 +122,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnLeftReleased_()
+        void AddLeftReleaseEvent  ()
         {
             m_left_is_pressed_ = false;
 
@@ -148,7 +130,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnRightPressed_()
+        void AddRightPressEvent   ()
         {
             m_right_is_pressed_ = true;
 
@@ -156,7 +138,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnRightReleased_()
+        void AddRightReleaseEvent ()
         {
             m_right_is_pressed_ = false;
 
@@ -164,7 +146,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnWheelPressed_()
+        void AddWheelPressEvent   ()
         {
             m_wheel_is_pressed_ = true;
 
@@ -172,7 +154,7 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnWheelReleased_()
+        void AddWheelReleaseEvent ()
         {
             m_wheel_is_pressed_ = false;
 
@@ -180,19 +162,19 @@ namespace fatpound::io
 
             TrimBuffer_();
         }
-        void OnWheelUp_()
+        void AddWheelUpEvent      ()
         {
             m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::WheelUp });
 
             TrimBuffer_();
         }
-        void OnWheelDown_()
+        void AddWheelDownEvent    ()
         {
             m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::WheelDown });
 
             TrimBuffer_();
         }
-        void OnWheelDelta_(const int delta)
+        void ProcessWheelDelta(const int delta)
         {
             m_wheel_delta_carry_ += delta;
 
@@ -200,20 +182,25 @@ namespace fatpound::io
             {
                 m_wheel_delta_carry_ -= WHEEL_DELTA;
 
-                OnWheelUp_();
+                AddWheelUpEvent();
             }
 
             while (m_wheel_delta_carry_ <= -WHEEL_DELTA)
             {
                 m_wheel_delta_carry_ += WHEEL_DELTA;
 
-                OnWheelDown_();
+                AddWheelDownEvent();
             }
 #if not FAT_BUILDING_WITH_MSVC
 #undef WHEEL_DELTA
 #endif
         }
 
+
+    protected:
+
+
+    private:
         void TrimBuffer_() noexcept
         {
             while (m_event_buffer_.size() > scx_bufferSize_)
@@ -226,10 +213,10 @@ namespace fatpound::io
     private:
         std::queue<MouseEvent> m_event_buffer_;
 
-        pos_t m_pos_x_{};
-        pos_t m_pos_y_{};
+        Position_t m_pos_x_{};
+        Position_t m_pos_y_{};
 
-        pos_t m_wheel_delta_carry_{};
+        Position_t m_wheel_delta_carry_{};
 
         bool m_is_in_window_{};
 

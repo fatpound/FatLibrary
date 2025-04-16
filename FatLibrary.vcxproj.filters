@@ -283,14 +283,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Util\ViewXM.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Util\Gfx\Gfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl" />
     <FxCompile Include="Win32_\D3D11\Shader\VSFrameBuffer.hlsl" />
   </ItemGroup>

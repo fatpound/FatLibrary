@@ -113,10 +113,6 @@
     <ClInclude Include="Win32_\WndClassEx.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Util\Gfx\Gfx.cpp" />
-    <ClCompile Include="Util\ViewXM.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
