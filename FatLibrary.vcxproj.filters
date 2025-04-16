@@ -233,9 +233,6 @@
     <ClInclude Include="Win32_\WindowEx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\WndClassEx.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FatDefines.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

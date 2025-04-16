@@ -6,7 +6,6 @@
 #include <FatDefines.hpp>
 
 #include "IWindow.hpp"
-#include "WndClassEx.hpp"
 
 #include <Bitwise/Concepts.hpp>
 #include <Concurrency/Concurrency.hpp>

@@ -110,7 +110,6 @@
     <ClInclude Include="Win32_\WindowEx.hpp" />
     <ClInclude Include="Win32_\WMF\Manager.hpp" />
     <ClInclude Include="Win32_\WMF\WMF.hpp" />
-    <ClInclude Include="Win32_\WndClassEx.hpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl">
