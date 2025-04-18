@@ -278,6 +278,18 @@
     <ClInclude Include="Bitwise\Concepts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="_exp\FatX.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_exp\ZeroMQ\Publisher.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_exp\ZeroMQ\Subscriber.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_exp\ZeroMQ\ZeroMQ.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl" />
