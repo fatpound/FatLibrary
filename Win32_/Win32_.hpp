@@ -8,7 +8,6 @@
 #include "GDI_Plus/GDI_Plus.hpp"
 #include "WMF/WMF.hpp"
 
-#include "WndClassEx.hpp"
 #include "IWindow.hpp"
 #include "WindowEx.hpp"
 
