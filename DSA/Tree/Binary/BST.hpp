@@ -101,7 +101,7 @@ namespace fatpound::dsa::tree::binary
         }
 
         [[nodiscard]]
-        auto Contains(const T& item) const -> bool
+        auto Contains(const T& item) const noexcept -> bool
         {
             return Find_(m_pRoot_, item) not_eq nullptr;
         }
@@ -395,6 +395,11 @@ namespace fatpound::dsa::tree::binary
         }
         auto GetInorderSuccessor_(Node_* node) noexcept -> Node_*
         {
+            if (node == nullptr)
+            {
+                return nullptr;
+            }
+
             if (node->right not_eq nullptr)
             {
                 return GetMin_(node->right);

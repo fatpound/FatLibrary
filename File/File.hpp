@@ -12,7 +12,7 @@ namespace fatpound::file
 {
     namespace details
     {
-        void EncryptDecrypt_ (const std::filesystem::path& in_path, const std::size_t& key, std::filesystem::path& out_path)
+        static void EncryptDecrypt_ (const std::filesystem::path& in_path, const std::size_t& key, std::filesystem::path& out_path)
         {
             std::ifstream inputFile(in_path, std::ios::binary);
 
@@ -47,7 +47,7 @@ namespace fatpound::file
         }
     }
 
-    auto GetNameAndExtension(const std::filesystem::path& path) -> std::pair<std::string, std::string>
+    static auto GetNameAndExtension(const std::filesystem::path& path) -> std::pair<std::string, std::string>
     {
         if (not std::filesystem::exists(path))
         {
@@ -60,14 +60,14 @@ namespace fatpound::file
         };
     }
 
-    void EncryptDecrypt(const std::filesystem::path& in_path, const std::size_t& key, std::filesystem::path out_path = {})
+    static void EncryptDecrypt(const std::filesystem::path& in_path, const std::size_t& key, std::filesystem::path out_path = {})
     {
         details::EncryptDecrypt_(in_path, key, out_path);
 
         std::filesystem::remove(in_path);
         std::filesystem::rename(out_path, in_path);
     }
-    void EncryptDecrypt_Dir(const std::filesystem::path& in_path, const std::size_t& key, bool recurse = false)
+    static void EncryptDecrypt_Dir(const std::filesystem::path& in_path, const std::size_t& key, bool recurse = false)
     {
         namespace fs = std::filesystem;
 

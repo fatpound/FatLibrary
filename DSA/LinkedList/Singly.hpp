@@ -50,7 +50,7 @@ namespace fatpound::dsa::linkedlist
 
     public:
         [[nodiscard]]
-        virtual auto Contains(const T& item) const -> bool final
+        virtual auto Contains(const T& item) const noexcept -> bool final
         {
             return Find_(item) not_eq nullptr;
         }
@@ -113,7 +113,7 @@ namespace fatpound::dsa::linkedlist
 
             m_end_ = new_part;
         }
-        virtual void Reverse()
+        virtual void Reverse() noexcept
         {
             if (m_list_ == nullptr)
             {
@@ -184,7 +184,7 @@ namespace fatpound::dsa::linkedlist
     protected:
         struct alignas(16) Node_ final
         {
-            explicit Node_(T new_item)
+            explicit Node_(T new_item) noexcept
                 :
                 item(new_item)
             {
@@ -199,7 +199,7 @@ namespace fatpound::dsa::linkedlist
 
     protected:
         [[nodiscard]]
-        virtual auto Find_(const T& item) const -> Node_* final
+        virtual auto Find_(const T& item) const noexcept -> Node_* final
         {
             if (m_item_count_ == 0U)
             {
@@ -231,7 +231,7 @@ namespace fatpound::dsa::linkedlist
 
 
     protected:
-        void Delete_()
+        void Delete_() noexcept
         {
             if (m_list_ == nullptr)
             {

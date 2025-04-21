@@ -105,7 +105,7 @@ namespace fatpound::dsa::linkedlist
             temp->next = new_part;
             new_part->next = start;
         }
-        virtual void Reverse() override final
+        virtual void Reverse() noexcept override final
         {
             if (this->m_list_ == nullptr)
             {
@@ -170,8 +170,8 @@ namespace fatpound::dsa::linkedlist
                 throw std::runtime_error("Tried to Print an empty SinglyCircular!");
             }
 
-            Node_* temp = this->m_list_;
-            Node_* start = temp;
+            const Node_* const start = this->m_list_;
+            const Node_*        temp = this->m_list_;
 
             do
             {
@@ -186,16 +186,16 @@ namespace fatpound::dsa::linkedlist
 
 
     protected:
-        void Delete_()
+        void Delete_() noexcept
         {
             if (this->m_list_ == nullptr)
             {
                 return;
             }
 
-            Node_* start = this->m_list_;
-            Node_* exes = this->m_list_;
-            Node_* temp{};
+            const Node_* const start = this->m_list_;
+                  Node_*        exes = this->m_list_;
+                  Node_*        temp{};
 
             do
             {
