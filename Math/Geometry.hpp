@@ -2,7 +2,7 @@
 
 #include <Bitwise/Concepts.hpp>
 
-#include "Numbers/Numbers.hpp"
+#include "Numbers/Common.hpp"
 
 #include "Multiplicative.hpp"
 
