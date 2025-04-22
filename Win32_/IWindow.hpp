@@ -43,7 +43,7 @@ namespace fatpound::win32
     class IWindow::ClassEx final
     {
     public:
-        explicit ClassEx(const ::std::wstring& clsName = L"#fatpound.Default.IWindow.ClassEx#")
+        explicit ClassEx(const std::wstring& clsName = L"#fatpound.Default.IWindow.ClassEx#")
             :
             m_hInstance_{ ::GetModuleHandle(nullptr) }
         {
@@ -67,7 +67,7 @@ namespace fatpound::win32
 
             if (m_atom_ == 0)
             {
-                throw ::std::runtime_error{
+                throw std::runtime_error{
                     "ATOM could not be created!\n\n"
                     "You should check ClassEx::lpszClassName\n"
                     "It should have a unique name. If that's not the problem\n"

@@ -9,11 +9,11 @@
 
 namespace fatpound::random
 {
-    template <::std::unsigned_integral N>
+    template <std::unsigned_integral N>
     auto RandomPrime(const N& min, const N& max) -> N
     {
-        ::std::minstd_rand rng{ ::std::random_device{}() };
-        const auto& rand_num = ::std::uniform_int_distribution<N>{ min, max }(rng);
+        std::minstd_rand rng{ std::random_device{}() };
+        const auto& rand_num = std::uniform_int_distribution<N>{ min, max }(rng);
 
         if (FATSPACE_NUMBERS::IsPrime<>(rand_num))
         {
@@ -33,31 +33,31 @@ namespace fatpound::random
         return 0;
     }
 
-    template <::std::unsigned_integral N = ::std::size_t>
+    template <std::unsigned_integral N = std::size_t>
     auto RollDice() -> N
     {
-        ::std::minstd_rand rng{ ::std::random_device{}() };
+        std::minstd_rand rng{ std::random_device{}() };
 
-        return static_cast<N>(::std::uniform_int_distribution<::std::size_t>{ 1U, 6U }(rng));
+        return static_cast<N>(std::uniform_int_distribution<std::size_t>{ 1U, 6U }(rng));
     }
 
-    template <::std::unsigned_integral N = ::std::size_t>
+    template <std::unsigned_integral N = std::size_t>
     auto RandUInt(
-        const N& min = ::std::numeric_limits<N>::min(),
-        const N& max = ::std::numeric_limits<N>::max()) -> N
+        const N& min = std::numeric_limits<N>::min(),
+        const N& max = std::numeric_limits<N>::max()) -> N
     {
-        ::std::minstd_rand rng{ ::std::random_device{}() };
+        std::minstd_rand rng{ std::random_device{}() };
 
-        return static_cast<N>(::std::uniform_int_distribution<::std::size_t>{ min, max }(rng));
+        return static_cast<N>(std::uniform_int_distribution<std::size_t>{ min, max }(rng));
     }
 
-    template <::std::floating_point N = float>
+    template <std::floating_point N = float>
     auto RandFloat(
-        const N& min = ::std::numeric_limits<N>::min(),
-        const N& max = ::std::numeric_limits<N>::max()) -> N
+        const N& min = std::numeric_limits<N>::min(),
+        const N& max = std::numeric_limits<N>::max()) -> N
     {
-        ::std::minstd_rand rng{ ::std::random_device{}() };
+        std::minstd_rand rng{ std::random_device{}() };
 
-        return static_cast<N>(::std::uniform_real_distribution<long double>{ min, max }(rng));
+        return static_cast<N>(std::uniform_real_distribution<long double>{ min, max }(rng));
     }
 }

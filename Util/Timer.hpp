@@ -30,11 +30,11 @@ namespace fatpound::util
 
         FAT_FORCEINLINE void Start() noexcept
         {
-            m_start_ = ::std::chrono::steady_clock::now();
+            m_start_ = std::chrono::steady_clock::now();
         }
         FAT_FORCEINLINE void Stop() noexcept
         {
-            m_last_ = ::std::chrono::steady_clock::now();
+            m_last_ = std::chrono::steady_clock::now();
         }
 
 
@@ -42,7 +42,7 @@ namespace fatpound::util
 
 
     private:
-        ::std::chrono::steady_clock::time_point m_start_;
-        ::std::chrono::steady_clock::time_point m_last_;
+        std::chrono::steady_clock::time_point m_start_;
+        std::chrono::steady_clock::time_point m_last_;
     };
 }
