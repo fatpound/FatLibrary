@@ -48,7 +48,7 @@ namespace fatpound::win32::d3d11::pipeline::element
 
 
     protected:
-        ::Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout_;
+        Microsoft::WRL::ComPtr<ID3D11InputLayout> m_pInputLayout_;
 
 
     private:

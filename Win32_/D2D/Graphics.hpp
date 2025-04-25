@@ -27,7 +27,7 @@ namespace fatpound::win32::d2d
             :
             mc_dimensions_(dimensions)
         {
-            ::Microsoft::WRL::ComPtr<ID2D1Factory> pFactory;
+            Microsoft::WRL::ComPtr<ID2D1Factory> pFactory;
 
             if (const auto& hr = ::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory); FAILED(hr))
             {
@@ -144,8 +144,8 @@ namespace fatpound::win32::d2d
         
         
     private:
-        ::Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
-        ::Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
+        Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
+        Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
 
         const FATSPACE_UTIL_GFX::SizePack               mc_dimensions_;
     };

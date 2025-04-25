@@ -293,7 +293,7 @@ namespace fatpound::win32::d3d11
         void InitFrameworkBackbuffer_ () requires(Framework)
         {
             {
-                ::Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pSRV;
+                Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pSRV;
 
                 {
                     const D3D11_TEXTURE2D_DESC texDesc
@@ -334,7 +334,7 @@ namespace fatpound::win32::d3d11
                 GetImmediateContext()->PSSetShaderResources(0U, 1U, pSRV.GetAddressOf());
             }
 
-            ::Microsoft::WRL::ComPtr<ID3D11SamplerState> pSS;
+            Microsoft::WRL::ComPtr<ID3D11SamplerState> pSS;
 
             {
                 const D3D11_SAMPLER_DESC sDesc
@@ -442,7 +442,7 @@ namespace fatpound::win32::d3d11
         void InitRenderTarget_        ()
         {
             {
-                ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
+                Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
 
                 if (const auto& hr = GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), &pBackBufferTexture2D); FAILED(hr))
                 {
@@ -457,7 +457,7 @@ namespace fatpound::win32::d3d11
 
             if constexpr (NotFramework)
             {
-                ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture2d;
+                Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture2d;
 
                 {
                     D3D11_TEXTURE2D_DESC tex2dDesc
@@ -512,7 +512,7 @@ namespace fatpound::win32::d3d11
         }
         void InitRasterizer_          () requires(NotFramework)
         {
-            ::Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
+            Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
 
             {
                 D3D11_RASTERIZER_DESC rDesc

@@ -21,7 +21,7 @@ namespace fatpound::win32::d3d11::pipeline::element
     public:
         explicit PixelShader(ID3D11Device* const pDevice, const std::wstring& path)
         {
-            ::Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
+            Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 
             ::D3DReadFileToBlob(path.c_str(), &pBlob);
 
@@ -53,7 +53,7 @@ namespace fatpound::win32::d3d11::pipeline::element
 
 
     protected:
-        ::Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader_;
+        Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pPixelShader_;
 
 
     private:

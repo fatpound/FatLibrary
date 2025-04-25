@@ -64,7 +64,7 @@ namespace fatpound::win32::d3d11::pipeline::element
 
 
     protected:
-        ::Microsoft::WRL::ComPtr<ID3D11Buffer> m_pIndexBuffer_;
+        Microsoft::WRL::ComPtr<ID3D11Buffer> m_pIndexBuffer_;
 
         UINT m_count_;
 

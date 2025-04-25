@@ -15,7 +15,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
     public:
         explicit Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc, std::shared_ptr<FATSPACE_UTIL::Surface> pSurface = {})
         {
-            ::Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture;
+            Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture;
 
             {
                 const D3D11_SUBRESOURCE_DATA sd
@@ -59,7 +59,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
 
     private:
-        ::Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pSRV_;
+        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pSRV_;
     };
 }
 

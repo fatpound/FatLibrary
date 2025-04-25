@@ -18,16 +18,16 @@ namespace fatpound::util::gfx
 {
     struct ResourcePack
     {
-        ::Microsoft::WRL::ComPtr<::IDXGISwapChain>         m_pSwapChain;
-        ::Microsoft::WRL::ComPtr<::ID3D11Device>           m_pDevice;
-        ::Microsoft::WRL::ComPtr<::ID3D11DeviceContext>    m_pImmediateContext;
-        ::Microsoft::WRL::ComPtr<::ID3D11RenderTargetView> m_pRTV;
-        ::Microsoft::WRL::ComPtr<::ID3D11DepthStencilView> m_pDSV;
+        Microsoft::WRL::ComPtr<::IDXGISwapChain>         m_pSwapChain;
+        Microsoft::WRL::ComPtr<::ID3D11Device>           m_pDevice;
+        Microsoft::WRL::ComPtr<::ID3D11DeviceContext>    m_pImmediateContext;
+        Microsoft::WRL::ComPtr<::ID3D11RenderTargetView> m_pRTV;
+        Microsoft::WRL::ComPtr<::ID3D11DepthStencilView> m_pDSV;
     };
 
     struct FrameworkResourcePack final : public ResourcePack
     {
-        ::Microsoft::WRL::ComPtr<::ID3D11Texture2D> m_pSysbufferTexture2d;
+        Microsoft::WRL::ComPtr<::ID3D11Texture2D> m_pSysbufferTexture2d;
         ::D3D11_MAPPED_SUBRESOURCE                  m_mappedSysbufferTexture2d{};
         FATSPACE_UTIL::Surface                      m_surface;
 

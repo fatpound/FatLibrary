@@ -37,7 +37,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
 
     private:
-        ::Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState_;
+        Microsoft::WRL::ComPtr<ID3D11SamplerState> m_pSamplerState_;
     };
 }
 

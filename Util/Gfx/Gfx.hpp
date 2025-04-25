@@ -14,15 +14,15 @@
 
 namespace fatpound::util::gfx
 {
-    inline auto GetDXGIFactory(ID3D11Device* const pDevice) -> ::Microsoft::WRL::ComPtr<IDXGIFactory>
+    inline auto GetDXGIFactory(ID3D11Device* const pDevice) -> Microsoft::WRL::ComPtr<IDXGIFactory>
     {
-        auto pDXGIDevice = ::Microsoft::WRL::ComPtr<IDXGIDevice>{};
+        auto pDXGIDevice = Microsoft::WRL::ComPtr<IDXGIDevice>{};
         pDevice->QueryInterface(__uuidof(IDXGIDevice), &pDXGIDevice);
 
-        auto pDXGIAdapter = ::Microsoft::WRL::ComPtr<IDXGIAdapter>{};
+        auto pDXGIAdapter = Microsoft::WRL::ComPtr<IDXGIAdapter>{};
         pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), &pDXGIAdapter);
 
-        auto pDXGIFactory = ::Microsoft::WRL::ComPtr<IDXGIFactory>{};
+        auto pDXGIFactory = Microsoft::WRL::ComPtr<IDXGIFactory>{};
         pDXGIAdapter->GetParent(__uuidof(IDXGIFactory), &pDXGIFactory);
 
         return pDXGIFactory;
