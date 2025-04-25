@@ -96,7 +96,7 @@ namespace fatpound::win32::d2d
 
             m_pRenderTarget_->DrawLine(p0, p1, m_pBrush_.Get());
         }
-        void DrawClosedPolyLine(const std::vector<::DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F color) noexcept
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F color) noexcept
         {
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 
@@ -111,9 +111,9 @@ namespace fatpound::win32::d2d
                 );
             }
         }
-        void DrawClosedPolyLine(const std::vector<::DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F color, ::DirectX::XMMATRIX transform) noexcept
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F color, DirectX::XMMATRIX transform) noexcept
         {
-            namespace dx = ::DirectX;
+            namespace dx = DirectX;
 
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 

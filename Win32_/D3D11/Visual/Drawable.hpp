@@ -37,7 +37,7 @@ namespace fatpound::win32::d3d11::visual
 
 
     public:
-        virtual auto GetTransformXM() const noexcept -> ::DirectX::XMMATRIX = 0;
+        virtual auto GetTransformXM() const noexcept -> DirectX::XMMATRIX = 0;
 
         virtual void Update(const float delta_time) noexcept = 0;
 

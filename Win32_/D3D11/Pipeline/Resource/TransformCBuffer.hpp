@@ -45,7 +45,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
         {
             m_vcbuf_.Update(
                 pImmediateContext,
-                ::DirectX::XMMatrixTranspose(
+                DirectX::XMMatrixTranspose(
                     m_parent_.GetTransformXM() *
                     m_viewXM_.GetCameraXM() *
                     m_viewXM_.GetProjectionXM()
@@ -60,7 +60,7 @@ namespace fatpound::win32::d3d11::pipeline::resource
 
 
     private:
-        VertexCBuffer<::DirectX::XMMATRIX> m_vcbuf_;
+        VertexCBuffer<DirectX::XMMATRIX> m_vcbuf_;
 
         const T& m_parent_;
 

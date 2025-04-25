@@ -19,20 +19,20 @@ namespace fatpound::util
 
 
     public:
-        [[nodiscard]] auto GetCameraXM()     const noexcept -> ::DirectX::XMMATRIX
+        [[nodiscard]] auto GetCameraXM()     const noexcept -> DirectX::XMMATRIX
         {
             return m_camera_;
         }
-        [[nodiscard]] auto GetProjectionXM() const noexcept -> ::DirectX::XMMATRIX
+        [[nodiscard]] auto GetProjectionXM() const noexcept -> DirectX::XMMATRIX
         {
             return m_projection_;
         }
 
-        void SetCameraXM(const ::DirectX::XMMATRIX& camera) noexcept
+        void SetCameraXM(const DirectX::XMMATRIX& camera) noexcept
         {
             m_camera_ = camera;
         }
-        void SetProjectionXM(const ::DirectX::XMMATRIX& projection) noexcept
+        void SetProjectionXM(const DirectX::XMMATRIX& projection) noexcept
         {
             m_projection_ = projection;
         }
@@ -42,8 +42,8 @@ namespace fatpound::util
 
 
     private:
-        ::DirectX::XMMATRIX m_camera_{};
-        ::DirectX::XMMATRIX m_projection_{};
+        DirectX::XMMATRIX m_camera_{};
+        DirectX::XMMATRIX m_projection_{};
     };
 }
 
