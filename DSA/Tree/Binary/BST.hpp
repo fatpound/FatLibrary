@@ -187,9 +187,9 @@ namespace fatpound::dsa::tree::binary
 
             }
 
-            Node_* left   = nullptr;
-            Node_* right  = nullptr;
-            Node_* parent = nullptr;
+            Node_* left{};
+            Node_* right{};
+            Node_* parent{};
 
             T item;
         };
@@ -266,7 +266,7 @@ namespace fatpound::dsa::tree::binary
                 return nullptr;
             }
 
-            Node_* latest = nullptr;
+            Node_* latest{};
 
             if (node->parent not_eq nullptr)
             {
@@ -428,7 +428,7 @@ namespace fatpound::dsa::tree::binary
             }
         }
 
-        void ListPreorder_         (const Node_* const node)                 const
+        void ListPreorder_         (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -438,7 +438,7 @@ namespace fatpound::dsa::tree::binary
                 ListPreorder_(node->right);
             }
         }
-        void ListPreorderReverse_  (const Node_* const node)                 const
+        void ListPreorderReverse_  (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -448,7 +448,7 @@ namespace fatpound::dsa::tree::binary
                 ListPreorderReverse_(node->left);
             }
         }
-        void ListInorder_          (const Node_* const node)                 const
+        void ListInorder_          (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -459,7 +459,7 @@ namespace fatpound::dsa::tree::binary
                 ListInorder_(node->right);
             }
         }
-        void ListInorderReverse_   (const Node_* const node)                 const
+        void ListInorderReverse_   (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -470,7 +470,7 @@ namespace fatpound::dsa::tree::binary
                 ListInorderReverse_(node->left);
             }
         }
-        void ListPostorder_        (const Node_* const node)                 const
+        void ListPostorder_        (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -480,7 +480,7 @@ namespace fatpound::dsa::tree::binary
                 std::cout << node->item << ' ';
             }
         }
-        void ListPostorderReverse_ (const Node_* const node)                 const
+        void ListPostorderReverse_ (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -490,7 +490,7 @@ namespace fatpound::dsa::tree::binary
                 std::cout << node->item << ' ';
             }
         }
-        void ListLeaves_           (const Node_* const node)                 const
+        void ListLeaves_           (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -505,7 +505,7 @@ namespace fatpound::dsa::tree::binary
                 ListLeaves_(m_pRoot_->right);
             }
         }
-        void ListLeavesReverse_    (const Node_* const node)                 const
+        void ListLeavesReverse_    (const Node_* const node)               const
         {
             if (node not_eq nullptr)
             {
@@ -552,7 +552,7 @@ namespace fatpound::dsa::tree::binary
         {
             DeleteSubTree_(m_pRoot_);
 
-            m_pRoot_ = nullptr;
+            m_pRoot_      = nullptr;
             m_node_count_ = 0U;
         }
         void DeleteSubTree_(Node_* const root) noexcept

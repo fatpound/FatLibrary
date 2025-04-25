@@ -162,7 +162,7 @@ namespace fatpound::dsa::linkedlist
     protected:
         struct alignas(32) Node_ final
         {
-            explicit Node_(T new_item) noexcept
+            explicit Node_(const T& new_item) noexcept
                 :
                 item{ new_item }
             {

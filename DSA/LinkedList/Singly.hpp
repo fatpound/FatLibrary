@@ -184,14 +184,14 @@ namespace fatpound::dsa::linkedlist
     protected:
         struct alignas(16) Node_ final
         {
-            explicit Node_(T new_item) noexcept
+            explicit Node_(const T& new_item) noexcept
                 :
                 item(new_item)
             {
 
             }
 
-            Node_* next = nullptr;
+            Node_* next{};
 
             T item;
         };
