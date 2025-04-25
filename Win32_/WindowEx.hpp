@@ -171,11 +171,11 @@ namespace fatpound::win32
 
 
     public:
-        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE auto GetClientWidth()  const noexcept -> T
+        template <bitwise::IntegralOrFloating T> FAT_FORCEINLINE auto GetClientWidth()  const noexcept -> T
         {
             return static_cast<T>(mc_client_size_.m_width);
         }
-        template <bitwise::Integral_Or_Floating T> FAT_FORCEINLINE auto GetClientHeight() const noexcept -> T
+        template <bitwise::IntegralOrFloating T> FAT_FORCEINLINE auto GetClientHeight() const noexcept -> T
         {
             return static_cast<T>(mc_client_size_.m_height);
         }

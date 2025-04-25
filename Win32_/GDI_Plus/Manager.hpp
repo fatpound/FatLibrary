@@ -20,11 +20,11 @@ namespace fatpound::win32::gdi_plus
         {
             if (s_ref_count_ == 0)
             {
-                const ::Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+                const Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 
-                const auto success = ::Gdiplus::GdiplusStartup(&s_gdiPlus_token_, &gdiplusStartupInput, nullptr);
+                const auto success = Gdiplus::GdiplusStartup(&s_gdiPlus_token_, &gdiplusStartupInput, nullptr);
 
-                if (success not_eq ::Gdiplus::Ok)
+                if (success not_eq Gdiplus::Ok)
                 {
                     throw std::runtime_error("GDI+ initialization failed");
                 }
@@ -43,7 +43,7 @@ namespace fatpound::win32::gdi_plus
 
             if (s_ref_count_ == 0)
             {
-                ::Gdiplus::GdiplusShutdown(s_gdiPlus_token_);
+                Gdiplus::GdiplusShutdown(s_gdiPlus_token_);
             }
         }
 
