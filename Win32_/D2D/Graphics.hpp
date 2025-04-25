@@ -35,8 +35,8 @@ namespace fatpound::win32::d2d
             }
 
             if (const auto& hr = pFactory->CreateHwndRenderTarget(
-                ::D2D1::RenderTargetProperties(),
-                ::D2D1::HwndRenderTargetProperties(hWnd, ::D2D1::SizeU(dimensions.m_width, dimensions.m_height)),
+                D2D1::RenderTargetProperties(),
+                D2D1::HwndRenderTargetProperties(hWnd, D2D1::SizeU(dimensions.m_width, dimensions.m_height)),
                 &m_pRenderTarget_); FAILED(hr))
             {
                 throw std::runtime_error("A problem occured when creating the HwndRenderTarget!");
@@ -76,14 +76,14 @@ namespace fatpound::win32::d2d
         template <float r = 0.0F, float g = 0.0F, float b = 0.0F>
         void ClearScreen() noexcept
         {
-            m_pRenderTarget_->Clear(::D2D1::ColorF(r, g, b));
+            m_pRenderTarget_->Clear(D2D1::ColorF(r, g, b));
         }
 
 
     public:
         void ClearScreen(const float r, const float g, const float b) noexcept
         {
-            m_pRenderTarget_->Clear(::D2D1::ColorF(r, g, b));
+            m_pRenderTarget_->Clear(D2D1::ColorF(r, g, b));
         }
 
         void DrawLine(const D2D1_POINT_2F p0, const D2D1_POINT_2F p1) noexcept
@@ -147,6 +147,6 @@ namespace fatpound::win32::d2d
         Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
         Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
 
-        const FATSPACE_UTIL_GFX::SizePack               mc_dimensions_;
+        const FATSPACE_UTIL_GFX::SizePack             mc_dimensions_;
     };
 }
