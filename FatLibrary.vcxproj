@@ -75,6 +75,7 @@
     <ClInclude Include="Util\Timer.hpp" />
     <ClInclude Include="Util\Util.hpp" />
     <ClInclude Include="Util\ViewXM.hpp" />
+    <ClInclude Include="Win32_\Common.hpp" />
     <ClInclude Include="Win32_\COM\COM.hpp" />
     <ClInclude Include="Win32_\COM\Manager.hpp" />
     <ClInclude Include="Win32_\D2D\D2D.hpp" />

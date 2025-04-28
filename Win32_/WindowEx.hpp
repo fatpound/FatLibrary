@@ -5,6 +5,7 @@
 #include <FatNamespaces.hpp>
 #include <FatDefines.hpp>
 
+#include "Common.hpp"
 #include "IWindow.hpp"
 
 #include <Bitwise/Concepts.hpp>
@@ -33,13 +34,20 @@ namespace fatpound::win32
             std::shared_ptr<WndClassEx>            pWndClassEx,
             const std::wstring                     title,
             const FATSPACE_UTIL_GFX::SizePack      clientDimensions,
-            std::shared_ptr<FATSPACE_IO::Mouse>    pMouse    = std::make_shared<FATSPACE_IO::Mouse>(),
-            std::shared_ptr<FATSPACE_IO::Keyboard> pKeyboard = std::make_shared<FATSPACE_IO::Keyboard>(),
-            const std::optional<DirectX::XMINT2> position  = std::nullopt)
+            std::shared_ptr<FATSPACE_IO::Keyboard> pKeyboard         = std::make_shared<FATSPACE_IO::Keyboard>(),
+            std::shared_ptr<FATSPACE_IO::Mouse>    pMouse            = std::make_shared<FATSPACE_IO::Mouse>(),
+            const std::optional<DirectX::XMINT2>   position          = std::nullopt,
+            const DWORD&                           styles            = WS_VISIBLE
+#if IN_DEBUG or IS_GFX_FRAMEWORK
+            bitor WS_CAPTION bitor WS_MINIMIZEBOX bitor WS_OVERLAPPED bitor WS_SYSMENU,
+#else
+            bitor WS_POPUP,
+#endif
+            const DWORD& exStyles = {})
             :
-            m_pMouse{ std::move(pMouse) },
-            m_pKeyboard{ std::move(pKeyboard) },
-            m_pWndClassEx_{ std::move(pWndClassEx) },
+            m_pKeyboard{ std::move<>(pKeyboard) },
+            m_pMouse{ std::move<>(pMouse) },
+            m_pWndClassEx_{ std::move<>(pWndClassEx) },
             mc_client_size_{ .m_width = clientDimensions.m_width, .m_height = clientDimensions.m_height },
             /////////////////////
 #pragma region (thread w/o C4355)
@@ -52,43 +60,22 @@ namespace fatpound::win32
             auto future = DispatchTaskToQueue_<false>(
                 [=, this]() -> void
                 {
-                    constexpr DWORD exStyles{};
-
-                    constexpr DWORD styles
-                    {
-                        WS_VISIBLE
-
 #if IN_DEBUG or IS_GFX_FRAMEWORK
 
-                        bitor WS_CAPTION
-                        bitor WS_MINIMIZEBOX
-                        bitor WS_OVERLAPPED
-                        bitor WS_SYSMENU
-                    };
-
-                    RECT rect{
+                    ::RECT rect
+                    {
                         .left   = 0L,
                         .top    = 0L,
                         .right  = rect.left + static_cast<LONG>(mc_client_size_.m_width),
                         .bottom = rect.top  + static_cast<LONG>(mc_client_size_.m_height)
                     };
 
+                    if (const auto& retval = ::AdjustWindowRectEx(&rect, styles, false, exStyles); retval == 0)
                     {
-                        [[maybe_unused]]
-                        const auto&& retval = ::AdjustWindowRectEx(&rect, styles, false, exStyles);
+                        throw std::runtime_error("Error occured when adjusting RECT");
                     }
-#else
-                        bitor WS_POPUP
-                    };
 
 #endif
-
-                    const auto hModule = ::GetModuleHandle(nullptr);
-
-                    if (hModule == nullptr)
-                    {
-                        throw std::runtime_error("Error occured when obtaining hModule!");
-                    }
 
                     m_hWnd_ = ::CreateWindowEx(
                         exStyles,
@@ -110,7 +97,7 @@ namespace fatpound::win32
 
                         nullptr,
                         nullptr,
-                        hModule,
+                        ModuleHandleOf(),
                         this
                     );
 
@@ -182,14 +169,14 @@ namespace fatpound::win32
 
 
     public:
-        std::shared_ptr<FATSPACE_IO::Mouse>    m_pMouse;
         std::shared_ptr<FATSPACE_IO::Keyboard> m_pKeyboard;
+        std::shared_ptr<FATSPACE_IO::Mouse>    m_pMouse;
 
 
     protected:
         template <bool Notify = true, typename F, typename... Args>
         requires std::invocable<F, Args...>
-        auto DispatchTaskToQueue_(F&& function, Args&&... args) -> auto
+        auto DispatchTaskToQueue_(F&& function, Args&&... args) -> std::future<std::invoke_result_t<F, Args...>>
         {
             auto future = m_tasks_.Push<>(std::forward<F>(function), std::forward<Args>(args)...);
 
@@ -284,7 +271,7 @@ namespace fatpound::win32
 
 
     protected:
-        FAT_FORCEINLINE void Process_WM_MOUSEMOVE_  (const WPARAM wParam, const LPARAM lParam)
+        FAT_FORCEINLINE void Process_WM_MOUSEMOVE_  (const WPARAM& wParam, const LPARAM& lParam)
         {
             const POINTS pt = MAKEPOINTS(lParam);
 
@@ -339,7 +326,7 @@ namespace fatpound::win32
         {
             m_pMouse->AddWheelReleaseEvent();
         }
-        FAT_FORCEINLINE void Process_WM_MOUSEWHEEL_ (const int delta)
+        FAT_FORCEINLINE void Process_WM_MOUSEWHEEL_ (const int& delta)
         {
             m_pMouse->ProcessWheelDelta(delta);
         }
@@ -348,30 +335,30 @@ namespace fatpound::win32
         {
             m_pKeyboard->ClearKeyStateBitset();
         }
-        FAT_FORCEINLINE void Process_WM_KEYDOWN_   (const WPARAM wParam, const LPARAM lParam)
+        FAT_FORCEINLINE void Process_WM_KEYDOWN_   (const WPARAM& wParam, const LPARAM& lParam)
         {
             Process_WM_SYSKEYDOWN_(wParam, lParam);
         }
-        FAT_FORCEINLINE void Process_WM_SYSKEYDOWN_(const WPARAM wParam, const LPARAM lParam)
+        FAT_FORCEINLINE void Process_WM_SYSKEYDOWN_(const WPARAM& wParam, const LPARAM& lParam)
         {
             if ((not (lParam bitand 0x40000000)) or m_pKeyboard->AutoRepeatIsEnabled())
             {
                 m_pKeyboard->AddKeyPressEvent(static_cast<unsigned char>(wParam));
             }
         }
-        FAT_FORCEINLINE void Process_WM_KEYUP_     (const WPARAM wParam)
+        FAT_FORCEINLINE void Process_WM_KEYUP_     (const WPARAM& wParam)
         {
             Process_WM_SYSKEYUP_(wParam);
         }
-        FAT_FORCEINLINE void Process_WM_SYSKEYUP_  (const WPARAM wParam)
+        FAT_FORCEINLINE void Process_WM_SYSKEYUP_  (const WPARAM& wParam)
         {
             m_pKeyboard->AddKeyReleaseEvent(static_cast<unsigned char>(wParam));
         }
-        FAT_FORCEINLINE void Process_WM_CHAR_      (const WPARAM wParam)
+        FAT_FORCEINLINE void Process_WM_CHAR_      (const WPARAM& wParam)
         {
             m_pKeyboard->AddChar(static_cast<unsigned char>(wParam));
         }
-        FAT_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM wParam) noexcept
+        FAT_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM& wParam) noexcept
         {
             if ((wParam bitand 0xFFF0U) == SC_CLOSE)
             {
@@ -402,9 +389,7 @@ namespace fatpound::win32
     private:
         void NotifyTaskDispatch_() const
         {
-            const auto&& retval = ::PostMessage(m_hWnd_, scx_customTaskMsgId_, 0U, 0);
-
-            if (retval == 0)
+            if (const auto& retval = ::PostMessage(m_hWnd_, scx_customTaskMsgId_, 0U, 0); retval == 0)
             {
                 throw std::runtime_error{ "Failed to post task notification message!" };
             }
