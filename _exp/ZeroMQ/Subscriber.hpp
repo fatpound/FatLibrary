@@ -13,7 +13,7 @@ namespace fatx
         class Subscriber final
         {
         public:
-            Subscriber(const std::string& address = "tcp://localhost:5555")
+            Subscriber(const std::string& address)
                 :
                 m_context_(1),
                 m_subscriber_(m_context_, zmq::socket_type::sub)

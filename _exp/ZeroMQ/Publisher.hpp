@@ -14,7 +14,7 @@ namespace fatx
         class Publisher final
         {
         public:
-            Publisher(const std::string& address = "tcp://localhost:5555")
+            Publisher(const std::string& address)
                 :
                 m_context_(1),
                 m_publisher_(m_context_, zmq::socket_type::pub)
