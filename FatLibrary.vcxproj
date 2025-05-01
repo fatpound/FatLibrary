@@ -113,6 +113,8 @@
     <ClInclude Include="Win32_\WMF\Manager.hpp" />
     <ClInclude Include="Win32_\WMF\WMF.hpp" />
     <ClInclude Include="_exp\FatX.hpp" />
+    <ClInclude Include="_exp\OpenCV\Contour.hpp" />
+    <ClInclude Include="_exp\OpenCV\OpenCV.hpp" />
     <ClInclude Include="_exp\ZeroMQ\Publisher.hpp" />
     <ClInclude Include="_exp\ZeroMQ\Subscriber.hpp" />
     <ClInclude Include="_exp\ZeroMQ\ZeroMQ.hpp" />
