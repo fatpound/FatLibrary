@@ -15,7 +15,7 @@ namespace fatx::opencv
         {
             double currentMaxArea{};
 
-            for (std::size_t i{}, contoursSize{ contours.size() }; i < contoursSize; ++i)
+            for (std::size_t i{}; i < contours.size(); ++i)
             {
                 if (const auto& area = cv::contourArea(contours[i]); area > maxArea and area > currentMaxArea)
                 {
