@@ -20,7 +20,7 @@ namespace fatx::opencv
                 if (const auto& area = cv::contourArea(contours[i]); area > maxArea and area > currentMaxArea)
                 {
                     currentMaxArea = area;
-                    largestIdx = i;
+                    largestIdx     = static_cast<decltype(largestIdx)>(i);
                 }
             }
         }
