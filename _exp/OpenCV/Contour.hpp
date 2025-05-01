@@ -8,7 +8,7 @@
 
 namespace fatx::opencv
 {
-    static auto FindLargestContour_(const std::vector<std::vector<cv::Point>>& contours, const double& maxArea) -> std::ptrdiff_t
+    static auto FindLargestContour(const std::vector<std::vector<cv::Point>>& contours, const double& maxArea) -> std::ptrdiff_t
     {
         std::ptrdiff_t largestIdx{ -1 };
 
