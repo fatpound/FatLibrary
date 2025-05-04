@@ -16,7 +16,7 @@ namespace fatpound::util
 {
     template <std::floating_point FP = double, std::integral T>
     FAT_CMATH_CONSTEXPR23
-    static auto HourMinuteHandAngle(T hours, T minutes) -> FP
+    static auto HourMinuteHandAngle(T hours, T minutes) noexcept -> FP
     {
         if constexpr (std::signed_integral<T>)
         {
