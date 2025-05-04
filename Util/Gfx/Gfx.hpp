@@ -14,7 +14,7 @@
 
 namespace fatpound::util::gfx
 {
-    inline auto GetDXGIFactory(ID3D11Device* const pDevice) -> Microsoft::WRL::ComPtr<IDXGIFactory>
+    static auto GetDXGIFactory(ID3D11Device* const pDevice) -> Microsoft::WRL::ComPtr<IDXGIFactory>
     {
         auto pDXGIDevice = Microsoft::WRL::ComPtr<IDXGIDevice>{};
         pDevice->QueryInterface(__uuidof(IDXGIDevice), &pDXGIDevice);
@@ -28,7 +28,7 @@ namespace fatpound::util::gfx
         return pDXGIFactory;
     }
 
-    inline void ToggleDXGI_AltEnterMode(ID3D11Device* const pDevice, const HWND hWnd, UINT& flag)
+    static void ToggleDXGI_AltEnterMode(ID3D11Device* const pDevice, const HWND& hWnd, UINT& flag)
     {
         static constexpr auto magicVal = static_cast<UINT>(DXGI_MWA_NO_ALT_ENTER);
 

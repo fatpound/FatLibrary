@@ -5,7 +5,7 @@
 #include <queue>
 #include <ranges>
 
-namespace fatpound::dsa::tree::n_ary
+namespace fatpound::dsa::tree
 {
     template <std::totally_ordered T, std::size_t I, std::size_t S>
     class B_Plus final

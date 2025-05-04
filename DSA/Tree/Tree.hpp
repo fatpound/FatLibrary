@@ -1,4 +1,8 @@
 #pragma once
 
-#include "Binary/Binary.hpp"
-#include "N_ary/N_ary.hpp"
+#include "BST.hpp"
+#include "AVL.hpp"
+#include "IPR.hpp"
+
+#include "B.hpp"
+#include "B_Plus.hpp"

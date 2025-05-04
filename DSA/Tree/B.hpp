@@ -6,7 +6,7 @@
 #include <ranges>
 #include <algorithm>
 
-namespace fatpound::dsa::tree::n_ary
+namespace fatpound::dsa::tree
 {
     template <std::totally_ordered T, std::size_t C>
     class B final

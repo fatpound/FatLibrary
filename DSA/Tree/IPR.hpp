@@ -2,7 +2,7 @@
 
 #include "AVL.hpp"
 
-namespace fatpound::dsa::tree::binary
+namespace fatpound::dsa::tree
 {
     template <std::totally_ordered T>
     class IPR final : public AVL<T>

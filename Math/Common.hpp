@@ -4,7 +4,7 @@
 
 #include "Multiplicative.hpp"
 
-#include <Bitwise/Concepts.hpp>
+#include <Traits/Bitwise.hpp>
 
 #include <cmath>
 
@@ -74,7 +74,7 @@ namespace fatpound::math
         return DigitSum<std::make_unsigned_t<T>>(num < 0 ? (-num) : num);
     }
 
-    template <bitwise::IntegralOrFloating T>
+    template <traits::IntegralOrFloating T>
     constexpr auto Gaussian(const T& x, const T& rho)
     {
         const auto rhoSq2 = Square<>(rho) * 2.0;

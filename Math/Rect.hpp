@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Bitwise/Concepts.hpp>
+#include <Traits/Bitwise.hpp>
 
 #include <utility>
 
 namespace fatpound::math
 {
-    template <bitwise::IntegralOrFloating T>
+    template <traits::IntegralOrFloating T>
     class Rect final
     {
     public:

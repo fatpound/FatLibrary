@@ -50,25 +50,19 @@
     <ClInclude Include="DSA\LinkedList\SinglyCircular.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\Binary\AVL.hpp">
+    <ClInclude Include="DSA\Tree\AVL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\Binary\Binary.hpp">
+    <ClInclude Include="DSA\Tree\BST.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\Binary\BST.hpp">
+    <ClInclude Include="DSA\Tree\IPR.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\Binary\IPR.hpp">
+    <ClInclude Include="DSA\Tree\B.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\N_ary\B.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSA\Tree\N_ary\B_Plus.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSA\Tree\N_ary\N_ary.hpp">
+    <ClInclude Include="DSA\Tree\B_Plus.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DSA\Tree\Tree.hpp">
@@ -212,12 +206,6 @@
     <ClInclude Include="Win32_\GDI_Plus\Manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\WMF\Manager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\WMF\WMF.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Win32_\FatWin32.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -272,12 +260,6 @@
     <ClInclude Include="Util\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bitwise\Bitwise.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bitwise\Concepts.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="_exp\FatX.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -300,6 +282,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_exp\OpenCV\Contour.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Callable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Bitwise.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

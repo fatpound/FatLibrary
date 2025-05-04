@@ -12,7 +12,7 @@
 #pragma comment(lib, "gdiplus")
 #endif
 
-#include <Bitwise/Concepts.hpp>
+#include <Traits/Bitwise.hpp>
 #include <Memory/Memory.hpp>
 
 #include "Gfx/SizePack.hpp"
@@ -197,23 +197,23 @@ namespace fatpound::util
 
 
     public:
-        template <bitwise::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetWidth      () const noexcept -> T
+        template <traits::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetWidth      () const noexcept -> T
         {
             return static_cast<T>(m_size_pack_.m_width);
         }
-        template <bitwise::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetHeight     () const noexcept -> T
+        template <traits::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetHeight     () const noexcept -> T
         {
             return static_cast<T>(m_size_pack_.m_height);
         }
-        template <bitwise::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetAlignment  () const noexcept -> T
+        template <traits::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetAlignment  () const noexcept -> T
         {
             return static_cast<T>(m_align_byte_);
         }
-        template <bitwise::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetPixelPitch () const noexcept -> T
+        template <traits::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetPixelPitch () const noexcept -> T
         {
             return static_cast<T>(m_pixel_pitch_);
         }
-        template <bitwise::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetPitch      () const noexcept -> T
+        template <traits::IntegralOrFloating T = Size_t> [[nodiscard]] FAT_FORCEINLINE auto GetPitch      () const noexcept -> T
         {
             return static_cast<T>(m_pixel_pitch_ * sizeof(Color));
         }

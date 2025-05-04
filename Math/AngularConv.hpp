@@ -2,7 +2,7 @@
 
 #include <concepts>
 
-namespace fatpound::math::inline angular_conv
+namespace fatpound::math
 {
     template <std::floating_point FP = double, std::convertible_to<FP> T> constexpr auto DegToMOA(const T& deg) -> FP
     {

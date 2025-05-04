@@ -14,7 +14,7 @@
 #include "Pipeline/Pipeline.hpp"
 #include "Visual/Visual.hpp"
 
-#include <Bitwise/Concepts.hpp>
+#include <Traits/Bitwise.hpp>
 #include <Util/Gfx/Gfx.hpp>
 #include <Util/Color.hpp>
 #include <Util/Surface.hpp>
@@ -44,7 +44,7 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        explicit Graphics(const HWND hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)
             :
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
@@ -56,7 +56,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)    requires(Framework)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTIL_GFX::SizePack& dimensions)   requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
@@ -96,11 +96,11 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        template <bitwise::IntegralOrFloating T> [[nodiscard]] FAT_FORCEINLINE constexpr auto GetWidth () const noexcept -> T
+        template <traits::IntegralOrFloating T> [[nodiscard]] FAT_FORCEINLINE constexpr auto GetWidth () const noexcept -> T
         {
             return static_cast<T>(mc_dimensions_.m_width);
         }
-        template <bitwise::IntegralOrFloating T> [[nodiscard]] FAT_FORCEINLINE constexpr auto GetHeight() const noexcept -> T
+        template <traits::IntegralOrFloating T> [[nodiscard]] FAT_FORCEINLINE constexpr auto GetHeight() const noexcept -> T
         {
             return static_cast<T>(mc_dimensions_.m_height);
         }

@@ -27,8 +27,6 @@
     <ClInclude Include="Automata\Automata.hpp" />
     <ClInclude Include="Automata\CFG.hpp" />
     <ClInclude Include="Automata\TLT.hpp" />
-    <ClInclude Include="Bitwise\Bitwise.hpp" />
-    <ClInclude Include="Bitwise\Concepts.hpp" />
     <ClInclude Include="Concurrency\Concurrency.hpp" />
     <ClInclude Include="Concurrency\TaskQueue.hpp" />
     <ClInclude Include="DSA\DSA.hpp" />
@@ -37,13 +35,11 @@
     <ClInclude Include="DSA\LinkedList\LinkedList.hpp" />
     <ClInclude Include="DSA\LinkedList\Singly.hpp" />
     <ClInclude Include="DSA\LinkedList\SinglyCircular.hpp" />
-    <ClInclude Include="DSA\Tree\Binary\AVL.hpp" />
-    <ClInclude Include="DSA\Tree\Binary\Binary.hpp" />
-    <ClInclude Include="DSA\Tree\Binary\BST.hpp" />
-    <ClInclude Include="DSA\Tree\Binary\IPR.hpp" />
-    <ClInclude Include="DSA\Tree\N_ary\B.hpp" />
-    <ClInclude Include="DSA\Tree\N_ary\B_Plus.hpp" />
-    <ClInclude Include="DSA\Tree\N_ary\N_ary.hpp" />
+    <ClInclude Include="DSA\Tree\AVL.hpp" />
+    <ClInclude Include="DSA\Tree\BST.hpp" />
+    <ClInclude Include="DSA\Tree\IPR.hpp" />
+    <ClInclude Include="DSA\Tree\B.hpp" />
+    <ClInclude Include="DSA\Tree\B_Plus.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
     <ClInclude Include="FatDefines.hpp" />
     <ClInclude Include="FatLibrary.hpp" />
@@ -65,6 +61,9 @@
     <ClInclude Include="Math\Rect.hpp" />
     <ClInclude Include="Memory\Memory.hpp" />
     <ClInclude Include="Random\Random.hpp" />
+    <ClInclude Include="Traits\Bitwise.hpp" />
+    <ClInclude Include="Traits\Callable.hpp" />
+    <ClInclude Include="Traits\Traits.hpp" />
     <ClInclude Include="Util\Color.hpp" />
     <ClInclude Include="Util\Common.hpp" />
     <ClInclude Include="Util\Gfx\FullScreenQuad.hpp" />
@@ -110,8 +109,6 @@
     <ClInclude Include="Win32_\IWindow.hpp" />
     <ClInclude Include="Win32_\Win32_.hpp" />
     <ClInclude Include="Win32_\WindowEx.hpp" />
-    <ClInclude Include="Win32_\WMF\Manager.hpp" />
-    <ClInclude Include="Win32_\WMF\WMF.hpp" />
     <ClInclude Include="_exp\FatX.hpp" />
     <ClInclude Include="_exp\OpenCV\Contour.hpp" />
     <ClInclude Include="_exp\OpenCV\OpenCV.hpp" />
