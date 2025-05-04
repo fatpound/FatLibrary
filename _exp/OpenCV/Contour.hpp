@@ -1,7 +1,12 @@
 #pragma once
 
+#include <FatDefines.hpp>
+
+#pragma warning (push)
+#pragma warning (disable : FAT_EXTERNAL_WARNINGS)
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
+#pragma warning (pop)
 
 #include <cstddef>
 #include <vector>
