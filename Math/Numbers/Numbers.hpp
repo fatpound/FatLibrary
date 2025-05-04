@@ -2,12 +2,12 @@
 
 #include <FatDefines.hpp>
 
-#include "../Common.hpp"
-#include "../Multiplicative.hpp"
+#include <Math/Numbers/Common.hpp>
+#include <Math/Numbers/Primes.hpp>
+#include <Math/Numbers/Sets.hpp>
 
-#include "Common.hpp"
-#include "Primes.hpp"
-#include "Sets.hpp"
+#include <Math/Common.hpp>
+#include <Math/Multiplicative.hpp>
 
 #include <numbers>
 

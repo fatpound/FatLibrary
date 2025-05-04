@@ -4,7 +4,7 @@
 
 #include <FatNamespaces.hpp>
 
-#include "../Pipeline/Pipeline.hpp"
+#include <Win32_/D3D11/Pipeline/Pipeline.hpp>
 
 #include "Drawable.hpp"
 

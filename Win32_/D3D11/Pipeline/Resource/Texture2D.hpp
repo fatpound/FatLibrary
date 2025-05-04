@@ -2,7 +2,7 @@
 
 #if FAT_BUILDING_WITH_MSVC
 
-#include "../Bindable.hpp"
+#include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
 #include <Util/Surface.hpp>
 

@@ -10,7 +10,7 @@
 
 #include <d3d11.h>
 
-#include "../Pipeline/Element/IndexBuffer.hpp"
+#include <Win32_/D3D11/Pipeline/Element/IndexBuffer.hpp>
 
 #include <cassert>
 

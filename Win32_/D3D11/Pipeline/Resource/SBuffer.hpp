@@ -8,7 +8,7 @@
 
 #include <wrl.h>
 
-#include "../Bindable.hpp"
+#include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
 #include <stdexcept>
 
