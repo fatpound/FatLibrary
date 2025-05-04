@@ -1,6 +1,7 @@
 #pragma once
 
 #include <FatDefines.hpp>
+
 #pragma warning (push)
 #pragma warning (disable : FAT_EXTERNAL_WARNINGS)
 #include <zmq.hpp>
