@@ -28,7 +28,7 @@ namespace fatpound::win32::d3d11::visual
 
 
     public:
-        static auto IsStaticInitialized_() -> bool
+        static auto IsStaticInitialized_() noexcept -> bool
         {
             return not tl_bindable_vec_.empty();
         }

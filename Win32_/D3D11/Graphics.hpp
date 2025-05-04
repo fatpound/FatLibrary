@@ -193,7 +193,7 @@ namespace fatpound::win32::d3d11
         {
             return m_res_pack_.m_pDevice.Get();
         }
-        auto GetSwapChain        () const -> IDXGISwapChain*
+        auto GetSwapChain        () const noexcept -> IDXGISwapChain*
         {
             return m_res_pack_.m_pSwapChain.Get();
         }
@@ -460,7 +460,7 @@ namespace fatpound::win32::d3d11
                 Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture2d;
 
                 {
-                    D3D11_TEXTURE2D_DESC tex2dDesc
+                    const D3D11_TEXTURE2D_DESC tex2dDesc
                     {
                         .Width      = GetWidth<UINT>(),
                         .Height     = GetHeight<UINT>(),
@@ -481,7 +481,7 @@ namespace fatpound::win32::d3d11
                     }
                 }
 
-                D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc
+                const D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc
                 {
                     .Format        = DXGI_FORMAT_D32_FLOAT,
                     .ViewDimension = ((m_msaa_count_ == 1U) ? D3D11_DSV_DIMENSION_TEXTURE2D : D3D11_DSV_DIMENSION_TEXTURE2DMS),
@@ -515,7 +515,7 @@ namespace fatpound::win32::d3d11
             Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
 
             {
-                D3D11_RASTERIZER_DESC rDesc
+                const D3D11_RASTERIZER_DESC rDesc
                 {
                     .FillMode              = D3D11_FILL_SOLID,
                     .CullMode              = D3D11_CULL_BACK,
