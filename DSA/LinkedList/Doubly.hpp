@@ -134,6 +134,11 @@ namespace fatpound::dsa::linkedlist
                 temp = temp->prev;
             }
 
+#ifdef _MSC_VER
+            __assume(temp->prev not_eq nullptr);
+            __assume(temp->next not_eq nullptr);
+#endif
+
             std::swap<>(temp->prev, temp->next);
 
             m_list_ = temp;
