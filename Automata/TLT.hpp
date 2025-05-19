@@ -135,7 +135,7 @@ namespace fatpound::automata
 
 
         private:
-            void CreateTree_(Node_* node)
+            void CreateTree_     (Node_* node)
             {
                 m_results_.reserve(node->m_leaves.size());
 

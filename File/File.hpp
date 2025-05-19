@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DSA/Cryptography/XorCipher.hpp>
+
 #include <cstdint>
 
 #include <string>
@@ -8,45 +10,40 @@
 #include <random>
 #include <variant>
 
+namespace fatpound::file::details
+{
+    static void EncryptDecrypt_Impl(const std::filesystem::path& inPath, const std::size_t& key, std::filesystem::path& outPath)
+    {
+        std::ifstream inputFile(inPath, std::ios::binary);
+
+        if (not inputFile.is_open())
+        {
+            throw std::runtime_error("Input file cannot be opened!");
+        }
+
+        if (outPath.empty() or inPath == outPath)
+        {
+            outPath = std::filesystem::temp_directory_path().string() + inPath.stem().string() + "_temp.fat000";
+        }
+
+        std::ofstream outputFile(outPath, std::ios::binary);
+
+        if (not outputFile.is_open())
+        {
+            throw std::runtime_error("Cannot create the new version of file!");
+        }
+
+        dsa::cryptography::ApplyXorCipherWithKey<>(
+            std::istreambuf_iterator<char>(inputFile),
+            std::istreambuf_iterator<char>(),
+            std::ostreambuf_iterator<char>(outputFile),
+            key
+        );
+    }
+}
+
 namespace fatpound::file
 {
-    namespace details
-    {
-        static void EncryptDecrypt_Impl (const std::filesystem::path& inPath, const std::size_t& key, std::filesystem::path& outPath)
-        {
-            std::ifstream inputFile(inPath, std::ios::binary);
-
-            if (not inputFile.is_open())
-            {
-                throw std::runtime_error("Input file cannot be opened!");
-            }
-
-            if (outPath.empty() or inPath == outPath)
-            {
-                outPath = std::filesystem::temp_directory_path().string() + inPath.stem().string() + "_temp.fat000";
-            }
-
-            std::ofstream outputFile(outPath, std::ios::binary);
-
-            if (not outputFile.is_open())
-            {
-                throw std::runtime_error("Cannot create the new version of file!");
-            }
-
-            std::minstd_rand rng{ static_cast<decltype(rng)::result_type>(key) };
-
-            std::transform<>(
-                std::istreambuf_iterator<char>(inputFile),
-                std::istreambuf_iterator<char>(),
-                std::ostreambuf_iterator<char>(outputFile),
-                [&rng](const char& ch) noexcept -> char
-                {
-                    return static_cast<char>(static_cast<decltype(rng)::result_type>(ch) xor rng());
-                }
-            );
-        }
-    }
-
     static auto NameAndExtensionOf  (const std::filesystem::path& path) -> std::pair<std::string, std::string>
     {
         if (not std::filesystem::exists(path))

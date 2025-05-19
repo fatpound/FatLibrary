@@ -17,7 +17,7 @@
   <ItemGroup>
     <None Include="_misc\FatRules.ruleset" />
     <None Include="_misc\FatLibrary.cd" />
-    <None Include="Math\AngularConv.hpp" />
+    <None Include="Math\Geometry\AngularConv.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Automata\Automata.hpp">
@@ -92,7 +92,7 @@
     <ClInclude Include="Math\Multiplicative.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Rect.hpp">
+    <ClInclude Include="Math\Geometry\Rectangle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Memory\Memory.hpp">
@@ -221,7 +221,7 @@
     <ClInclude Include="Win32_\WindowEx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatDefines.hpp">
+    <ClInclude Include="FatMacros.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FatLibrary.hpp">
@@ -251,7 +251,7 @@
     <ClInclude Include="Math\Numbers\Numbers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry.hpp">
+    <ClInclude Include="Math\Geometry\Geometry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="File\File.hpp">
@@ -291,6 +291,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Traits\Bitwise.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bit\Bit.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\Cryptography\Cryptography.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\Cryptography\XorCipher.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Geometry\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FatSTL_Macros.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Extents.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random\URand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Formation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Indirection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

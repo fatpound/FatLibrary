@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatDefines.hpp>
+#include <FatSTL_Macros.hpp>
 
 #include "Gfx/Gfx.hpp"
 
@@ -15,8 +15,9 @@
 namespace fatpound::util
 {
     template <std::floating_point FP = double, std::integral T>
-    FAT_CMATH_CONSTEXPR23
-    static auto HourMinuteHandAngle(T hours, T minutes) noexcept -> FP
+    static
+    CX_MATH23
+    auto HourMinuteHandAngle(T hours, T minutes) noexcept -> FP
     {
         if constexpr (std::signed_integral<T>)
         {

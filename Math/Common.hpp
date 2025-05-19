@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatDefines.hpp>
+#include <FatSTL_Macros.hpp>
 
 #include "Multiplicative.hpp"
 
@@ -48,7 +48,8 @@ namespace fatpound::math
     }
 
     template <std::unsigned_integral T>
-    FAT_CMATH_CONSTEXPR26
+    static
+    CX_MATH26
     auto DigitCount_Fast(const T& num) noexcept -> T
     {
         return std::log10(num) + static_cast<T>(1);
@@ -77,7 +78,7 @@ namespace fatpound::math
     template <traits::IntegralOrFloating T>
     constexpr auto Gaussian(const T& x, const T& rho)
     {
-        const auto rhoSq2 = Square<>(rho) * 2.0;
+        const auto& rhoSq2 = Square<>(rho) * 2.0;
 
         return (1.0 / std::sqrt(rhoSq2 * std::numbers::pi_v<T>)) * std::exp(-(Square<>(x) / rhoSq2));
     }

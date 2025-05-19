@@ -3,7 +3,7 @@
 #if FAT_BUILDING_WITH_MSVC
 
 #include <FatNamespaces.hpp>
-#include <FatDefines.hpp>
+#include <FatMacros.hpp>
 
 #include <FatWin32.hpp>
 #include <d3d11.h>
@@ -34,13 +34,13 @@ namespace fatpound::win32::d3d11
     template <bool Framework = false>
     class Graphics final
     {
-        static constexpr auto NotFramework = std::bool_constant<not Framework>::value;
+        static constexpr auto NotFramework         = not Framework;
         static constexpr auto RasterizationEnabled = NotFramework;
 
         using ResourcePack_t = std::conditional_t<Framework, FATSPACE_UTIL_GFX::FrameworkResourcePack, FATSPACE_UTIL_GFX::ResourcePack>;
 
     public:
-        using float_t = float;
+        using Float_t = float;
 
 
     public:
@@ -114,7 +114,7 @@ namespace fatpound::win32::d3d11
             m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }
 
-        template <bool FullBlack = true, float_t red = 1.0F, float_t green = 1.0F, float_t blue = 1.0F, float_t alpha = 1.0F>
+        template <bool FullBlack = true, Float_t red = 1.0F, Float_t green = 1.0F, Float_t blue = 1.0F, Float_t alpha = 1.0F>
         void BeginFrame() requires(NotFramework)
         {
             if constexpr (FullBlack)
@@ -154,11 +154,11 @@ namespace fatpound::win32::d3d11
             }
         }
 
-        template <float_t red = 0.0F, float_t green = 0.0F, float_t blue = 0.0F, float_t alpha = 1.0F>
+        template <Float_t red = 0.0F, Float_t green = 0.0F, Float_t blue = 0.0F, Float_t alpha = 1.0F>
         void FillWithSolidColor() requires(NotFramework)
         {
             {
-                constexpr std::array<const float_t, 4> colors{ red, green, blue, alpha };
+                constexpr std::array<const Float_t, 4> colors{ red, green, blue, alpha };
 
                 GetImmediateContext()->ClearRenderTargetView(GetRenderTargetView(), colors.data());
             }
@@ -166,7 +166,7 @@ namespace fatpound::win32::d3d11
             GetImmediateContext()->ClearDepthStencilView(GetDepthStencilView(), D3D11_CLEAR_DEPTH, 1.0F, 0U);
         }
 
-        template <std::floating_point T = float_t>
+        template <std::floating_point T = Float_t>
         void FillWithSolidColor(const T red, const T green, const T blue, const T alpha = static_cast<T>(1.0)) requires(NotFramework)
         {
             {
@@ -180,7 +180,7 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        auto GetSurface() -> FATSPACE_UTIL::Surface*
+        auto GetSurface() noexcept -> FATSPACE_UTIL::Surface*
         {
             return m_pSurface_.get();
         }
@@ -589,9 +589,9 @@ namespace fatpound::win32::d3d11
         
         const FATSPACE_UTIL_GFX::SizePack mc_dimensions_;
 
-        ::UINT m_msaa_count_{};
-        ::UINT m_msaa_quality_{};
-        ::UINT m_dxgi_mode_{};
+        UINT m_msaa_count_{};
+        UINT m_msaa_quality_{};
+        UINT m_dxgi_mode_{};
 
         std::unique_ptr<FATSPACE_UTIL::Surface> m_pSurface_;
     };

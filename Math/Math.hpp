@@ -1,16 +1,14 @@
 #pragma once
 
 #if FAT_BUILDING_WITH_MSVC
-#include <DirectXMath.h>
+    #include <DirectXMath.h>
 #endif
 
 #include "Numbers/Numbers.hpp"
+#include "Geometry/Geometry.hpp"
 
-#include "AngularConv.hpp"
 #include "Common.hpp"
-#include "Geometry.hpp"
 #include "Multiplicative.hpp"
-#include "Rect.hpp"
 
 #if FAT_BUILDING_WITH_MSVC
 

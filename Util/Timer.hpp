@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatDefines.hpp>
+#include <FatMacros.hpp>
 
 #include <chrono>
 

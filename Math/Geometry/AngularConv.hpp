@@ -2,7 +2,7 @@
 
 #include <concepts>
 
-namespace fatpound::math
+namespace fatpound::math::geometry
 {
     template <std::floating_point FP = double, std::convertible_to<FP> T> constexpr auto DegToMOA(const T& deg) -> FP
     {

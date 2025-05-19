@@ -127,7 +127,7 @@ namespace fatpound::automata
                     std::string word(str.cbegin(), str.cbegin() + static_cast<std::ptrdiff_t>(index));
 
                     {
-                        constexpr auto lciLen = std::string_view{ scx_LanguageContentIndicator_ }.size();
+                        constexpr auto lciLen = std::string_view{scx_LanguageContentIndicator_}.size();
 
                         str.erase(0, index + lciLen);
                     }

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Math\AngularConv.hpp" />
+    <None Include="Math\Geometry\AngularConv.hpp" />
     <None Include="_misc\FatLibrary.cd" />
     <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
@@ -27,8 +27,11 @@
     <ClInclude Include="Automata\Automata.hpp" />
     <ClInclude Include="Automata\CFG.hpp" />
     <ClInclude Include="Automata\TLT.hpp" />
+    <ClInclude Include="Bit\Bit.hpp" />
     <ClInclude Include="Concurrency\Concurrency.hpp" />
     <ClInclude Include="Concurrency\TaskQueue.hpp" />
+    <ClInclude Include="DSA\Cryptography\Cryptography.hpp" />
+    <ClInclude Include="DSA\Cryptography\XorCipher.hpp" />
     <ClInclude Include="DSA\DSA.hpp" />
     <ClInclude Include="DSA\LinkedList\Doubly.hpp" />
     <ClInclude Include="DSA\LinkedList\DoublyCircular.hpp" />
@@ -41,7 +44,7 @@
     <ClInclude Include="DSA\Tree\B.hpp" />
     <ClInclude Include="DSA\Tree\B_Plus.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
-    <ClInclude Include="FatDefines.hpp" />
+    <ClInclude Include="FatMacros.hpp" />
     <ClInclude Include="FatLibrary.hpp" />
     <ClInclude Include="FatNamespaces.hpp" />
     <ClInclude Include="File\File.hpp" />
@@ -51,18 +54,24 @@
     <ClInclude Include="IO\Mouse.hpp" />
     <ClInclude Include="IO\MouseEvent.hpp" />
     <ClInclude Include="Math\Common.hpp" />
-    <ClInclude Include="Math\Geometry.hpp" />
+    <ClInclude Include="Math\Geometry\Common.hpp" />
+    <ClInclude Include="FatSTL_Macros.hpp" />
+    <ClInclude Include="Math\Geometry\Geometry.hpp" />
     <ClInclude Include="Math\Math.hpp" />
     <ClInclude Include="Math\Multiplicative.hpp" />
     <ClInclude Include="Math\Numbers\Common.hpp" />
     <ClInclude Include="Math\Numbers\Numbers.hpp" />
     <ClInclude Include="Math\Numbers\Primes.hpp" />
     <ClInclude Include="Math\Numbers\Sets.hpp" />
-    <ClInclude Include="Math\Rect.hpp" />
+    <ClInclude Include="Math\Geometry\Rectangle.hpp" />
     <ClInclude Include="Memory\Memory.hpp" />
     <ClInclude Include="Random\Random.hpp" />
+    <ClInclude Include="Random\URand.hpp" />
     <ClInclude Include="Traits\Bitwise.hpp" />
     <ClInclude Include="Traits\Callable.hpp" />
+    <ClInclude Include="Traits\Extents.hpp" />
+    <ClInclude Include="Traits\Formation.hpp" />
+    <ClInclude Include="Traits\Indirection.hpp" />
     <ClInclude Include="Traits\Traits.hpp" />
     <ClInclude Include="Util\Color.hpp" />
     <ClInclude Include="Util\Common.hpp" />

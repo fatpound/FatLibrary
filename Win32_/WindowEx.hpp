@@ -3,7 +3,7 @@
 #if FAT_BUILDING_WITH_MSVC
 
 #include <FatNamespaces.hpp>
-#include <FatDefines.hpp>
+#include <FatMacros.hpp>
 
 #include "Common.hpp"
 #include "IWindow.hpp"

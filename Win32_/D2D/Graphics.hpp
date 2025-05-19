@@ -1,7 +1,7 @@
 #pragma once
 
 #include <FatNamespaces.hpp>
-#include <FatDefines.hpp>
+#include <FatMacros.hpp>
 
 #include <FatWin32.hpp>
 
@@ -13,8 +13,6 @@
 
 #include <Traits/Bitwise.hpp>
 #include <Util/Gfx/SizePack.hpp>
-
-#define SOFT_COLOR_EFFECT false
 
 #pragma comment(lib, "d2d1")
 
@@ -33,18 +31,27 @@ namespace fatpound::win32::d2d
             mc_dimensions_(dimensions)
         {
             Microsoft::WRL::ComPtr<ID2D1Factory> pFactory;
-
-            if (const auto& hr = ::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory); FAILED(hr))
+            
             {
-                throw std::runtime_error("A problem occured when creating the D2D1 factory!");
+                const auto& hr = ::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory);
+
+                if (FAILED(hr))
+                {
+                    throw std::runtime_error("A problem occured when creating the D2D1 factory!");
+                }
             }
 
-            if (const auto& hr = pFactory->CreateHwndRenderTarget(
-                D2D1::RenderTargetProperties(),
-                D2D1::HwndRenderTargetProperties(hWnd, D2D1::SizeU(dimensions.m_width, dimensions.m_height)),
-                &m_pRenderTarget_); FAILED(hr))
             {
-                throw std::runtime_error("A problem occured when creating the HwndRenderTarget!");
+                const auto& hr = pFactory->CreateHwndRenderTarget(
+                    D2D1::RenderTargetProperties(),
+                    D2D1::HwndRenderTargetProperties(hWnd, D2D1::SizeU(GetWidth<UINT32>(), GetHeight<UINT32>())),
+                    &m_pRenderTarget_
+                );
+
+                if (FAILED(hr))
+                {
+                    throw std::runtime_error("A problem occured when creating the HwndRenderTarget!");
+                }
             }
         }
 

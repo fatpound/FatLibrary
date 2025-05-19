@@ -4,8 +4,6 @@
 
 #include <FatWin32.hpp>
 
-#include "Common.hpp"
-
 #include <string>
 #include <future>
 
@@ -122,13 +120,19 @@ namespace fatpound::win32
         {
             if (msg == WM_NCCREATE)
             {
+#ifdef UNICODE
+#define CREATESTRUCT_t CREATESTRUCTW
+#else
+#define CREATESTRUCT_t CREATESTRUCTA
+#endif
                 IWindow* const pWnd = static_cast<IWindow*>(reinterpret_cast<CREATESTRUCT_t*>(lParam)->lpCreateParams);
+#undef CREATESTRUCT_t
 
-                ::SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<::LONG_PTR>(pWnd));
+                ::SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
 
 #pragma warning (push)
 #pragma warning (disable : 5039)
-                ::SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<::LONG_PTR>(&ClassEx::HandleMsgThunk_));
+                ::SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&ClassEx::HandleMsgThunk_));
 #pragma warning (pop)
 
                 return ForwardMsg_(pWnd, hWnd, msg, wParam, lParam);

@@ -6,23 +6,19 @@
 
 namespace fatpound::win32
 {
+    static auto ModuleHandleOf(const
 #ifdef UNICODE
-    using CREATESTRUCT_t = ::CREATESTRUCTW;
-    using STR_t          = ::LPCWSTR;
+        ::LPCWSTR
 #else
-    using CREATESTRUCT_t = ::CREATESTRUCTA;
-    using STR_t          = ::LPCSTR;
+        ::LPCSTR
 #endif
-
-    static auto ModuleHandleOf(const STR_t& cstr = nullptr) -> HINSTANCE
+        & cstr = nullptr) -> HINSTANCE
     {
-        const auto& hInstance{ ::GetModuleHandle(cstr) };
-
-        if (hInstance == nullptr)
+        if (const auto& hInstance{ ::GetModuleHandle(cstr) }; hInstance not_eq nullptr)
         {
-            throw std::runtime_error("Error occured when obtaining hInstance [GetModuleHandle]");
+            return hInstance;
         }
 
-        return hInstance;
+        throw std::runtime_error("Error occured when obtaining hInstance [GetModuleHandle]");
     }
 }

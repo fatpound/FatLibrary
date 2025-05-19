@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Automata/Automata.hpp"
+#include "Bit/Bit.hpp"
 #include "Concurrency/TaskQueue.hpp"
 #include "DSA/DSA.hpp"
 #include "File/File.hpp"

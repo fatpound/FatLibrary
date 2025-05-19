@@ -1,9 +1,9 @@
 #pragma once
 
 #if FAT_BUILDING_WITH_MSVC
-#include <FatWin32.hpp>
-#include <d3d11.h>
-#include <wrl.h>
+    #include <FatWin32.hpp>
+    #include <d3d11.h>
+    #include <wrl.h>
 #endif
 
 #include "FullScreenQuad.hpp"
