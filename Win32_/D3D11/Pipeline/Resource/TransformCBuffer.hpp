@@ -14,7 +14,7 @@
 
 #include "VertexCBuffer.hpp"
 
-#include <Util/ViewXM.hpp>
+#include <Utility/ViewXM.hpp>
 
 namespace fatpound::win32::d3d11::pipeline::resource
 {

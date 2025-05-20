@@ -11,7 +11,7 @@
 #include <Traits/Bitwise.hpp>
 #include <Concurrency/Concurrency.hpp>
 #include <IO/IO.hpp>
-#include <Util/Util.hpp>
+#include <Utility/Utility.hpp>
 
 #include <FatWin32.hpp>
 

@@ -15,9 +15,9 @@
 #include "Visual/Visual.hpp"
 
 #include <Traits/Bitwise.hpp>
-#include <Util/Gfx/Gfx.hpp>
-#include <Util/Color.hpp>
-#include <Util/Surface.hpp>
+#include <Utility/Gfx/Gfx.hpp>
+#include <Utility/Color.hpp>
+#include <Utility/Surface.hpp>
 
 #include <cstring>
 

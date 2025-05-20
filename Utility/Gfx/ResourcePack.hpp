@@ -12,7 +12,7 @@
 
 #include "SizePack.hpp"
 
-#include <Util/Surface.hpp>
+#include <Utility/Surface.hpp>
 
 namespace fatpound::utility::gfx
 {

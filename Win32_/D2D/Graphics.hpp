@@ -12,7 +12,7 @@
 #include <DirectXMath.h>
 
 #include <Traits/Bitwise.hpp>
-#include <Util/Gfx/SizePack.hpp>
+#include <Utility/Gfx/SizePack.hpp>
 
 #pragma comment(lib, "d2d1")
 
