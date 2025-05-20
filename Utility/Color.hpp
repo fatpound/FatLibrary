@@ -6,7 +6,7 @@
 
 #include <cstdint>
 
-namespace fatpound::util
+namespace fatpound::utility
 {
     class [[nodiscard]] Color final
     {
@@ -107,7 +107,7 @@ namespace fatpound::util
 
 namespace fatpound::colors
 {
-    using namespace util;
+    using namespace utility;
 
     // This namespace contains Microsoft-style colors. (count: 140+1) (Direct2D and GDI+)
     // Lime => 0x00FF00, Green => 0x008000, LimeGreen => 0x32CD32

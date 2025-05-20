@@ -12,7 +12,7 @@
 
 #include <concepts>
 
-namespace fatpound::util
+namespace fatpound::utility
 {
     template <std::floating_point FP = double, std::integral T>
     static

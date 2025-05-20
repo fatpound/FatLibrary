@@ -12,7 +12,7 @@
 
 #if FAT_BUILDING_WITH_MSVC
 
-namespace fatpound::util::gfx
+namespace fatpound::utility::gfx
 {
     static auto GetDXGIFactory(ID3D11Device* const pDevice) -> Microsoft::WRL::ComPtr<IDXGIFactory>
     {

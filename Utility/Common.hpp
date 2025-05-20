@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace fatpound::util
+namespace fatpound::utility
 {
     static auto ToWString(const std::string& str) -> std::wstring
     {

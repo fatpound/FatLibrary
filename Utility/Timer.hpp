@@ -4,7 +4,7 @@
 
 #include <chrono>
 
-namespace fatpound::util
+namespace fatpound::utility
 {
     class Timer final
     {

@@ -4,7 +4,7 @@
 
 #include <DirectXMath.h>
 
-namespace fatpound::util
+namespace fatpound::utility
 {
     class [[nodiscard]] ViewXM final
     {

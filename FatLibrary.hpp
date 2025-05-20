@@ -9,7 +9,7 @@
 #include "Math/Math.hpp"
 #include "Random/Random.hpp"
 #include "Traits/Traits.hpp"
-#include "Util/Util.hpp"
+#include "Utility/Utility.hpp"
 
 #if FAT_BUILDING_WITH_MSVC
     #include "Win32_/Win32_.hpp"

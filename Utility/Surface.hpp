@@ -27,7 +27,7 @@
 #include <string>
 #include <filesystem>
 
-namespace fatpound::util
+namespace fatpound::utility
 {
     class Surface final
     {

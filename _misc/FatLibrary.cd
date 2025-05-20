@@ -228,28 +228,28 @@
       <FileName>Win32_\WindowEx.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="fatpound::util::ViewXM">
+  <Class Name="fatpound::utility::ViewXM">
     <Position X="77.75" Y="16" Width="2" />
     <TypeIdentifier>
       <HashCode>QAEAAAEAEAAAAIQAAAAAAgAAAAAAAABAAAAgAAAAAAA=</HashCode>
       <FileName>Util\ViewXM.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="fatpound::util::Color">
+  <Class Name="fatpound::utility::Color">
     <Position X="72" Y="16" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAkgAQAAAAEQAAAAAQAAAABAAhqAEAAAA=</HashCode>
       <FileName>Util\Color.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="fatpound::util::Surface">
+  <Class Name="fatpound::utility::Surface">
     <Position X="74.5" Y="16" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAgBAAAQAAAQCEANAIIIUABEAAAICAQAAAAgAEBAAAI=</HashCode>
       <FileName>Util\Surface.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="fatpound::util::Timer">
+  <Class Name="fatpound::utility::Timer">
     <Position X="69.25" Y="16" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAgAAAAAAAEAACAAAAAAMAAgAEAEAAA=</HashCode>
@@ -438,20 +438,20 @@
       <FileName>IO\Mouse.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="fatpound::util::SizePack">
+  <Struct Name="fatpound::utility::SizePack">
     <Position X="67.25" Y="16" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Util\SizePack.hpp</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="fatpound::util::gfx::FullScreenQuad">
+  <Struct Name="fatpound::utility::gfx::FullScreenQuad">
     <Position X="80.75" Y="17.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Struct Name="fatpound::util::gfx::FullScreenQuad::Vertex">
+      <Struct Name="fatpound::utility::gfx::FullScreenQuad::Vertex">
         <TypeIdentifier>
           <NewMemberFileName>Util\Gfx\FullScreenQuad.hpp</NewMemberFileName>
         </TypeIdentifier>
@@ -462,14 +462,14 @@
       <FileName>Util\Gfx\FullScreenQuad.hpp</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="fatpound::util::gfx::ResourcePack">
+  <Struct Name="fatpound::utility::gfx::ResourcePack">
     <Position X="83.5" Y="17.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAIAAAAAAAAAAAAAAAAAICAAAAAAAAAAI=</HashCode>
       <FileName>Util\Gfx\ResourcePack.hpp</FileName>
     </TypeIdentifier>
   </Struct>
-  <Struct Name="fatpound::util::gfx::FrameworkResourcePack">
+  <Struct Name="fatpound::utility::gfx::FrameworkResourcePack">
     <Position X="83.25" Y="19.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAIAAAAACAAAAAAAAAAAAAAAAAAAAAAAEAAQAAAAAAA=</HashCode>

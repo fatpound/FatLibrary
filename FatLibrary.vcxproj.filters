@@ -98,31 +98,31 @@
     <ClInclude Include="Memory\Memory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Gfx\FullScreenQuad.hpp">
+    <ClInclude Include="Utility\Gfx\FullScreenQuad.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Gfx\Gfx.hpp">
+    <ClInclude Include="Utility\Gfx\Gfx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Gfx\ResourcePack.hpp">
+    <ClInclude Include="Utility\Gfx\ResourcePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Color.hpp">
+    <ClInclude Include="Utility\Color.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Gfx\SizePack.hpp">
+    <ClInclude Include="Utility\Gfx\SizePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Surface.hpp">
+    <ClInclude Include="Utility\Surface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Timer.hpp">
+    <ClInclude Include="Utility\Timer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Util.hpp">
+    <ClInclude Include="Utility\Utility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\ViewXM.hpp">
+    <ClInclude Include="Utility\ViewXM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\COM\COM.hpp">
@@ -257,7 +257,7 @@
     <ClInclude Include="File\File.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Util\Common.hpp">
+    <ClInclude Include="Utility\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_exp\FatX.hpp">

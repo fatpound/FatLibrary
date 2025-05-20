@@ -14,7 +14,7 @@
 
 #include <Util/Surface.hpp>
 
-namespace fatpound::util::gfx
+namespace fatpound::utility::gfx
 {
     struct ResourcePack
     {
@@ -29,7 +29,7 @@ namespace fatpound::util::gfx
     {
         Microsoft::WRL::ComPtr<ID3D11Texture2D>        m_pSysbufferTexture2d;
         D3D11_MAPPED_SUBRESOURCE                       m_mappedSysbufferTexture2d{};
-        FATSPACE_UTIL::Surface                         m_surface;
+        FATSPACE_UTILITY::Surface                         m_surface;
 
         FrameworkResourcePack(const SizePack& dimensions)
             :
