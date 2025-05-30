@@ -42,7 +42,7 @@ namespace fatpound::file::details
     }
 }
 
-export namespace fatpound::file
+namespace fatpound::file
 {
     static auto NameAndExtensionOf  (const std::filesystem::path& path) -> std::pair<std::string, std::string>
     {

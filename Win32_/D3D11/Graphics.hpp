@@ -44,7 +44,7 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        explicit Graphics(const HWND& hWnd, const SizePack& dimensions)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions)
             :
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
@@ -56,7 +56,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const SizePack& dimensions)        requires(Framework)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions)        requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
@@ -65,7 +65,7 @@ namespace fatpound::win32::d3d11
             InitCommon_();
             InitFramework_();
         }
-        explicit Graphics(const HWND& hWnd, std::unique_ptr<Surface> pSurface) requires(Framework)
+        explicit Graphics(const HWND& hWnd, std::unique_ptr<FATSPACE_UTILITY::Surface> pSurface) requires(Framework)
             :
             Graphics(hWnd, pSurface->GetSizePack())
         {
@@ -105,11 +105,11 @@ namespace fatpound::win32::d3d11
             return static_cast<T>(mc_dimensions_.m_height);
         }
 
-        template <std::integral T> [[nodiscard]] FAT_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> Color               requires(Framework)
+        template <std::integral T> [[nodiscard]] FAT_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> FATSPACE_UTILITY::Color               requires(Framework)
         {
             return m_res_pack_.m_surface.GetPixel<>(x, y);
         }
-        template <std::integral T>               FAT_FORCEINLINE void PutPixel(const T& x, const T& y, const Color& color) noexcept requires(Framework)
+        template <std::integral T>               FAT_FORCEINLINE void PutPixel(const T& x, const T& y, const FATSPACE_UTILITY::Color& color) noexcept requires(Framework)
         {
             m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }
@@ -134,7 +134,7 @@ namespace fatpound::win32::d3d11
             void* const ptr = std::memset(
                 m_res_pack_.m_surface,
                 GrayToneValue,
-                GetWidth<UINT>() * GetHeight<UINT>() * sizeof(Color)
+                GetWidth<UINT>() * GetHeight<UINT>() * sizeof(FATSPACE_UTILITY::Color)
             );
         }
 
@@ -181,7 +181,7 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        auto GetSurface() noexcept -> Surface*
+        auto GetSurface() noexcept -> FATSPACE_UTILITY::Surface*
         {
             return m_pSurface_.get();
         }
@@ -224,7 +224,7 @@ namespace fatpound::win32::d3d11
             return m_msaa_quality_;
         }
 
-        void BindSurface(std::unique_ptr<Surface> pSurface) requires(Framework)
+        void BindSurface(std::unique_ptr<FATSPACE_UTILITY::Surface> pSurface) requires(Framework)
         {
             if (m_pSurface_ not_eq nullptr)
             {
@@ -240,7 +240,7 @@ namespace fatpound::win32::d3d11
                 std::memcpy(
                     m_res_pack_.m_surface,
                     pSrc,
-                    GetWidth<UINT>() * GetHeight<UINT>() * sizeof(Color)
+                    GetWidth<UINT>() * GetHeight<UINT>() * sizeof(FATSPACE_UTILITY::Color)
                 );
             }
         }
@@ -294,7 +294,7 @@ namespace fatpound::win32::d3d11
         void InitFrameworkBackbuffer_          () requires(Framework)
         {
             {
-                wrl::ComPtr<ID3D11ShaderResourceView> pSRV;
+                Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pSRV;
 
                 {
                     const D3D11_TEXTURE2D_DESC texDesc
@@ -341,7 +341,7 @@ namespace fatpound::win32::d3d11
                 GetImmediateContext()->PSSetShaderResources(0U, 1U, pSRV.GetAddressOf());
             }
 
-            wrl::ComPtr<ID3D11SamplerState> pSS;
+            Microsoft::WRL::ComPtr<ID3D11SamplerState> pSS;
 
             {
                 const D3D11_SAMPLER_DESC sDesc
@@ -458,7 +458,7 @@ namespace fatpound::win32::d3d11
         void InitRenderTarget_                 ()
         {
             {
-                wrl::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
+                Microsoft::WRL::ComPtr<ID3D11Texture2D> pBackBufferTexture2D{};
 
                 if (const auto& hr = GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), &pBackBufferTexture2D);
                     FAILED(hr))
@@ -475,7 +475,7 @@ namespace fatpound::win32::d3d11
 
             if constexpr (NotFramework)
             {
-                wrl::ComPtr<ID3D11Texture2D> pTexture2d;
+                Microsoft::WRL::ComPtr<ID3D11Texture2D> pTexture2d;
 
                 {
                     const D3D11_TEXTURE2D_DESC tex2dDesc
@@ -533,7 +533,7 @@ namespace fatpound::win32::d3d11
         }
         void InitRasterizer_                   () requires(NotFramework)
         {
-            wrl::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
+            Microsoft::WRL::ComPtr<ID3D11RasterizerState> m_pRasterizerState_;
 
             {
                 const D3D11_RASTERIZER_DESC rDesc
@@ -575,6 +575,8 @@ namespace fatpound::win32::d3d11
         }
         void CopySysbufferToMappedSubresource_ () requires(Framework)
         {
+            using FATSPACE_UTILITY::Color;
+
             auto* const pDst = static_cast<Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
 
             const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(Color);
@@ -607,13 +609,13 @@ namespace fatpound::win32::d3d11
 
         const HWND mc_hWnd_;
         
-        const SizePack mc_dimensions_;
+        const FATSPACE_UTILITY_GFX::SizePack mc_dimensions_;
 
         UINT m_msaa_count_{};
         UINT m_msaa_quality_{};
         UINT m_dxgi_mode_{};
 
-        std::unique_ptr<Surface> m_pSurface_;
+        std::unique_ptr<FATSPACE_UTILITY::Surface> m_pSurface_;
     };
 }
 

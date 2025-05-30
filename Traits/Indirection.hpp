@@ -33,7 +33,7 @@ namespace fatpound::traits
 
 #ifdef IN_DEBUG
 
-namespace fatpound::traits::details
+namespace fatpound::traits::details_i
 {
     class FAT_EBCO ___unused___ final
     {

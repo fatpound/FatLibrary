@@ -376,7 +376,7 @@ namespace fatpound::win32
 
         std::shared_ptr<WndClassEx> m_pWndClassEx_;
 
-        const FATSPACE_UTIL_GFX::SizePack mc_client_size_;
+        const FATSPACE_UTILITY_GFX::SizePack mc_client_size_;
 
         HWND m_hWnd_{};
 

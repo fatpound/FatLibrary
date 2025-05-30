@@ -30,7 +30,7 @@ namespace fatpound::win32::d2d
             :
             mc_dimensions_(dimensions)
         {
-            wrl::ComPtr<ID2D1Factory> pFactory;
+            Microsoft::WRL::ComPtr<ID2D1Factory> pFactory;
             
             if (const auto& hr = ::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory);
                 FAILED(hr))
@@ -101,7 +101,7 @@ namespace fatpound::win32::d2d
 
             m_pRenderTarget_->DrawLine(p0, p1, m_pBrush_.Get());
         }
-        void DrawClosedPolyLine(const std::vector<dx::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept
         {
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 
@@ -116,19 +116,19 @@ namespace fatpound::win32::d2d
                 );
             }
         }
-        void DrawClosedPolyLine(const std::vector<dx::XMFLOAT2>& vertices, const D2D1_COLOR_F& color, const dx::XMMATRIX& transform) noexcept
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color, const DirectX::XMMATRIX& transform) noexcept
         {
             m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
 
             for (std::size_t i = 1U; i < vertices.size() + 1U; ++i)
             {
-                const auto& vec0 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i - 1U]), transform);
-                const auto& vec1 = dx::XMVector2TransformCoord(dx::XMLoadFloat2(&vertices[i % vertices.size()]), transform);
+                const auto& vec0 = DirectX::XMVector2TransformCoord(DirectX::XMLoadFloat2(&vertices[i - 1U]), transform);
+                const auto& vec1 = DirectX::XMVector2TransformCoord(DirectX::XMLoadFloat2(&vertices[i % vertices.size()]), transform);
 
-                dx::XMFLOAT2 transformed0;
-                dx::XMFLOAT2 transformed1;
-                dx::XMStoreFloat2(&transformed0, vec0);
-                dx::XMStoreFloat2(&transformed1, vec1);
+                DirectX::XMFLOAT2 transformed0;
+                DirectX::XMFLOAT2 transformed1;
+                DirectX::XMStoreFloat2(&transformed0, vec0);
+                DirectX::XMStoreFloat2(&transformed1, vec1);
 
                 DrawLine(
                     D2D1::Point2F(transformed0.x, transformed0.y),
@@ -147,8 +147,8 @@ namespace fatpound::win32::d2d
         
         
     private:
-        wrl::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
-        wrl::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
+        Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
+        Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
 
         const FATSPACE_UTILITY_GFX::SizePack  mc_dimensions_;
     };
