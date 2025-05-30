@@ -29,7 +29,7 @@ namespace fatpound::utility::gfx
     {
         Microsoft::WRL::ComPtr<ID3D11Texture2D>        m_pSysbufferTexture2d;
         D3D11_MAPPED_SUBRESOURCE                       m_mappedSysbufferTexture2d{};
-        FATSPACE_UTILITY::Surface                         m_surface;
+        Surface                                        m_surface;
 
         FrameworkResourcePack(const SizePack& dimensions)
             :
