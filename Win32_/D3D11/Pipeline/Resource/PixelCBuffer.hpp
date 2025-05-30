@@ -10,7 +10,7 @@
 
 #include "CBuffer.hpp"
 
-namespace fatpound::win32::d3d11::pipeline::resource
+namespace fatpound::win32::d3d11::pipeline
 {
     template <typename T>
     class PixelCBuffer final : public CBuffer<T>

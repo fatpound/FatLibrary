@@ -16,7 +16,7 @@
 
 #include <Utility/ViewXM.hpp>
 
-namespace fatpound::win32::d3d11::pipeline::resource
+namespace fatpound::win32::d3d11::pipeline
 {
     template <typename T>
     class TransformCBuffer final : public Bindable

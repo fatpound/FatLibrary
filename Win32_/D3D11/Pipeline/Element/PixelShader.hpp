@@ -14,7 +14,7 @@
 #include <string>
 #include <stdexcept>
 
-namespace fatpound::win32::d3d11::pipeline::element
+namespace fatpound::win32::d3d11::pipeline
 {
     class PixelShader final : public Bindable
     {

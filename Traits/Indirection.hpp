@@ -28,3 +28,37 @@ namespace fatpound::traits
     template <typename T>
     concept Reference = std::is_reference_v<T>; // LValueReference<T> or RValueReference<T>
 }
+
+/// DETAILS
+
+#ifdef IN_DEBUG
+
+namespace fatpound::traits::details
+{
+    class FAT_EBCO ___unused___ final
+    {
+        explicit ___unused___()                        = delete;
+        explicit ___unused___(const ___unused___&)     = delete;
+        explicit ___unused___(___unused___&&) noexcept = delete;
+
+        auto operator = (const ___unused___&)     -> ___unused___& = delete;
+        auto operator = (___unused___&&) noexcept -> ___unused___& = delete;
+        ~___unused___() noexcept                                   = delete;
+        
+        //********************//
+
+        void foo();
+
+        int val;
+
+        static_assert(MemberFunctionPointer<decltype(&___unused___::foo)>);
+        static_assert(  MemberObjectPointer<decltype(&___unused___::val)>);
+        static_assert(        MemberPointer<decltype(&___unused___::foo)>);
+        static_assert(              Pointer<decltype(&___unused___::foo)>);
+        static_assert(              Pointer<decltype(&___unused___::val)>);
+        static_assert(not  NonMemberPointer<decltype(&___unused___::foo)>);
+        static_assert(not  NonMemberPointer<decltype(&___unused___::val)>);
+    };
+}
+
+#endif

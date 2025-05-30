@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DSA/Cryptography/XorCipher.hpp>
+#include <Cryptography/XorCipher.hpp>
 
 #include <cstdint>
 
@@ -12,7 +12,7 @@
 
 namespace fatpound::file::details
 {
-    static void EncryptDecrypt_Impl(const std::filesystem::path& inPath, const std::size_t& key, std::filesystem::path& outPath)
+    static void EncryptDecrypt_Impl (const std::filesystem::path& inPath, const std::size_t& key, std::filesystem::path& outPath)
     {
         std::ifstream inputFile(inPath, std::ios::binary);
 
@@ -33,7 +33,7 @@ namespace fatpound::file::details
             throw std::runtime_error("Cannot create the new version of file!");
         }
 
-        dsa::cryptography::ApplyXorCipherWithKey<>(
+        cryptography::ApplyXorCipherWithKey<>(
             std::istreambuf_iterator<char>(inputFile),
             std::istreambuf_iterator<char>(),
             std::ostreambuf_iterator<char>(outputFile),
@@ -42,7 +42,7 @@ namespace fatpound::file::details
     }
 }
 
-namespace fatpound::file
+export namespace fatpound::file
 {
     static auto NameAndExtensionOf  (const std::filesystem::path& path) -> std::pair<std::string, std::string>
     {

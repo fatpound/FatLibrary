@@ -2,8 +2,6 @@
 
 #include <FatNamespaces.hpp>
 
-#include "KeyEvent.hpp"
-
 #include <queue>
 #include <bitset>
 #include <atomic>
@@ -14,6 +12,23 @@ namespace fatpound::io
     class Keyboard final
     {
         static constexpr auto scx_bufferSize_ = 16U;
+
+    public:
+        struct alignas(2) KeyEvent final
+        {
+            enum struct Type : std::uint8_t
+            {
+                Press,
+                Release,
+
+                Invalid
+            };
+
+            Type type{ Type::Invalid };
+        
+            std::underlying_type_t<Type> code{};
+        };
+
 
     public:
         using KeyCode_t = decltype(KeyEvent::code);
@@ -134,4 +149,6 @@ namespace fatpound::io
 
         std::atomic_bool m_auto_repeat_enabled_;
     };
+
+    using KeyEvent = Keyboard::KeyEvent;
 }

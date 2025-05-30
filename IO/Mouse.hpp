@@ -1,7 +1,5 @@
 #pragma once
 
-#include "MouseEvent.hpp"
-
 #include <queue>
 #include <utility>
 #include <optional>
@@ -13,7 +11,45 @@ namespace fatpound::io
         static constexpr auto scx_bufferSize_ = 16U;
 
     public:
-        using Position_t = decltype(MouseEvent::pos_x);
+        struct alignas(16) Event final
+        {
+            enum struct Type : std::uint8_t
+            {
+                Move,
+
+                LPress,
+                LRelease,
+                RPress,
+                RRelease,
+                WheelPress,
+                WheelRelease,
+
+                WheelUp,
+                WheelDown,
+                WheelDelta,
+
+                Enter,
+                Leave,
+
+                Invalid
+            };
+
+            Type type{ Type::Invalid };
+
+            bool left_is_pressed{};
+            bool right_is_pressed{};
+            bool wheel_is_pressed{};
+
+            // ints are below for alignment
+
+            int pos_x{};
+            int pos_y{};
+            int wheel_delta_carry{};
+        };
+
+
+    public:
+        using Position_t = decltype(Event::pos_x);
 
 
     public:
@@ -27,7 +63,7 @@ namespace fatpound::io
 
 
     public:
-        auto GetEvent() noexcept -> std::optional<MouseEvent>
+        auto GetEvent() noexcept -> std::optional<Event>
         {
             if (EventBufferIsEmpty())
             {
@@ -81,7 +117,7 @@ namespace fatpound::io
             m_pos_x_ = x;
             m_pos_y_ = y;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::Move, .pos_x = m_pos_x_, .pos_y = m_pos_y_ });
+            m_event_buffer_.push(Event{ .type = Event::Type::Move, .pos_x = m_pos_x_, .pos_y = m_pos_y_ });
 
             TrimBuffer_();
         }
@@ -89,7 +125,7 @@ namespace fatpound::io
         {
             m_is_in_window_ = true;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::Enter });
+            m_event_buffer_.push(Event{ .type = Event::Type::Enter });
 
             TrimBuffer_();
         }
@@ -97,7 +133,7 @@ namespace fatpound::io
         {
             m_is_in_window_ = false;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::Leave });
+            m_event_buffer_.push(Event{ .type = Event::Type::Leave });
 
             TrimBuffer_();
         }
@@ -106,7 +142,7 @@ namespace fatpound::io
         {
             m_left_is_pressed_ = true;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::LPress, .pos_x = m_pos_x_, .pos_y = m_pos_y_ });
+            m_event_buffer_.push(Event{ .type = Event::Type::LPress, .pos_x = m_pos_x_, .pos_y = m_pos_y_ });
 
             TrimBuffer_();
         }
@@ -114,7 +150,7 @@ namespace fatpound::io
         {
             m_left_is_pressed_ = false;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::LRelease });
+            m_event_buffer_.push(Event{ .type = Event::Type::LRelease });
 
             TrimBuffer_();
         }
@@ -122,7 +158,7 @@ namespace fatpound::io
         {
             m_right_is_pressed_ = true;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::RPress });
+            m_event_buffer_.push(Event{ .type = Event::Type::RPress });
 
             TrimBuffer_();
         }
@@ -130,7 +166,7 @@ namespace fatpound::io
         {
             m_right_is_pressed_ = false;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::RRelease });
+            m_event_buffer_.push(Event{ .type = Event::Type::RRelease });
 
             TrimBuffer_();
         }
@@ -138,7 +174,7 @@ namespace fatpound::io
         {
             m_wheel_is_pressed_ = true;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::WheelPress });
+            m_event_buffer_.push(Event{ .type = Event::Type::WheelPress });
 
             TrimBuffer_();
         }
@@ -146,19 +182,19 @@ namespace fatpound::io
         {
             m_wheel_is_pressed_ = false;
 
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::WheelRelease });
+            m_event_buffer_.push(Event{ .type = Event::Type::WheelRelease });
 
             TrimBuffer_();
         }
         void AddWheelUpEvent      ()
         {
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::WheelUp });
+            m_event_buffer_.push(Event{ .type = Event::Type::WheelUp });
 
             TrimBuffer_();
         }
         void AddWheelDownEvent    ()
         {
-            m_event_buffer_.push(MouseEvent{ .type = MouseEvent::Type::WheelDown });
+            m_event_buffer_.push(Event{ .type = Event::Type::WheelDown });
 
             TrimBuffer_();
         }
@@ -198,7 +234,7 @@ namespace fatpound::io
 
 
     private:
-        std::queue<MouseEvent> m_event_buffer_;
+        std::queue<Event> m_event_buffer_;
 
         Position_t m_pos_x_{};
         Position_t m_pos_y_{};
@@ -211,4 +247,6 @@ namespace fatpound::io
         bool m_right_is_pressed_{};
         bool m_wheel_is_pressed_{};
     };
+
+    using MouseEvent = Mouse::Event;
 }

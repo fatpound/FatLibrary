@@ -6,7 +6,7 @@
 #include <random>
 #include <concepts>
 
-namespace fatpound::dsa::cryptography
+namespace fatpound::cryptography
 {
     template <std::integral T = char, std::uniform_random_bit_generator RNG = std::minstd_rand, std::input_iterator InIt, std::output_iterator<T> OutIt>
     static void ApplyXorCipherWithKey(const InIt& begin, const InIt& end, const OutIt& outBegin, const std::size_t& key)

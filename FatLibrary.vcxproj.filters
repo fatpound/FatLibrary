@@ -77,13 +77,7 @@
     <ClInclude Include="IO\Keyboard.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IO\KeyEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IO\Mouse.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IO\MouseEvent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\Math.hpp">
@@ -137,9 +131,6 @@
     <ClInclude Include="Win32_\D2D\Graphics.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\Element.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -165,9 +156,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Resource.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp">
@@ -296,10 +284,10 @@
     <ClInclude Include="Bit\Bit.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Cryptography\Cryptography.hpp">
+    <ClInclude Include="Cryptography\Cryptography.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Cryptography\XorCipher.hpp">
+    <ClInclude Include="Cryptography\XorCipher.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\Geometry\Common.hpp">
@@ -318,6 +306,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Traits\Indirection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Algorithm.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Sorting.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\DirectedGraph.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Graph\Graph.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Graph\BFS.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Graph\DFS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,7 +7,7 @@
 namespace fatpound::math
 {
     template <traits::IntegralOrFloating T>
-    class Rectangle final
+    class Rectangle
     {
     public:
         explicit Rectangle(const T& left, const T& top, const T& right, const T& bottom) noexcept
@@ -41,8 +41,8 @@ namespace fatpound::math
         {
             return
             {
-                (m_left + m_right) / static_cast<T>(2.0),
-                (m_top + m_bottom) / static_cast<T>(2.0)
+                (m_left + m_right)  / static_cast<T>(2.0),
+                (m_top  + m_bottom) / static_cast<T>(2.0)
             };
         }
 
@@ -53,23 +53,17 @@ namespace fatpound::math
 
         auto IsOverlappingWith(const Rectangle& other) const noexcept -> bool
         {
-            return m_left   < other.m_right
-                   and
-                   m_top    < other.m_bottom
-                   and
-                   m_right  > other.m_left
-                   and
-                   m_bottom > other.m_top;
+            return     m_left   < other.m_right
+                   and m_top    < other.m_bottom
+                   and m_right  > other.m_left
+                   and m_bottom > other.m_top;
         }
         auto IsContainedBy(const Rectangle& other) const noexcept -> bool
         {
-            return m_left   >= other.m_left
-                   and
-                   m_top    >= other.m_top
-                   and
-                   m_right  <= other.m_right
-                   and
-                   m_bottom <= other.m_bottom;
+            return     m_left   >= other.m_left
+                   and m_top    >= other.m_top
+                   and m_right  <= other.m_right
+                   and m_bottom <= other.m_bottom;
         }
 
 

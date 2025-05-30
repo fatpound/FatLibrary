@@ -24,14 +24,20 @@
     <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithm\Algorithm.hpp" />
+    <ClInclude Include="Algorithm\Graph\BFS.hpp" />
+    <ClInclude Include="Algorithm\Graph\DFS.hpp" />
+    <ClInclude Include="Algorithm\Graph\Graph.hpp" />
+    <ClInclude Include="Algorithm\Sorting.hpp" />
     <ClInclude Include="Automata\Automata.hpp" />
     <ClInclude Include="Automata\CFG.hpp" />
     <ClInclude Include="Automata\TLT.hpp" />
     <ClInclude Include="Bit\Bit.hpp" />
     <ClInclude Include="Concurrency\Concurrency.hpp" />
     <ClInclude Include="Concurrency\TaskQueue.hpp" />
-    <ClInclude Include="DSA\Cryptography\Cryptography.hpp" />
-    <ClInclude Include="DSA\Cryptography\XorCipher.hpp" />
+    <ClInclude Include="Cryptography\Cryptography.hpp" />
+    <ClInclude Include="Cryptography\XorCipher.hpp" />
+    <ClInclude Include="DSA\DirectedGraph.hpp" />
     <ClInclude Include="DSA\DSA.hpp" />
     <ClInclude Include="DSA\LinkedList\Doubly.hpp" />
     <ClInclude Include="DSA\LinkedList\DoublyCircular.hpp" />
@@ -50,9 +56,7 @@
     <ClInclude Include="File\File.hpp" />
     <ClInclude Include="IO\IO.hpp" />
     <ClInclude Include="IO\Keyboard.hpp" />
-    <ClInclude Include="IO\KeyEvent.hpp" />
     <ClInclude Include="IO\Mouse.hpp" />
-    <ClInclude Include="IO\MouseEvent.hpp" />
     <ClInclude Include="Math\Common.hpp" />
     <ClInclude Include="Math\Geometry\Common.hpp" />
     <ClInclude Include="FatSTL_Macros.hpp" />
@@ -91,7 +95,6 @@
     <ClInclude Include="Win32_\D3D11\D3D11.hpp" />
     <ClInclude Include="Win32_\D3D11\Graphics.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Bindable.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\Element.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\InputLayout.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\PixelShader.hpp" />
@@ -102,7 +105,6 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\CBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelCBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Resource.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp" />

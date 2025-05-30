@@ -4,14 +4,15 @@
 
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
-namespace fatpound::win32::d3d11::pipeline::resource
+namespace fatpound::win32::d3d11::pipeline
 {
     class Sampler final : public Bindable
     {
     public:
         explicit Sampler(ID3D11Device* const pDevice, const D3D11_SAMPLER_DESC& sDesc)
         {
-            if (const auto& hr = pDevice->CreateSamplerState(&sDesc, &m_pSamplerState_); FAILED(hr))
+            if (const auto& hr = pDevice->CreateSamplerState(&sDesc, &m_pSamplerState_);
+                FAILED(hr))
             {
                 throw std::runtime_error("Could NOT create SamplerState");
             }

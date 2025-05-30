@@ -8,7 +8,7 @@
 
 #include <memory>
 
-namespace fatpound::win32::d3d11::pipeline::resource
+namespace fatpound::win32::d3d11::pipeline
 {
     class Texture2D final : public Bindable
     {
@@ -27,13 +27,15 @@ namespace fatpound::win32::d3d11::pipeline::resource
                 if (const auto& hr = pDevice->CreateTexture2D(
                     &tex2dDesc,
                     sd.pSysMem not_eq nullptr ? &sd : nullptr,
-                    &pTexture); FAILED(hr))
+                    &pTexture);
+                    FAILED(hr))
                 {
                     throw std::runtime_error("Could NOT create Texture2D!");
                 }
             }
 
-            if (const auto& hr = pDevice->CreateShaderResourceView(pTexture.Get(), &srvDesc, &m_pSRV_); FAILED(hr))
+            if (const auto& hr = pDevice->CreateShaderResourceView(pTexture.Get(), &srvDesc, &m_pSRV_);
+                FAILED(hr))
             {
                 throw std::runtime_error("Could NOT create ShaderResourceView!");
             }

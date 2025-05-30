@@ -8,7 +8,7 @@
 
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
-namespace fatpound::win32::d3d11::pipeline::element
+namespace fatpound::win32::d3d11::pipeline
 {
     class Topology final : public Bindable
     {

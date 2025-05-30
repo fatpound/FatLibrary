@@ -32,18 +32,18 @@ namespace fatpound::win32::d3d11::visual
         {
             return not tl_bindable_vec_.empty();
         }
-        static void AddStaticBind_(std::unique_ptr<FATSPACE_PIPELINE::Bindable> bind) noexcept(IN_RELEASE)
+        static void AddStaticBind_(std::unique_ptr<pipeline::Bindable> bind) noexcept(IN_RELEASE)
         {
-            assert((typeid(*bind) not_eq typeid(FATSPACE_PIPELINE_ELEMENT::IndexBuffer)) && "*Must* use AddIndexBuffer_() method to bind it!");
+            assert((typeid(*bind) not_eq typeid(pipeline::IndexBuffer)) && "*Must* use AddIndexBuffer_() method to bind it!");
 
             tl_bindable_vec_.push_back(std::move<>(bind));
         }
 
 
     protected:
-        virtual void AddStaticIndexBuffer_(std::unique_ptr<FATSPACE_PIPELINE_ELEMENT::IndexBuffer> idxbuf) noexcept(IN_RELEASE) final
+        virtual void AddStaticIndexBuffer_(std::unique_ptr<pipeline::IndexBuffer> idxbuf) noexcept(IN_RELEASE) final
         {
-            assert("Attempting to add index buffer a second time" && m_pCIndexBuffer_ == nullptr);
+            assert("Attempting to add index buffer a second time" and m_pCIndexBuffer_ == nullptr);
 
             m_pCIndexBuffer_ = idxbuf.get();
 
@@ -51,11 +51,11 @@ namespace fatpound::win32::d3d11::visual
         }
         virtual void SetIndexFromStatic_() noexcept(IN_RELEASE) final
         {
-            assert("Attempting to add index buffer a second time" && m_pCIndexBuffer_ == nullptr);
+            assert("Attempting to add index buffer a second time" and m_pCIndexBuffer_ == nullptr);
 
             for (const auto& b : GetStaticBinds_())
             {
-                const auto* const ptr = dynamic_cast<FATSPACE_PIPELINE_ELEMENT::IndexBuffer*>(b.get());
+                const auto* const ptr = dynamic_cast<pipeline::IndexBuffer*>(b.get());
 
                 if (ptr not_eq nullptr)
                 {
@@ -65,7 +65,7 @@ namespace fatpound::win32::d3d11::visual
                 }
             }
 
-            assert("Failed to find index buffer in static binds" && m_pCIndexBuffer_ not_eq nullptr);
+            assert("Failed to find index buffer in static binds" and m_pCIndexBuffer_ not_eq nullptr);
         }
 
 
