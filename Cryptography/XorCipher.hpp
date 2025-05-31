@@ -19,7 +19,7 @@ namespace fatpound::cryptography
             outBegin,
             [&rng](const T& val) noexcept -> T
             {
-                return static_cast<T>(val xor rng());
+                return static_cast<T>(static_cast<std::make_unsigned_t<T>>(val) xor rng());
             }
         );
     }

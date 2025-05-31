@@ -29,7 +29,7 @@ namespace fatpound::random
     concept StdPoissonDist = traits::IntegralOrFloating<U> and requires()
     {
         requires
-               std::same_as<T<U>, std::poisson_distribution<U>> and std::integral<U>
+              (std::same_as<T<U>, std::poisson_distribution<U>> and std::integral<U>)
             or std::same_as<T<U>, std::exponential_distribution<U>>
             or std::same_as<T<U>, std::gamma_distribution<U>>
             or std::same_as<T<U>, std::weibull_distribution<U>>
@@ -52,7 +52,7 @@ namespace fatpound::random
     concept StdSamplingDist = traits::IntegralOrFloating<U> and requires()
     {
         requires
-               std::same_as<T<U>, std::discrete_distribution<U>> and std::integral<U>
+              (std::same_as<T<U>, std::discrete_distribution<U>> and std::integral<U>)
             or std::same_as<T<U>, std::piecewise_constant_distribution<U>>
             or std::same_as<T<U>, std::piecewise_linear_distribution<U>>;
     };
