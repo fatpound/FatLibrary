@@ -11,7 +11,7 @@
 
 namespace fatpound::algorithm::details
 {
-    auto DFS_Visit_(const dsa::DirectedGraph& graph, std::vector<utility::Color>& colors, const std::size_t& index) -> std::string
+    static auto DFS_Visit_(const dsa::DirectedGraph& graph, std::vector<utility::Color>& colors, const std::size_t& index) -> std::string
     {
         colors[index] = colors::Gray;
 
@@ -40,7 +40,7 @@ namespace fatpound::algorithm::details
 
 namespace fatpound::algorithm
 {
-    auto DFS(const dsa::DirectedGraph& graph) -> std::string
+    static auto DFS(const dsa::DirectedGraph& graph) -> std::string
     {
         std::string output;
 

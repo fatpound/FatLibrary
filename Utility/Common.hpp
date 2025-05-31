@@ -42,6 +42,10 @@ namespace fatpound::utility
 
     static auto ToHexString(const std::uint8_t& value) -> std::string
     {
-        return { HexDigits[(value >> 4U) bitand 0x0FU], HexDigits[value bitand 0x0FU] };
+        return
+        {
+            HexDigits[static_cast<unsigned int>(value >> 4U) bitand 0x0FU],
+            HexDigits[value bitand 0x0FU]
+        };
     }
 }

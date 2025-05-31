@@ -11,7 +11,7 @@
 
 namespace fatpound::algorithm
 {
-    auto BFS(const dsa::DirectedGraph& graph) -> std::string
+    static auto BFS(const dsa::DirectedGraph& graph) -> std::string
     {
         std::vector<utility::Color> colors(graph.GetNodeCount());
 
@@ -20,7 +20,7 @@ namespace fatpound::algorithm
 
         std::string output;
 
-        while (queue.size() > 0U)
+        while (not queue.empty())
         {
             const auto& u = queue.front();
             queue.pop();

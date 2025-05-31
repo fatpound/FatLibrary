@@ -37,7 +37,7 @@ namespace fatpound::utility
     {
         auto revstr = str;
 
-        std::reverse(revstr.begin(), revstr.end());
+        std::ranges::reverse(revstr);
 
         return revstr;
     }
