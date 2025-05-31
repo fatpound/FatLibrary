@@ -28,6 +28,7 @@
     <ClInclude Include="Algorithm\Graph\BFS.hpp" />
     <ClInclude Include="Algorithm\Graph\DFS.hpp" />
     <ClInclude Include="Algorithm\Graph\Graph.hpp" />
+    <ClInclude Include="Algorithm\Searching.hpp" />
     <ClInclude Include="Algorithm\Sorting.hpp" />
     <ClInclude Include="Automata\Automata.hpp" />
     <ClInclude Include="Automata\CFG.hpp" />
