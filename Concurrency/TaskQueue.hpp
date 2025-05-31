@@ -8,7 +8,7 @@
 
 namespace fatpound::concurrency
 {
-	class TaskQueue final
+    class TaskQueue final
     {
         using WrappedTask = std::move_only_function<void()>;
 
