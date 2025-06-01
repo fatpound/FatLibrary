@@ -122,7 +122,7 @@ namespace fatpound::win32
         virtual ~WindowEx() noexcept(false) override
         {
             [[maybe_unused]]
-            auto future = DispatchTaskToQueue_<>(
+            const auto future = DispatchTaskToQueue_<>(
                 [this]() noexcept -> void
                 {
                     [[maybe_unused]]
@@ -133,7 +133,7 @@ namespace fatpound::win32
 
 
     public:
-        virtual auto SetTitle(const std::wstring& title) -> std::future<void> override final
+        virtual auto SetTitle  (const std::wstring& title) -> std::future<void> override final
         {
             auto future = DispatchTaskToQueue_<>(
                 [=, this]() noexcept -> void
@@ -145,24 +145,22 @@ namespace fatpound::win32
 
             return future;
         }
-
-        virtual auto GetHandle() const noexcept -> HWND override final
+        virtual auto GetHandle () const noexcept -> HWND override final
         {
             return m_hWnd_;
         }
-
-        virtual auto IsClosing() const noexcept -> bool override final
+        virtual auto IsClosing () const noexcept -> bool override final
         {
             return m_is_closing_;
         }
 
 
     public:
-        template <traits::IntegralOrFloating T> FAT_FORCEINLINE auto GetClientWidth()  const noexcept -> T
+        template <traits::IntegralOrFloating T> FAT_FORCEINLINE auto GetClientWidth  () const noexcept -> T
         {
             return static_cast<T>(mc_client_size_.m_width);
         }
-        template <traits::IntegralOrFloating T> FAT_FORCEINLINE auto GetClientHeight() const noexcept -> T
+        template <traits::IntegralOrFloating T> FAT_FORCEINLINE auto GetClientHeight () const noexcept -> T
         {
             return static_cast<T>(mc_client_size_.m_height);
         }
@@ -246,12 +244,12 @@ namespace fatpound::win32
 
             case WM_CLOSE:
                 m_is_closing_ = true;
-                return 0;
+                break;
 
             case WM_DESTROY:
                 m_hWnd_ = nullptr;
                 ::PostQuitMessage(0);
-                return 0;
+                break;
 
             case scx_customTaskMsgId_:
                 m_tasks_.ExecuteFirstAndPopOff();
@@ -372,18 +370,15 @@ namespace fatpound::win32
 
 
     protected:
-        FATSPACE_CONCURRENCY::TaskQueue m_tasks_;
-
-        std::shared_ptr<WndClassEx> m_pWndClassEx_;
-
+        FATSPACE_CONCURRENCY::TaskQueue      m_tasks_;
+        std::shared_ptr<WndClassEx>          m_pWndClassEx_;
         const FATSPACE_UTILITY_GFX::SizePack mc_client_size_;
 
-        HWND m_hWnd_{};
-
-        std::atomic_bool m_is_closing_{};
-        std::binary_semaphore m_start_signal_{ 0 };
-
-        std::jthread m_msg_jthread_;
+        HWND                                 m_hWnd_{};
+                                             
+        std::atomic_bool                     m_is_closing_{};
+        std::binary_semaphore                m_start_signal_{ 0 };
+        std::jthread                         m_msg_jthread_;
 
 
     private:
