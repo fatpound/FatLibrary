@@ -32,7 +32,7 @@ namespace fatpound::algorithm::details
 
         const std::set set(vec.cbegin(), vec.cend());
 
-        std::conditional_t<Largest, typename std::set<T>::reverse_iterator, typename std::set<T>::iterator> it; // omitted 'typename' is a Microsoft extension
+        std::conditional_t<Largest, typename std::set<T>::reverse_iterator, typename std::set<T>::iterator> it;
 
         if constexpr (Largest)
         {
