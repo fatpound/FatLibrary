@@ -2,9 +2,12 @@
 
 #include <FatSTL_Macros.hpp>
 
-#include <Math/Multiplicative.hpp>
 #include <Math/Numbers/Common.hpp>
+#include <Math/Multiplicative.hpp>
 #include <Traits/Bitwise.hpp>
+
+#include <cstdlib>
+#include <cmath>
 
 namespace fatpound::math::geometry
 {

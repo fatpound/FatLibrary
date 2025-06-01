@@ -2,7 +2,6 @@
 
 #include <Traits/Extents.hpp>
 
-#include <cstddef>
 #include <cstdlib>
 
 #if FAT_BUILDING_WITH_MSVC or FAT_BUILDING_ON_WINDOWS
@@ -17,6 +16,9 @@
     #endif
 #endif
 
+#include <cstddef>
+
+#include <type_traits>
 #include <memory>
 #include <stdexcept>
 

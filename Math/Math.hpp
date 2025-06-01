@@ -4,11 +4,11 @@
     #include <DirectXMath.h>
 #endif
 
-#include "Numbers/Numbers.hpp"
-#include "Geometry/Geometry.hpp"
+#include <Math/Numbers/Numbers.hpp>
+#include <Math/Geometry/Geometry.hpp>
 
-#include "Common.hpp"
-#include "Multiplicative.hpp"
+#include <Math/Common.hpp>
+#include <Math/Multiplicative.hpp>
 
 #if FAT_BUILDING_WITH_MSVC
 

@@ -2,6 +2,7 @@
 
 #include <FatMacros.hpp>
 
+#include <ratio>
 #include <chrono>
 
 namespace fatpound::utility

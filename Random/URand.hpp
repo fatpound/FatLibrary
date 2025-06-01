@@ -3,11 +3,12 @@
 #include <cassert>
 #include <cstddef>
 
-#include <random>
 #include <algorithm>
-#include <ranges>
-#include <numeric>
+#include <vector>
+#include <random>
 #include <utility>
+#include <numeric>
+#include <ranges>
 
 namespace fatpound::random
 {

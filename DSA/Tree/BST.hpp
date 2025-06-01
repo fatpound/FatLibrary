@@ -1,8 +1,10 @@
 #pragma once
 
-#include <cstdint>
+#include <cstddef>
 
 #include <iostream>
+#include <memory>
+#include <utility>
 #include <concepts>
 
 namespace fatpound::dsa::tree

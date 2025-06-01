@@ -2,12 +2,13 @@
 
 #include <FatSTL_Macros.hpp>
 
-#include "Multiplicative.hpp"
-
+#include <Math/Numbers/Common.hpp>
+#include <Math/Multiplicative.hpp>
 #include <Traits/Bitwise.hpp>
 
 #include <cmath>
 
+#include <type_traits>
 #include <numbers>
 #include <concepts>
 
@@ -78,8 +79,8 @@ namespace fatpound::math
     template <traits::IntegralOrFloating T>
     constexpr auto Gaussian(const T& x, const T& rho)
     {
-        const auto& rhoSq2 = Square<>(rho) * 2.0;
+        const auto rhoSq2 = Square<>(rho) * 2.0;
 
-        return (1.0 / std::sqrt(rhoSq2 * std::numbers::pi_v<T>)) * std::exp(-(Square<>(x) / rhoSq2));
+        return (1.0 / std::sqrt(rhoSq2 * numbers::Pi<T>)) * std::exp(-(Square<>(x) / rhoSq2));
     }
 }

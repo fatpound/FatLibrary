@@ -5,7 +5,9 @@
 #include <FatWin32.hpp>
 
 #include <string>
+#include <stdexcept>
 #include <future>
+#include <concepts>
 
 namespace fatpound::win32
 {
@@ -143,7 +145,7 @@ namespace fatpound::win32
 
             return ::DefWindowProc(hWnd, msg, wParam, lParam);
         }
-        template <typename Wnd = IWindow> static auto CALLBACK HandleMsgThunk_(const ::HWND hWnd, const ::UINT msg, const ::WPARAM wParam, const ::LPARAM lParam) -> LRESULT
+        template <typename Wnd = IWindow> static auto CALLBACK HandleMsgThunk_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
         {
             Wnd* const pWnd = reinterpret_cast<Wnd*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
@@ -164,7 +166,7 @@ namespace fatpound::win32
 
 
     private:
-        static auto ForwardMsg_(IWindow* const pWnd, const ::HWND hWnd, const ::UINT msg, const ::WPARAM wParam, const ::LPARAM lParam) -> LRESULT
+        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
         {
             return pWnd->HandleMessage_(hWnd, msg, wParam, lParam);
         }

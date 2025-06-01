@@ -1,6 +1,12 @@
 #pragma once
 
-#include "Doubly.hpp"
+#include <DSA/LinkedList/Doubly.hpp>
+
+#include <iostream>
+#include <typeinfo>
+#include <memory>
+#include <utility>
+#include <stdexcept>
 
 namespace fatpound::dsa::linkedlist
 {

@@ -6,9 +6,16 @@
 #include <Traits/Bitwise.hpp>
 #include <Utility/Color.hpp>
 
-#include <random>
-#include <concepts>
+#include <cstddef>
+
+#include <algorithm>
 #include <string>
+#include <vector>
+#include <random>
+#include <type_traits>
+#include <stdexcept>
+#include <string_view>
+#include <concepts>
 #include <ranges>
 
 namespace fatpound::random

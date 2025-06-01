@@ -5,11 +5,12 @@
 #include <FatNamespaces.hpp>
 
 #include <Win32_/D3D11/Pipeline/Pipeline.hpp>
-
-#include "Drawable.hpp"
+#include <Win32_/D3D11/Visual/Drawable.hpp>
 
 #include <cassert>
 
+#include <vector>
+#include <typeinfo>
 #include <memory>
 
 namespace fatpound::win32::d3d11::visual

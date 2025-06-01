@@ -12,20 +12,20 @@
 #pragma comment(lib, "gdiplus")
 #endif
 
-#include <Traits/Bitwise.hpp>
 #include <Memory/Memory.hpp>
-
-#include "Gfx/SizePack.hpp"
-
-#include "Common.hpp"
-#include "Color.hpp"
+#include <Traits/Bitwise.hpp>
+#include <Utility/Gfx/SizePack.hpp>
+#include <Utility/Common.hpp>
+#include <Utility/Color.hpp>
 
 #include <cassert>
 #include <cstdint>
 #include <cstring>
 
 #include <string>
+#include <type_traits>
 #include <filesystem>
+#include <concepts>
 
 namespace fatpound::utility
 {

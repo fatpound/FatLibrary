@@ -2,8 +2,12 @@
 
 #include <FatNamespaces.hpp>
 
+#include <cstdint>
+
+#include <type_traits>
 #include <queue>
 #include <bitset>
+#include <limits>
 #include <atomic>
 #include <optional>
 

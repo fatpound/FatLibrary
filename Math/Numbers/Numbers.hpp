@@ -9,7 +9,9 @@
 #include <Math/Common.hpp>
 #include <Math/Multiplicative.hpp>
 
-#include <numbers>
+#include <cmath>
+
+#include <concepts>
 
 namespace fatpound::math::numbers
 {

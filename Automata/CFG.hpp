@@ -9,6 +9,8 @@
 #include <sstream>
 #include <utility>
 #include <algorithm>
+#include <stdexcept>
+#include <string_view>
 #include <ranges>
 
 namespace fatpound::automata

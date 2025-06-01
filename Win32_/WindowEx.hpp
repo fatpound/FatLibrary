@@ -5,25 +5,27 @@
 #include <FatNamespaces.hpp>
 #include <FatMacros.hpp>
 
-#include "Common.hpp"
-#include "IWindow.hpp"
+#include <Win32_/Common.hpp>
+#include <Win32_/IWindow.hpp>
 
-#include <Traits/Bitwise.hpp>
 #include <Concurrency/Concurrency.hpp>
 #include <IO/IO.hpp>
+#include <Traits/Bitwise.hpp>
 #include <Utility/Utility.hpp>
-
-#include <FatWin32.hpp>
 
 #include <DirectXMath.h>
 
 #include <string>
+#include <type_traits>
 #include <memory>
+#include <utility>
+#include <stdexcept>
 #include <thread>
 #include <atomic>
 #include <future>
-#include <semaphore>
 #include <optional>
+#include <concepts>
+#include <semaphore>
 
 namespace fatpound::win32
 {
@@ -62,7 +64,7 @@ namespace fatpound::win32
                 {
 #if IN_DEBUG or IS_GFX_FRAMEWORK
 
-                    ::RECT rect
+                    RECT rect
                     {
                         .left   = 0L,
                         .top    = 0L,

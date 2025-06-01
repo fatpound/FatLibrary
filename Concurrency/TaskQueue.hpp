@@ -3,8 +3,11 @@
 #if FAT_BUILDING_WITH_MSVC
 
 #include <deque>
-#include <future>
+#include <utility>
+#include <type_traits>
 #include <functional>
+#include <future>
+#include <mutex>
 
 namespace fatpound::concurrency
 {

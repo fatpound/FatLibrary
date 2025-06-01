@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AVL.hpp"
+#include <DSA/Tree/AVL.hpp>
 
 namespace fatpound::dsa::tree
 {

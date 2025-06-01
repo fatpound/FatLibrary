@@ -3,9 +3,11 @@
 #include <cstddef>
 
 #include <vector>
+#include <ios>
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <stdexcept>
 
 namespace fatpound::dsa
 {

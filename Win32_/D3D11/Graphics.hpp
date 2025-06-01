@@ -11,8 +11,8 @@
 
 #include <DirectXMath.h>
 
-#include "Pipeline/Pipeline.hpp"
-#include "Visual/Visual.hpp"
+#include <Win32_/D3D11/Pipeline/Pipeline.hpp>
+#include <Win32_/D3D11/Visual/Visual.hpp>
 
 #include <Traits/Bitwise.hpp>
 #include <Utility/Gfx/Gfx.hpp>
@@ -21,10 +21,13 @@
 
 #include <cstring>
 
+#include <vector>
 #include <array>
+#include <type_traits>
 #include <utility>
 #include <memory>
 #include <stdexcept>
+#include <concepts>
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "D3DCompiler")

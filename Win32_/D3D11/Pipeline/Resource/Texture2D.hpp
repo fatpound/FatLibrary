@@ -7,6 +7,7 @@
 #include <Utility/Surface.hpp>
 
 #include <memory>
+#include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
 {

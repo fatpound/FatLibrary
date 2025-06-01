@@ -7,9 +7,9 @@
 #include <gdiplus.h>
 #undef FATPOUND_FULL_WIN_TARGETED
 
-#pragma comment(lib, "gdiplus")
-
 #include <stdexcept>
+
+#pragma comment(lib, "gdiplus")
 
 namespace fatpound::win32::gdi_plus
 {
@@ -52,7 +52,7 @@ namespace fatpound::win32::gdi_plus
 
 
     private:
-        inline static ::ULONG_PTR s_gdiPlus_token_{};
+        inline static ULONG_PTR s_gdiPlus_token_{};
 
         inline static int s_ref_count_{};
     };

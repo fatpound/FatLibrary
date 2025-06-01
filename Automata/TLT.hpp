@@ -1,8 +1,9 @@
 #pragma once
 
-#include "CFG.hpp"
+#include <Automata/CFG.hpp>
 
-#include <cstdint>
+#include <cctype>
+#include <cstddef>
 
 #include <vector>
 #include <string>
@@ -11,7 +12,6 @@
 #include <deque>
 #include <algorithm>
 #include <stdexcept>
-#include <ranges>
 
 namespace fatpound::automata
 {
@@ -386,7 +386,7 @@ namespace fatpound::automata
                             }
                             else
                             {
-                                const auto tree_index = static_cast<std::size_t>(it - m_trees_.cbegin());
+                                const auto tree_index   = static_cast<std::size_t>(it - m_trees_.cbegin());
                                 const auto will_recurse = static_cast<std::size_t>((tree_index == index) ? 1 : 0);
 
                                 if (recursed < scx_RecursionLimit_)

@@ -4,6 +4,8 @@
 
 #include <algorithm>
 #include <random>
+#include <iterator>
+#include <type_traits>
 #include <concepts>
 
 namespace fatpound::cryptography

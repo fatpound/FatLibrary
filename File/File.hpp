@@ -4,11 +4,15 @@
 
 #include <cstdint>
 
+#include <ios>
 #include <string>
+#include <fstream>
 #include <utility>
-#include <filesystem>
 #include <random>
+#include <iterator>
+#include <stdexcept>
 #include <variant>
+#include <filesystem>
 
 namespace fatpound::file::details
 {

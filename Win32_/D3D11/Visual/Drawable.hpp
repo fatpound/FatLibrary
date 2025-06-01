@@ -5,16 +5,16 @@
 #include <FatNamespaces.hpp>
 
 #include <FatWin32.hpp>
+#include <d3d11.h>
 
 #include <DirectXMath.h>
-
-#include <d3d11.h>
 
 #include <Win32_/D3D11/Pipeline/Element/IndexBuffer.hpp>
 
 #include <cassert>
 
 #include <vector>
+#include <typeinfo>
 #include <memory>
 
 namespace fatpound::win32::d3d11::visual

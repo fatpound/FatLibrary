@@ -1,7 +1,7 @@
 #pragma once
 
-#include <concepts>
 #include <numbers>
+#include <concepts>
 
 namespace fatpound::math::numbers
 {

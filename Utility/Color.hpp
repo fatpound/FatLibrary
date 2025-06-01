@@ -6,6 +6,8 @@
 
 #include <cstdint>
 
+#include <string>
+#include <limits>
 #include <format>
 
 namespace fatpound::utility

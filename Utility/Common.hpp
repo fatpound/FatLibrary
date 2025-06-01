@@ -1,12 +1,13 @@
 #pragma once
 
 #if FAT_BUILDING_WITH_MSVC
-
-#include <FatWin32.hpp>
-
+    #include <FatWin32.hpp>
 #endif
 
+#include <cstdint>
+
 #include <string>
+#include <string_view>
 
 namespace fatpound::utility
 {

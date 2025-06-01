@@ -6,9 +6,9 @@
     #include <wrl.h>
 #endif
 
-#include "FullScreenQuad.hpp"
-#include "ResourcePack.hpp"
-#include "SizePack.hpp"
+#include <Utility/Gfx/FullScreenQuad.hpp>
+#include <Utility/Gfx/ResourcePack.hpp>
+#include <Utility/Gfx/SizePack.hpp>
 
 #if FAT_BUILDING_WITH_MSVC
 

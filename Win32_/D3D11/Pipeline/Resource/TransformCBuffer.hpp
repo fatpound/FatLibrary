@@ -5,14 +5,12 @@
 #include <FatNamespaces.hpp>
 
 #include <FatWin32.hpp>
+#include <d3d11.h>
+#include <wrl.h>
 
 #include <DirectXMath.h>
 
-#include <d3d11.h>
-
-#include <wrl.h>
-
-#include "VertexCBuffer.hpp"
+#include <Win32_/D3D11/Pipeline/Resource/VertexCBuffer.hpp>
 
 #include <Utility/ViewXM.hpp>
 

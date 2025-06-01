@@ -10,8 +10,7 @@
 
 #if FAT_BUILDING_WITH_MSVC
 
-#include "SizePack.hpp"
-
+#include <Utility/Gfx/SizePack.hpp>
 #include <Utility/Surface.hpp>
 
 namespace fatpound::utility::gfx

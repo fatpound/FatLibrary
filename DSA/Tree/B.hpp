@@ -1,10 +1,13 @@
 #pragma once
 
+#include <cstddef>
+
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <ranges>
-#include <algorithm>
+#include <utility>
+#include <concepts>
 
 namespace fatpound::dsa::tree
 {
@@ -50,7 +53,6 @@ namespace fatpound::dsa::tree
             }
 
             std::queue<Node_*> queue;
-
             queue.push(m_root_);
 
             while (not queue.empty())

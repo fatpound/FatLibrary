@@ -1,6 +1,8 @@
 #pragma once
 
-#include "BST.hpp"
+#include <DSA/Tree/BST.hpp>
+
+#include <concepts>
 
 namespace fatpound::dsa::tree
 {

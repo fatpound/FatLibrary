@@ -2,14 +2,18 @@
 
 #include <FatSTL_Macros.hpp>
 
-#include "Gfx/Gfx.hpp"
+#include <Utility/Gfx/Gfx.hpp>
+#include <Utility/Common.hpp>
+#include <Utility/Timer.hpp>
+#include <Utility/Color.hpp>
+#include <Utility/Surface.hpp>
+#include <Utility/ViewXM.hpp>
 
-#include "Common.hpp"
-#include "Timer.hpp"
-#include "Color.hpp"
-#include "Surface.hpp"
-#include "ViewXM.hpp"
+#include <cstdlib>
+#include <cmath>
 
+#include <algorithm>
+#include <string>
 #include <concepts>
 
 namespace fatpound::utility

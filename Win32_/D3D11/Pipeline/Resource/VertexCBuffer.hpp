@@ -3,12 +3,10 @@
 #if FAT_BUILDING_WITH_MSVC
 
 #include <FatWin32.hpp>
-
 #include <d3d11.h>
-
 #include <wrl.h>
 
-#include "CBuffer.hpp"
+#include <Win32_/D3D11/Pipeline/Resource/CBuffer.hpp>
 
 namespace fatpound::win32::d3d11::pipeline
 {

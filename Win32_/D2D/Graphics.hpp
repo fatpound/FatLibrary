@@ -4,15 +4,18 @@
 #include <FatMacros.hpp>
 
 #include <FatWin32.hpp>
-
 #include <d2d1.h>
-
 #include <wrl.h>
 
 #include <DirectXMath.h>
 
 #include <Traits/Bitwise.hpp>
 #include <Utility/Gfx/SizePack.hpp>
+
+#include <cstddef>
+
+#include <vector>
+#include <stdexcept>
 
 #pragma comment(lib, "d2d1")
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#if FAT_BUILDING_WITH_MSVC
+
 #include <FatWin32.hpp>
 
 #include <combaseapi.h>
@@ -36,3 +38,5 @@ namespace fatpound::win32::com
     private:
     };
 }
+
+#endif
