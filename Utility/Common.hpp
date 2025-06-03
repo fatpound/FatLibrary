@@ -4,6 +4,8 @@
     #include <FatWin32.hpp>
 #endif
 
+#include <Traits/Bitwise.hpp>
+
 #include <cstdint>
 #include <cstdlib>
 #include <cmath>
@@ -52,6 +54,12 @@ namespace fatpound::utility
             HexDigits[static_cast<unsigned int>(value >> 4U) bitand 0x0FU],
             HexDigits[value bitand 0x0FU]
         };
+    }
+
+    template <traits::IntegralOrFloating T>
+    constexpr auto Map(const T& value, const T& fromLow, const T& fromHigh, const T& toLow, const T& toHigh) -> T
+    {
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
     }
 
     template <std::floating_point FP = double, std::integral T>
