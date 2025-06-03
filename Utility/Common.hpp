@@ -1,6 +1,8 @@
 #pragma once
 
 #if FAT_BUILDING_WITH_MSVC
+    #include <FatSTL_Macros.hpp>
+
     #include <FatWin32.hpp>
 #endif
 
