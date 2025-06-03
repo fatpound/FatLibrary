@@ -2,15 +2,17 @@
 
 `General Algorithms & Utilities`
 --------------------------------
-This is my personal header-only library written in C++23 `(ISO/IEC 14882:2024)`, to be used with latest versions of GCC, Clang and MSVC compilers.
+This is my personal header-only library written in C++23 `(ISO/IEC 14882:2024)`, ready to be used with latest versions of GCC, Clang and MSVC compilers.
 
 `Using The Library`
 -------------------
 Clone this repo to your project's include folder with this Git command: `git clone --recursive https://github.com/fatpound/FatLibrary.git`\
 or\
-Clone this repo to your project's include folder and update the submodules recursively: `git submodule update --init --recursive` or `git submodule update --recursive
+Clone this repo to your project's include folder and update the submodules recursively:\
+`git submodule update --init --recursive` **or** `git submodule update --recursive
 `\
-This repo can be used directly as a (static) library project in Visual Studio 2022
+This repo can be used directly as a (static) library project in Visual Studio 2022\
+Since it is header-only, there is no need to add a reference to that (static) library project. Using my [property sheets](https://github.com/fatpound/FatProps) will be enough.
 
 `About The Code`
 ----------------
