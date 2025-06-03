@@ -329,6 +329,9 @@
     <ClInclude Include="Algorithm\Searching.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FatWin32_Macros.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl" />

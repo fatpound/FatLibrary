@@ -54,6 +54,7 @@
     <ClInclude Include="FatMacros.hpp" />
     <ClInclude Include="FatLibrary.hpp" />
     <ClInclude Include="FatNamespaces.hpp" />
+    <ClInclude Include="FatWin32_Macros.hpp" />
     <ClInclude Include="File\File.hpp" />
     <ClInclude Include="IO\IO.hpp" />
     <ClInclude Include="IO\Keyboard.hpp" />

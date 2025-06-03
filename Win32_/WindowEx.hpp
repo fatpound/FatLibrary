@@ -4,6 +4,7 @@
 
 #include <FatNamespaces.hpp>
 #include <FatMacros.hpp>
+#include <FatWin32_Macros.hpp>
 
 #include <Win32_/Common.hpp>
 #include <Win32_/IWindow.hpp>
@@ -39,13 +40,8 @@ namespace fatpound::win32
             std::shared_ptr<io::Keyboard>          pKeyboard         = std::make_shared<io::Keyboard>(),
             std::shared_ptr<io::Mouse>             pMouse            = std::make_shared<io::Mouse>(),
             const std::optional<DirectX::XMINT2>   position          = std::nullopt,
-            const DWORD&                           styles            = WS_VISIBLE
-#if IN_DEBUG or IS_GFX_FRAMEWORK
-            bitor WS_CAPTION bitor WS_MINIMIZEBOX bitor WS_OVERLAPPED bitor WS_SYSMENU,
-#else
-            bitor WS_POPUP,
-#endif
-            const DWORD& exStyles = {})
+            const DWORD                            styles            = WS_VISIBLE bitor FAT_WNDSTYLE_EX,
+            const DWORD                            exStyles          = {})
             :
             m_pKeyboard{ std::move<>(pKeyboard) },
             m_pMouse{ std::move<>(pMouse) },
