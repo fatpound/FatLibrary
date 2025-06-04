@@ -40,7 +40,7 @@ namespace fatpound::dsa::tree
             {
                 // inorder_successor
                 Node_* const iosuc = BST<T>::GetInorderSuccessor_(node);
-                
+
 #ifdef __GNUC__
     #if __GNUC__ >= 13
                 [[assume(iosuc not_eq nullptr)]];

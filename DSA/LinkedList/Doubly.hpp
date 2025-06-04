@@ -16,7 +16,13 @@ namespace fatpound::dsa::linkedlist
     class Doubly
     {
     public:
-        explicit Doubly()              = default;
+        explicit Doubly(std::ostream& os = std::cout)
+            :
+            m_os_(&os)
+        {
+
+        }
+
         explicit Doubly(const Doubly&) = delete;
         Doubly(Doubly&& src) noexcept
             :
@@ -58,7 +64,7 @@ namespace fatpound::dsa::linkedlist
             return Find_(item) not_eq nullptr;
         }
 
-        virtual void Add(const T& new_item)
+        virtual void Insert(const T& new_item)
         {
             auto* const new_part = new Node_(new_item);
 
@@ -76,7 +82,7 @@ namespace fatpound::dsa::linkedlist
             new_part->prev = m_end_;
             m_end_ = new_part;
         }
-        virtual void AddOrdered(const T& new_item)
+        virtual void InsertAtFirst_GreaterEq(const T& new_item)
         {
             auto* const new_part = new Node_(new_item);
 
@@ -152,13 +158,20 @@ namespace fatpound::dsa::linkedlist
 
             do
             {
-                std::cout << temp->prev << '\t' << temp << '\t' << temp->item << '\t' << temp->next << '\n';
+                *m_os_ << temp->prev << '\t' << temp << '\t' << temp->item << '\t' << temp->next << '\n';
 
                 temp = temp->next;
             }
             while (temp not_eq nullptr);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
+        }
+
+
+    public:
+        void SetOstream(std::ostream& os) noexcept
+        {
+            m_os_ = &os;
         }
 
 
@@ -245,6 +258,8 @@ namespace fatpound::dsa::linkedlist
         Node_* m_end_{};
 
         std::size_t m_item_count_{};
+
+        std::ostream* m_os_;
 
         bool m_cleared_from_derived_dtor_{};
 

@@ -17,7 +17,13 @@ namespace fatpound::dsa::tree
 
 
     public:
-        explicit BST() = default;
+        explicit BST(std::ostream& os = std::cout)
+            :
+            m_os_(&os)
+        {
+
+        }
+
         BST(const BST& src) noexcept
         {
             if (src.m_pRoot_ not_eq nullptr)
@@ -112,49 +118,49 @@ namespace fatpound::dsa::tree
         {
             ListPreorder_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListPreorderReverse  () const
         {
             ListPreorderReverse_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListInorder          () const
         {
             ListInorder_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListInorderReverse   () const
         {
             ListInorderReverse_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListPostorder        () const
         {
             ListPostorder_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListPostorderReverse () const
         {
             ListPostorderReverse_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListLeaves           () const
         {
             ListLeaves_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListLeavesReverse    () const
         {
             ListLeavesReverse_(m_pRoot_);
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
         void ListLevelorder       () const
         {
@@ -162,19 +168,23 @@ namespace fatpound::dsa::tree
 
             for (Size_t i = 1U; i <= height; ++i)
             {
-                std::cout << "Level " << i << " : ";
+                *m_os_ << "Level " << i << " : ";
 
                 ListLevelorder_(m_pRoot_, i);
 
-                std::cout << '\n';
+                *m_os_ << '\n';
             }
 
-            std::cout << '\n';
+            *m_os_ << '\n';
         }
 
         void Mirror()
         {
             Mirror_(m_pRoot_);
+        }
+        void SetOstream(std::ostream& os) noexcept
+        {
+            m_os_ = &os;
         }
 
 
@@ -219,7 +229,7 @@ namespace fatpound::dsa::tree
 
 
     protected:
-        auto Clone_ (const Node_* const node)          const -> Node_*
+        auto Clone_                (const Node_* const node                    ) const -> Node_*
         {
             if (node == nullptr)
             {
@@ -233,7 +243,7 @@ namespace fatpound::dsa::tree
 
             return new_node;
         }
-        auto Find_  (Node_* const node, const T& item) const noexcept -> Node_*
+        auto Find_                 (      Node_* const node, const T& item     ) const noexcept -> Node_*
         {
             if (node == nullptr)
             {
@@ -261,7 +271,7 @@ namespace fatpound::dsa::tree
 
             return nullptr;
         }
-        auto Delete_(Node_* node) noexcept -> Node_*
+        auto Delete_               (      Node_*       node                    ) noexcept -> Node_*
         {
             if (node == nullptr)
             {
@@ -329,7 +339,7 @@ namespace fatpound::dsa::tree
 
             return latest;
         }
-        auto GetMin_(Node_* node) noexcept -> Node_*
+        auto GetMin_               (      Node_*       node                    ) noexcept -> Node_*
         {
             if (node == nullptr)
             {
@@ -343,7 +353,7 @@ namespace fatpound::dsa::tree
 
             return node;
         }
-        auto GetMax_(Node_* node) noexcept -> Node_*
+        auto GetMax_               (      Node_*       node                    ) noexcept -> Node_*
         {
             if (node == nullptr)
             {
@@ -357,7 +367,7 @@ namespace fatpound::dsa::tree
 
             return node;
         }
-        auto GetDepth_     (const Node_* const node, const Size_t depth) const noexcept -> Size_t
+        auto GetDepth_             (const Node_* const node, const Size_t depth) const noexcept -> Size_t
         {
             if (node == nullptr)
             {
@@ -369,21 +379,21 @@ namespace fatpound::dsa::tree
 
             return std::max(left_val, right_val);
         }
-        auto GetDepthLeft_ (const Node_* const node, const Size_t depth) const noexcept -> Size_t
+        auto GetDepthLeft_         (const Node_* const node, const Size_t depth) const noexcept -> Size_t
         {
             return node
                 ? GetDepthLeft_(node->left, depth + 1)
                 : depth
                 ;
         }
-        auto GetDepthRight_(const Node_* const node, const Size_t depth) const noexcept -> Size_t
+        auto GetDepthRight_        (const Node_* const node, const Size_t depth) const noexcept -> Size_t
         {
             return node
                 ? GetDepthLeft_(node->right, depth + 1)
                 : depth
                 ;
         }
-        auto GetNodeCount_ (const Node_* const node) const noexcept -> Size_t
+        auto GetNodeCount_         (const Node_* const node                    ) const noexcept -> Size_t
         {
             if (node == nullptr)
             {
@@ -395,7 +405,7 @@ namespace fatpound::dsa::tree
 
             return 1 + left_val + right_val;
         }
-        auto GetInorderSuccessor_(Node_* node) noexcept -> Node_*
+        auto GetInorderSuccessor_  (      Node_*       node                    ) noexcept -> Node_*
         {
             if (node == nullptr)
             {
@@ -419,7 +429,119 @@ namespace fatpound::dsa::tree
             return prnt;
         }
 
-        void Mirror_(Node_* const node)
+        void ListPreorder_         (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                *m_os_ << node->item << ' ';
+
+                ListPreorder_(node->left);
+                ListPreorder_(node->right);
+            }
+        }
+        void ListPreorderReverse_  (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                *m_os_ << node->item << ' ';
+
+                ListPreorderReverse_(node->right);
+                ListPreorderReverse_(node->left);
+            }
+        }
+        void ListInorder_          (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                ListInorder_(node->left);
+
+                *m_os_ << node->item << ' ';
+
+                ListInorder_(node->right);
+            }
+        }
+        void ListInorderReverse_   (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                ListInorderReverse_(node->right);
+
+                *m_os_ << node->item << ' ';
+
+                ListInorderReverse_(node->left);
+            }
+        }
+        void ListPostorder_        (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                ListPostorder_(node->left);
+                ListPostorder_(node->right);
+
+                *m_os_ << node->item << ' ';
+            }
+        }
+        void ListPostorderReverse_ (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                ListPostorderReverse_(node->right);
+                ListPostorderReverse_(node->left);
+
+                *m_os_ << node->item << ' ';
+            }
+        }
+        void ListLeaves_           (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                if ((node->left == nullptr) and (node->right == nullptr))
+                {
+                    *m_os_ << node->item << ' ';
+
+                    return;
+                }
+
+                ListLeaves_(m_pRoot_->left);
+                ListLeaves_(m_pRoot_->right);
+            }
+        }
+        void ListLeavesReverse_    (const Node_* const node                    ) const
+        {
+            if (node not_eq nullptr)
+            {
+                if ((node->left == nullptr) and (node->right == nullptr))
+                {
+                    *m_os_ << node->item << ' ';
+
+                    return;
+                }
+
+                ListLeavesReverse_(m_pRoot_->right);
+                ListLeavesReverse_(m_pRoot_->left);
+            }
+        }
+        void ListLevelorder_       (const Node_* const node, const Size_t level) const
+        {
+            if (node not_eq nullptr)
+            {
+                if (level == 1)
+                {
+                    *m_os_ << node->item << ' ';
+                }
+                else if (level > 1)
+                {
+                    ListLevelorder_(node->left,  level - 1);
+                    ListLevelorder_(node->right, level - 1);
+                }
+            }
+            else if (level == 1)
+            {
+                *m_os_ << "x ";
+            }
+        }
+
+        void Mirror_               (      Node_* const node)
         {
             if (node not_eq nullptr)
             {
@@ -430,123 +552,13 @@ namespace fatpound::dsa::tree
             }
         }
 
-        void ListPreorder_         (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                std::cout << node->item << ' ';
-
-                ListPreorder_(node->left);
-                ListPreorder_(node->right);
-            }
-        }
-        void ListPreorderReverse_  (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                std::cout << node->item << ' ';
-
-                ListPreorderReverse_(node->right);
-                ListPreorderReverse_(node->left);
-            }
-        }
-        void ListInorder_          (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                ListInorder_(node->left);
-
-                std::cout << node->item << ' ';
-
-                ListInorder_(node->right);
-            }
-        }
-        void ListInorderReverse_   (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                ListInorderReverse_(node->right);
-
-                std::cout << node->item << ' ';
-
-                ListInorderReverse_(node->left);
-            }
-        }
-        void ListPostorder_        (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                ListPostorder_(node->left);
-                ListPostorder_(node->right);
-
-                std::cout << node->item << ' ';
-            }
-        }
-        void ListPostorderReverse_ (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                ListPostorderReverse_(node->right);
-                ListPostorderReverse_(node->left);
-
-                std::cout << node->item << ' ';
-            }
-        }
-        void ListLeaves_           (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                if ((node->left == nullptr) and (node->right == nullptr))
-                {
-                    std::cout << node->item << ' ';
-
-                    return;
-                }
-
-                ListLeaves_(m_pRoot_->left);
-                ListLeaves_(m_pRoot_->right);
-            }
-        }
-        void ListLeavesReverse_    (const Node_* const node)               const
-        {
-            if (node not_eq nullptr)
-            {
-                if ((node->left == nullptr) and (node->right == nullptr))
-                {
-                    std::cout << node->item << ' ';
-
-                    return;
-                }
-
-                ListLeavesReverse_(m_pRoot_->right);
-                ListLeavesReverse_(m_pRoot_->left);
-            }
-        }
-        void ListLevelorder_       (const Node_* const node, Size_t level) const
-        {
-            if (node not_eq nullptr)
-            {
-                if (level == 1)
-                {
-                    std::cout << node->item << ' ';
-                }
-                else if (level > 1)
-                {
-                    ListLevelorder_(node->left,  level - 1);
-                    ListLevelorder_(node->right, level - 1);
-                }
-            }
-            else if (level == 1)
-            {
-                std::cout << "x ";
-            }
-        }
-
 
     protected:
         Node_* m_pRoot_{};
 
         Size_t m_node_count_{};
+
+        std::ostream* m_os_;
 
 
     private:

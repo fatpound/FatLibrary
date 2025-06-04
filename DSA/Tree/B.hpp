@@ -15,7 +15,13 @@ namespace fatpound::dsa::tree
     class B final
     {
     public:
-        explicit B()             = default;
+        explicit B(std::ostream& os = std::cout)
+            :
+            m_os_(&os)
+        {
+
+        }
+
         explicit B(const B&)     = delete;
         explicit B(B&&) noexcept = delete;
 
@@ -67,7 +73,7 @@ namespace fatpound::dsa::tree
 
                 for (std::size_t i{}; i < node->items.size(); ++i)
                 {
-                    std::cout << node->items[i]->first << ' ';
+                    *m_os_ << node->items[i]->first << ' ';
 
                     if (node->items[i]->second not_eq nullptr)
                     {
@@ -75,10 +81,15 @@ namespace fatpound::dsa::tree
                     }
                 }
 
-                std::cout << '\n';
+                *m_os_ << '\n';
             }
 
-            std::cout << '\n';
+            *m_os_ << '\n';
+        }
+
+        void SetOstream(std::ostream& os)
+        {
+            m_os_ = &os;
         }
 
 
@@ -294,5 +305,7 @@ namespace fatpound::dsa::tree
         Node_* m_root_{};
 
         std::size_t m_depth_{};
+
+        std::ostream* m_os_;
     };
 }

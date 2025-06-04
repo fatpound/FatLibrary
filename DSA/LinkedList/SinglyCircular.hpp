@@ -16,7 +16,13 @@ namespace fatpound::dsa::linkedlist
         using typename Singly<T>::Node_;
 
     public:
-        explicit SinglyCircular()                      = default;
+        explicit SinglyCircular(std::ostream& os = std::cout)
+            :
+            Singly<T>(os)
+        {
+
+        }
+
         explicit SinglyCircular(const SinglyCircular&) = delete;
         SinglyCircular(SinglyCircular&& src) noexcept
             :
@@ -49,7 +55,7 @@ namespace fatpound::dsa::linkedlist
 
 
     public:
-        virtual void Add(const T& new_item) override final
+        virtual void Insert(const T& new_item) override final
         {
             auto* const new_part = new Node_(new_item);
 
@@ -68,7 +74,7 @@ namespace fatpound::dsa::linkedlist
             new_part->next = this->m_list_;
             this->m_end_ = new_part;
         }
-        virtual void AddOrdered(const T& new_item) override final
+        virtual void InsertAtFirst_GreaterEq(const T& new_item) override final
         {
             auto* const new_part = new Node_(new_item);
 
@@ -186,13 +192,13 @@ namespace fatpound::dsa::linkedlist
 
             do
             {
-                std::cout << temp << '\t' << temp->item << '\t' << temp->next << '\n';
+                *(this->m_os_) << temp << '\t' << temp->item << '\t' << temp->next << '\n';
 
                 temp = temp->next;
             }
             while (temp not_eq start);
 
-            std::cout << '\n';
+            *(this->m_os_) << '\n';
         }
 
 
