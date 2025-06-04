@@ -12,6 +12,11 @@
 #include <atomic>
 #include <optional>
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wctad-maybe-unsupported"
+#endif
+
 namespace fatpound::io
 {
     /// @brief Represents a keyboard input handler that manages key events, character input, and key states, including support for auto-repeat functionality
@@ -177,3 +182,7 @@ namespace fatpound::io
 
     using KeyEvent = Keyboard::KeyEvent;
 }
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif

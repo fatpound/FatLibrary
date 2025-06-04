@@ -8,6 +8,11 @@
 #include <atomic>
 #include <optional>
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wctad-maybe-unsupported"
+#endif
+
 namespace fatpound::io
 {
     /// @brief Represents a mouse input handler that tracks mouse events, button states, position, and provides an event buffer interface
@@ -298,3 +303,7 @@ namespace fatpound::io
 
     using MouseEvent = Mouse::Event;
 }
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif
