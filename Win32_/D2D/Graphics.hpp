@@ -21,6 +21,8 @@
 
 namespace fatpound::win32::d2d
 {
+    /// @brief The Graphics class provides a wrapper for Direct2D rendering operations on a window, including drawing lines and polylines, clearing the screen, and managing the drawing frame lifecycle
+    ///
     class Graphics final
     {
     public:

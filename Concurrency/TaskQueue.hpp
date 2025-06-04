@@ -11,6 +11,8 @@
 
 namespace fatpound::concurrency
 {
+    /// @brief A thread-safe queue for managing and executing tasks in FIFO order
+    ///
     class TaskQueue final
     {
         using WrappedTask = std::move_only_function<void()>;

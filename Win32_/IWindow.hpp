@@ -11,6 +11,8 @@
 
 namespace fatpound::win32
 {
+    /// @brief Abstract interface for windowing with multithreading support
+    ///
     class IWindow
     {
     public:
@@ -34,12 +36,14 @@ namespace fatpound::win32
 
 
     protected:
-        virtual auto HandleMessage_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT = 0;
+        virtual auto HandleMsg_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT = 0;
 
 
     private:
     };
     
+    /// @brief Manages the registration and unregistration of a window class (WNDCLASSEX) in the Windows API, while providing custom WndProc setup functions
+    ///
     class IWindow::ClassEx
     {
     public:
@@ -89,12 +93,12 @@ namespace fatpound::win32
 
 
     protected:
-        template <typename Wnd = IWindow> static auto CreateDefaultWNDCLASSEX_(const HINSTANCE& hInst, const wchar_t* const clsName) noexcept -> WNDCLASSEX
+        template <typename Wnd = IWindow> static auto CreateDefaultWNDCLASSEX_(const HINSTANCE& hInst, const wchar_t* const clsName, UINT style = CS_OWNDC) noexcept -> WNDCLASSEX
         {
             return
             {
                 .cbSize        = sizeof(WNDCLASSEX),
-                .style         = CS_OWNDC,
+                .style         = style,
                 .lpfnWndProc   = &ClassEx::HandleMsgSetup_<Wnd>,
                 .cbClsExtra    = 0,
                 .cbWndExtra    = 0,
@@ -108,24 +112,56 @@ namespace fatpound::win32
             };
         }
 
-        template <typename Wnd = IWindow> static auto CALLBACK HandleMsgSetup_(const ::HWND hWnd, const ::UINT msg, const ::WPARAM wParam, const ::LPARAM lParam) -> LRESULT
+        template <typename Wnd = IWindow> static auto CALLBACK HandleMsgSetup_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) noexcept -> LRESULT
         {
+            // There is no way to pass a member function pointer for a custom Window class' WndProc to Window Creation.
+            // One can only pass a function pointer which is type of => LRESULT(CALLBACK *)(HWND, UINT, WPARAM, LPARAM)
+            // 
+            // There are few options for this. I will use SetWindowLongPtr for that. But first, the Window class object's address ('this' pointer) is required
+            // 
+            // Microsoft Documentation says:
+            // The last and optional parameter of CreateWindowEx:
+            // 
+            // [in, optional] lpParam
+            // Type: LPVOID
+            // 
+            // Pointer to a value to be passed to the window through the CREATESTRUCT structure (lpCreateParams member) pointed to by the lParam param of the WM_CREATE message.
+            // This message is sent to the created window by this function before it returns.
+            // 
+            // That parameter will store 'this' pointer of whichever custom Window class object is creating the window, in the hWnd
+            // 
+            // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createwindowexw
+            // https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-createstructw
+            // https://learn.microsoft.com/en-us/windows/win32/winmsg/wm-create
+            // https://learn.microsoft.com/en-us/windows/win32/winmsg/wm-nccreate
+            // 
+            // WM_CREATE is sent before CreateWindowEx returns. And WndProc receives it (it starts immediately)
+            // but, WM_NCCREATE (non-client area create) is sent BEFORE the WM_CREATE message is sent.
+            // So, this function will receive WM_NCCREATE "first" (see the end of this function)
+            // I've tested, it ran well. So here it is:
+
             if (msg == WM_NCCREATE)
             {
 #ifdef UNICODE
-#define CREATESTRUCT_t CREATESTRUCTW
+    #define CREATESTRUCT_t CREATESTRUCTW
 #else
-#define CREATESTRUCT_t CREATESTRUCTA
+    #define CREATESTRUCT_t CREATESTRUCTA
 #endif
                 Wnd* const pWnd = static_cast<Wnd*>(reinterpret_cast<CREATESTRUCT_t*>(lParam)->lpCreateParams);
 #undef CREATESTRUCT_t
 
+                
+                // This function Changes an attribute of the specified window. The function also sets a value at the specified offset in the extra window memory.
+                // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlongptrw
+                // lets set it to an attribute of our hWnd
+                // user data is fine => "This data is intended for use by the application that created the window. Its value is initially zero."
                 ::SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
 
-#pragma warning (push)
-#pragma warning (disable : 5039)
+                // Then, set the new WndProc function's (HandleMsgThunk_) address
                 ::SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&ClassEx::HandleMsgThunk_<Wnd>));
-#pragma warning (pop)
+
+
+                // return with custom WndProc (now old) only once (window creation), then the HandleMsgThunk will keep running from now on
 
                 if constexpr (std::same_as<Wnd, IWindow>)
                 {
@@ -137,10 +173,17 @@ namespace fatpound::win32
                 }
             }
 
+            // If there is a message before WM_NCCREATE OR between it and WM_CREATE (and Microsoft did not document it)
+            // DefWindowProc can handle it
+            // Otherwise, the creation message is processed above and this function returns.
+
             return ::DefWindowProc(hWnd, msg, wParam, lParam);
         }
-        template <typename Wnd = IWindow> static auto CALLBACK HandleMsgThunk_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
+        template <typename Wnd = IWindow> static auto CALLBACK HandleMsgThunk_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) noexcept -> LRESULT
         {
+            // Get 'userdata' which is a pointer to our custom Window class, from the hWnd
+            // Then use that pointer and just call the member function
+
             Wnd* const pWnd = reinterpret_cast<Wnd*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
             if constexpr (std::same_as<Wnd, IWindow>)
@@ -149,7 +192,7 @@ namespace fatpound::win32
             }
             else
             {
-                return pWnd->HandleMessage_(hWnd, msg, wParam, lParam);
+                return pWnd->HandleMsg_(hWnd, msg, wParam, lParam);
             }
         }
 
@@ -160,9 +203,9 @@ namespace fatpound::win32
 
 
     private:
-        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
+        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) noexcept -> LRESULT
         {
-            return pWnd->HandleMessage_(hWnd, msg, wParam, lParam);
+            return pWnd->HandleMsg_(hWnd, msg, wParam, lParam);
         }
     };
 

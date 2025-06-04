@@ -30,6 +30,8 @@
 
 namespace fatpound::win32
 {
+    /// @brief A multithreaded Win32 extended Window, with Keyboard and Mouse input support
+    ///
     class WindowEx : public IWindow
     {
     public:
@@ -96,7 +98,7 @@ namespace fatpound::win32
                         nullptr,
                         nullptr,
                         ModuleHandleOf(),
-                        this
+                        this // to use HandleMessage_ (see IWindow::ClassEx::HandleMsgSetup_)
                     );
 
                     if (m_hWnd_ == nullptr)
@@ -186,7 +188,7 @@ namespace fatpound::win32
 
 
     protected:
-        virtual auto HandleMessage_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT override
+        virtual auto HandleMsg_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT override
         {
             switch (msg)
             {

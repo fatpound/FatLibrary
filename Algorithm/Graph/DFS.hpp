@@ -11,6 +11,14 @@
 
 namespace fatpound::algorithm::details
 {
+    /// @brief Performs a depth-first search (DFS) visit on a directed graph starting from a given node index, marking node colors and returning a string representation of the traversal order
+    /// 
+    /// @param  graph: The directed graph to traverse
+    /// @param colors: A vector representing the color (state) of each node during traversal
+    /// @param  index: The index of the node to start the DFS visit from
+    /// 
+    /// @return A string containing the traversal order of visited node indices, each followed by a newline
+    /// 
     static auto DFS_Visit_(const dsa::DirectedGraph& graph, std::vector<utility::Color>& colors, const std::size_t& index) -> std::string
     {
         colors[index] = colors::Gray;
@@ -40,6 +48,12 @@ namespace fatpound::algorithm::details
 
 namespace fatpound::algorithm
 {
+    /// @brief Performs a depth-first search (DFS) traversal on a directed graph and returns the traversal order as a string
+    /// 
+    /// @param graph: The directed graph to traverse
+    /// 
+    /// @return A string representing the order in which the nodes are visited during the DFS traversal
+    /// 
     static auto DFS(const dsa::DirectedGraph& graph) -> std::string
     {
         std::string output;

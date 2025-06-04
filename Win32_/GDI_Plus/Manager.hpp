@@ -13,6 +13,9 @@
 
 namespace fatpound::win32::gdi_plus
 {
+    /// @brief Manages the initialization and shutdown of the GDI+ library using reference counting.
+    ///        Ensures GDI+ is started once and properly shut down when no longer needed
+    ///
     class Manager final
     {
     public:

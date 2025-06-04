@@ -19,6 +19,8 @@
 
 namespace fatpound::win32::d3d11::visual
 {
+    /// @brief Abstract base class representing an object that can be drawn using Direct3D 11, supporting bindable resources and transformation
+    ///
     class Drawable
     {
     public:

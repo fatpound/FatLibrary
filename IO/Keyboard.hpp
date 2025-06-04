@@ -8,11 +8,14 @@
 #include <queue>
 #include <bitset>
 #include <limits>
+#include <mutex>
 #include <atomic>
 #include <optional>
 
 namespace fatpound::io
 {
+    /// @brief Represents a keyboard input handler that manages key events, character input, and key states, including support for auto-repeat functionality
+    ///
     class Keyboard final
     {
         static constexpr auto scx_bufferSize_ = 16U;
@@ -48,7 +51,7 @@ namespace fatpound::io
         ~Keyboard() noexcept                               = default;
 
 
-    public:
+        public:
         auto GetEvent() noexcept -> std::optional<KeyEvent>
         {
             if (KeyBufferIsEmpty())
@@ -56,21 +59,23 @@ namespace fatpound::io
                 return std::nullopt;
             }
 
-            auto keyE = m_key_event_queue_.front();
+            const std::lock_guard guard{ m_mtx_ };
 
+            auto keyE = m_key_event_queue_.front();
             m_key_event_queue_.pop();
 
             return keyE;
         }
         auto GetChar()  noexcept -> std::optional<unsigned char>
         {
-            if (m_char_buffer_.empty())
+            if (CharBufferIsEmpty())
             {
                 return std::nullopt;
             }
 
-            auto ch = m_char_buffer_.front();
+            const std::lock_guard guard{ m_mtx_ };
 
+            auto ch = m_char_buffer_.front();
             m_char_buffer_.pop();
 
             return ch;
@@ -78,6 +83,8 @@ namespace fatpound::io
 
         [[nodiscard]] auto KeyIsPressed(KeyCode_t code) const noexcept -> bool
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             return m_key_states_[code];
         }
         [[nodiscard]] auto AutoRepeatIsEnabled() const noexcept -> bool
@@ -87,10 +94,14 @@ namespace fatpound::io
 
         [[nodiscard]] auto KeyBufferIsEmpty()  const noexcept -> bool
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             return m_key_event_queue_.empty();
         }
         [[nodiscard]] auto CharBufferIsEmpty() const noexcept -> bool
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             return m_char_buffer_.empty();
         }
 
@@ -104,30 +115,38 @@ namespace fatpound::io
         }
         void ClearKeyStateBitset() noexcept
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             m_key_states_.reset();
         }
 
         void AddKeyPressEvent(unsigned char keycode)
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             m_key_states_[keycode] = true;
 
             m_key_event_queue_.push(KeyEvent{ .type = KeyEvent::Type::Press, .code = keycode });
 
-            TrimBuffer_(m_key_event_queue_);
+            TrimBuffer_NoGuard_(m_key_event_queue_);
         }
         void AddKeyReleaseEvent(unsigned char keycode)
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             m_key_states_[keycode] = false;
 
             m_key_event_queue_.push(KeyEvent{ .type = KeyEvent::Type::Release, .code = keycode });
 
-            TrimBuffer_(m_key_event_queue_);
+            TrimBuffer_NoGuard_(m_key_event_queue_);
         }
         void AddChar(unsigned char ch)
         {
+            const std::lock_guard guard{ m_mtx_ };
+
             m_char_buffer_.push(ch);
 
-            TrimBuffer_(m_char_buffer_);
+            TrimBuffer_NoGuard_(m_char_buffer_);
         }
 
 
@@ -136,7 +155,7 @@ namespace fatpound::io
 
     private:
         template <typename U>
-        static void TrimBuffer_(std::queue<U>& buffer) noexcept
+        static void TrimBuffer_NoGuard_(std::queue<U>& buffer) noexcept
         {
             while (buffer.size() > scx_bufferSize_)
             {
@@ -152,6 +171,8 @@ namespace fatpound::io
         std::bitset<std::numeric_limits<KeyCode_t>::max()> m_key_states_;
 
         std::atomic_bool m_auto_repeat_enabled_;
+
+        mutable std::mutex m_mtx_;
     };
 
     using KeyEvent = Keyboard::KeyEvent;
