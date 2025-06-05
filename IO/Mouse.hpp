@@ -294,11 +294,11 @@ namespace fatpound::io
 
         WheelDelta_t m_wheel_delta_carry_{};
 
-        std::atomic_bool m_is_in_window_{};
+        std::atomic_bool m_is_in_window_;
 
-        std::atomic_bool m_left_is_pressed_{};
-        std::atomic_bool m_right_is_pressed_{};
-        std::atomic_bool m_wheel_is_pressed_{};
+        std::atomic_bool m_left_is_pressed_;
+        std::atomic_bool m_right_is_pressed_;
+        std::atomic_bool m_wheel_is_pressed_;
     };
 
     using MouseEvent = Mouse::Event;
