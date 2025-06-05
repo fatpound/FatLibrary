@@ -4,16 +4,12 @@
 
 #include <cstdlib>
 
-#if FAT_BUILDING_WITH_MSVC or FAT_BUILDING_ON_WINDOWS
-    #if not defined(FAT_MEMORY_ALIGNED_ALLOCATOR) or not defined(FAT_MEMORY_ALIGNED_FREER)
-        #define FAT_MEMORY_ALIGNED_ALLOCATOR _aligned_malloc
-        #define FAT_MEMORY_ALIGNED_FREER     _aligned_free
-    #endif
+#if defined(_MSVC_STL_VERSION) or defined(FAT_BUILDING_ON_WINDOWS)
+    #define FAT_MEMORY_ALIGNED_ALLOCATOR _aligned_malloc
+    #define FAT_MEMORY_ALIGNED_FREER     _aligned_free
 #else
-    #if not defined(FAT_MEMORY_ALIGNED_ALLOCATOR) or not defined(FAT_MEMORY_ALIGNED_FREER)
-        #define FAT_MEMORY_ALIGNED_ALLOCATOR std::aligned_alloc
-        #define FAT_MEMORY_ALIGNED_FREER     std::free
-    #endif
+    #define FAT_MEMORY_ALIGNED_ALLOCATOR std::aligned_alloc
+    #define FAT_MEMORY_ALIGNED_FREER     std::free
 #endif
 
 #include <cstddef>
@@ -46,7 +42,7 @@ namespace fatpound::memory
     static auto AlignedAlloc(const std::size_t& alignBytes, const std::size_t& size) -> T*
     {
         if (auto* const ptr = static_cast<T*>(
-#if FAT_BUILDING_WITH_MSVC or FAT_BUILDING_ON_WINDOWS
+#if defined(_MSVC_STL_VERSION) or defined(FAT_BUILDING_ON_WINDOWS)
             FAT_MEMORY_ALIGNED_ALLOCATOR(size * sizeof(T), alignBytes)
 #else
             FAT_MEMORY_ALIGNED_ALLOCATOR(alignBytes, size * sizeof(T))

@@ -1,6 +1,6 @@
 #pragma once
 
-#if FAT_BUILDING_WITH_MSVC
+#ifdef FAT_BUILDING_WITH_MSVC
     #include <FatSTL_Macros.hpp>
 
     #include <FatWin32.hpp>
@@ -29,7 +29,7 @@ namespace fatpound::utility
     constexpr std::string_view     DecimalDigits = DecDigits;
     constexpr std::string_view HexadecimalDigits = HexDigits;
 
-#if FAT_BUILDING_WITH_MSVC
+#ifdef FAT_BUILDING_WITH_MSVC
 
     static auto ToWString(const std::string& str) -> std::wstring
     {

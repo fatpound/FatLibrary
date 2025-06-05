@@ -3,7 +3,7 @@
 #include <FatNamespaces.hpp>
 #include <FatMacros.hpp>
 
-#if FAT_BUILDING_WITH_MSVC
+#ifdef FAT_BUILDING_WITH_MSVC
 #define FATPOUND_FULL_WIN_TARGETED
 #include <FatWin32.hpp>
 #include <gdiplus.h>
@@ -46,7 +46,7 @@ namespace fatpound::utility
 
 
     public:
-#if FAT_BUILDING_WITH_MSVC
+#ifdef FAT_BUILDING_WITH_MSVC
         explicit Surface(const std::filesystem::path& path,         const Size_t& alignBytes = scx_DefaultAlignment)
             :
             Surface(path.wstring(), alignBytes)
