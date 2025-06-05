@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _MSC_VER
+#ifdef FAT_BUILDING_WITH_MSVC
 
 #define FATPOUND_FULL_WIN_TARGETED
 #include <FatWin32.hpp>

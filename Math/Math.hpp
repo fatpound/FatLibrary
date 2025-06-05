@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _MSC_VER
+#ifdef FAT_BUILDING_WITH_MSVC
     #include <DirectXMath.h>
 #endif
 
@@ -10,7 +10,7 @@
 #include <Math/Common.hpp>
 #include <Math/Multiplicative.hpp>
 
-#ifdef _MSC_VER
+#ifdef FAT_BUILDING_WITH_MSVC
 
 namespace fatpound::math
 {

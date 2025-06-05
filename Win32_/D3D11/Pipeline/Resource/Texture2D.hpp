@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _MSC_VER
+#ifdef FAT_BUILDING_WITH_MSVC
 
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
