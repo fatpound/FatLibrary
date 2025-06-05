@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
 
 #include "D2D/D2D.hpp"
 #include "D3D11/D3D11.hpp"

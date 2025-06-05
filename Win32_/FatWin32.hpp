@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
 
 #include <FatWin32_Settings.hpp>
 

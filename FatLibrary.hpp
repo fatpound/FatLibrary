@@ -14,6 +14,6 @@
 #include "Traits/Traits.hpp"
 #include "Utility/Utility.hpp"
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
     #include "Win32_/Win32_.hpp"
 #endif

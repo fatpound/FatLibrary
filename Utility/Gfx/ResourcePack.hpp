@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
     #include <FatNamespaces.hpp>
 
     #include <FatWin32.hpp>
@@ -8,7 +8,7 @@
     #include <wrl.h>
 #endif
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
 
 #include <Utility/Gfx/SizePack.hpp>
 #include <Utility/Surface.hpp>

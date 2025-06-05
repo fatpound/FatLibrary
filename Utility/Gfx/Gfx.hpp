@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
     #include <FatWin32.hpp>
     #include <d3d11.h>
     #include <wrl.h>
@@ -10,7 +10,7 @@
 #include <Utility/Gfx/ResourcePack.hpp>
 #include <Utility/Gfx/SizePack.hpp>
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef _MSC_VER
 
 namespace fatpound::utility::gfx
 {
