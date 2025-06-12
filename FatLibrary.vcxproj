@@ -63,13 +63,13 @@
     <ClInclude Include="Math\Geometry\Common.hpp" />
     <ClInclude Include="FatSTL_Macros.hpp" />
     <ClInclude Include="Math\Geometry\Geometry.hpp" />
+    <ClInclude Include="Math\Geometry\Shape\Circle.hpp" />
     <ClInclude Include="Math\Math.hpp" />
     <ClInclude Include="Math\Multiplicative.hpp" />
     <ClInclude Include="Math\Numbers\Common.hpp" />
     <ClInclude Include="Math\Numbers\Numbers.hpp" />
     <ClInclude Include="Math\Numbers\Primes.hpp" />
     <ClInclude Include="Math\Numbers\Sets.hpp" />
-    <ClInclude Include="Math\Geometry\Rectangle.hpp" />
     <ClInclude Include="Memory\Memory.hpp" />
     <ClInclude Include="Random\Random.hpp" />
     <ClInclude Include="Random\URand.hpp" />

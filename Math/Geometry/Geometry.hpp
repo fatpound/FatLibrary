@@ -1,5 +1,4 @@
 #pragma once
 
-#include "AngularConv.hpp"
-#include "Common.hpp"
-#include "Rectangle.hpp"
+#include <Math/Geometry/AngularConv.hpp>
+#include <Math/Geometry/Common.hpp>
