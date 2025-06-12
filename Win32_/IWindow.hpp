@@ -196,7 +196,7 @@ namespace fatpound::win32
 
 
     private:
-        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) noexcept -> LRESULT
+        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
         {
             return pWnd->HandleMsg_(hWnd, msg, wParam, lParam);
         }
