@@ -1,5 +1,7 @@
 #pragma once
 
+#include <FatMacros.hpp>
+
 #include <cstddef>
 
 #include <algorithm>
@@ -36,6 +38,11 @@ namespace fatpound::dsa::tree
 
 
     public:
+        FAT_FORCEINLINE auto GetOs() const noexcept -> std::ostream&
+        {
+            return *m_os_;
+        }
+
         // NOLINTBEGIN(readability-function-cognitive-complexity)
         auto Contains(const T& item) noexcept -> bool
         {
@@ -104,7 +111,7 @@ namespace fatpound::dsa::tree
 
             if (root_ == nullptr)
             {
-                root_ = new Node_(new_item, nullptr, nullptr);
+                root_         = new Node_(new_item, nullptr, nullptr);
                 root_->lesser = new Node_(new_item, nullptr, root_);
 
                 return;
@@ -112,7 +119,11 @@ namespace fatpound::dsa::tree
 
             Insert_(root_, new_item);
 
-            item_count_++;
+            ++item_count_;
+        }
+        void SetOstream(std::ostream& os)
+        {
+            m_os_ = &os;
         }
         void ListLevelorder() const
         {
@@ -125,19 +136,14 @@ namespace fatpound::dsa::tree
 
             for (Size_t i = 1U; i <= height; ++i)
             {
-                *m_os_ << "Level " << i << " : ";
+                GetOs() << "Level " << i << " : ";
 
                 ListLevelorder_(root_, i);
 
-                *m_os_ << '\n';
+                GetOs() << '\n';
             }
 
-            *m_os_ << '\n';
-        }
-
-        void SetOstream(std::ostream& os)
-        {
-            m_os_ = &os;
+            GetOs() << '\n';
         }
 
 
@@ -377,7 +383,7 @@ namespace fatpound::dsa::tree
                 {
                     for (std::size_t i{}; i < node->items.size(); ++i)
                     {
-                        *m_os_ << node->items[i]->first << ' ';
+                        GetOs() << node->items[i]->first << ' ';
                     }
                 }
                 else if (level > 1U)
@@ -388,18 +394,17 @@ namespace fatpound::dsa::tree
                     {
                         ListLevelorder_(node->items[i]->second, level - 1U);
 
-                        *m_os_ << '\t';
+                        GetOs() << '\t';
                     }
                 }
             }
             else if (level == 1U)
             {
-                *m_os_ << "x ";
+                GetOs() << "x ";
             }
 
-            *m_os_ << '\t';
+            GetOs() << '\t';
         }
-
         void Clear_()
         {
             if (root_ == nullptr)

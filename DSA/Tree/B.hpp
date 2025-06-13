@@ -1,5 +1,7 @@
 #pragma once
 
+#include <FatMacros.hpp>
+
 #include <cstddef>
 
 #include <algorithm>
@@ -34,6 +36,11 @@ namespace fatpound::dsa::tree
 
 
     public:
+        FAT_FORCEINLINE auto GetOs() const noexcept -> std::ostream&
+        {
+            return *m_os_;
+        }
+
         // NOLINTBEGIN(clang-analyzer-cplusplus.NewDeleteLeaks)
         void Insert(const T& new_item)
         {
@@ -51,6 +58,11 @@ namespace fatpound::dsa::tree
             Insert_(m_root_, new_pair, true);
         }
         // NOLINTEND(clang-analyzer-cplusplus.NewDeleteLeaks)
+
+        void SetOstream(std::ostream& os)
+        {
+            m_os_ = &os;
+        }
         void ListLevelorder() const
         {
             if (m_root_ == nullptr)
@@ -73,7 +85,7 @@ namespace fatpound::dsa::tree
 
                 for (std::size_t i{}; i < node->items.size(); ++i)
                 {
-                    *m_os_ << node->items[i]->first << ' ';
+                    GetOs() << node->items[i]->first << ' ';
 
                     if (node->items[i]->second not_eq nullptr)
                     {
@@ -81,15 +93,10 @@ namespace fatpound::dsa::tree
                     }
                 }
 
-                *m_os_ << '\n';
+                GetOs() << '\n';
             }
 
-            *m_os_ << '\n';
-        }
-
-        void SetOstream(std::ostream& os)
-        {
-            m_os_ = &os;
+            GetOs() << '\n';
         }
 
 
@@ -262,7 +269,6 @@ namespace fatpound::dsa::tree
             new_node->lesser = temp_vec[center]->second;
             temp_vec[center]->second = new_node;
         }
-
         void Clear_()
         {
             if (m_root_ == nullptr)
