@@ -118,17 +118,18 @@ namespace fatpound::dsa::tree
             return m_node_count_;
         }
 
-        [[nodiscard]]   auto Contains   (const T& item) const noexcept -> bool
-        {
-            return Find_(GetRoot_(), item) not_eq nullptr;
-        }
-        FAT_FORCEINLINE auto IsEmpty    () const noexcept -> bool
+        [[nodiscard]] FAT_FORCEINLINE auto IsEmpty    () const noexcept -> bool
         {
             return m_node_count_ == 0U;
         }
-        FAT_FORCEINLINE auto IsNotEmpty () const noexcept -> bool
+        [[nodiscard]] FAT_FORCEINLINE auto IsNotEmpty () const noexcept -> bool
         {
             return not IsEmpty();
+        }
+
+        [[nodiscard]] auto Contains (const T& item) const noexcept -> bool
+        {
+            return Find_(GetRoot_(), item) not_eq nullptr;
         }
 
         void ListPreorder         () const
@@ -259,7 +260,7 @@ namespace fatpound::dsa::tree
 
 
     protected:
-        FAT_FORCEINLINE auto GetRoot_() const noexcept -> Node_*
+        [[nodiscard]] FAT_FORCEINLINE auto GetRoot_() const noexcept -> Node_*
         {
             return m_pRoot_;
         }

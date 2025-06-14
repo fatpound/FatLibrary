@@ -286,7 +286,7 @@ namespace fatpound::utility
         {
 #if defined(__clang__)
     #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage-in-libc-call"
+    #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif
             std::memset(
                 *this,
