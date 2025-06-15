@@ -2,7 +2,7 @@
 
 #include <_macros/STL.hpp>
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef FATLIB_BUILDING_WITH_MSVC
     #include <DirectXMath.h>
 #endif
 
@@ -15,7 +15,7 @@
 
 namespace fatpound::math::geometry
 {
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef FATLIB_BUILDING_WITH_MSVC
 
     static auto operator +      (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR
     {

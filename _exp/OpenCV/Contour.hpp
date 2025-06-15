@@ -3,7 +3,7 @@
 #include <_macros/Compiler.hpp>
 
 #pragma warning (push)
-#pragma warning (disable : FAT_EXTERNAL_WARNINGS)
+#pragma warning (disable : FATLIB_EXTERNAL_WARNINGS)
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #pragma warning (pop)

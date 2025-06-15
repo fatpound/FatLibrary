@@ -4,12 +4,12 @@
 
 #include <cstdlib>
 
-#if defined(_MSVC_STL_VERSION) or FAT_BUILDING_ON_WINDOWS
-    #define FAT_MEMORY_ALIGNED_ALLOCATOR _aligned_malloc
-    #define FAT_MEMORY_ALIGNED_FREER     _aligned_free
+#if defined(_MSVC_STL_VERSION) or FATLIB_BUILDING_ON_WINDOWS
+    #define FATLIB_MEMORY_ALIGNED_ALLOCATOR _aligned_malloc
+    #define FATLIB_MEMORY_ALIGNED_FREER     _aligned_free
 #else
-    #define FAT_MEMORY_ALIGNED_ALLOCATOR std::aligned_alloc
-    #define FAT_MEMORY_ALIGNED_FREER     std::free
+    #define FATLIB_MEMORY_ALIGNED_ALLOCATOR std::aligned_alloc
+    #define FATLIB_MEMORY_ALIGNED_FREER     std::free
 #endif
 
 #include <cstddef>
@@ -23,13 +23,13 @@ namespace fatpound::memory::details
     template <typename T>
     struct AlignedUPtr
     {
-        using ptr_type = std::unique_ptr<T, decltype(&FAT_MEMORY_ALIGNED_FREER)>;
+        using ptr_type = std::unique_ptr<T, decltype(&FATLIB_MEMORY_ALIGNED_FREER)>;
     };
 
     template <typename T>
     struct AlignedUPtr<T[]>
     {
-        using ptr_type = std::unique_ptr<T[], decltype(&FAT_MEMORY_ALIGNED_FREER)>;
+        using ptr_type = std::unique_ptr<T[], decltype(&FATLIB_MEMORY_ALIGNED_FREER)>;
     };
 }
 
@@ -42,10 +42,10 @@ namespace fatpound::memory
     static auto AlignedAlloc(const std::size_t& alignBytes, const std::size_t& size) -> T*
     {
         if (auto* const ptr = static_cast<T*>(
-#if defined(_MSVC_STL_VERSION) or FAT_BUILDING_ON_WINDOWS
-            FAT_MEMORY_ALIGNED_ALLOCATOR(size * sizeof(T), alignBytes)
+#if defined(_MSVC_STL_VERSION) or FATLIB_BUILDING_ON_WINDOWS
+            FATLIB_MEMORY_ALIGNED_ALLOCATOR(size * sizeof(T), alignBytes)
 #else
-            FAT_MEMORY_ALIGNED_ALLOCATOR(alignBytes, size * sizeof(T))
+            FATLIB_MEMORY_ALIGNED_ALLOCATOR(alignBytes, size * sizeof(T))
 #endif
             ))
         {
@@ -58,19 +58,19 @@ namespace fatpound::memory
     static void AlignedFree(void* const ptr) noexcept
     {
         // NOLINTBEGIN(cppcoreguidelines-no-malloc, hicpp-no-malloc)
-        FAT_MEMORY_ALIGNED_FREER(ptr);
+        FATLIB_MEMORY_ALIGNED_FREER(ptr);
         // NOLINTEND(cppcoreguidelines-no-malloc, hicpp-no-malloc)
     }
 
     template <traits::Array T>
     static auto MakeAlignedUniquePtr(const std::size_t& alignBytes, const std::size_t& size)
     {
-        return AlignedUniquePtr<T>(AlignedAlloc<std::remove_all_extents_t<T>>(alignBytes, size), &FAT_MEMORY_ALIGNED_FREER);
+        return AlignedUniquePtr<T>(AlignedAlloc<std::remove_all_extents_t<T>>(alignBytes, size), &FATLIB_MEMORY_ALIGNED_FREER);
     }
 
     template <typename T>
     static auto MakeAlignedUniquePtr(const std::size_t& alignBytes)
     {
-        return AlignedUniquePtr<T>(AlignedAlloc<T>(alignBytes, 1U), &FAT_MEMORY_ALIGNED_FREER);
+        return AlignedUniquePtr<T>(AlignedAlloc<T>(alignBytes, 1U), &FATLIB_MEMORY_ALIGNED_FREER);
     }
 }

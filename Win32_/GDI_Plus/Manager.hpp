@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef FATLIB_BUILDING_WITH_MSVC
 
 #define FATPOUND_FULL_WIN_TARGETED
 #include <Win32_/WinAPI.hpp>

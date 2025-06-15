@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef FAT_BUILDING_WITH_MSVC
+#ifdef FATLIB_BUILDING_WITH_MSVC
 
 #include <_macros/Compiler.hpp>
 #include <_macros/Namespaces.hpp>
@@ -112,11 +112,11 @@ namespace fatpound::win32::d3d11
             return static_cast<T>(mc_dimensions_.m_height);
         }
 
-        template <std::integral T> [[nodiscard]] FAT_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> FATSPACE_UTILITY::Color               requires(Framework)
+        template <std::integral T> [[nodiscard]] FATLIB_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> FATSPACE_UTILITY::Color               requires(Framework)
         {
             return m_res_pack_.m_surface.GetPixel<>(x, y);
         }
-        template <std::integral T>               FAT_FORCEINLINE void PutPixel(const T& x, const T& y, const FATSPACE_UTILITY::Color& color) noexcept requires(Framework)
+        template <std::integral T>               FATLIB_FORCEINLINE void PutPixel(const T& x, const T& y, const FATSPACE_UTILITY::Color& color) noexcept requires(Framework)
         {
             m_res_pack_.m_surface.PutPixel<>(x, y, color);
         }

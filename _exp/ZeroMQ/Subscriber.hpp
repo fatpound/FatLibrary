@@ -3,7 +3,7 @@
 #include <_macros/Compiler.hpp>
 
 #pragma warning (push)
-#pragma warning (disable : FAT_EXTERNAL_WARNINGS)
+#pragma warning (disable : FATLIB_EXTERNAL_WARNINGS)
 #include <zmq.hpp>
 #pragma warning (pop)
 
