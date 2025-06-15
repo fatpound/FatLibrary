@@ -1,11 +1,11 @@
 #pragma once
 
-#include <FatNamespaces.hpp>
-#include <FatMacros.hpp>
+#include <_macros/Compiler.hpp>
+#include <_macros/Namespaces.hpp>
 
 #ifdef FAT_BUILDING_WITH_MSVC
 #define FATPOUND_FULL_WIN_TARGETED
-#include <FatWin32.hpp>
+#include <Win32_/WinAPI.hpp>
 #include <gdiplus.h>
 #include <Win32_/GDI_Plus/Manager.hpp>
 #undef FATPOUND_FULL_WIN_TARGETED

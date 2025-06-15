@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatSTL_Macros.hpp>
+#include <_macros/STL.hpp>
 
 #include <Math/Numbers/Common.hpp>
 #include <Math/Numbers/Primes.hpp>

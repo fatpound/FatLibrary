@@ -2,9 +2,8 @@
 
 #ifdef FAT_BUILDING_WITH_MSVC
 
-#include <FatNamespaces.hpp>
-#include <FatMacros.hpp>
-#include <FatWin32_Macros.hpp>
+#include <_macros/Namespaces.hpp>
+#include <_macros/Compiler.hpp>
 
 #include <Win32_/Common.hpp>
 #include <Win32_/IWindow.hpp>
@@ -34,16 +33,24 @@ namespace fatpound::win32
     ///
     class WindowEx : public IWindow
     {
+public:
+#if IN_DEBUG
+        static constexpr DWORD scx_DefaultWndStyleEx = WS_VISIBLE bitor WS_CAPTION bitor WS_MINIMIZEBOX bitor WS_OVERLAPPED bitor WS_SYSMENU;
+#else
+        static constexpr DWORD scx_DefaultWndStyleEx = WS_VISIBLE bitor WS_POPUP;
+#endif
+
+
     public:
         explicit WindowEx(
-            std::shared_ptr<WndClassEx>            pWndClassEx,
-            const std::wstring                     title,
-            const FATSPACE_UTILITY_GFX::SizePack   clientDimensions,
-            std::shared_ptr<io::Keyboard>          pKeyboard         = std::make_shared<io::Keyboard>(),
-            std::shared_ptr<io::Mouse>             pMouse            = std::make_shared<io::Mouse>(),
-            const std::optional<DirectX::XMINT2>   position          = std::nullopt,
-            const DWORD                            styles            = WS_VISIBLE bitor FAT_WNDSTYLE_EX,
-            const DWORD                            exStyles          = {})
+            std::shared_ptr<WndClassEx>             pWndClassEx,
+            const std::wstring                      title,
+            const FATSPACE_UTILITY_GFX::SizePack    clientDimensions,
+            std::shared_ptr<io::Keyboard>           pKeyboard         = std::make_shared<io::Keyboard>(),
+            std::shared_ptr<io::Mouse>              pMouse            = std::make_shared<io::Mouse>(),
+            const std::optional<DirectX::XMINT2>    position          = std::nullopt,
+            const DWORD                             styles            = scx_DefaultWndStyleEx,
+            const DWORD                             exStyles          = {})
             :
             m_pKeyboard{ std::move<>(pKeyboard) },
             m_pMouse{ std::move<>(pMouse) },
@@ -59,8 +66,8 @@ namespace fatpound::win32
         {
             auto future = DispatchTaskToQueue_<false>(
                 [
-                    &title,
                     this,
+                    title = title.c_str(),
                     position,
                     styles,
                     exStyles
@@ -87,7 +94,7 @@ namespace fatpound::win32
                     m_hWnd_ = ::CreateWindowEx(
                         exStyles,
                         MAKEINTATOM(m_pWndClassEx_->GetAtom()),
-                        title.c_str(),
+                        title,
                         styles,
                         position.has_value() ? position->x : CW_USEDEFAULT,
                         position.has_value() ? position->y : CW_USEDEFAULT,

@@ -2,7 +2,7 @@
 
 #ifdef FAT_BUILDING_WITH_MSVC
 
-#include <FatNamespaces.hpp>
+#include <_macros/Namespaces.hpp>
 
 #include <Win32_/D3D11/Pipeline/Pipeline.hpp>
 #include <Win32_/D3D11/Visual/Drawable.hpp>

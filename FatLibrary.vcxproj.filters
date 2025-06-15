@@ -191,28 +191,22 @@
     <ClInclude Include="Win32_\GDI_Plus\Manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\FatWin32.hpp">
+    <ClInclude Include="Win32_\WinAPI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\FatWin32_Settings.hpp">
+    <ClInclude Include="Win32_\WinAPI_Settings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\IWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\Win32_.hpp">
+    <ClInclude Include="Win32_\Win32.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\WindowEx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatMacros.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FatLibrary.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FatNamespaces.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp">
@@ -290,9 +284,6 @@
     <ClInclude Include="Math\Geometry\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatSTL_Macros.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Traits\Extents.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -326,10 +317,19 @@
     <ClInclude Include="Algorithm\Searching.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatWin32_Macros.hpp">
+    <ClInclude Include="Math\Geometry\Shape\Circle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\Shape\Circle.hpp">
+    <ClInclude Include="_macros\Compiler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_macros\Experimental.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_macros\Namespaces.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_macros\STL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

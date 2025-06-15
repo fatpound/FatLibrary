@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatMacros.hpp>
+#include <_macros/Compiler.hpp>
 
 #pragma warning (push)
 #pragma warning (disable : FAT_EXTERNAL_WARNINGS)

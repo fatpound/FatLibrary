@@ -15,5 +15,5 @@
 #include "Utility/Utility.hpp"
 
 #ifdef FAT_BUILDING_WITH_MSVC
-    #include "Win32_/Win32_.hpp"
+    #include "Win32_/Win32.hpp"
 #endif

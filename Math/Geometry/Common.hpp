@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatSTL_Macros.hpp>
+#include <_macros/STL.hpp>
 
 #ifdef FAT_BUILDING_WITH_MSVC
     #include <DirectXMath.h>

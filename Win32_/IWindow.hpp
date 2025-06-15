@@ -2,7 +2,7 @@
 
 #ifdef FAT_BUILDING_WITH_MSVC
 
-#include <FatWin32.hpp>
+#include <Win32_/WinAPI.hpp>
 
 #include <string>
 #include <stdexcept>

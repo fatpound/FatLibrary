@@ -1,9 +1,9 @@
 #pragma once
 
 #ifdef FAT_BUILDING_WITH_MSVC
-    #include <FatSTL_Macros.hpp>
+    #include <_macros/STL.hpp>
 
-    #include <FatWin32.hpp>
+    #include <Win32_/WinAPI.hpp>
 #endif
 
 #include <Traits/Bitwise.hpp>

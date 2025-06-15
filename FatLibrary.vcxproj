@@ -51,17 +51,13 @@
     <ClInclude Include="DSA\Tree\B.hpp" />
     <ClInclude Include="DSA\Tree\B_Plus.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
-    <ClInclude Include="FatMacros.hpp" />
     <ClInclude Include="FatLibrary.hpp" />
-    <ClInclude Include="FatNamespaces.hpp" />
-    <ClInclude Include="FatWin32_Macros.hpp" />
     <ClInclude Include="File\File.hpp" />
     <ClInclude Include="IO\IO.hpp" />
     <ClInclude Include="IO\Keyboard.hpp" />
     <ClInclude Include="IO\Mouse.hpp" />
     <ClInclude Include="Math\Common.hpp" />
     <ClInclude Include="Math\Geometry\Common.hpp" />
-    <ClInclude Include="FatSTL_Macros.hpp" />
     <ClInclude Include="Math\Geometry\Geometry.hpp" />
     <ClInclude Include="Math\Geometry\Shape\Circle.hpp" />
     <ClInclude Include="Math\Math.hpp" />
@@ -115,12 +111,12 @@
     <ClInclude Include="Win32_\D3D11\Visual\Drawable.hpp" />
     <ClInclude Include="Win32_\D3D11\Visual\DrawableBase.hpp" />
     <ClInclude Include="Win32_\D3D11\Visual\Visual.hpp" />
-    <ClInclude Include="Win32_\FatWin32.hpp" />
-    <ClInclude Include="Win32_\FatWin32_Settings.hpp" />
+    <ClInclude Include="Win32_\WinAPI.hpp" />
+    <ClInclude Include="Win32_\WinAPI_Settings.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\Manager.hpp" />
     <ClInclude Include="Win32_\IWindow.hpp" />
-    <ClInclude Include="Win32_\Win32_.hpp" />
+    <ClInclude Include="Win32_\Win32.hpp" />
     <ClInclude Include="Win32_\WindowEx.hpp" />
     <ClInclude Include="_exp\FatX.hpp" />
     <ClInclude Include="_exp\OpenCV\Contour.hpp" />
@@ -128,6 +124,10 @@
     <ClInclude Include="_exp\ZeroMQ\Publisher.hpp" />
     <ClInclude Include="_exp\ZeroMQ\Subscriber.hpp" />
     <ClInclude Include="_exp\ZeroMQ\ZeroMQ.hpp" />
+    <ClInclude Include="_macros\Compiler.hpp" />
+    <ClInclude Include="_macros\Experimental.hpp" />
+    <ClInclude Include="_macros\Namespaces.hpp" />
+    <ClInclude Include="_macros\STL.hpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl">

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <FatNamespaces.hpp>
-#include <FatMacros.hpp>
+#include <_macros/Compiler.hpp>
+#include <_macros/Namespaces.hpp>
 
-#include <FatWin32.hpp>
+#include <Win32_/WinAPI.hpp>
 #include <d2d1.h>
 #include <wrl.h>
 

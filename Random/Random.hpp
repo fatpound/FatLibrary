@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatNamespaces.hpp>
+#include <_macros/Namespaces.hpp>
 
 #include <Math/Numbers/Primes.hpp>
 #include <Traits/Bitwise.hpp>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatWin32.hpp>
+#include <Win32_/WinAPI.hpp>
 
 #include <stdexcept>
 

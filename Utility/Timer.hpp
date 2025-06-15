@@ -1,6 +1,6 @@
 #pragma once
 
-#include <FatMacros.hpp>
+#include <_macros/Compiler.hpp>
 
 #include <ratio>
 #include <chrono>

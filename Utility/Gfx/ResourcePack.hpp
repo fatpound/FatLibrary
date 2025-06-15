@@ -1,9 +1,9 @@
 #pragma once
 
 #ifdef FAT_BUILDING_WITH_MSVC
-    #include <FatNamespaces.hpp>
+    #include <_macros/Namespaces.hpp>
 
-    #include <FatWin32.hpp>
+    #include <Win32_/WinAPI.hpp>
     #include <d3d11.h>
     #include <wrl.h>
 #endif
