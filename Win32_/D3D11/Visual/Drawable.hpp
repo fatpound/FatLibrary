@@ -60,13 +60,13 @@ namespace fatpound::win32::d3d11::visual
 
         
     protected:
-        virtual void AddBind_(std::unique_ptr<pipeline::Bindable> bind) noexcept(IN_RELEASE)final
+        virtual void AddBind_(std::unique_ptr<pipeline::Bindable> bind) final
         {
             assert((typeid(*bind) not_eq typeid(pipeline::IndexBuffer)) && "*Must* use AddIndexBuffer_() method to bind it!");
 
             m_binds_.push_back(std::move<>(bind));
         }
-        virtual void AddIndexBuffer_(std::unique_ptr<pipeline::IndexBuffer> idxbuf) noexcept(IN_RELEASE) final
+        virtual void AddIndexBuffer_(std::unique_ptr<pipeline::IndexBuffer> idxbuf) final
         {
             assert((m_pCIndexBuffer_ == nullptr) && "Attempting to add index buffer a second time");
 
@@ -81,7 +81,7 @@ namespace fatpound::win32::d3d11::visual
 
 
     private:
-        virtual auto GetStaticBinds_() const noexcept(IN_RELEASE) -> const BindableVec_t& = 0;
+        virtual auto GetStaticBinds_() const -> const BindableVec_t& = 0;
 
 
     private:
