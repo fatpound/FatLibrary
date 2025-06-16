@@ -379,7 +379,7 @@ namespace fatpound::win32::d3d11
                 nullptr,
                 D3D_DRIVER_TYPE_HARDWARE,
                 nullptr,
-#if IN_RELEASE
+#ifdef IN_RELEASE
                 0U,
 #else
                 D3D11_CREATE_DEVICE_DEBUG,
