@@ -1,5 +1,7 @@
 #pragma once
 
+// for lock_guards without CTAD, see: https://clang.llvm.org/docs/DiagnosticsReference.html#wctad-maybe-unsupported
+
 #include <_macros/Namespaces.hpp>
 
 #include <cstdint>
@@ -64,7 +66,7 @@ namespace fatpound::io
                 return std::nullopt;
             }
 
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             auto keyE = m_key_event_queue_.front();
             m_key_event_queue_.pop();
@@ -78,7 +80,7 @@ namespace fatpound::io
                 return std::nullopt;
             }
 
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             auto ch = m_char_buffer_.front();
             m_char_buffer_.pop();
@@ -88,7 +90,7 @@ namespace fatpound::io
 
         [[nodiscard]] auto KeyIsPressed(KeyCode_t code) const noexcept -> bool
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             return m_key_states_[code];
         }
@@ -99,13 +101,13 @@ namespace fatpound::io
 
         [[nodiscard]] auto KeyBufferIsEmpty()  const noexcept -> bool
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             return m_key_event_queue_.empty();
         }
         [[nodiscard]] auto CharBufferIsEmpty() const noexcept -> bool
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             return m_char_buffer_.empty();
         }
@@ -120,14 +122,14 @@ namespace fatpound::io
         }
         void ClearKeyStateBitset() noexcept
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             m_key_states_.reset();
         }
 
         void AddKeyPressEvent(unsigned char keycode)
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             m_key_states_[keycode] = true;
 
@@ -137,7 +139,7 @@ namespace fatpound::io
         }
         void AddKeyReleaseEvent(unsigned char keycode)
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             m_key_states_[keycode] = false;
 
@@ -147,7 +149,7 @@ namespace fatpound::io
         }
         void AddChar(unsigned char ch)
         {
-            const std::lock_guard guard{ m_mtx_ };
+            const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
             m_char_buffer_.push(ch);
 

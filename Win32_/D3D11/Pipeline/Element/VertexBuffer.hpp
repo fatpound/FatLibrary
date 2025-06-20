@@ -16,6 +16,32 @@ namespace fatpound::win32::d3d11::pipeline
     class VertexBuffer final : public Bindable
     {
     public:
+        template <typename T, std::size_t N>
+        explicit VertexBuffer(ID3D11Device* const pDevice, const std::array<T, N>& vertices)
+            :
+            m_stride_(sizeof(T))
+        {
+            const D3D11_BUFFER_DESC bd
+            {
+                .ByteWidth           = static_cast<UINT>(m_stride_ * vertices.size()),
+                .Usage               = D3D11_USAGE_DEFAULT,
+                .BindFlags           = D3D11_BIND_VERTEX_BUFFER,
+                .CPUAccessFlags      = 0U,
+                .MiscFlags           = 0U,
+                .StructureByteStride = m_stride_
+            };
+
+            const D3D11_SUBRESOURCE_DATA sd
+            {
+                .pSysMem = vertices.data()
+            };
+
+            if (const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pVertexBuffer_);
+                FAILED(hr))
+            {
+                throw std::runtime_error("Could NOT create VertexBuffer!");
+            }
+        }
         template <typename T>
         explicit VertexBuffer(ID3D11Device* const pDevice, const std::vector<T>& vertices)
             :
@@ -39,7 +65,7 @@ namespace fatpound::win32::d3d11::pipeline
             if (const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pVertexBuffer_);
                 FAILED(hr))
             {
-                throw std::runtime_error("Could NOT Create Direct3D VertexBuffer in function: " __FUNCSIG__);
+                throw std::runtime_error("Could NOT create VertexBuffer!");
             }
         }
 

@@ -21,8 +21,9 @@ namespace fatpound::win32::d3d11::pipeline
             {
                 const D3D11_SUBRESOURCE_DATA sd
                 {
-                    .pSysMem     = *pSurface,
-                    .SysMemPitch =  pSurface->GetPitch<UINT>()
+                    .pSysMem          = *pSurface,
+                    .SysMemPitch      =  pSurface->GetPitch<UINT>(),
+                    .SysMemSlicePitch = {}
                 };
 
                 if (const auto& hr = pDevice->CreateTexture2D(
