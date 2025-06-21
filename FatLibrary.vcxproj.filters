@@ -170,15 +170,6 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Visual\Drawable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Visual\DrawableBase.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Visual\Visual.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Win32_\D3D11\D3D11.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

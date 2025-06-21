@@ -12,7 +12,6 @@
 #include <DirectXMath.h>
 
 #include <Win32_/D3D11/Pipeline/Pipeline.hpp>
-#include <Win32_/D3D11/Visual/Visual.hpp>
 
 #include <Traits/Bitwise.hpp>
 #include <Utility/Gfx/Gfx.hpp>
