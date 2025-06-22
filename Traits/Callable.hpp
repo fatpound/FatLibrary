@@ -665,7 +665,7 @@ struct FATLIB_EBCO FunctionInfo< MEM_FUNCPTR_TYPE_VARIADIC(PQUAL) __VA_ARGS__ >
 
 #ifdef IN_DEBUG
 
-namespace fatpound::traits
+namespace fatpound::traits::details_c
 {
     // static assertion tests for lambdas
 
