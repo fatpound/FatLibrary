@@ -323,9 +323,8 @@
     <ClInclude Include="_macros\STL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl" />
-    <FxCompile Include="Win32_\D3D11\Shader\VSFrameBuffer.hlsl" />
+    <ClInclude Include="Traits\Modification.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

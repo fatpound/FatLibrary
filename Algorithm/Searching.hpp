@@ -20,11 +20,11 @@ namespace fatpound::algorithm::details
     /// @return The n-th largest or smallest unique element in the vector, depending on the value of Largest
     /// 
     template <bool Largest, std::totally_ordered T>
-    constexpr auto Nth_LS_ElementUnique(const std::vector<T>& vec, const std::unsigned_integral auto& n) -> T
+    constexpr auto Nth_LS_UniqueElement(const std::vector<T>& vec, const std::unsigned_integral auto& n) -> T
     {
-        if (vec.size() < 1U)
+        if (vec.empty())
         {
-            throw std::runtime_error("vector has no elements!");
+            throw std::runtime_error("The vector has NO elements!");
         }
 
         if (vec.size() < n)
@@ -68,9 +68,9 @@ namespace fatpound::algorithm
     /// @return The n-th largest unique element in the vector
     /// 
     template <std::totally_ordered T>
-    constexpr auto NthLargestElementUnique(const std::vector<T>& vec, const std::unsigned_integral auto& n) -> T
+    constexpr auto NthLargestUniqueElement(const std::vector<T>& vec, const std::unsigned_integral auto& n) -> T
     {
-        return details::Nth_LS_ElementUnique<true>(vec, n);
+        return details::Nth_LS_UniqueElement<true>(vec, n);
     }
 
 
@@ -85,8 +85,8 @@ namespace fatpound::algorithm
     /// @return The n-th smallest unique element in the vector
     /// 
     template <std::totally_ordered T>
-    constexpr auto NthSmallestElementUnique(const std::vector<T>& vec, const std::unsigned_integral auto& n) -> T
+    constexpr auto NthSmallestUniqueElement(const std::vector<T>& vec, const std::unsigned_integral auto& n) -> T
     {
-        return details::Nth_LS_ElementUnique<false>(vec, n);
+        return details::Nth_LS_UniqueElement<false>(vec, n);
     }
 }

@@ -62,18 +62,18 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions)        requires(Framework)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions,    const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
         {
             InitCommon_();
-            InitFramework_();
+            InitFramework_(VShaderPath, PShaderPath);
         }
-        explicit Graphics(const HWND& hWnd, std::unique_ptr<FATSPACE_UTILITY::Surface> pSurface) requires(Framework)
+        explicit Graphics(const HWND& hWnd, std::unique_ptr<FATSPACE_UTILITY::Surface> pSurface, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
-            Graphics(hWnd, pSurface->GetSizePack())
+            Graphics(hWnd, pSurface->GetSizePack(), VShaderPath, PShaderPath)
         {
             BindSurface(std::move<>(pSurface));
         }
@@ -266,18 +266,18 @@ namespace fatpound::win32::d3d11
 
             ToggleAltEnterMode_();
         }
-        void InitFramework_                    () requires(Framework)
+        void InitFramework_                    (const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
         {
             InitFrameworkBackbuffer_();
 
             std::vector<std::unique_ptr<pipeline::Bindable>> binds;
 
             {
-                auto pVS = std::make_unique<pipeline::VertexShader>(GetDevice(), L"..\\FatModules\\VSFrameBuffer.cso");
+                auto pVS = std::make_unique<pipeline::VertexShader>(GetDevice(), VShaderPath);
                 auto pBlob = pVS->GetBytecode();
 
                 binds.push_back(std::move(pVS));
-                binds.push_back(std::make_unique<pipeline::PixelShader>(GetDevice(), L"..\\FatModules\\PSFrameBuffer.cso"));
+                binds.push_back(std::make_unique<pipeline::PixelShader>(GetDevice(), PShaderPath));
                 binds.push_back(std::make_unique<pipeline::VertexBuffer>(GetDevice(), FATSPACE_UTILITY_GFX::FullScreenQuad::GenerateVertices()));
                 binds.push_back(std::make_unique<pipeline::Topology>(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
 
@@ -453,7 +453,7 @@ namespace fatpound::win32::d3d11
                 .OutputWindow = GetHwnd(),
 
 #ifdef IN_RELEASE
-                .Windowed     = NotFramework,
+                .Windowed     = Framework,
 #else
                 .Windowed     = true,
 #endif

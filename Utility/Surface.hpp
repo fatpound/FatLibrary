@@ -55,7 +55,7 @@ namespace fatpound::utility
         }
         explicit Surface(const std::string& filename,               const Size_t& alignBytes = scx_DefaultAlignment)
             :
-            Surface(ToWString(filename), alignBytes)
+            Surface(To_WString(filename), alignBytes)
         {
 
         }

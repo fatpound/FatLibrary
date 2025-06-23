@@ -74,6 +74,7 @@
     <ClInclude Include="Traits\Extents.hpp" />
     <ClInclude Include="Traits\Formation.hpp" />
     <ClInclude Include="Traits\Indirection.hpp" />
+    <ClInclude Include="Traits\Modification.hpp" />
     <ClInclude Include="Traits\Traits.hpp" />
     <ClInclude Include="Utility\Color.hpp" />
     <ClInclude Include="Utility\Common.hpp" />
@@ -125,20 +126,6 @@
     <ClInclude Include="_macros\Experimental.hpp" />
     <ClInclude Include="_macros\Namespaces.hpp" />
     <ClInclude Include="_macros\STL.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Win32_\D3D11\Shader\PSFrameBuffer.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="Win32_\D3D11\Shader\VSFrameBuffer.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

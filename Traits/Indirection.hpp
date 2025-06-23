@@ -54,6 +54,7 @@ namespace fatpound::traits::details_i
         static_assert(MemberFunctionPointer<decltype(&_unused_::foo)>);
         static_assert(  MemberObjectPointer<decltype(&_unused_::val)>);
         static_assert(        MemberPointer<decltype(&_unused_::foo)>);
+        static_assert(        MemberPointer<decltype(&_unused_::val)>);
         static_assert(              Pointer<decltype(&_unused_::foo)>);
         static_assert(              Pointer<decltype(&_unused_::val)>);
         static_assert(not  NonMemberPointer<decltype(&_unused_::foo)>);
