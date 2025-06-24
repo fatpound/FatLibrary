@@ -20,81 +20,78 @@
 
 namespace fatpound::random
 {
-    template <template <typename> typename T, typename U>
-    concept StdUniformDist = std::same_as<T<U>, std::conditional_t<std::integral<U>, std::uniform_int_distribution<U>, std::uniform_real_distribution<U>>>;
-    
-    template <template <typename> typename T, typename U>
-    concept StdOtherBernoulliDist = std::integral<U> and requires()
+    template <template <typename> typename Dist, typename T>
+    concept StdUniformDist = std::same_as<Dist<T>, std::conditional_t<std::integral<T>, std::uniform_int_distribution<T>, std::uniform_real_distribution<T>>>;
+
+    template <template <typename> typename Dist, typename T>
+    concept StdOtherBernoulliDist = requires()
     {
+        requires std::integral<T>;
+
         requires
-               std::same_as<T<U>, std::binomial_distribution<U>>
-            or std::same_as<T<U>, std::negative_binomial_distribution<U>>
-            or std::same_as<T<U>, std::geometric_distribution<U>>;
+               std::same_as<Dist<T>, std::binomial_distribution<T>>
+            or std::same_as<Dist<T>, std::negative_binomial_distribution<T>>
+            or std::same_as<Dist<T>, std::geometric_distribution<T>>;
     };
 
-    template <template <typename> typename T, typename U>
-    concept StdPoissonDist = traits::IntegralOrFloating<U> and requires()
+    template <template <typename> typename Dist, typename T>
+    concept StdPoissonDist = requires()
     {
+        requires traits::IntegralOrFloating<T>;
+
         requires
-              (std::same_as<T<U>, std::poisson_distribution<U>> and std::integral<U>)
-            or std::same_as<T<U>, std::exponential_distribution<U>>
-            or std::same_as<T<U>, std::gamma_distribution<U>>
-            or std::same_as<T<U>, std::weibull_distribution<U>>
-            or std::same_as<T<U>, std::extreme_value_distribution<U>>;
+              (std::same_as<Dist<T>, std::poisson_distribution<T>> and std::integral<T>)
+            or std::same_as<Dist<T>, std::exponential_distribution<T>>
+            or std::same_as<Dist<T>, std::gamma_distribution<T>>
+            or std::same_as<Dist<T>, std::weibull_distribution<T>>
+            or std::same_as<Dist<T>, std::extreme_value_distribution<T>>;
     };
 
-    template <template <typename> typename T, typename U>
-    concept StdNormalDist = std::floating_point<U> and requires()
+    template <template <typename> typename Dist, typename T>
+    concept StdNormalDist = requires()
     {
+        requires std::floating_point<T>;
+
         requires
-               std::same_as<T<U>, std::normal_distribution<U>>
-            or std::same_as<T<U>, std::lognormal_distribution<U>>
-            or std::same_as<T<U>, std::chi_squared_distribution<U>>
-            or std::same_as<T<U>, std::cauchy_distribution<U>>
-            or std::same_as<T<U>, std::fisher_f_distribution<U>>
-            or std::same_as<T<U>, std::student_t_distribution<U>>;
+               std::same_as<Dist<T>, std::normal_distribution<T>>
+            or std::same_as<Dist<T>, std::lognormal_distribution<T>>
+            or std::same_as<Dist<T>, std::chi_squared_distribution<T>>
+            or std::same_as<Dist<T>, std::cauchy_distribution<T>>
+            or std::same_as<Dist<T>, std::fisher_f_distribution<T>>
+            or std::same_as<Dist<T>, std::student_t_distribution<T>>;
     };
 
-    template <template <typename> typename T, typename U>
-    concept StdSamplingDist = traits::IntegralOrFloating<U> and requires()
+    template <template <typename> typename Dist, typename T>
+    concept StdSamplingDist = requires()
     {
+        requires traits::IntegralOrFloating<T>;
+
         requires
-              (std::same_as<T<U>, std::discrete_distribution<U>> and std::integral<U>)
-            or std::same_as<T<U>, std::piecewise_constant_distribution<U>>
-            or std::same_as<T<U>, std::piecewise_linear_distribution<U>>;
+              (std::same_as<Dist<T>, std::discrete_distribution<T>> and std::integral<T>)
+            or std::same_as<Dist<T>, std::piecewise_constant_distribution<T>>
+            or std::same_as<Dist<T>, std::piecewise_linear_distribution<T>>;
     };
 
-    template <template <typename> typename T, typename U>
-    concept StdUniformOrNormalDist = StdUniformDist<T, U> or StdNormalDist<T, U>;
+    template <template <typename> typename Dist, typename T> concept StdUniformOrNormalDist = StdUniformDist<Dist, T>         or StdNormalDist<Dist, T>;
+    template <template <typename> typename Dist, typename T> concept StdDistNoBernoulli     = StdUniformOrNormalDist<Dist, T> or StdOtherBernoulliDist<Dist, T> or StdPoissonDist<Dist, T> or StdSamplingDist<Dist, T>;
 
-    template <template <typename> typename T, typename U>
-    concept StdDistNoBernoulli = StdUniformOrNormalDist<T, U> or StdOtherBernoulliDist<T, U> or StdPoissonDist<T, U> or StdSamplingDist<T, U>;
 
-    static auto RandBool(std::uniform_random_bit_generator auto& rng, std::bernoulli_distribution& bdist) -> bool
+
+    /// @brief Returns a random prime number within the range defined by the distribution
+    ///
+    /// @tparam    T: An unsigned integral type
+    /// @tparam Dist: A standard uniform or normal distribution type
+    ///
+    /// @param   rng: A standard uniform random bit generator
+    /// @param  dist: An instance of the distribution used to determine the range
+    ///
+    /// @return A random prime number in the range [dist.min(), dist.max()]
+    /// 
+    template <std::unsigned_integral T, template <typename> typename Dist>
+    requires StdUniformOrNormalDist<Dist, T>
+    static auto RandPrimeNumber(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> T
     {
-        return bdist(rng);
-    }
-
-    template <traits::UIntegralOrFloating T, template <typename> typename D>
-    requires StdUniformOrNormalDist<D, T>
-    static auto RandNumber(std::uniform_random_bit_generator auto& rng, D<T>& dist) -> T
-    {
-        return static_cast<T>(dist(rng));
-    }
-
-    template <traits::UIntegralOrFloating T>
-    static auto RandNumber(const T& min, const T& max, std::uniform_random_bit_generator auto& rng) -> T
-    {
-        std::uniform_int_distribution<T> dist{ min, max };
-
-        return RandNumber<>(rng, dist);
-    }
-
-    template <std::unsigned_integral T, template <typename> typename D>
-    requires StdUniformOrNormalDist<D, T>
-    static auto RandPrimeNumber(std::uniform_random_bit_generator auto& rng, D<T>& dist) -> T
-    {
-        const auto& num = RandNumber<>(rng, dist);
+        const auto& num = static_cast<T>(dist(rng));
 
         if (FATSPACE_NUMBERS::IsPrime<>(num))
         {
@@ -114,61 +111,84 @@ namespace fatpound::random
         return static_cast<T>(0U);
     }
 
-    template <std::unsigned_integral T>
-    static auto RandPrimeNumber(const T& min, const T& max, std::uniform_random_bit_generator auto& rng) -> T
-    {
-        std::uniform_int_distribution<T> dist{ min, max };
 
-        return RandPrimeNumber<>(rng, dist);
-    }
-    
-    template <std::unsigned_integral T, template <typename> typename D>
-    requires StdUniformOrNormalDist<D, T>
-    static auto RollDice(std::uniform_random_bit_generator auto& rng, D<T>& dist) -> T
-    {
-        return RandNumber<>(rng, dist);
-    }
-    
-    template <std::unsigned_integral T>
-    static auto RollDice(std::uniform_random_bit_generator auto& rng) -> T
-    {
-        std::uniform_int_distribution<std::size_t> dist{ 1U, 6U };
 
-        return RollDice<>(rng, dist);
-    }
-
-    template <bool FullAlpha = true, traits::UIntegralOrFloating T = std::size_t, template <typename> typename D>
-    requires StdUniformOrNormalDist<D, T>
-    static auto RandColor(std::uniform_random_bit_generator auto& rng, D<T>& dist) -> utility::Color
+    /// @brief Generates a random color with optionally fixed alpha
+    ///
+    /// @tparam FixedAlpha: Whether to use the fixed alpha value specified by @p Alpha (default: true)
+    /// @tparam      Alpha: The fixed alpha value of type Color::ChannelA_t (default: 255)
+    /// @tparam          T: An unsigned integral or floating-point type (default: std::size_t)
+    /// @tparam       Dist: A standard uniform or normal distribution type
+    ///              
+    /// @param         rng: A standard uniform random bit generator
+    /// @param        dist: A distribution instance used to generate the color's RGB components
+    ///
+    /// @return A Color object with ARGB components generated from the distribution and fixed alpha value
+    ///
+    /// @note Only unsigned integral types for T are supported. Using floating-point types will cause a static assertion failure.
+    ///
+    /// @see utility::Color
+    /// 
+    template <bool FixedAlpha = true, utility::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
+    requires StdUniformOrNormalDist<Dist, T>
+    static auto RandColor(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> utility::Color
     {
         if constexpr (std::unsigned_integral<T>)
         {
-            using utility::Color;
-
-            const auto& xrgb = static_cast<Color::Value_t>(RandNumber<>(rng, dist));
-
-            if constexpr (FullAlpha)
+            if constexpr (FixedAlpha)
             {
-                return Color{ xrgb, static_cast<Color::ChannelA_t>(255U) };
+                return utility::Color{ dist(rng), Alpha };
             }
             else
             {
-                return Color{ xrgb, bool{} };
+                return utility::Color{ dist(rng), bool{} };
             }
         }
         else
         {
-            static_assert(false, "floating point Colors are not supported!");
+            static_assert(false, "floating-point Colors are not supported!");
         }
     }
 
-    template <bool FullAlpha = true, traits::UIntegralOrFloating T = std::size_t, template <typename> typename D>
-    requires StdUniformOrNormalDist<D, T>
-    static auto RandColorString(const std::string& prefix, const bool& withAlpha, std::uniform_random_bit_generator auto& rng, D<T>& dist) -> std::string
+
+
+    /// @brief Generates a random color string with optionally fixed alpha
+    ///
+    /// @tparam FixedAlpha: Whether to use the fixed alpha value specified by @p Alpha (default: true)
+    /// @tparam      Alpha: The fixed alpha value of type Color::ChannelA_t (default: 255)
+    /// @tparam          T: An unsigned integral or floating-point type (default: std::size_t)
+    /// @tparam       Dist: A standard uniform or normal distribution type
+    ///              
+    /// @param      prefix: A string to prepend to the resulting color string
+    /// @param   withAlpha: Whether to include the alpha channel in the output string
+    /// @param         rng: A standard uniform random bit generator
+    /// @param        dist: A distribution instance used to generate the color's RGB components
+    ///
+    /// @return A string representing the randomly generated color, optionally including alpha
+    ///
+    /// @note Only unsigned integral types for T are supported. Using floating-point types will cause a static assertion failure.
+    ///
+    /// @see utility::Color
+    /// 
+    template <bool FixedAlpha = true, utility::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
+    requires StdUniformOrNormalDist<Dist, T>
+    static auto RandColorString(const std::string& prefix, const bool& withAlpha, std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> std::string
     {
-        return RandColor<FullAlpha>(rng, dist).GetString(prefix, withAlpha);
+        return RandColor<FixedAlpha, Alpha>(rng, dist).GetString(prefix, withAlpha);
     }
 
+
+
+    /// @brief Generates a random string of the specified length using the given character set
+    ///
+    /// @param  length: The length of the string to generate (must be an unsigned integral value)
+    /// @param charset: A string view containing the set of characters to randomly choose from
+    /// @param     rng: A uniform random bit generator
+    ///
+    /// @return A randomly generated string of size @p length, composed of characters from @p charset
+    ///
+    /// @throws std::invalid_argument if @p charset is empty
+    /// 
     static auto RandString(const std::unsigned_integral auto& length, const std::string_view& charset, std::uniform_random_bit_generator auto& rng) -> std::string
     {
         if (length == 0)
@@ -188,6 +208,23 @@ namespace fatpound::random
              | std::ranges::to<std::string>();
     }
 
+
+
+    /// @brief Generates a random password string with customizable character sets and enforcement rules
+    ///
+    /// @param          length: The desired length of the password (unsigned integral value) (must be greater than 0)
+    /// @param   withLowercase: Whether to include lowercase letters (of the English alphabet)
+    /// @param   withUppercase: Whether to include uppercase letters (of the English alphabet)
+    /// @param      withDigits: Whether to include digits
+    /// @param     withSymbols: Whether to include symbols => !@#$%^&*()-_=+[]{}|;:,.<>?
+    /// @param enforceEachType: Whether to ensure that at least one character from each selected set is included
+    /// @param             rng: A uniform random bit generator
+    ///
+    /// @return A randomly generated password string of the specified length
+    ///
+    /// @throws std::invalid_argument if @p length is zero
+    /// @throws std::invalid_argument if none of the character sets are enabled
+    ///
     static auto RandPassword(
         const std::unsigned_integral auto& length,
         const bool& withLowercase,

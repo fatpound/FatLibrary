@@ -31,8 +31,8 @@ namespace fatpound::math
     template <typename T, typename U> concept Multiplicable_SameAs_First_NX  = Multiplicable_SameAs_First<T, U>  and Multiplicable_NX<T, U>;
     template <typename T, typename U> concept Multiplicable_SameAs_Second_NX = Multiplicable_SameAs_Second<T, U> and Multiplicable_NX<T, U>;
 
-    template <typename T, typename U> concept Multiplicable_SameAs_First_BothWays     = Multiplicable_SameAs<T, U, true>  and Multiplicable_SameAs<U, T, false>;
-    template <typename T, typename U> concept Multiplicable_SameAs_Second_BothWays    = Multiplicable_SameAs<T, U, false> and Multiplicable_SameAs<U, T, true>;
+    template <typename T, typename U> concept Multiplicable_SameAs_First_BothWays     = Multiplicable_SameAs<T, U, true>           and Multiplicable_SameAs<U, T, false>;
+    template <typename T, typename U> concept Multiplicable_SameAs_Second_BothWays    = Multiplicable_SameAs<T, U, false>          and Multiplicable_SameAs<U, T, true>;
     template <typename T, typename U> concept Multiplicable_SameAs_First_BothWays_NX  = Multiplicable_SameAs_First_BothWays<T, U>  and Multiplicable_BothWays_NX<T, U>;
     template <typename T, typename U> concept Multiplicable_SameAs_Second_BothWays_NX = Multiplicable_SameAs_Second_BothWays<T, U> and Multiplicable_BothWays_NX<T, U>;
 
@@ -40,26 +40,34 @@ namespace fatpound::math
     template <typename T> concept Squarable_NX = Multiplicable_NX<T, T>;
 
     template <typename T, typename U, typename V>
-    concept Multiplicable3Left  = Multiplicable<T, U> and requires(T a, U b, V c)
+    concept Multiplicable3Left = requires(T a, U b, V c)
     {
+        requires Multiplicable<T, U>;
+
         (a * b) * c;
     };
 
     template <typename T, typename U, typename V>
-    concept Multiplicable3Right = Multiplicable<U, V> and requires(T a, U b, V c)
+    concept Multiplicable3Right = requires(T a, U b, V c)
     {
+        requires Multiplicable<U, V>;
+
         a * (b * c);
     };
 
     template <typename T, typename U, typename V>
-    concept Multiplicable3Left_NX  = Multiplicable_NX<T, U> and requires(T a, U b, V c)
+    concept Multiplicable3Left_NX = requires(T a, U b, V c)
     {
+        requires Multiplicable_NX<T, U>;
+
         { (a * b) * c } noexcept;
     };
 
     template <typename T, typename U, typename V>
-    concept Multiplicable3Right_NX = Multiplicable_NX<U, V> and requires(T a, U b, V c)
+    concept Multiplicable3Right_NX = requires(T a, U b, V c)
     {
+        requires Multiplicable_NX<U, V>;
+
         { a * (b * c) } noexcept;
     };
 
@@ -67,13 +75,13 @@ namespace fatpound::math
     template <typename T> concept Cubic_NX = Multiplicable3Left_NX<T, T, T> and Multiplicable3Right_NX<T, T, T>;
 
     template <Squarable T>
-    static constexpr auto Square(const T& x) noexcept(Squarable_NX<T>) -> T
+    constexpr auto Square(const T& x) noexcept(Squarable_NX<T>) -> T
     {
         return x * x;
     }
 
     template <Cubic T>
-    static constexpr auto Cube(const T& x) noexcept(Cubic_NX<T>) -> T
+    constexpr auto Cube(const T& x) noexcept(Cubic_NX<T>) -> T
     {
         return Square<T>(x) * x;
     }
