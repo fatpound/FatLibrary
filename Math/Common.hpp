@@ -15,13 +15,13 @@
 namespace fatpound::math
 {
     template <std::unsigned_integral T>
-    constexpr auto IsPowerOf2(const T& num) noexcept -> bool
+    static constexpr auto IsPowerOf2(const T& num) noexcept -> bool
     {
         return (num not_eq 0) and (not (num bitand (num - 1)));
     }
 
     template <std::unsigned_integral T>
-    constexpr auto Factorial(T num) noexcept -> T
+    static constexpr auto Factorial(T num) noexcept -> T
     {
         T prod{1};
 
@@ -35,7 +35,7 @@ namespace fatpound::math
     }
 
     template <std::unsigned_integral T>
-    constexpr auto DigitCount(T num) noexcept -> T
+    static constexpr auto DigitCount(T num) noexcept -> T
     {
         T count{};
 
@@ -57,7 +57,7 @@ namespace fatpound::math
     }
 
     template <std::unsigned_integral T>
-    constexpr auto DigitSum(T num) noexcept -> T
+    static constexpr auto DigitSum(T num) noexcept -> T
     {
         T sum{};
 
@@ -71,13 +71,13 @@ namespace fatpound::math
     }
 
     template <std::signed_integral T>
-    constexpr auto DigitSum(const T& num) noexcept
+    static constexpr auto DigitSum(const T& num) noexcept
     {
         return DigitSum<std::make_unsigned_t<T>>(num < 0 ? (-num) : num);
     }
 
     template <traits::IntegralOrFloating T>
-    constexpr auto Gaussian(const T& x, const T& rho)
+    static constexpr auto Gaussian(const T& x, const T& rho)
     {
         const auto rhoSq2 = Square<>(rho) * 2.0;
 

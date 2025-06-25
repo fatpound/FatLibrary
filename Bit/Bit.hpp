@@ -17,7 +17,7 @@ namespace fatpound::bit::details
     /// @return A value of type T representing the generated bitmask
     /// 
     template <bool ForOne, std::unsigned_integral T = std::size_t>
-    constexpr auto Mask_(const T& endBit, const T& startBit) -> T
+    static constexpr auto Mask_(const T& endBit, const T& startBit) -> T
     {
         if constexpr (ForOne)
         {
@@ -47,7 +47,7 @@ namespace fatpound::bit
     /// @return A value of type T with bits set to one from startBit to endBit (inclusive)
     /// 
     template <std::unsigned_integral T = std::size_t>
-    constexpr auto OneMask(const T& endBit, const T& startBit) -> T
+    static constexpr auto OneMask(const T& endBit, const T& startBit) -> T
     {
         return details::Mask_<true>(endBit, startBit);
     }
@@ -64,7 +64,7 @@ namespace fatpound::bit
     /// @return A value of type T with bits from startBit to endBit set to zero, and all other bits set to one
     /// 
     template <std::unsigned_integral T = std::size_t>
-    constexpr auto ZeroMask(const T& endBit, const T& startBit) -> T
+    static constexpr auto ZeroMask(const T& endBit, const T& startBit) -> T
     {
         return details::Mask_<false>(endBit, startBit);
     }

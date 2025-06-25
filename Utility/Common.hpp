@@ -19,15 +19,15 @@
 
 namespace fatpound::utility
 {
-    constexpr std::string_view         BinDigits = "01";
-    constexpr std::string_view         OctDigits = "01234567";
-    constexpr std::string_view         DecDigits = "0123456789";
-    constexpr std::string_view         HexDigits = "0123456789ABCDEF";
+    static constexpr std::string_view         BinDigits = "01";
+    static constexpr std::string_view         OctDigits = "01234567";
+    static constexpr std::string_view         DecDigits = "0123456789";
+    static constexpr std::string_view         HexDigits = "0123456789ABCDEF";
 
-    constexpr std::string_view      BinaryDigits = BinDigits;
-    constexpr std::string_view       OctalDigits = OctDigits;
-    constexpr std::string_view     DecimalDigits = DecDigits;
-    constexpr std::string_view HexadecimalDigits = HexDigits;
+    static constexpr std::string_view      BinaryDigits = BinDigits;
+    static constexpr std::string_view       OctalDigits = OctDigits;
+    static constexpr std::string_view     DecimalDigits = DecDigits;
+    static constexpr std::string_view HexadecimalDigits = HexDigits;
 
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
@@ -136,7 +136,7 @@ namespace fatpound::utility
     /// @return The value mapped to the target range
     /// 
     template <traits::IntegralOrFloating T>
-    constexpr auto Map(const T& value, const T& fromLow, const T& fromHigh, const T& toLow, const T& toHigh) -> T
+    static constexpr auto Map(const T& value, const T& fromLow, const T& fromHigh, const T& toLow, const T& toHigh) -> T
     {
         return ((value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow)) + toLow;
     }
@@ -149,7 +149,7 @@ namespace fatpound::utility
     /// 
     /// @return A new string containing the characters of the input string in reverse order
     /// 
-    constexpr auto StrRev(const std::string& str) -> std::string
+    static constexpr auto StrRev(const std::string& str) -> std::string
     {
         auto revstr = str;
 
@@ -165,7 +165,7 @@ namespace fatpound::utility
     /// @param str: The string whose characters will be set
     /// @param  ch: The character to assign to each position in the string
     /// 
-    constexpr void StrSet(std::string& str, const char ch)
+    static constexpr void StrSet(std::string& str, const char ch)
     {
         std::ranges::fill(str, ch);
     }
