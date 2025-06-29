@@ -58,11 +58,11 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     private:
-        VertexCBuffer<DirectX::XMMATRIX> m_vcbuf_;
+        VertexCBuffer<DirectX::XMMATRIX>   m_vcbuf_;
 
-        const T& m_parent_;
+        const T&                           m_parent_;
 
-        utility::ViewXM& m_viewXM_;
+        utility::ViewXM&                   m_viewXM_;
     };
 }
 

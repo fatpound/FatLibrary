@@ -33,7 +33,9 @@ namespace fatpound::win32::d3d11::pipeline
 
             const D3D11_SUBRESOURCE_DATA sd
             {
-                .pSysMem = vertices.data()
+                .pSysMem          = vertices.data(),
+                .SysMemPitch      = {},
+                .SysMemSlicePitch = {}
             };
 
             if (const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pVertexBuffer_);
@@ -59,7 +61,9 @@ namespace fatpound::win32::d3d11::pipeline
 
             const D3D11_SUBRESOURCE_DATA sd
             {
-                .pSysMem = vertices.data()
+                .pSysMem          = vertices.data(),
+                .SysMemPitch      = {},
+                .SysMemSlicePitch = {}
             };
 
             if (const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pVertexBuffer_);
@@ -88,9 +92,8 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11Buffer> m_pVertexBuffer_;
-
-        UINT m_stride_;
+        Microsoft::WRL::ComPtr<ID3D11Buffer>   m_pVertexBuffer_;
+        UINT                                   m_stride_;
 
 
     private:

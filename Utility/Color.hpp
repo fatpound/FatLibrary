@@ -174,7 +174,7 @@ namespace fatpound::utility
 
 
     private:
-        Value_t m_value_ = std::numeric_limits<Value_t>::max();
+        Value_t  m_value_ = std::numeric_limits<Value_t>::max();
     };
 }
 

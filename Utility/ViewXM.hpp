@@ -44,8 +44,8 @@ namespace fatpound::utility
 
 
     private:
-        DirectX::XMMATRIX m_camera_{};
-        DirectX::XMMATRIX m_projection_{};
+        DirectX::XMMATRIX   m_camera_{};
+        DirectX::XMMATRIX   m_projection_{};
     };
 }
 

@@ -244,9 +244,8 @@ namespace fatpound::dsa::linkedlist
 
             }
 
-            Node_* next{};
-
-            T item;
+            Node_*   next{};
+            T        item;
         };
 
 
@@ -286,14 +285,13 @@ namespace fatpound::dsa::linkedlist
 
 
     protected:
-        Node_* m_start_{};
-        Node_* m_end_{};
+        Node_*          m_start_{};
+        Node_*          m_end_{};
+        std::size_t     m_item_count_{};
 
-        std::size_t m_item_count_{};
+        std::ostream*   m_os_{};
 
-        std::ostream* m_os_{};
-
-        bool m_cleared_from_derived_dtor_{};
+        bool            m_cleared_from_derived_dtor_{};
 
 
     private:

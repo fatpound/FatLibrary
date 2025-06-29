@@ -152,9 +152,9 @@ namespace fatpound::win32::d2d
         
         
     private:
-        Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget_;
-        Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>  m_pBrush_;
+        Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget>   m_pRenderTarget_;
+        Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>    m_pBrush_;
 
-        const FATSPACE_UTILITY_GFX::SizePack          mc_dimensions_;
+        const FATSPACE_UTILITY_GFX::SizePack            mc_dimensions_;
     };
 }

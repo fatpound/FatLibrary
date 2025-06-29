@@ -32,7 +32,9 @@ namespace fatpound::win32::d3d11::pipeline
 
                 const D3D11_SUBRESOURCE_DATA initData
                 {
-                    .pSysMem = structures.data()
+                    .pSysMem          = structures.data(),
+                    .SysMemPitch      = {},
+                    .SysMemSlicePitch = {}
                 };
 
                 if (const auto& hr = pDevice->CreateBuffer(&sbd, &initData, &m_pStructuredBuffer_);
@@ -80,8 +82,8 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pShaderResourceView_{};
-        Microsoft::WRL::ComPtr<ID3D11Buffer>             m_pStructuredBuffer_{};
+        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>   m_pShaderResourceView_{};
+        Microsoft::WRL::ComPtr<ID3D11Buffer>               m_pStructuredBuffer_{};
 
 
     private:

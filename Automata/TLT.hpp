@@ -119,9 +119,8 @@ namespace fatpound::automata
 
                 }
 
-                std::vector<Node_*> m_leaves;
-
-                std::string m_item;
+                std::vector<Node_*>   m_leaves;
+                std::string           m_item;
             };
             // NOLINTEND(altera-struct-pack-align)
 
@@ -244,13 +243,12 @@ namespace fatpound::automata
 
 
         private:
-            const CFG::Grammar_t mc_cfgrammar_;
+            const CFG::Grammar_t       mc_cfgrammar_;
 
-            std::vector<std::string> m_results_;
+            std::vector<std::string>   m_results_;
+            std::vector<std::size_t>   m_recursers_;
 
-            std::vector<std::size_t> m_recursers_;
-
-            Node_* m_pTree_{};
+            Node_*                     m_pTree_{};
         };
     }
 
@@ -342,9 +340,8 @@ namespace fatpound::automata
 
                 }
 
-                std::vector<Node_*> m_leaves;
-
-                std::string m_item;
+                std::vector<Node_*>   m_leaves;
+                std::string           m_item;
             };
             // NOLINTEND(altera-struct-pack-align)
 
@@ -457,9 +454,8 @@ namespace fatpound::automata
 
 
         private:
-            Result_t m_results_;
-
-            std::vector<Node_*> m_trees_;
+            Result_t              m_results_;
+            std::vector<Node_*>   m_trees_;
         };
     }
 }

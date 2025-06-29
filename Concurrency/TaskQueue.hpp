@@ -75,9 +75,8 @@ namespace fatpound::concurrency
 
 
     private:
-        std::deque<WrappedTask> m_tasks_;
-
-        std::mutex m_mtx_;
+        std::deque<WrappedTask>   m_tasks_;
+        std::mutex                m_mtx_;
     };
 }
 

@@ -10,11 +10,6 @@
 #include <atomic>
 #include <optional>
 
-#if defined(__clang__)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wctad-maybe-unsupported"
-#endif
-
 namespace fatpound::io
 {
     /// @brief Represents a mouse input handler that tracks mouse events, button states, position, and provides an event buffer interface
@@ -47,17 +42,17 @@ namespace fatpound::io
                 Invalid
             };
 
-            Type type{ Type::Invalid };
+            Type   type{ Type::Invalid };
 
-            bool left_is_pressed{};
-            bool right_is_pressed{};
-            bool wheel_is_pressed{};
+            bool   left_is_pressed{};
+            bool   right_is_pressed{};
+            bool   wheel_is_pressed{};
 
-            // ints are below for alignment
+            int    pos_x{};
+            int    pos_y{};
+            int    wheel_delta_carry{};
 
-            int pos_x{};
-            int pos_y{};
-            int wheel_delta_carry{};
+            // ints are below bool members for alignment
         };
 
 
@@ -287,25 +282,20 @@ namespace fatpound::io
 
 
     private:
-        std::queue<Event> m_event_buffer_;
+        std::queue<Event>    m_event_buffer_;
 
-        mutable std::mutex m_mtx_;
+        mutable std::mutex   m_mtx_;
 
-        Position_t m_pos_x_{};
-        Position_t m_pos_y_{};
+        Position_t           m_pos_x_{};
+        Position_t           m_pos_y_{};
 
-        WheelDelta_t m_wheel_delta_carry_{};
+        WheelDelta_t         m_wheel_delta_carry_{};
 
-        std::atomic_bool m_is_in_window_;
-
-        std::atomic_bool m_left_is_pressed_;
-        std::atomic_bool m_right_is_pressed_;
-        std::atomic_bool m_wheel_is_pressed_;
+        std::atomic_bool     m_is_in_window_;
+        std::atomic_bool     m_left_is_pressed_;
+        std::atomic_bool     m_right_is_pressed_;
+        std::atomic_bool     m_wheel_is_pressed_;
     };
 
     using MouseEvent = Mouse::Event;
 }
-
-#if defined(__clang__)
-#pragma clang diagnostic pop
-#endif

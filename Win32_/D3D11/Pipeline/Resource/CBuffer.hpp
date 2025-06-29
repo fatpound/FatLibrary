@@ -30,7 +30,9 @@ namespace fatpound::win32::d3d11::pipeline
 
             const D3D11_SUBRESOURCE_DATA sd
             {
-                .pSysMem = &consts
+                .pSysMem          = &consts,
+                .SysMemPitch      = {},
+                .SysMemSlicePitch = {}
             };
 
             if (const auto& hr = pDevice->CreateBuffer(&bd, &sd, &m_pConstantBuffer_);
@@ -87,7 +89,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11Buffer> m_pConstantBuffer_;
+        Microsoft::WRL::ComPtr<ID3D11Buffer>  m_pConstantBuffer_;
 
 
     private:

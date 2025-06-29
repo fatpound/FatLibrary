@@ -153,13 +153,6 @@ namespace fatpound::dsa::tree
     private:
         struct alignas(64) Node_ final
         {
-            std::vector<std::pair<T, Node_*>*> items;
-
-            Node_* lesser{};
-            Node_* parent{};
-
-            explicit Node_() = default;
-
             explicit Node_(std::vector<std::pair<T, Node_*>*>& new_items, Node_* const new_lesser, Node_* const new_parent)
                 :
                 lesser(new_lesser),
@@ -182,6 +175,12 @@ namespace fatpound::dsa::tree
             {
                 items.push_back(new std::pair<T, Node_*>(new_item, nullptr));
             }
+
+            explicit Node_() = default;
+
+            std::vector<std::pair<T, Node_*>*>   items;
+            Node_*                               lesser{};
+            Node_*                               parent{};
         };
 
 
@@ -443,10 +442,9 @@ namespace fatpound::dsa::tree
 
 
     private:
-        Node_* root_{};
+        Node_*          root_{};
+        std::size_t     item_count_{};
 
-        std::size_t item_count_{};
-
-        std::ostream* m_os_;
+        std::ostream*   m_os_;
     };
 }

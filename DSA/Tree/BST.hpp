@@ -230,11 +230,10 @@ namespace fatpound::dsa::tree
 
             }
 
-            Node_* left{};
-            Node_* right{};
-            Node_* parent{};
-
-            T item;
+            Node_*   left{};
+            Node_*   right{};
+            Node_*   parent{};
+            T        item;
         };
 
 
@@ -589,11 +588,10 @@ namespace fatpound::dsa::tree
 
 
     protected:
-        Node_* m_pRoot_{};
+        Node_*          m_pRoot_{};
+        Size_t          m_node_count_{};
 
-        Size_t m_node_count_{};
-
-        std::ostream* m_os_{};
+        std::ostream*   m_os_{};
 
 
     private:
