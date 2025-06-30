@@ -16,7 +16,7 @@ namespace fatpound::win32::d3d11::pipeline
     class InputLayout final : public Bindable
     {
     public:
-        explicit InputLayout(ID3D11Device* const pDevice, const std::vector<D3D11_INPUT_ELEMENT_DESC>& layout, ID3DBlob* const pVertexShaderBytecode)
+        explicit InputLayout(ID3D11Device* const pDevice, const std::vector<D3D11_INPUT_ELEMENT_DESC>& layout, const Microsoft::WRL::ComPtr<ID3DBlob>& pVertexShaderBytecode)
         {
             if (const auto& hr = pDevice->CreateInputLayout(
                 layout.data(),

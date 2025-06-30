@@ -7,6 +7,7 @@
 
 #include <Win32_/WinAPI.hpp>
 #include <d3d11.h>
+#include <d3dcompiler.h>
 #include <wrl.h>
 
 #include <DirectXMath.h>
@@ -268,28 +269,52 @@ namespace fatpound::win32::d3d11
         }
         void InitFramework_                    (const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
         {
-            InitFrameworkBackbuffer_();
+            InitFrameworkBackbufferTexture_();
+            InitFrameworkBackbufferSampler_();
 
             std::vector<std::unique_ptr<pipeline::Bindable>> binds;
 
             {
-                auto pVS = std::make_unique<pipeline::VertexShader>(GetDevice(), VShaderPath);
-                auto pBlob = pVS->GetBytecode();
-
-                binds.push_back(std::move(pVS));
-                binds.push_back(std::make_unique<pipeline::PixelShader>(GetDevice(), PShaderPath));
-                binds.push_back(std::make_unique<pipeline::VertexBuffer>(GetDevice(), FATSPACE_UTILITY_GFX::FullScreenQuad::GenerateVertices()));
-                binds.push_back(std::make_unique<pipeline::Topology>(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
-
-                const std::vector<D3D11_INPUT_ELEMENT_DESC> iedesc
                 {
-                    {
-                        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-                        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-                    }
-                };
+                    Microsoft::WRL::ComPtr<ID3DBlob> pVSBlob;
 
-                binds.push_back(std::make_unique<pipeline::InputLayout>(GetDevice(), iedesc, pBlob));
+                    if (FAILED(::D3DReadFileToBlob(VShaderPath.c_str(), &pVSBlob)))
+                    {
+                        throw std::runtime_error("CANNOT read file to D3D Blob!");
+                    }
+
+                    binds.push_back(std::make_unique<pipeline::VertexShader>(GetDevice(), pVSBlob));
+
+                    const std::vector<D3D11_INPUT_ELEMENT_DESC> iedesc
+                    {
+                        {
+                            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+                            { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+                        }
+                    };
+
+                    binds.push_back(std::make_unique<pipeline::InputLayout>(GetDevice(), iedesc, pVSBlob));
+                }
+
+                binds.push_back(std::make_unique<pipeline::PixelShader>(GetDevice(), PShaderPath));
+
+                {
+                    const auto& vertices = FATSPACE_UTILITY_GFX::FullScreenQuad::GenerateVertices();
+
+                    const D3D11_BUFFER_DESC bd
+                    {
+                        .ByteWidth           = static_cast<UINT>(vertices.size() * sizeof(FATSPACE_UTILITY_GFX::FullScreenQuad::Vertex)),
+                        .Usage               = D3D11_USAGE_DEFAULT,
+                        .BindFlags           = D3D11_BIND_VERTEX_BUFFER,
+                        .CPUAccessFlags      = 0U,
+                        .MiscFlags           = 0U,
+                        .StructureByteStride = sizeof(FATSPACE_UTILITY_GFX::FullScreenQuad::Vertex)
+                    };
+
+                    binds.push_back(std::make_unique<pipeline::VertexBuffer>(GetDevice(), bd, vertices));
+                }
+
+                binds.push_back(std::make_unique<pipeline::Topology>(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
             }
 
             for (auto& bindable : binds)
@@ -297,83 +322,58 @@ namespace fatpound::win32::d3d11
                 bindable->Bind(GetImmediateContext());
             }
         }
-        void InitFrameworkBackbuffer_          () requires(Framework)
+        void InitFrameworkBackbufferTexture_   () requires(Framework)
         {
+            const D3D11_TEXTURE2D_DESC tex2dDesc
             {
-                Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pSRV;
+                .Width          = GetWidth<UINT>(),
+                .Height         = GetHeight<UINT>(),
+                .MipLevels      = 1U,
+                .ArraySize      = 1U,
+                .Format         = DXGI_FORMAT_B8G8R8A8_UNORM,
+                .SampleDesc     =
+                                {
+                                    .Count   = 1U,
+                                    .Quality = 0U 
+                                },
+                .Usage          = D3D11_USAGE_DYNAMIC,
+                .BindFlags      = D3D11_BIND_SHADER_RESOURCE,
+                .CPUAccessFlags = D3D11_CPU_ACCESS_WRITE,
+                .MiscFlags      = 0U
+            };
 
-                {
-                    const D3D11_TEXTURE2D_DESC texDesc
-                    {
-                        .Width          = GetWidth<UINT>(),
-                        .Height         = GetHeight<UINT>(),
-                        .MipLevels      = 1U,
-                        .ArraySize      = 1U,
-                        .Format         = DXGI_FORMAT_B8G8R8A8_UNORM,
-                        .SampleDesc     =
-                                        {
-                                            .Count   = 1U,
-                                            .Quality = 0U 
-                                        },
-                        .Usage          = D3D11_USAGE_DYNAMIC,
-                        .BindFlags      = D3D11_BIND_SHADER_RESOURCE,
-                        .CPUAccessFlags = D3D11_CPU_ACCESS_WRITE,
-                        .MiscFlags      = 0U
-                    };
-
-                    if (const auto& hr = GetDevice()->CreateTexture2D(&texDesc, nullptr, m_res_pack_.m_pSysbufferTex2d.GetAddressOf());
-                        FAILED(hr))
-                    {
-                        throw std::runtime_error("Could NOT create Texture2D!");
-                    }
-
-                    const D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc
-                    {
-                        .Format        = texDesc.Format,
-                        .ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D,
-                        .Texture2D     =
-                                       {
-                                           .MostDetailedMip = {},
-                                           .MipLevels       = texDesc.MipLevels
-                                       }
-                    };
-
-                    if (const auto& hr = GetDevice()->CreateShaderResourceView(GetSysbufferTexture(), &srvDesc, pSRV.GetAddressOf());
-                        FAILED(hr))
-                    {
-                        throw std::runtime_error("Could NOT create ShaderResourceView!");
-                    }
-                }
-
-                GetImmediateContext()->PSSetShaderResources(0U, 1U, pSRV.GetAddressOf());
-            }
-
-            Microsoft::WRL::ComPtr<ID3D11SamplerState> pSS;
-
+            const D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc
             {
-                const D3D11_SAMPLER_DESC sDesc
-                {
-                    .Filter         = D3D11_FILTER_MIN_MAG_MIP_POINT,
-                    .AddressU       = D3D11_TEXTURE_ADDRESS_CLAMP,
-                    .AddressV       = D3D11_TEXTURE_ADDRESS_CLAMP,
-                    .AddressW       = D3D11_TEXTURE_ADDRESS_CLAMP,
-                    .MipLODBias     = {},
-                    .MaxAnisotropy  = {},
-                    .ComparisonFunc = D3D11_COMPARISON_NEVER,
-                    .BorderColor    = {},
-                    .MinLOD         = 0.0F,
-                    .MaxLOD         = D3D11_FLOAT32_MAX
-                };
+                .Format        = tex2dDesc.Format,
+                .ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D,
+                .Texture2D     =
+                               {
+                                   .MostDetailedMip = {},
+                                   .MipLevels       = tex2dDesc.MipLevels
+                               }
+            };
 
-                if (const auto& hr = GetDevice()->CreateSamplerState(&sDesc, pSS.GetAddressOf());
-                    FAILED(hr))
-                {
-                    throw std::runtime_error("Could NOT create SamplerState");
-                }
-            }
-
-            GetImmediateContext()->PSSetSamplers(0, 1, pSS.GetAddressOf());
+            FATSPACE_D3D11::pipeline::Texture2D{ GetDevice(), tex2dDesc, srvDesc, m_res_pack_.m_pSysbufferTex2d }.Bind(GetImmediateContext());
         }
+        void InitFrameworkBackbufferSampler_   () requires(Framework)
+        {
+            const D3D11_SAMPLER_DESC sDesc
+            {
+                .Filter         = D3D11_FILTER_MIN_MAG_MIP_POINT,
+                .AddressU       = D3D11_TEXTURE_ADDRESS_CLAMP,
+                .AddressV       = D3D11_TEXTURE_ADDRESS_CLAMP,
+                .AddressW       = D3D11_TEXTURE_ADDRESS_CLAMP,
+                .MipLODBias     = {},
+                .MaxAnisotropy  = {},
+                .ComparisonFunc = D3D11_COMPARISON_NEVER,
+                .BorderColor    = {},
+                .MinLOD         = 0.0F,
+                .MaxLOD         = D3D11_FLOAT32_MAX
+            };
+
+            FATSPACE_D3D11::pipeline::Sampler{ GetDevice(), sDesc }.Bind(GetImmediateContext());
+        }
+
         void InitDevice_                       ()
         {
             D3D_FEATURE_LEVEL featureLevel{};

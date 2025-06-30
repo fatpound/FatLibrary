@@ -21,8 +21,23 @@ namespace fatpound::win32::d3d11::pipeline
         {
             Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 
-            ::D3DReadFileToBlob(path.c_str(), &pBlob);
+            if (FAILED(::D3DReadFileToBlob(path.c_str(), &pBlob)))
+            {
+                throw std::runtime_error("CANNOT read Pixel Shader to D3D Blob!");
+            }
 
+            if (const auto& hr = pDevice->CreatePixelShader(
+                pBlob->GetBufferPointer(),
+                pBlob->GetBufferSize(),
+                nullptr,
+                &m_pPixelShader_);
+                FAILED(hr))
+            {
+                throw std::runtime_error("Could NOT create PixelShader!");
+            }
+        }
+        explicit PixelShader(ID3D11Device* const pDevice, const Microsoft::WRL::ComPtr<ID3DBlob>& pBlob)
+        {
             if (const auto& hr = pDevice->CreatePixelShader(
                 pBlob->GetBufferPointer(),
                 pBlob->GetBufferSize(),
