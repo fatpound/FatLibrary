@@ -11,7 +11,7 @@
 
 namespace fatpound::dsa
 {
-    class DirectedGraph final
+    class DirectedGraph
     {
     public:
         explicit DirectedGraph(const std::string& filePath)

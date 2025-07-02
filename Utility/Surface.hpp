@@ -4,12 +4,7 @@
 #include <_macros/Namespaces.hpp>
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
-#define FATPOUND_FULL_WIN_TARGETED
-#include <Win32_/WinAPI.hpp>
-#include <gdiplus.h>
 #include <Win32_/GDI_Plus/Manager.hpp>
-#undef FATPOUND_FULL_WIN_TARGETED
-#pragma comment(lib, "gdiplus")
 #endif
 
 #include <Memory/Memory.hpp>

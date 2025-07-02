@@ -13,18 +13,17 @@
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class InputLayout final : public Bindable
+    class InputLayout : public Bindable
     {
     public:
         explicit InputLayout(ID3D11Device* const pDevice, const std::vector<D3D11_INPUT_ELEMENT_DESC>& layout, const Microsoft::WRL::ComPtr<ID3DBlob>& pVertexShaderBytecode)
         {
-            if (const auto& hr = pDevice->CreateInputLayout(
+            if (FAILED(pDevice->CreateInputLayout(
                 layout.data(),
                 static_cast<UINT>(layout.size()),
                 pVertexShaderBytecode->GetBufferPointer(),
                 pVertexShaderBytecode->GetBufferSize(),
-                &m_pInputLayout_);
-                FAILED(hr))
+                &m_pInputLayout_)))
             {
                 throw std::runtime_error("Could NOT create InputLayout!");
             }
@@ -36,11 +35,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const InputLayout&)     -> InputLayout& = delete;
         auto operator = (InputLayout&&) noexcept -> InputLayout& = delete;
-        virtual ~InputLayout() noexcept override final           = default;
+        virtual ~InputLayout() noexcept override                 = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->IASetInputLayout(m_pInputLayout_.Get());
         }

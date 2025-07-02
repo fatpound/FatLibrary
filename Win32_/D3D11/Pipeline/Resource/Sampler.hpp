@@ -2,17 +2,20 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
+#include <Win32_/WinAPI.hpp>
+#include <d3d11.h>
+#include <wrl.h>
+
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class Sampler final : public Bindable
+    class Sampler : public Bindable
     {
     public:
         explicit Sampler(ID3D11Device* const pDevice, const D3D11_SAMPLER_DESC& sDesc)
         {
-            if (const auto& hr = pDevice->CreateSamplerState(&sDesc, &m_pSamplerState_);
-                FAILED(hr))
+            if (FAILED(pDevice->CreateSamplerState(&sDesc, &m_pSamplerState_)))
             {
                 throw std::runtime_error("Could NOT create SamplerState!");
             }
@@ -24,21 +27,21 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const Sampler&)     -> Sampler& = delete;
         auto operator = (Sampler&&) noexcept -> Sampler& = delete;
-        virtual ~Sampler() noexcept override final       = default;
+        virtual ~Sampler() noexcept override             = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
-            pImmediateContext->PSSetSamplers(0, 1, m_pSamplerState_.GetAddressOf());
+            pImmediateContext->PSSetSamplers(0U, 1U, m_pSamplerState_.GetAddressOf());
         }
 
 
     protected:
+        Microsoft::WRL::ComPtr<ID3D11SamplerState>  m_pSamplerState_;
 
 
     private:
-        Microsoft::WRL::ComPtr<ID3D11SamplerState>  m_pSamplerState_;
     };
 }
 

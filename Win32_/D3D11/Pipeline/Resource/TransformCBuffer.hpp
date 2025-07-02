@@ -10,6 +10,7 @@
 
 #include <DirectXMath.h>
 
+#include <Win32_/D3D11/Pipeline/Bindable.hpp>
 #include <Win32_/D3D11/Pipeline/Resource/VertexCBuffer.hpp>
 
 #include <Utility/ViewXM.hpp>
@@ -17,7 +18,7 @@
 namespace fatpound::win32::d3d11::pipeline
 {
     template <typename T>
-    class TransformCBuffer final : public Bindable
+    class TransformCBuffer : public Bindable
     {
     public:
         explicit TransformCBuffer(ID3D11Device* const pDevice, const D3D11_BUFFER_DESC& bufDesc, const T& parent, utility::ViewXM& viewXM)
@@ -35,11 +36,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const TransformCBuffer&)     -> TransformCBuffer& = delete;
         auto operator = (TransformCBuffer&&) noexcept -> TransformCBuffer& = delete;
-        virtual ~TransformCBuffer() noexcept override final                = default;
+        virtual ~TransformCBuffer() noexcept override                      = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             m_vcbuf_.Update(
                 pImmediateContext,

@@ -8,12 +8,13 @@
 
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
+#include <array>
 #include <vector>
 #include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class VertexBuffer final : public Bindable
+    class VertexBuffer : public Bindable
     {
     public:
         explicit VertexBuffer(ID3D11Device* const pDevice, const D3D11_BUFFER_DESC& bufDesc, const void* const pVerticesData)
@@ -27,8 +28,7 @@ namespace fatpound::win32::d3d11::pipeline
                 .SysMemSlicePitch = {}
             };
 
-            if (const auto& hr = pDevice->CreateBuffer(&bufDesc, &sd, &m_pVertexBuffer_);
-                FAILED(hr))
+            if (FAILED(pDevice->CreateBuffer(&bufDesc, &sd, &m_pVertexBuffer_)))
             {
                 throw std::runtime_error("Could NOT create VertexBuffer!");
             }
@@ -56,11 +56,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const VertexBuffer&)     -> VertexBuffer& = delete;
         auto operator = (VertexBuffer&&) noexcept -> VertexBuffer& = delete;
-        virtual ~VertexBuffer() noexcept override final            = default;
+        virtual ~VertexBuffer() noexcept override                  = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             constexpr UINT offset{};
 

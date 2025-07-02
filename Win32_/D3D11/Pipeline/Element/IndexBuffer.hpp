@@ -13,7 +13,7 @@
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class IndexBuffer final : public Bindable
+    class IndexBuffer : public Bindable
     {
     public:
         template <std::integral T>
@@ -29,8 +29,7 @@ namespace fatpound::win32::d3d11::pipeline
                 .SysMemSlicePitch = {}
             };
 
-            if (const auto& hr = pDevice->CreateBuffer(&bufDesc, &sd, &m_pIndexBuffer_);
-                FAILED(hr))
+            if (FAILED(pDevice->CreateBuffer(&bufDesc, &sd, &m_pIndexBuffer_)))
             {
                 throw std::runtime_error("Could NOT create IndexBuffer!");
             }
@@ -42,11 +41,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const IndexBuffer&)     -> IndexBuffer& = delete;
         auto operator = (IndexBuffer&&) noexcept -> IndexBuffer& = delete;
-        virtual ~IndexBuffer() noexcept override final           = default;
+        virtual ~IndexBuffer() noexcept override                 = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->IASetIndexBuffer(m_pIndexBuffer_.Get(), GetFormat(), 0U);
         }

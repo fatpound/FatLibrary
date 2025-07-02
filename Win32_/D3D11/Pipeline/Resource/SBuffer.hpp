@@ -13,8 +13,6 @@
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    // This is inteded for use as a base class, not an actual bindable
-    //
     template <typename T>
     class SBuffer : public Bindable
     {
@@ -32,15 +30,13 @@ namespace fatpound::win32::d3d11::pipeline
                         .SysMemSlicePitch = {}
                     };
 
-                    if (const auto& hr = pDevice->CreateBuffer(&bufDesc, &initData, &pBuffer);
-                        FAILED(hr))
+                    if (FAILED(pDevice->CreateBuffer(&bufDesc, &initData, &pBuffer)))
                     {
                         throw std::runtime_error("Could NOT create SBuffer!");
                     }
                 }
 
-                if (const auto& hr = pDevice->CreateShaderResourceView(pBuffer.Get(), &srvDesc, &m_pShaderResourceView_);
-                    FAILED(hr))
+                if (FAILED(pDevice->CreateShaderResourceView(pBuffer.Get(), &srvDesc, &m_pShaderResourceView_)))
                 {
                     throw std::runtime_error("Could NOT create ShaderResourceView!");
                 }
@@ -59,7 +55,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>  m_pShaderResourceView_{};
+        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>  m_pShaderResourceView_;
 
 
     private:

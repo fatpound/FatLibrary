@@ -1,22 +1,11 @@
 #pragma once
 
-#include <_macros/STL.hpp>
-
 #ifdef FATLIB_BUILDING_WITH_MSVC
-    #include <DirectXMath.h>
-#endif
 
-#include <Math/Numbers/Common.hpp>
-#include <Math/Multiplicative.hpp>
-#include <Traits/Bitwise.hpp>
-
-#include <cstdlib>
-#include <cmath>
+#include <DirectXMath.h>
 
 namespace fatpound::math::geometry
 {
-#ifdef FATLIB_BUILDING_WITH_MSVC
-
     static auto operator +       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR
     {
         return DirectX::XMVectorAdd(p0, p1);
@@ -25,7 +14,28 @@ namespace fatpound::math::geometry
     {
         return DirectX::XMVectorSubtract(p1, p0);
     }
+    static auto operator *       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR
+    {
+        return DirectX::XMVectorMultiply(p0, p1);
+    }
+    static auto operator /       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR
+    {
+        return DirectX::XMVectorDivide(p0, p1);
+    }
 
+    static auto operator *       (const float&     scale, const DirectX::XMVECTOR&  v) noexcept -> DirectX::XMVECTOR
+    {
+        return DirectX::XMVectorScale(v, scale);
+    }
+    static auto operator *       (const DirectX::XMVECTOR&  v, const float&     scale) noexcept -> DirectX::XMVECTOR
+    {
+        return DirectX::XMVectorScale(v, scale);
+    }
+    static auto operator /       (const DirectX::XMVECTOR&  v, const float&     scale) noexcept -> DirectX::XMVECTOR
+    {
+        return DirectX::XMVectorScale(v, 1.0F / scale);
+    }
+    
     static auto CompareDistance2 (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept
     {
         return DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(p0)) > DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(p1));
@@ -71,47 +81,6 @@ namespace fatpound::math::geometry
     {
         return Distance4(DirectX::XMLoadFloat4(&p0), DirectX::XMLoadFloat4(&p1));
     }
+}
 
 #endif
-
-    template <traits::UIntegralOrFloating T> static constexpr auto SquarePerimeter   (const T& length) noexcept -> T
-    {
-        return length * static_cast<T>(4);
-    }
-    template <traits::UIntegralOrFloating T> static constexpr auto SquareArea        (const T& length) noexcept(Squarable_NX<T>) -> T
-    {
-        return Square<>(length);
-    }
-    template <traits::UIntegralOrFloating T> static constexpr auto TrianglePerimeter (const T& a, const T& b, const T& c) noexcept -> T
-    {
-        return a + b + c;
-    }
-    template <traits::UIntegralOrFloating T> static CX_MATH26 auto TriangleArea      (const T& a, const T& b, const T& c) noexcept -> T
-    {
-        const auto s = TrianglePerimeter<>(a, b, c) / static_cast<T>(2);
-
-        return std::sqrt(s * (s - a) * (s - b) * (s - c));
-    }
-    template <traits::UIntegralOrFloating T> static constexpr auto TriangleArea      (const T& height, const T& base) noexcept -> T
-    {
-        return (base * height) / 2.0;
-    }
-
-
-    /// @brief Checks whether three side lengths can form a triangle
-    /// 
-    /// @tparam T: A type that is either an unsigned integral or floating-point type, as defined by traits::UIntegralOrFloating
-    /// 
-    ///  @param a: The length of the  first side
-    ///  @param b: The length of the second side
-    ///  @param c: The length of the  third side
-    /// 
-    /// @return true if the three side lengths satisfy the triangle inequality and can form a triangle; otherwise, false
-    /// 
-    template <traits::UIntegralOrFloating T> static constexpr auto FormsATriangle    (const T& a, const T& b, const T& c) noexcept -> bool
-    {
-        return     (std::abs(b - c) < a and a < b + c)
-               and (std::abs(a - c) < b and b < a + c)
-               and (std::abs(a - b) < c and c < a + b);
-    }
-}

@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class PixelShader final : public Bindable
+    class PixelShader : public Bindable
     {
     public:
         explicit PixelShader(ID3D11Device* const pDevice, const std::wstring& path)
@@ -26,24 +26,22 @@ namespace fatpound::win32::d3d11::pipeline
                 throw std::runtime_error("CANNOT read Pixel Shader to D3D Blob!");
             }
 
-            if (const auto& hr = pDevice->CreatePixelShader(
+            if (FAILED(pDevice->CreatePixelShader(
                 pBlob->GetBufferPointer(),
                 pBlob->GetBufferSize(),
                 nullptr,
-                &m_pPixelShader_);
-                FAILED(hr))
+                &m_pPixelShader_)))
             {
                 throw std::runtime_error("Could NOT create PixelShader!");
             }
         }
         explicit PixelShader(ID3D11Device* const pDevice, const Microsoft::WRL::ComPtr<ID3DBlob>& pBlob)
         {
-            if (const auto& hr = pDevice->CreatePixelShader(
+            if (FAILED(pDevice->CreatePixelShader(
                 pBlob->GetBufferPointer(),
                 pBlob->GetBufferSize(),
                 nullptr,
-                &m_pPixelShader_);
-                FAILED(hr))
+                &m_pPixelShader_)))
             {
                 throw std::runtime_error("Could NOT create PixelShader!");
             }
@@ -55,11 +53,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const PixelShader&)     -> PixelShader& = delete;
         auto operator = (PixelShader&&) noexcept -> PixelShader& = delete;
-        virtual ~PixelShader() noexcept override final           = default;
+        virtual ~PixelShader() noexcept override                 = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->PSSetShader(m_pPixelShader_.Get(), nullptr, 0U);
         }

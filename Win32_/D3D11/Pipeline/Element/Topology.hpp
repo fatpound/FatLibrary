@@ -9,10 +9,10 @@
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class Topology final : public Bindable
+    class Topology : public Bindable
     {
     public:
-        explicit Topology(const D3D11_PRIMITIVE_TOPOLOGY type) noexcept
+        explicit Topology(const D3D11_PRIMITIVE_TOPOLOGY& type) noexcept
             :
             m_type_(type)
         {
@@ -25,11 +25,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const Topology&)     -> Topology& = delete;
         auto operator = (Topology&&) noexcept -> Topology& = delete;
-        virtual ~Topology() noexcept override final        = default;
+        virtual ~Topology() noexcept override              = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->IASetPrimitiveTopology(m_type_);
         }

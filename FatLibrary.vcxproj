@@ -60,6 +60,7 @@
     <ClInclude Include="Math\Geometry\Common.hpp" />
     <ClInclude Include="Math\Geometry\Geometry.hpp" />
     <ClInclude Include="Math\Geometry\Shape\Circle.hpp" />
+    <ClInclude Include="Math\Geometry\Shape\Triangle.hpp" />
     <ClInclude Include="Math\Math.hpp" />
     <ClInclude Include="Math\Multiplicative.hpp" />
     <ClInclude Include="Math\Numbers\Common.hpp" />
@@ -94,6 +95,8 @@
     <ClInclude Include="Win32_\D3D11\D3D11.hpp" />
     <ClInclude Include="Win32_\D3D11\Graphics.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Bindable.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Rasterizer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Viewport.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\InputLayout.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\PixelShader.hpp" />
@@ -102,10 +105,13 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexShader.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\CBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelCBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp" />

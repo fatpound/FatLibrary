@@ -6,12 +6,12 @@
 #include <d3d11.h>
 #include <wrl.h>
 
-#include <Win32_/D3D11/Pipeline/Resource/CBuffer.hpp>
+#include <Win32_/D3D11/Pipeline/Resource/SBuffer.hpp>
 
 namespace fatpound::win32::d3d11::pipeline
 {
     template <typename T>
-    class PixelSBuffer final : public SBuffer<T>
+    class PixelSBuffer : public SBuffer<T>
     {
         using SBuffer<T>::SBuffer;
 
@@ -22,11 +22,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const PixelSBuffer&)     -> PixelSBuffer& = delete;
         auto operator = (PixelSBuffer&&) noexcept -> PixelSBuffer& = delete;
-        virtual ~PixelSBuffer() noexcept override final            = default;
+        virtual ~PixelSBuffer() noexcept override                  = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->PSSetShaderResources(0U, 1U, this->m_pShaderResourceView_.GetAddressOf());
         }

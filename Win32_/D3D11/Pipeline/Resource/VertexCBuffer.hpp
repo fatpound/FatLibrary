@@ -11,7 +11,7 @@
 namespace fatpound::win32::d3d11::pipeline
 {
     template <typename T>
-    class VertexCBuffer final : public CBuffer<T>
+    class VertexCBuffer : public CBuffer<T>
     {
         using CBuffer<T>::CBuffer;
 
@@ -22,11 +22,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const VertexCBuffer&)     -> VertexCBuffer& = delete;
         auto operator = (VertexCBuffer&&) noexcept -> VertexCBuffer& = delete;
-        virtual ~VertexCBuffer() noexcept override final             = default;
+        virtual ~VertexCBuffer() noexcept override                   = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->VSSetConstantBuffers(0U, 1U, this->m_pConstantBuffer_.GetAddressOf());
         }

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <_macros/Compiler.hpp>
+#include <_macros/Experimental.hpp>
 
 #pragma warning (push)
-#pragma warning (disable : FATLIB_EXTERNAL_WARNINGS)
+#pragma warning (disable : MSVC_EXWARN_CPPZMQ)
 #include <zmq.hpp>
 #pragma warning (pop)
 

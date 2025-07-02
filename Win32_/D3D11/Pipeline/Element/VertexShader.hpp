@@ -14,7 +14,7 @@
 
 namespace fatpound::win32::d3d11::pipeline
 {
-    class VertexShader final : public Bindable
+    class VertexShader : public Bindable
     {
     public:
         explicit VertexShader(ID3D11Device* const pDevice, const std::wstring& path)
@@ -26,24 +26,22 @@ namespace fatpound::win32::d3d11::pipeline
                 throw std::runtime_error("CANNOT read Vertex Shader to D3D Blob!");
             }
 
-            if (const auto& hr = pDevice->CreateVertexShader(
+            if (FAILED(pDevice->CreateVertexShader(
                 pBlob->GetBufferPointer(),
                 pBlob->GetBufferSize(),
                 nullptr,
-                &m_pVertexShader_);
-                FAILED(hr))
+                &m_pVertexShader_)))
             {
                 throw std::runtime_error("Could NOT create VertexShader!");
             }
         }
         explicit VertexShader(ID3D11Device* const pDevice, const Microsoft::WRL::ComPtr<ID3DBlob>& pBlob)
         {
-            if (const auto& hr = pDevice->CreateVertexShader(
+            if (FAILED(pDevice->CreateVertexShader(
                 pBlob->GetBufferPointer(),
                 pBlob->GetBufferSize(),
                 nullptr,
-                &m_pVertexShader_);
-                FAILED(hr))
+                &m_pVertexShader_)))
             {
                 throw std::runtime_error("Could NOT create VertexShader!");
             }
@@ -55,11 +53,11 @@ namespace fatpound::win32::d3d11::pipeline
 
         auto operator = (const VertexShader&)     -> VertexShader& = delete;
         auto operator = (VertexShader&&) noexcept -> VertexShader& = delete;
-        virtual ~VertexShader() noexcept override final            = default;
+        virtual ~VertexShader() noexcept override                  = default;
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override final
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
             pImmediateContext->VSSetShader(m_pVertexShader_.Get(), nullptr, 0U);
         }

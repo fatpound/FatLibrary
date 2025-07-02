@@ -326,5 +326,23 @@
     <ClInclude Include="Traits\Modification.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Rasterizer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Viewport.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Geometry\Shape\Triangle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
