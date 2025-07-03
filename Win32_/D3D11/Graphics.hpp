@@ -561,6 +561,8 @@ namespace fatpound::win32::d3d11
         }
         void CopySysbufferToMappedSubresource_ () requires(Framework)
         {
+            using FATSPACE_UTILITY::Color;
+
             auto* const pDst = static_cast<Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
 
             const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(Color);

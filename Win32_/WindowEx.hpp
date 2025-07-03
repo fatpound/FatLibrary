@@ -298,7 +298,7 @@ public:
     #pragma clang diagnostic pop
 #endif
 
-            if (pt.x >= 0
+            if (    pt.x >= 0
                 and pt.x < GetClientWidth<SHORT>()
                 and pt.y >= 0
                 and pt.y < GetClientHeight<SHORT>()

@@ -175,7 +175,11 @@ namespace fatpound::automata
 
                         bool recursed{};
 
+#if __cplusplus >= 202302L
                         if (cfgstr.contains(ch))
+#else
+                        if (cfgstr.find(ch) not_eq std::string::npos)
+#endif
                         {
                             if (m_recursers_[index] >= scx_recurse_limit_)
                             {

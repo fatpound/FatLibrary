@@ -44,6 +44,8 @@ namespace fatpound::dsa::tree
 #ifdef __GNUC__
     #if __GNUC__ >= 13
                 [[assume(iosuc not_eq nullptr)]];
+    #else
+                __attribute__((assume(iosuc not_eq nullptr)));
     #endif
 #endif
                 node->item = iosuc->item;
