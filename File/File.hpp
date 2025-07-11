@@ -4,17 +4,10 @@
 
 #include <cstdint>
 
-#if __cplusplus >= 202302L
-#include <print>
-#else
 #include <iostream>
-#include <iomanip>
-#endif
-
-#include <ios>
+#include <fstream>
 #include <string>
 #include <vector>
-#include <fstream>
 #include <utility>
 #include <random>
 #include <iterator>
@@ -22,6 +15,10 @@
 #include <variant>
 #include <filesystem>
 #include <format>
+
+#if __cplusplus >= 202302L
+#include <print>
+#endif
 
 namespace fatpound::file::details
 {
@@ -81,6 +78,45 @@ namespace fatpound::file
             path.stem().string(),
             path.extension().string()
         };
+    }
+
+
+
+    static auto ToUriPath           (const std::filesystem::path& path) -> std::string
+    {
+        const auto& path_str = path.u8string();
+
+        std::string uri;
+        uri.reserve(path_str.length());
+
+        for (const auto& ch : path_str)
+        {
+            if (std::isalnum(ch) or (ch == '-') or (ch == '_') or (ch == '.') or (ch == '~'))
+            {
+                uri.push_back(static_cast<char>(ch));
+            }
+            else if ((ch == '/') or (ch == ':'))
+            {
+                uri.push_back(static_cast<char>(ch));
+            }
+            else if (ch == '\\')
+            {
+                uri.push_back('/');
+            }
+            else
+            {
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable : 4686)
+#endif
+                std::format_to<>(std::back_inserter<>(uri), "%{:02X}", static_cast<std::uint8_t>(ch));
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif
+            }
+        }
+
+        return uri;
     }
 
 
