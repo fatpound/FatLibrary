@@ -13,6 +13,7 @@
 
 #include <ios>
 #include <string>
+#include <vector>
 #include <fstream>
 #include <utility>
 #include <random>
@@ -20,6 +21,7 @@
 #include <stdexcept>
 #include <variant>
 #include <filesystem>
+#include <format>
 
 namespace fatpound::file::details
 {
@@ -353,7 +355,6 @@ namespace fatpound::file
 
 
 
-
     /// @brief Prints the contents of a file as hexadecimal values to the specified output stream (with spaces between those values)
     /// 
     /// @param path: The path to the file whose contents will be printed in hexadecimal format
@@ -365,34 +366,45 @@ namespace fatpound::file
 
         if (not file.is_open())
         {
-            throw std::runtime_error("Input file cannot be opened!");
+            throw std::runtime_error("Input file CANNOT be opened!");
         }
 
-#ifdef _MSC_VER
-    #pragma warning (push)
-    #pragma warning (disable : 4686)
-#endif
-
-        if (auto ch = file.get(); not file.eof())
         {
-#if __cplusplus >= 202302L
-            std::print<>(os, "{:X}", ch);
-#else
-            os << std::uppercase << std::setw(2) << std::setfill('0') << std::hex << ch;
-#endif
+            char first_byte;
+
+            if (file.get(first_byte))
+            {
+                os << std::format<>("{:02X}", static_cast<std::uint8_t>(first_byte));
+            }
+            else
+            {
+                return;
+            }
         }
 
-        for (auto ch = file.get(); not file.eof(); ch = file.get())
+        std::vector<std::uint8_t> inbuf(8192U);
+        std::string outbuf;
+        outbuf.reserve(inbuf.size() * 3U);
+
+        while (file.read(reinterpret_cast<char*>(inbuf.data()), static_cast<std::streamsize>(inbuf.size())))
         {
-#if __cplusplus >= 202302L
-            std::print<>(os, " {:02X}", ch);
-#else
-            os << std::uppercase << std::setw(2) << std::setfill('0') << std::hex << ch;
-#endif
+            for (std::size_t i{}; i < inbuf.size(); ++i)
+            {
+                std::format_to<>(std::back_inserter<>(outbuf), " {:02X}", inbuf[i]);
+            }
+
+            os << outbuf;
+            outbuf.clear();
         }
 
-#ifdef _MSC_VER
-    #pragma warning (pop)
-#endif
+        if (const auto& bytes_left = static_cast<std::size_t>(file.gcount()); bytes_left > 0U)
+        {
+            for (std::size_t i{}; i < bytes_left; ++i)
+            {
+                std::format_to<>(std::back_inserter<>(outbuf), " {:02X}", inbuf[i]);
+            }
+
+            os << outbuf;
+        }
     }
 }
