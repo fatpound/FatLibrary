@@ -1,14 +1,12 @@
 #pragma once
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
-    #include <_macros/Namespaces.hpp>
 
-    #include <Win32_/WinAPI.hpp>
-    #include <d3d11.h>
-    #include <wrl.h>
-#endif
+#include <_macros/Namespaces.hpp>
 
-#ifdef FATLIB_BUILDING_WITH_MSVC
+#include <Win32_/WinAPI.hpp>
+#include <d3d11.h>
+#include <wrl.h>
 
 #include <Utility/Gfx/SizePack.hpp>
 #include <Utility/Surface.hpp>
@@ -37,7 +35,7 @@ namespace fatpound::utility::gfx
     struct FrameworkResourcePack final : public ResourcePack
     {
         win32::d3d11::pipeline::Texture2D             m_sysbufferTex2d;
-        D3D11_MAPPED_SUBRESOURCE                      m_mappedSysbufferTex2d;
+        D3D11_MAPPED_SUBRESOURCE                      m_mappedSysbufferTex2d{};
         Surface                                       m_surface;
 
         explicit FrameworkResourcePack(const SizePack& dimensions)
