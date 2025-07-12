@@ -204,14 +204,14 @@ namespace fatpound::dsa::tree
         {
             Mirror_(GetRoot_());
         }
-        void ClearTree()
+        void ClearTree() noexcept
         {
             DeleteSubTree_(GetRoot_());
 
             m_pRoot_      = nullptr;
             m_node_count_ = 0U;
         }
-        void Clear()
+        void Clear() noexcept
         {
             ClearTree();
 

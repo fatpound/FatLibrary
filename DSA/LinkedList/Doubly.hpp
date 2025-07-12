@@ -145,7 +145,15 @@ namespace fatpound::dsa::linkedlist
                 temp = temp->prev;
             }
 
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable : 26822)
+#endif
             std::swap<>(temp->prev, temp->next);
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif
 
             m_start_ = temp;
         }
@@ -182,7 +190,7 @@ namespace fatpound::dsa::linkedlist
         {
             m_os_ = &os;
         }
-        void ClearList()
+        void ClearList() noexcept
         {
             if (IsEmpty())
             {
@@ -206,7 +214,7 @@ namespace fatpound::dsa::linkedlist
             m_end_        = nullptr;
             m_item_count_ = 0U;
         }
-        void Clear()
+        void Clear() noexcept
         {
             ClearList();
 
