@@ -3,7 +3,6 @@
 #include <cassert>
 #include <cstddef>
 
-#include <algorithm>
 #include <vector>
 #include <random>
 #include <utility>
@@ -25,7 +24,11 @@ namespace fatpound::random
             m_dist_(0ULL, count - 1ULL),
             m_current_(0ULL)
         {
+#if __cplusplus >= 202302L
             std::ranges::iota(m_vec_, 0ULL);
+#else
+            std::iota<>(m_vec_.begin(), m_vec_.end(), 0ULL);
+#endif
         }
 
         URand()                 = delete;
