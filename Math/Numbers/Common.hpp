@@ -5,10 +5,10 @@
 
 namespace fatpound::math::numbers
 {
-    template <std::floating_point FP = double> static constexpr auto       Pi = std::numbers::pi_v<FP>;
-    template <std::floating_point FP = double> static constexpr auto    twoPi = Pi<FP> * static_cast<FP>(2.0);
-    template <std::floating_point FP = double> static constexpr auto   PiDiv2 = Pi<FP> / static_cast<FP>(2.0);
-    template <std::floating_point FP = double> static constexpr auto   PiDiv4 = Pi<FP> / static_cast<FP>(4.0);
-    template <std::floating_point FP = double> static constexpr auto    invPi = static_cast<FP>(1.0) / Pi<FP>;
-    template <std::floating_point FP = double> static constexpr auto invTwoPi = invPi<FP> / static_cast<FP>(2.0);
+    template <std::floating_point T = float> static constexpr auto       Pi = std::numbers::pi_v<T>;
+    template <std::floating_point T = float> static constexpr auto    twoPi = Pi<T> * static_cast<T>(2.0);
+    template <std::floating_point T = float> static constexpr auto   PiDiv2 = Pi<T> / static_cast<T>(2.0);
+    template <std::floating_point T = float> static constexpr auto   PiDiv4 = Pi<T> / static_cast<T>(4.0);
+    template <std::floating_point T = float> static constexpr auto    invPi = static_cast<T>(1.0) / Pi<T>;
+    template <std::floating_point T = float> static constexpr auto invTwoPi = invPi<T> / static_cast<T>(2.0);
 }
