@@ -344,5 +344,11 @@
     <ClInclude Include="Math\Geometry\Shape\Triangle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Win32_\DXGI\DXGI.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\DXGI\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

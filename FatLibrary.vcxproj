@@ -115,6 +115,8 @@
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp" />
+    <ClInclude Include="Win32_\DXGI\Common.hpp" />
+    <ClInclude Include="Win32_\DXGI\DXGI.hpp" />
     <ClInclude Include="Win32_\WinAPI.hpp" />
     <ClInclude Include="Win32_\WinAPI_Settings.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />

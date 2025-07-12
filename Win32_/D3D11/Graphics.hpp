@@ -13,6 +13,7 @@
 #include <DirectXMath.h>
 
 #include <Win32_/D3D11/Pipeline/Pipeline.hpp>
+#include <Win32_/DXGI/Common.hpp>
 
 #include <Traits/Bitwise.hpp>
 #include <Utility/Gfx/Gfx.hpp>
@@ -463,7 +464,7 @@ namespace fatpound::win32::d3d11
                 .Flags        = 0U
             };
 
-            if (FAILED(FATSPACE_UTILITY_GFX::GetDXGIFactory(GetDevice())->CreateSwapChain(
+            if (FAILED(dxgi::GetFactoryFromDevice(GetDevice())->CreateSwapChain(
                 GetDevice(),
                 &scDesc,
                 m_res_pack_.m_pSwapChain.GetAddressOf())))
@@ -586,7 +587,7 @@ namespace fatpound::win32::d3d11
 
         void ToggleAltEnterMode_()
         {
-            FATSPACE_UTILITY_GFX::ToggleDXGI_AltEnterMode(GetDevice(), GetHwnd(), m_dxgi_mode_);
+            dxgi::ToggleAltEnterMode(GetDevice(), GetHwnd(), m_dxgi_mode_);
         }
 
 

@@ -4,6 +4,8 @@
 
 #include "D2D/D2D.hpp"
 #include "D3D11/D3D11.hpp"
+#include "DXGI/DXGI.hpp"
+
 #include "COM/COM.hpp"
 #include "GDI_Plus/GDI_Plus.hpp"
 
