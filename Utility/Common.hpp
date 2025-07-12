@@ -16,6 +16,7 @@
 #include <string>
 #include <string_view>
 #include <concepts>
+#include <stdexcept>
 
 namespace fatpound::utility
 {
