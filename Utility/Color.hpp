@@ -12,8 +12,7 @@
 
 namespace fatpound::utility
 {
-    /// @brief Represents a 32-bit color value with separate alpha, red, green, and blue channels.
-    ///        Provides methods for constructing, accessing, and modifying color channel values, as well as formatting the color as a string.
+    /// @brief Represents a 32-bit color value with separate alpha, red, green, and blue channels
     /// 
     class [[nodiscard]] Color
     {
@@ -150,11 +149,13 @@ namespace fatpound::utility
 #ifdef _MSC_VER
 #pragma warning (push)
 #pragma warning (disable : 4686)
+#endif
+
+        [[nodiscard]]
 #if __cplusplus > 202500L
         constexpr
 #endif
-#endif
-        [[nodiscard]] auto GetString(const std::string& prefix, const bool& withAlpha) const -> std::string
+        auto GetString(const std::string& prefix, const bool& withAlpha) const -> std::string
         {
             return std::format<>(
                 "{}{}{:02X}{:02X}{:02X}",
@@ -165,6 +166,7 @@ namespace fatpound::utility
                 GetB()
             );
         }
+
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif
