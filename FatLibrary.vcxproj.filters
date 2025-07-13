@@ -350,6 +350,9 @@
     <ClInclude Include="Win32_\DXGI\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Automata\TLT_v2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Algorithm\Graph\BFS.cpp">
@@ -452,6 +455,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Automata\CFG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Automata\TLT_v2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Automata\TLT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

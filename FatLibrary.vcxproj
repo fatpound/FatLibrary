@@ -33,6 +33,7 @@
     <ClInclude Include="Automata\Automata.hpp" />
     <ClInclude Include="Automata\CFG.hpp" />
     <ClInclude Include="Automata\TLT.hpp" />
+    <ClInclude Include="Automata\TLT_v2.hpp" />
     <ClInclude Include="Bit\Bit.hpp" />
     <ClInclude Include="Concurrency\Concurrency.hpp" />
     <ClInclude Include="Concurrency\TaskQueue.hpp" />
@@ -138,6 +139,9 @@
   <ItemGroup>
     <ClCompile Include="Algorithm\Graph\BFS.cpp" />
     <ClCompile Include="Algorithm\Graph\DFS.cpp" />
+    <ClCompile Include="Automata\CFG.cpp" />
+    <ClCompile Include="Automata\TLT.cpp" />
+    <ClCompile Include="Automata\TLT_v2.cpp" />
     <ClCompile Include="Concurrency\TaskQueue.cpp" />
     <ClCompile Include="File\File.cpp" />
     <ClCompile Include="IO\Keyboard.cpp" />
