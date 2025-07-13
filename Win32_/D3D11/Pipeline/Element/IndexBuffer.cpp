@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Element/IndexBuffer.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::win32::d3d11::pipeline
 {
     void IndexBuffer::Bind(ID3D11DeviceContext* const pImmediateContext)
@@ -16,3 +18,5 @@ namespace fatpound::win32::d3d11::pipeline
         return m_count_;
     }
 }
+
+#endif

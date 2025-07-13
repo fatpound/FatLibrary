@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Element/VertexShader.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
@@ -40,3 +42,5 @@ namespace fatpound::win32::d3d11::pipeline
         pImmediateContext->VSSetShader(m_pVertexShader_.Get(), nullptr, 0U);
     }
 }
+
+#endif

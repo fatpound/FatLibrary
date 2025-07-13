@@ -1,5 +1,7 @@
 #include <Win32_/GDI_Plus/Manager.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <gdiplus.h>
 
 #include <stdexcept>
@@ -34,3 +36,5 @@ namespace fatpound::win32::gdi_plus
         }
     }
 }
+
+#endif

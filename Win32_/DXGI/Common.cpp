@@ -1,5 +1,7 @@
 #include <Win32_/DXGI/Common.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::win32::dxgi
 {
     auto GetFactoryFromDevice(ID3D11Device* const pDevice) -> Microsoft::WRL::ComPtr<IDXGIFactory>
@@ -32,3 +34,5 @@ namespace fatpound::win32::dxgi
         GetFactoryFromDevice(pDevice)->MakeWindowAssociation(hWnd, flag);
     }
 }
+
+#endif

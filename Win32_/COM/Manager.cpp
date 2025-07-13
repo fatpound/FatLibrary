@@ -1,5 +1,7 @@
 #include <Win32_/COM/Manager.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <stdexcept>
 
 namespace fatpound::win32::com
@@ -16,3 +18,5 @@ namespace fatpound::win32::com
         ::CoUninitialize();
     }
 }
+
+#endif

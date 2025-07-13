@@ -1,5 +1,7 @@
 #include <Win32_/D2D/Graphics.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::win32::d2d
 {
     Graphics::Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions)
@@ -79,3 +81,5 @@ namespace fatpound::win32::d2d
         m_pRenderTarget_->EndDraw();
     }
 }
+
+#endif

@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Resource/RenderTarget.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
@@ -28,3 +30,5 @@ namespace fatpound::win32::d3d11::pipeline
         pImmediateContext->OMSetRenderTargets(1U, m_pRTV_.GetAddressOf(), pDSV);
     }
 }
+
+#endif

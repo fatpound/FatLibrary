@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Core/Viewport.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::win32::d3d11::pipeline
 {
     Viewport::Viewport(const D3D11_VIEWPORT& vp) noexcept
@@ -15,3 +17,5 @@ namespace fatpound::win32::d3d11::pipeline
         pImmediateContext->RSSetViewports(1U, &m_vp_);
     }
 }
+
+#endif

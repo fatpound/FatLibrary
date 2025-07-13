@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Core/Rasterizer.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
@@ -18,3 +20,5 @@ namespace fatpound::win32::d3d11::pipeline
         pImmediateContext->RSSetState(m_pRasterizerState_.Get());
     }
 }
+
+#endif

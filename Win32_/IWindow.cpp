@@ -1,5 +1,7 @@
 #include <Win32_/IWindow.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <Win32_/Common.hpp>
 
 #include <stdexcept>
@@ -49,3 +51,5 @@ namespace fatpound::win32
         return pWnd->HandleMsg_(hWnd, msg, wParam, lParam);
     }
 }
+
+#endif

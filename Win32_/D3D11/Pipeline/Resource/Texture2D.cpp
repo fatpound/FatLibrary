@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Resource/Texture2D.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
@@ -46,3 +48,5 @@ namespace fatpound::win32::d3d11::pipeline
         return m_pTex2d_.Get();
     }
 }
+
+#endif

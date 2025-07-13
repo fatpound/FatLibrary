@@ -1,5 +1,7 @@
 #include <Win32_/D3D11/Pipeline/Element/Topology.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::win32::d3d11::pipeline
 {
     Topology::Topology(const D3D11_PRIMITIVE_TOPOLOGY& type) noexcept
@@ -15,3 +17,5 @@ namespace fatpound::win32::d3d11::pipeline
         pImmediateContext->IASetPrimitiveTopology(m_type_);
     }
 }
+
+#endif

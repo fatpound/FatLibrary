@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <Win32_/WinAPI.hpp>
 
 namespace fatpound::win32
@@ -18,3 +20,5 @@ namespace fatpound::win32
 #endif
         cstr = nullptr) -> HINSTANCE;
 }
+
+#endif

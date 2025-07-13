@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <_macros/Compiler.hpp>
 #include <_macros/Namespaces.hpp>
 
@@ -91,3 +93,5 @@ namespace fatpound::win32::d2d
         const FATSPACE_UTILITY_GFX::SizePack            mc_dimensions_;
     };
 }
+
+#endif

@@ -1,5 +1,7 @@
 #include <Win32_/Common.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <stdexcept>
 
 namespace fatpound::win32
@@ -20,3 +22,5 @@ namespace fatpound::win32
         throw std::runtime_error("Error occured when obtaining hInstance [GetModuleHandle]");
     }
 }
+
+#endif
