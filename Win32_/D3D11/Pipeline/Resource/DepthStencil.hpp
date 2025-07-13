@@ -7,6 +7,7 @@
 #include <wrl.h>
 
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
+#include <Win32_/D3D11/Pipeline/Resource/Texture2D.hpp>
 
 #include <stdexcept>
 
