@@ -1,5 +1,7 @@
 #include <Math/Geometry/Shape/Circle.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::math::geometry
 {
     auto Circle::GetCenter    () const noexcept -> DirectX::XMVECTOR
@@ -63,3 +65,5 @@ namespace fatpound::math::geometry
         m_center_ = (m_center_ + v);
     }
 }
+
+#endif

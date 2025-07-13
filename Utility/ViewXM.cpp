@@ -1,5 +1,7 @@
 #include <Utility/ViewXM.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::utility
 {
     auto ViewXM::GetCameraXM     () const noexcept -> DirectX::XMMATRIX
@@ -20,3 +22,5 @@ namespace fatpound::utility
         m_projection_ = projection;
     }
 }
+
+#endif

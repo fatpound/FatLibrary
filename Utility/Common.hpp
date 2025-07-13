@@ -1,8 +1,8 @@
 #pragma once
 
-#ifdef FATLIB_BUILDING_WITH_MSVC
-    #include <_macros/STL.hpp>
+#include <_macros/STL.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
     #include <Win32_/WinAPI.hpp>
 #endif
 

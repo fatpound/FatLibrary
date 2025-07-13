@@ -1,6 +1,8 @@
 #include <Utility/Surface.hpp>
 
-#include <gdiplus.h>
+#ifdef FATLIB_BUILDING_WITH_MSVC
+    #include <gdiplus.h>
+#endif
 
 #include <Utility/Common.hpp>
 
