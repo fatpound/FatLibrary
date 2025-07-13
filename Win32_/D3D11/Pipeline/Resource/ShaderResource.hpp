@@ -9,20 +9,12 @@
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 #include <Win32_/D3D11/Pipeline/Resource/Texture2D.hpp>
 
-#include <stdexcept>
-
 namespace fatpound::win32::d3d11::pipeline
 {
     class ShaderResource : public Bindable
     {
     public:
-        explicit ShaderResource(ID3D11Device* const pDevice, const Texture2D& tex2d, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc)
-        {
-            if (FAILED(pDevice->CreateShaderResourceView(tex2d.GetBuffer(), &srvDesc, &m_pSRV_)))
-            {
-                throw std::runtime_error("Could NOT create ShaderResourceView!");
-            }
-        }
+        explicit ShaderResource(ID3D11Device* const pDevice, const Texture2D& tex2d, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc);
 
         explicit ShaderResource()                          = delete;
         explicit ShaderResource(const ShaderResource&)     = delete;
@@ -34,17 +26,11 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* pImmediateContext) override
-        {
-            pImmediateContext->PSSetShaderResources(0U, 1U, m_pSRV_.GetAddressOf());
-        }
+        virtual void Bind(ID3D11DeviceContext* pImmediateContext) override;
 
 
     public:
-        auto GetView() const noexcept -> ID3D11ShaderResourceView*
-        {
-            return m_pSRV_.Get();
-        }
+        auto GetView() const noexcept -> ID3D11ShaderResourceView*;
 
 
     protected:

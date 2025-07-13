@@ -55,13 +55,6 @@ namespace fatpound::memory
         throw std::runtime_error{ "Aligned allocation failed!" };
     }
 
-    static void AlignedFree(void* const ptr) noexcept
-    {
-        // NOLINTBEGIN(cppcoreguidelines-no-malloc, hicpp-no-malloc)
-        FATLIB_MEMORY_ALIGNED_FREER(ptr);
-        // NOLINTEND(cppcoreguidelines-no-malloc, hicpp-no-malloc)
-    }
-
     template <traits::Array T>
     static auto MakeAlignedUniquePtr(const std::size_t& alignBytes, const std::size_t& size)
     {
@@ -73,4 +66,6 @@ namespace fatpound::memory
     {
         return AlignedUniquePtr<T>(AlignedAlloc<T>(alignBytes, 1U), &FATLIB_MEMORY_ALIGNED_FREER);
     }
+
+    void AlignedFree(void* const ptr) noexcept;
 }

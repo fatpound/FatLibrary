@@ -9,20 +9,12 @@
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 #include <Win32_/D3D11/Pipeline/Resource/Texture2D.hpp>
 
-#include <stdexcept>
-
 namespace fatpound::win32::d3d11::pipeline
 {
     class RenderTarget : public Bindable
     {
     public:
-        explicit RenderTarget(ID3D11Device* const pDevice, const Texture2D& tex2d)
-        {
-            if (FAILED(pDevice->CreateRenderTargetView(tex2d.GetBuffer(), nullptr, &m_pRTV_)))
-            {
-                throw std::runtime_error("Could NOT create RenderTargetView!");
-            }
-        }
+        explicit RenderTarget(ID3D11Device* const pDevice, const Texture2D& tex2d);
 
         explicit RenderTarget()                        = default;
         explicit RenderTarget(const RenderTarget&)     = delete;
@@ -34,22 +26,13 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* pImmediateContext) override
-        {
-            pImmediateContext->OMSetRenderTargets(1U, m_pRTV_.GetAddressOf(), nullptr);
-        }
+        virtual void Bind(ID3D11DeviceContext* pImmediateContext) override;
 
 
     public:
-        auto GetView() const noexcept -> ID3D11RenderTargetView*
-        {
-            return m_pRTV_.Get();
-        }
+        auto GetView() const noexcept -> ID3D11RenderTargetView*;
 
-        void BindWithDepthStencilView(ID3D11DeviceContext* pImmediateContext, ID3D11DepthStencilView* const pDSV)
-        {
-            pImmediateContext->OMSetRenderTargets(1U, m_pRTV_.GetAddressOf(), pDSV);
-        }
+        void BindWithDepthStencilView(ID3D11DeviceContext* pImmediateContext, ID3D11DepthStencilView* const pDSV);
 
 
     protected:

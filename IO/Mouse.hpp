@@ -1,7 +1,5 @@
 #pragma once
 
-// for lock_guards without CTAD, see: https://clang.llvm.org/docs/DiagnosticsReference.html#wctad-maybe-unsupported
-
 #include <cstdint>
 
 #include <queue>
@@ -12,8 +10,6 @@
 
 namespace fatpound::io
 {
-    /// @brief Represents a mouse input handler that tracks mouse events, button states, position, and provides an event buffer interface
-    ///
     class Mouse final
     {
         static constexpr auto scx_bufferSize_ = 16U;
@@ -72,213 +68,42 @@ namespace fatpound::io
 
 
     public:
-        auto GetEvent() noexcept -> std::optional<Event>
-        {
-            if (EventBufferIsEmpty())
-            {
-                return std::nullopt;
-            }
+        auto GetEvent() noexcept -> std::optional<Event>;
 
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
+        [[nodiscard]] auto GetPos() const noexcept -> std::pair<Position_t, Position_t>;
+        [[nodiscard]] auto GetPosX() const noexcept -> Position_t;
+        [[nodiscard]] auto GetPosY() const noexcept -> Position_t;
 
-            auto mouseE = m_event_buffer_.front();
-            m_event_buffer_.pop();
+        [[nodiscard]] auto EventBufferIsEmpty() const noexcept -> bool;
+        [[nodiscard]] auto IsInWindow() const noexcept -> bool;
 
-            return mouseE;
-        }
+        [[nodiscard]] auto LeftIsPressed()  const noexcept -> bool;
+        [[nodiscard]] auto RightIsPressed() const noexcept -> bool;
+        [[nodiscard]] auto WheelIsPressed() const noexcept -> bool;
 
-        [[nodiscard]] auto GetPos() const noexcept -> std::pair<Position_t, Position_t>
-        {
-            return { GetPosX(), GetPosY() };
-        }
-        [[nodiscard]] auto GetPosX() const noexcept -> Position_t
-        {
-            return m_pos_x_;
-        }
-        [[nodiscard]] auto GetPosY() const noexcept -> Position_t
-        {
-            return m_pos_y_;
-        }
+        void AddMouseMoveEvent(const int x, const int y);
+        void AddMouseEnterEvent();
+        void AddMouseLeaveEvent();
 
-        [[nodiscard]] auto EventBufferIsEmpty() const noexcept -> bool
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
+        void AddLeftPressEvent         ();
+        void AddLeftReleaseEvent       ();
+        void AddRightPressEvent        ();
+        void AddRightReleaseEvent      ();
+        void AddWheelPressEvent        ();
+        void AddWheelReleaseEvent      ();
+        void AddWheelUpEvent_NoGuard   ();
+        void AddWheelDownEvent_NoGuard ();
+        void AddWheelUpEvent           ();
+        void AddWheelDownEvent         ();
 
-            return m_event_buffer_.empty();
-        }
-
-        [[nodiscard]] auto IsInWindow() const noexcept -> bool
-        {
-            return m_is_in_window_;
-        }
-
-        [[nodiscard]] auto LeftIsPressed()  const noexcept -> bool
-        {
-            return m_left_is_pressed_;
-        }
-        [[nodiscard]] auto RightIsPressed() const noexcept -> bool
-        {
-            return m_right_is_pressed_;
-        }
-        [[nodiscard]] auto WheelIsPressed() const noexcept -> bool
-        {
-            return m_wheel_is_pressed_;
-        }
-
-        void AddMouseMoveEvent(const int x, const int y)
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_pos_x_ = x;
-            m_pos_y_ = y;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::Move, .pos_x = m_pos_x_, .pos_y = m_pos_y_ });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddMouseEnterEvent()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_is_in_window_ = true;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::Enter });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddMouseLeaveEvent()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_is_in_window_ = false;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::Leave });
-
-            TrimBuffer_NoGuard_();
-        }
-
-        void AddLeftPressEvent         ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_left_is_pressed_ = true;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::LPress, .pos_x = m_pos_x_, .pos_y = m_pos_y_ });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddLeftReleaseEvent       ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_left_is_pressed_ = false;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::LRelease });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddRightPressEvent        ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_right_is_pressed_ = true;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::RPress });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddRightReleaseEvent      ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_right_is_pressed_ = false;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::RRelease });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddWheelPressEvent        ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_wheel_is_pressed_ = true;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::WheelPress });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddWheelReleaseEvent      ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_wheel_is_pressed_ = false;
-
-            m_event_buffer_.push(Event{ .type = Event::Type::WheelRelease });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddWheelUpEvent_NoGuard   ()
-        {
-            m_event_buffer_.push(Event{ .type = Event::Type::WheelUp });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddWheelDownEvent_NoGuard ()
-        {
-            m_event_buffer_.push(Event{ .type = Event::Type::WheelDown });
-
-            TrimBuffer_NoGuard_();
-        }
-        void AddWheelUpEvent           ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            AddWheelUpEvent_NoGuard();
-        }
-        void AddWheelDownEvent         ()
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            AddWheelDownEvent_NoGuard();
-        }
-
-        void ProcessWheelDelta(const WheelDelta_t delta)
-        {
-            const std::lock_guard<std::mutex> guard{ m_mtx_ };
-
-            m_wheel_delta_carry_ += delta;
-
-// NOLINTBEGIN(cppcoreguidelines-macro-usage)
-#define FATLIB_WHEEL_DELTA 120
-            while (m_wheel_delta_carry_ >= FATLIB_WHEEL_DELTA)
-            {
-                m_wheel_delta_carry_ -= FATLIB_WHEEL_DELTA;
-
-                AddWheelUpEvent_NoGuard();
-            }
-
-            while (m_wheel_delta_carry_ <= -FATLIB_WHEEL_DELTA)
-            {
-                m_wheel_delta_carry_ += FATLIB_WHEEL_DELTA;
-
-                AddWheelDownEvent_NoGuard();
-            }
-#undef FATLIB_WHEEL_DELTA
-// NOLINTEND(cppcoreguidelines-macro-usage)
-        }
+        void ProcessWheelDelta(const WheelDelta_t delta);
 
 
     protected:
 
 
     private:
-        void TrimBuffer_NoGuard_() noexcept
-        {
-            while (m_event_buffer_.size() > scx_bufferSize_)
-            {
-                m_event_buffer_.pop();
-            }
-        }
+        void TrimBuffer_NoGuard_() noexcept;
 
 
     private:

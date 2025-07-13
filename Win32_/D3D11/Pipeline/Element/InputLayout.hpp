@@ -9,25 +9,13 @@
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
 #include <vector>
-#include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
 {
     class InputLayout : public Bindable
     {
     public:
-        explicit InputLayout(ID3D11Device* const pDevice, const std::vector<D3D11_INPUT_ELEMENT_DESC>& layout, const Microsoft::WRL::ComPtr<ID3DBlob>& pVertexShaderBytecode)
-        {
-            if (FAILED(pDevice->CreateInputLayout(
-                layout.data(),
-                static_cast<UINT>(layout.size()),
-                pVertexShaderBytecode->GetBufferPointer(),
-                pVertexShaderBytecode->GetBufferSize(),
-                &m_pInputLayout_)))
-            {
-                throw std::runtime_error("Could NOT create InputLayout!");
-            }
-        }
+        explicit InputLayout(ID3D11Device* const pDevice, const std::vector<D3D11_INPUT_ELEMENT_DESC>& layout, const Microsoft::WRL::ComPtr<ID3DBlob>& pVertexShaderBytecode);
 
         explicit InputLayout()                       = delete;
         explicit InputLayout(const InputLayout&)     = delete;
@@ -39,10 +27,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
-        {
-            pImmediateContext->IASetInputLayout(m_pInputLayout_.Get());
-        }
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override;
 
 
     protected:

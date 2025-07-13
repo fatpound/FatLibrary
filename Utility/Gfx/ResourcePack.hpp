@@ -38,12 +38,7 @@ namespace fatpound::utility::gfx
         D3D11_MAPPED_SUBRESOURCE                      m_mappedSysbufferTex2d{};
         Surface                                       m_surface;
 
-        explicit FrameworkResourcePack(const SizePack& dimensions)
-            :
-            m_surface(dimensions)
-        {
-
-        }
+        explicit FrameworkResourcePack(const SizePack& dimensions);
 
         explicit FrameworkResourcePack() noexcept                        = default;
         explicit FrameworkResourcePack(const FrameworkResourcePack&)     = delete;

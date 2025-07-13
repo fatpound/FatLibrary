@@ -5,7 +5,6 @@
 #include <Win32_/WinAPI.hpp>
 
 #include <string>
-#include <stdexcept>
 #include <future>
 #include <concepts>
 
@@ -41,56 +40,29 @@ namespace fatpound::win32
 
     private:
     };
+
+
     
     /// @brief Manages the registration and unregistration of a window class (WNDCLASSEX) in the Windows API, while providing custom WndProc setup functions
     ///
     class IWindow::ClassEx
     {
     public:
-        explicit ClassEx(const WNDCLASSEX& wcx)
-            :
-            m_hInstance_(wcx.hInstance),
-            m_atom_(::RegisterClassEx(&wcx))
-        {
-            if (m_atom_ == 0)
-            {
-                throw std::runtime_error{ "ATOM could not be created!\n" "Consider checking WNDCLASSEX::lpszClassName" };
-            }
-        }
-        explicit ClassEx(const std::wstring& wstr)
-            :
-            ClassEx(wstr.c_str())
-        {
-
-        }
-        explicit ClassEx(const wchar_t* const clsName = L"#fatpound.Default.IWindow.ClassEx#")
-            :
-            ClassEx(CreateDefaultWNDCLASSEX_<>(ModuleHandleOf(nullptr), clsName))
-        {
-
-        }
+        explicit ClassEx(const WNDCLASSEX& wcx);
+        explicit ClassEx(const std::wstring& wstr);
+        explicit ClassEx(const wchar_t* const clsName = L"#fatpound.Default.IWindow.ClassEx#");
 
         explicit ClassEx(const ClassEx&)     = delete;
         explicit ClassEx(ClassEx&&) noexcept = delete;
 
         auto operator = (const ClassEx&)     -> ClassEx& = delete;
         auto operator = (ClassEx&&) noexcept -> ClassEx& = delete;
-        ~ClassEx() noexcept
-        {
-            [[maybe_unused]]
-            const auto&& retval = ::UnregisterClass(MAKEINTATOM(m_atom_), m_hInstance_);
-        }
+        ~ClassEx() noexcept;
 
 
     public:
-        auto GetAtom     () const noexcept -> ATOM
-        {
-            return m_atom_;
-        }
-        auto GetInstance () const noexcept -> HINSTANCE
-        {
-            return m_hInstance_;
-        }
+        auto GetAtom     () const noexcept -> ATOM;
+        auto GetInstance () const noexcept -> HINSTANCE;
 
 
     protected:
@@ -206,10 +178,7 @@ namespace fatpound::win32
 
 
     private:
-        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
-        {
-            return pWnd->HandleMsg_(hWnd, msg, wParam, lParam);
-        }
+        static auto ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT;
     };
 
     using WndClassEx = IWindow::ClassEx;

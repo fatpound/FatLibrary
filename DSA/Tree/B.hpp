@@ -14,7 +14,7 @@
 namespace fatpound::dsa::tree
 {
     template <std::totally_ordered T, std::size_t C>
-    class B final
+    class B
     {
     public:
         explicit B(std::ostream& os = std::cout)
@@ -101,9 +101,6 @@ namespace fatpound::dsa::tree
 
 
     protected:
-
-
-    private:
         struct alignas(64) Node_ final
         {
             explicit Node_(std::pair<T, Node_*>* const new_item, Node_* const new_parent = nullptr)
@@ -130,7 +127,7 @@ namespace fatpound::dsa::tree
         };
 
 
-    private:
+    protected:
         // NOLINTBEGIN(readability-function-cognitive-complexity)
         void Insert_(Node_* node, std::pair<T, Node_*>* pair, const bool add_first_time)
         {
@@ -306,10 +303,13 @@ namespace fatpound::dsa::tree
         }
 
 
-    private:
+    protected:
         Node_*          m_root_{};
         std::size_t     m_depth_{};
 
         std::ostream*   m_os_;
+
+
+    private:
     };
 }

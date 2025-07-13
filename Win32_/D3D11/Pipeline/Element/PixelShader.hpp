@@ -10,42 +10,14 @@
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
 #include <string>
-#include <stdexcept>
 
 namespace fatpound::win32::d3d11::pipeline
 {
     class PixelShader : public Bindable
     {
     public:
-        explicit PixelShader(ID3D11Device* const pDevice, const std::wstring& path)
-        {
-            Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
-
-            if (FAILED(::D3DReadFileToBlob(path.c_str(), &pBlob)))
-            {
-                throw std::runtime_error("CANNOT read Pixel Shader to D3D Blob!");
-            }
-
-            if (FAILED(pDevice->CreatePixelShader(
-                pBlob->GetBufferPointer(),
-                pBlob->GetBufferSize(),
-                nullptr,
-                &m_pPixelShader_)))
-            {
-                throw std::runtime_error("Could NOT create PixelShader!");
-            }
-        }
-        explicit PixelShader(ID3D11Device* const pDevice, const Microsoft::WRL::ComPtr<ID3DBlob>& pBlob)
-        {
-            if (FAILED(pDevice->CreatePixelShader(
-                pBlob->GetBufferPointer(),
-                pBlob->GetBufferSize(),
-                nullptr,
-                &m_pPixelShader_)))
-            {
-                throw std::runtime_error("Could NOT create PixelShader!");
-            }
-        }
+        explicit PixelShader(ID3D11Device* const pDevice, const std::wstring& path);
+        explicit PixelShader(ID3D11Device* const pDevice, const Microsoft::WRL::ComPtr<ID3DBlob>& pBlob);
 
         explicit PixelShader()                       = delete;
         explicit PixelShader(const PixelShader&)     = delete;
@@ -57,10 +29,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
-        {
-            pImmediateContext->PSSetShader(m_pPixelShader_.Get(), nullptr, 0U);
-        }
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override;
 
 
     protected:

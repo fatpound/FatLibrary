@@ -9,20 +9,12 @@
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 #include <Win32_/D3D11/Pipeline/Resource/Texture2D.hpp>
 
-#include <stdexcept>
-
 namespace fatpound::win32::d3d11::pipeline
 {
     class DepthStencil
     {
     public:
-        explicit DepthStencil(ID3D11Device* const pDevice, const Texture2D& tex2d, const D3D11_DEPTH_STENCIL_VIEW_DESC& dsvDesc)
-        {
-            if (FAILED(pDevice->CreateDepthStencilView(tex2d.GetBuffer(), &dsvDesc, &m_pDSV_)))
-            {
-                throw std::runtime_error("Could NOT create DepthStencilView!");
-            }
-        }
+        explicit DepthStencil(ID3D11Device* const pDevice, const Texture2D& tex2d, const D3D11_DEPTH_STENCIL_VIEW_DESC& dsvDesc);
 
         explicit DepthStencil()                        = default;
         explicit DepthStencil(const DepthStencil&)     = delete;
@@ -34,10 +26,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        auto GetView() const noexcept -> ID3D11DepthStencilView*
-        {
-            return m_pDSV_.Get();
-        }
+        auto GetView() const noexcept -> ID3D11DepthStencilView*;
 
 
     protected:

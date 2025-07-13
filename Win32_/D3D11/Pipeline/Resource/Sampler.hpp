@@ -8,20 +8,12 @@
 
 #include <Win32_/D3D11/Pipeline/Bindable.hpp>
 
-#include <stdexcept>
-
 namespace fatpound::win32::d3d11::pipeline
 {
     class Sampler : public Bindable
     {
     public:
-        explicit Sampler(ID3D11Device* const pDevice, const D3D11_SAMPLER_DESC& sDesc)
-        {
-            if (FAILED(pDevice->CreateSamplerState(&sDesc, &m_pSamplerState_)))
-            {
-                throw std::runtime_error("Could NOT create SamplerState!");
-            }
-        }
+        explicit Sampler(ID3D11Device* const pDevice, const D3D11_SAMPLER_DESC& sDesc);
 
         explicit Sampler()                   = delete;
         explicit Sampler(const Sampler&)     = delete;
@@ -33,10 +25,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
-        {
-            pImmediateContext->PSSetSamplers(0U, 1U, m_pSamplerState_.GetAddressOf());
-        }
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override;
 
 
     protected:

@@ -2,8 +2,6 @@
 
 #include <Win32_/WinAPI.hpp>
 
-#include <stdexcept>
-
 namespace fatpound::win32
 {
     /// @brief Retrieves a module handle for the specified module name, or throws an exception if the handle cannot be obtained
@@ -12,19 +10,11 @@ namespace fatpound::win32
     /// 
     /// @return HINSTANCE if successful
     /// 
-    static auto ModuleHandleOf(const
+    auto ModuleHandleOf(const
 #ifdef UNICODE
         LPCWSTR&
 #else
         LPCSTR&
 #endif
-        cstr = nullptr) -> HINSTANCE
-    {
-        if (const auto& hInstance{ ::GetModuleHandle(cstr) }; hInstance not_eq nullptr)
-        {
-            return hInstance;
-        }
-
-        throw std::runtime_error("Error occured when obtaining hInstance [GetModuleHandle]");
-    }
+        cstr = nullptr) -> HINSTANCE;
 }

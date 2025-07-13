@@ -135,6 +135,45 @@
     <ClInclude Include="_macros\Namespaces.hpp" />
     <ClInclude Include="_macros\STL.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Algorithm\Graph\BFS.cpp" />
+    <ClCompile Include="Algorithm\Graph\DFS.cpp" />
+    <ClCompile Include="Concurrency\TaskQueue.cpp" />
+    <ClCompile Include="File\File.cpp" />
+    <ClCompile Include="IO\Keyboard.cpp" />
+    <ClCompile Include="IO\Mouse.cpp" />
+    <ClCompile Include="Math\Geometry\Common.cpp" />
+    <ClCompile Include="Math\Geometry\Shape\Circle.cpp" />
+    <ClCompile Include="Memory\Memory.cpp" />
+    <ClCompile Include="Random\URand.cpp" />
+    <ClCompile Include="Utility\Common.cpp" />
+    <ClCompile Include="Utility\Gfx\FullScreenQuad.cpp" />
+    <ClCompile Include="Utility\Gfx\ResourcePack.cpp" />
+    <ClCompile Include="Utility\Surface.cpp" />
+    <ClCompile Include="Utility\ViewXM.cpp" />
+    <ClCompile Include="Win32_\Common.cpp" />
+    <ClCompile Include="Win32_\COM\Manager.cpp" />
+    <ClCompile Include="Win32_\D2D\Graphics.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Core\Rasterizer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Core\Viewport.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\InputLayout.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\PixelShader.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\Topology.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\VertexBuffer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\VertexShader.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Sampler.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Texture2D.cpp" />
+    <ClCompile Include="Win32_\DXGI\Common.cpp" />
+    <ClCompile Include="Win32_\GDI_Plus\Manager.cpp" />
+    <ClCompile Include="Win32_\IWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_misc\notes.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -215,6 +254,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -228,6 +268,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -241,6 +282,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -254,6 +296,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

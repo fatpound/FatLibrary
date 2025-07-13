@@ -45,21 +45,12 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
-        {
-            pImmediateContext->IASetIndexBuffer(m_pIndexBuffer_.Get(), GetFormat(), 0U);
-        }
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override;
 
 
     public:
-        auto GetFormat () const noexcept -> DXGI_FORMAT
-        {
-            return m_format_;
-        }
-        auto GetCount  () const noexcept -> UINT
-        {
-            return m_count_;
-        }
+        auto GetFormat () const noexcept -> DXGI_FORMAT;
+        auto GetCount  () const noexcept -> UINT;
 
 
     protected:
