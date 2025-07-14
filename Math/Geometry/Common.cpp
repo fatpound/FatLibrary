@@ -1,5 +1,7 @@
 #include <Math/Geometry/Common.hpp>
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::math::geometry
 {
     auto operator +       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR
@@ -78,3 +80,5 @@ namespace fatpound::math::geometry
         return Distance4(DirectX::XMLoadFloat4(&p0), DirectX::XMLoadFloat4(&p1));
     }
 }
+
+#endif
