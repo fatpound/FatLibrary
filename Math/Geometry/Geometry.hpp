@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Math/Geometry/AngularConv.hpp>
-#include <Math/Geometry/Common.hpp>
+#include "include/Common.hpp"
 
-#include <Math/Geometry/Shape/Circle.hpp>
-#include <Math/Geometry/Shape/Triangle.hpp>
+#include "AngularConv.hpp"
+
+#include "Shape/Circle.hpp"
+#include "Shape/Triangle.hpp"

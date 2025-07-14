@@ -1,0 +1,3 @@
+fatlib_add_component(Win32_D3D11_Pipeline_Core)
+
+target_link_libraries(Win32_D3D11_Pipeline INTERFACE Win32_D3D11_Pipeline_Core)

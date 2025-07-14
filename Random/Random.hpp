@@ -2,9 +2,9 @@
 
 #include <_macros/Namespaces.hpp>
 
-#include <Math/Numbers/Primes.hpp>
-#include <Traits/Bitwise.hpp>
-#include <Utility/Color.hpp>
+#include <Math/Numbers/include/Primes.hpp>
+#include <Traits/include/Bitwise.hpp>
+#include <Utility/include/Color.hpp>
 
 #include <cstddef>
 

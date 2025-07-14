@@ -1,0 +1,434 @@
+#pragma once
+
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
+#include <_macros/Namespaces.hpp>
+#include <_macros/Compiler.hpp>
+
+#include "Common.hpp"
+#include "IWindow.hpp"
+
+#include <Concurrency/Concurrency.hpp>
+#include <IO/IO.hpp>
+#include <Utility/Utility.hpp>
+
+#include <Traits/include/Bitwise.hpp>
+
+#include <DirectXMath.h>
+
+#include <string>
+#include <type_traits>
+#include <memory>
+#include <utility>
+#include <stdexcept>
+#include <thread>
+#include <atomic>
+#include <future>
+#include <optional>
+#include <concepts>
+#include <semaphore>
+
+namespace fatpound::win32
+{
+    /// @brief A multithreaded Win32 extended Window, with Keyboard and Mouse input support
+    ///
+    class WindowEx : public IWindow
+    {
+public:
+#ifdef IN_DEBUG
+        static constexpr DWORD scx_DefaultWndStyleEx = WS_VISIBLE bitor WS_CAPTION bitor WS_MINIMIZEBOX bitor WS_OVERLAPPED bitor WS_SYSMENU;
+#else
+        static constexpr DWORD scx_DefaultWndStyleEx = WS_VISIBLE bitor WS_POPUP;
+#endif
+
+
+    public:
+        explicit WindowEx(
+            std::shared_ptr<WndClassEx>             pWndClassEx,
+            const std::wstring                      title,
+            const FATSPACE_UTILITY_GFX::SizePack    clientDimensions,
+            std::shared_ptr<io::Keyboard>           pKeyboard         = std::make_shared<io::Keyboard>(),
+            std::shared_ptr<io::Mouse>              pMouse            = std::make_shared<io::Mouse>(),
+            const std::optional<DirectX::XMINT2>    position          = std::nullopt,
+            const DWORD                             styles            = scx_DefaultWndStyleEx,
+            const DWORD                             exStyles          = {})
+            :
+            m_pKeyboard{ std::move<>(pKeyboard) },
+            m_pMouse{ std::move<>(pMouse) },
+            m_pWndClassEx_{ std::move<>(pWndClassEx) },
+            mc_client_size_{ .m_width = clientDimensions.m_width, .m_height = clientDimensions.m_height },
+            /////////////////////
+#ifdef _MSC_VER
+    #pragma region (thread w/o C4355)
+    #pragma warning (push)
+    #pragma warning (disable : 4355)
+#endif
+            m_msg_jthread_{ &WindowEx::MessageKernel_, this }
+#ifdef _MSC_VER
+    #pragma warning (pop)
+    #pragma endregion
+#endif
+        {
+            auto future = DispatchTaskToQueue_<false>(
+                [
+                    this,
+                    theTitle = title.c_str(),
+                    position,
+                    styles,
+                    exStyles
+                ]
+                () -> void
+                {
+#if defined(IN_DEBUG) or defined(IS_GFX_FRAMEWORK)
+
+                    RECT rect
+                    {
+                        .left   = 0L,
+                        .top    = 0L,
+                        .right  = rect.left + GetClientWidth<LONG>(),
+                        .bottom = rect.top  + GetClientHeight<LONG>()
+                    };
+
+                    if (const auto& retval = ::AdjustWindowRectEx(&rect, styles, false, exStyles); retval == 0)
+                    {
+                        throw std::runtime_error("Error occured when adjusting RECT");
+                    }
+
+#endif
+
+                    m_hWnd_ = ::CreateWindowEx(
+                        exStyles,
+                        MAKEINTATOM(m_pWndClassEx_->GetAtom()),
+                        theTitle,
+                        styles,
+                        position.has_value() ? position->x : CW_USEDEFAULT,
+                        position.has_value() ? position->y : CW_USEDEFAULT,
+
+#if defined(IN_DEBUG) or defined(IS_GFX_FRAMEWORK)
+
+                        rect.right  - rect.left,
+                        rect.bottom - rect.top,
+#else
+                        GetClientWidth<LONG>(),
+                        GetClientHeight<LONG>(),
+
+#endif
+
+                        nullptr,
+                        nullptr,
+                        ModuleHandleOf(),
+                        this // to use HandleMessage_ (see IWindow::ClassEx::HandleMsgSetup_)
+                    );
+
+                    if (m_hWnd_ == nullptr)
+                    {
+                        throw std::runtime_error("Error occured when creating HWND!");
+                    }
+                }
+            );
+
+            m_start_signal_.release();
+
+            future.get();
+        }
+
+        explicit WindowEx()                    = delete;
+        explicit WindowEx(const WindowEx&)     = delete;
+        explicit WindowEx(WindowEx&&) noexcept = delete;
+
+        auto operator = (const WindowEx&)     -> WindowEx& = delete;
+        auto operator = (WindowEx&&) noexcept -> WindowEx& = delete;
+        virtual ~WindowEx() noexcept(false) override
+        {
+            [[maybe_unused]]
+            const auto future = DispatchTaskToQueue_<>(
+                [hWnd = GetHandle()]() noexcept -> void
+                {
+                    [[maybe_unused]]
+                    const auto&& retval = ::DestroyWindow(hWnd);
+                }
+            );
+        }
+
+
+    public:
+        virtual auto SetTitle  (const std::wstring& title) -> std::future<void> override final
+        {
+            auto future = DispatchTaskToQueue_<>(
+                [&title, hWnd = GetHandle()]() noexcept -> void
+                {
+                    [[maybe_unused]]
+                    const auto&& retval = ::SetWindowText(hWnd, title.c_str());
+                }
+            );
+
+            return future;
+        }
+        virtual auto GetHandle () const noexcept -> HWND override final
+        {
+            return m_hWnd_;
+        }
+        virtual auto IsClosing () const noexcept -> bool override final
+        {
+            return m_is_closing_;
+        }
+
+
+    public:
+        template <traits::IntegralOrFloating T> FATLIB_FORCEINLINE auto GetClientWidth  () const noexcept -> T
+        {
+            return static_cast<T>(mc_client_size_.m_width);
+        }
+        template <traits::IntegralOrFloating T> FATLIB_FORCEINLINE auto GetClientHeight () const noexcept -> T
+        {
+            return static_cast<T>(mc_client_size_.m_height);
+        }
+
+
+    public:
+        std::shared_ptr<io::Keyboard> m_pKeyboard;
+        std::shared_ptr<io::Mouse>    m_pMouse;
+
+
+    protected:
+        template <bool Notify = true, typename F, typename... Args>
+        requires std::invocable<F, Args...>
+        auto DispatchTaskToQueue_(F&& function, Args&&... args) -> std::future<std::invoke_result_t<F, Args...>>
+        {
+            auto future = m_tasks_.Push<>(std::forward<F>(function), std::forward<Args>(args)...);
+
+            if constexpr (Notify)
+            {
+                NotifyTaskDispatch_();
+            }
+
+            return future;
+        }
+
+
+    protected:
+        virtual auto HandleMsg_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT override
+        {
+            switch (msg)
+            {
+            case WM_MOUSEMOVE:
+                Process_WM_MOUSEMOVE_(wParam, lParam);
+                return 0;
+
+            case WM_LBUTTONDOWN:
+                Process_WM_LBUTTONDOWN_();
+                return 0;
+
+            case WM_LBUTTONUP:
+                Process_WM_LBUTTONUP_();
+                return 0;
+
+            case WM_RBUTTONDOWN:
+                Process_WM_RBUTTONDOWN_();
+                return 0;
+
+            case WM_RBUTTONUP:
+                Process_WM_RBUTTONUP_();
+                return 0;
+
+            case WM_MBUTTONDOWN:
+                Process_WM_MBUTTONDOWN_();
+                return 0;
+
+            case WM_MBUTTONUP:
+                Process_WM_MBUTTONUP_();
+                return 0;
+
+            case WM_MOUSEWHEEL:
+                Process_WM_MOUSEWHEEL_(GET_WHEEL_DELTA_WPARAM(wParam));
+                return 0;
+
+            case WM_KILLFOCUS:
+                Process_WM_KILLFOCUS_();
+                return 0;
+
+            case WM_KEYDOWN: [[fallthrough]];
+            case WM_SYSKEYDOWN:
+                Process_WM_SYSKEYDOWN_(wParam, lParam);
+                break;
+
+            case WM_KEYUP: [[fallthrough]];
+            case WM_SYSKEYUP:
+                Process_WM_SYSKEYUP_(wParam);
+                break;
+
+            case WM_CHAR:
+                Process_WM_CHAR_(wParam);
+                break;
+
+            case WM_CLOSE:
+                m_is_closing_ = true;
+                break;
+
+            case WM_DESTROY:
+                m_hWnd_ = nullptr;
+                ::PostQuitMessage(0);
+                break;
+
+            case scx_customTaskMsgId_:
+                m_tasks_.ExecuteFirstAndPopOff();
+                return 0;
+
+            // this also controls window movement
+            case WM_SYSCOMMAND:
+                Process_WM_SYSCOMMAND_(wParam);
+                break;
+
+            default:
+                break;
+            }
+
+            return ::DefWindowProc(hWnd, msg, wParam, lParam);
+        }
+
+
+    protected:
+        FATLIB_FORCEINLINE void Process_WM_MOUSEMOVE_  (const WPARAM& wParam, const LPARAM& lParam)
+        {
+#ifdef __clang__
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wcast-qual"
+#endif
+            const auto& pt = MAKEPOINTS(lParam);
+#ifdef __clang__
+    #pragma clang diagnostic pop
+#endif
+
+            if (    pt.x >= 0
+                and pt.x < GetClientWidth<SHORT>()
+                and pt.y >= 0
+                and pt.y < GetClientHeight<SHORT>()
+                )
+            {
+                m_pMouse->AddMouseMoveEvent(pt.x, pt.y);
+
+                if (not m_pMouse->IsInWindow())
+                {
+                    ::SetCapture(m_hWnd_);
+                    m_pMouse->AddMouseEnterEvent();
+                }
+            }
+            else
+            {
+                if (wParam bitand (MK_LBUTTON bitor MK_RBUTTON))
+                {
+                    m_pMouse->AddMouseMoveEvent(pt.x, pt.y);
+                }
+                else
+                {
+                    ::ReleaseCapture();
+                    m_pMouse->AddMouseLeaveEvent();
+                }
+            }
+        }
+        FATLIB_FORCEINLINE void Process_WM_LBUTTONDOWN_()
+        {
+            m_pMouse->AddLeftPressEvent();
+        }
+        FATLIB_FORCEINLINE void Process_WM_LBUTTONUP_  ()
+        {
+            m_pMouse->AddLeftReleaseEvent();
+        }
+        FATLIB_FORCEINLINE void Process_WM_RBUTTONDOWN_()
+        {
+            m_pMouse->AddRightPressEvent();
+        }
+        FATLIB_FORCEINLINE void Process_WM_RBUTTONUP_  ()
+        {
+            m_pMouse->AddRightReleaseEvent();
+        }
+        FATLIB_FORCEINLINE void Process_WM_MBUTTONDOWN_()
+        {
+            m_pMouse->AddWheelPressEvent();
+        }
+        FATLIB_FORCEINLINE void Process_WM_MBUTTONUP_  ()
+        {
+            m_pMouse->AddWheelReleaseEvent();
+        }
+        FATLIB_FORCEINLINE void Process_WM_MOUSEWHEEL_ (const int& delta)
+        {
+            m_pMouse->ProcessWheelDelta(delta);
+        }
+
+        FATLIB_FORCEINLINE void Process_WM_KILLFOCUS_ () noexcept
+        {
+            m_pKeyboard->ClearKeyStateBitset();
+        }
+        FATLIB_FORCEINLINE void Process_WM_KEYDOWN_   (const WPARAM& wParam, const LPARAM& lParam)
+        {
+            Process_WM_SYSKEYDOWN_(wParam, lParam);
+        }
+        FATLIB_FORCEINLINE void Process_WM_SYSKEYDOWN_(const WPARAM& wParam, const LPARAM& lParam)
+        {
+            if ((not (lParam bitand 0x40000000)) or m_pKeyboard->AutoRepeatIsEnabled())
+            {
+                m_pKeyboard->AddKeyPressEvent(static_cast<unsigned char>(wParam));
+            }
+        }
+        FATLIB_FORCEINLINE void Process_WM_KEYUP_     (const WPARAM& wParam)
+        {
+            Process_WM_SYSKEYUP_(wParam);
+        }
+        FATLIB_FORCEINLINE void Process_WM_SYSKEYUP_  (const WPARAM& wParam)
+        {
+            m_pKeyboard->AddKeyReleaseEvent(static_cast<unsigned char>(wParam));
+        }
+        FATLIB_FORCEINLINE void Process_WM_CHAR_      (const WPARAM& wParam)
+        {
+            m_pKeyboard->AddChar(static_cast<unsigned char>(wParam));
+        }
+        FATLIB_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM& wParam) noexcept
+        {
+            if ((wParam bitand 0xFFF0U) == SC_CLOSE)
+            {
+                ::PostMessage(m_hWnd_, WM_CLOSE, 0, 0);
+            }
+        }
+
+
+    protected:
+        static constexpr UINT scx_customTaskMsgId_ = WM_USER;
+
+
+    protected:
+        FATSPACE_CONCURRENCY::TaskQueue        m_tasks_;
+        std::shared_ptr<WndClassEx>            m_pWndClassEx_;
+        const FATSPACE_UTILITY_GFX::SizePack   mc_client_size_;
+
+        HWND                                   m_hWnd_{};
+                                             
+        std::atomic_bool                       m_is_closing_{};
+        std::binary_semaphore                  m_start_signal_{ 0 };
+        std::jthread                           m_msg_jthread_;
+
+
+    private:
+        void NotifyTaskDispatch_() const
+        {
+            if (const auto& retval = ::PostMessage(m_hWnd_, scx_customTaskMsgId_, 0U, 0); retval == 0)
+            {
+                throw std::runtime_error{ "Failed to post task notification message!" };
+            }
+        }
+        void MessageKernel_()
+        {
+            m_start_signal_.acquire();
+            m_tasks_.ExecuteFirstAndPopOff();
+
+            MSG msg{};
+
+            while (::GetMessage(&msg, m_hWnd_, 0U, 0U) not_eq 0)
+            {
+                ::TranslateMessage(&msg);
+                ::DispatchMessage(&msg);
+            }
+        }
+    };
+}
+
+#endif
