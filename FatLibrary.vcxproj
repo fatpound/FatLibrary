@@ -19,164 +19,154 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Math\Geometry\AngularConv.hpp" />
     <None Include="_misc\FatLibrary.cd" />
     <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="CMakeLists.txt" />
+    <Text Include="_misc\notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="Algorithm\Algorithm.hpp" />
-    <ClInclude Include="Algorithm\Graph\BFS.hpp" />
-    <ClInclude Include="Algorithm\Graph\DFS.hpp" />
     <ClInclude Include="Algorithm\Graph\Graph.hpp" />
-    <ClInclude Include="Algorithm\Searching.hpp" />
-    <ClInclude Include="Algorithm\Sorting.hpp" />
+    <ClInclude Include="Algorithm\Graph\include\BFS.hpp" />
+    <ClInclude Include="Algorithm\Graph\include\DFS.hpp" />
+    <ClInclude Include="Algorithm\include\Searching.hpp" />
+    <ClInclude Include="Algorithm\include\Sorting.hpp" />
     <ClInclude Include="Automata\Automata.hpp" />
-    <ClInclude Include="Automata\CFG.hpp" />
-    <ClInclude Include="Automata\TLT.hpp" />
-    <ClInclude Include="Automata\TLT_v2.hpp" />
+    <ClInclude Include="Automata\include\CFG.hpp" />
+    <ClInclude Include="Automata\include\TLT.hpp" />
+    <ClInclude Include="Automata\include\TLT_v2.hpp" />
     <ClInclude Include="Bit\Bit.hpp" />
     <ClInclude Include="Concurrency\Concurrency.hpp" />
-    <ClInclude Include="Concurrency\TaskQueue.hpp" />
+    <ClInclude Include="Concurrency\include\TaskQueue.hpp" />
     <ClInclude Include="Cryptography\Cryptography.hpp" />
-    <ClInclude Include="Cryptography\XorCipher.hpp" />
-    <ClInclude Include="DSA\DirectedGraph.hpp" />
+    <ClInclude Include="Cryptography\include\XorCipher.hpp" />
     <ClInclude Include="DSA\DSA.hpp" />
-    <ClInclude Include="DSA\LinkedList\Doubly.hpp" />
-    <ClInclude Include="DSA\LinkedList\DoublyCircular.hpp" />
+    <ClInclude Include="DSA\include\DirectedGraph.hpp" />
+    <ClInclude Include="DSA\LinkedList\include\Doubly.hpp" />
+    <ClInclude Include="DSA\LinkedList\include\DoublyCircular.hpp" />
+    <ClInclude Include="DSA\LinkedList\include\Singly.hpp" />
+    <ClInclude Include="DSA\LinkedList\include\SinglyCircular.hpp" />
     <ClInclude Include="DSA\LinkedList\LinkedList.hpp" />
-    <ClInclude Include="DSA\LinkedList\Singly.hpp" />
-    <ClInclude Include="DSA\LinkedList\SinglyCircular.hpp" />
-    <ClInclude Include="DSA\Tree\AVL.hpp" />
-    <ClInclude Include="DSA\Tree\BST.hpp" />
-    <ClInclude Include="DSA\Tree\IPR.hpp" />
-    <ClInclude Include="DSA\Tree\B.hpp" />
-    <ClInclude Include="DSA\Tree\B_Plus.hpp" />
+    <ClInclude Include="DSA\Tree\include\AVL.hpp" />
+    <ClInclude Include="DSA\Tree\include\B.hpp" />
+    <ClInclude Include="DSA\Tree\include\BST.hpp" />
+    <ClInclude Include="DSA\Tree\include\B_Plus.hpp" />
+    <ClInclude Include="DSA\Tree\include\IPR.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
     <ClInclude Include="FatLibrary.hpp" />
     <ClInclude Include="File\File.hpp" />
+    <ClInclude Include="IO\include\Keyboard.hpp" />
+    <ClInclude Include="IO\include\Mouse.hpp" />
     <ClInclude Include="IO\IO.hpp" />
-    <ClInclude Include="IO\Keyboard.hpp" />
-    <ClInclude Include="IO\Mouse.hpp" />
-    <ClInclude Include="Math\Common.hpp" />
-    <ClInclude Include="Math\Geometry\Common.hpp" />
     <ClInclude Include="Math\Geometry\Geometry.hpp" />
-    <ClInclude Include="Math\Geometry\Shape\Circle.hpp" />
-    <ClInclude Include="Math\Geometry\Shape\Triangle.hpp" />
+    <ClInclude Include="Math\Geometry\include\AngularConv.hpp" />
+    <ClInclude Include="Math\Geometry\include\Common.hpp" />
+    <ClInclude Include="Math\Geometry\include\Shape\Circle.hpp" />
+    <ClInclude Include="Math\Geometry\include\Shape\Triangle.hpp" />
+    <ClInclude Include="Math\include\Common.hpp" />
+    <ClInclude Include="Math\include\Multiplicative.hpp" />
     <ClInclude Include="Math\Math.hpp" />
-    <ClInclude Include="Math\Multiplicative.hpp" />
-    <ClInclude Include="Math\Numbers\Common.hpp" />
+    <ClInclude Include="Math\Numbers\include\Common.hpp" />
+    <ClInclude Include="Math\Numbers\include\Primes.hpp" />
+    <ClInclude Include="Math\Numbers\include\Sets.hpp" />
     <ClInclude Include="Math\Numbers\Numbers.hpp" />
-    <ClInclude Include="Math\Numbers\Primes.hpp" />
-    <ClInclude Include="Math\Numbers\Sets.hpp" />
     <ClInclude Include="Memory\Memory.hpp" />
+    <ClInclude Include="Random\include\URand.hpp" />
     <ClInclude Include="Random\Random.hpp" />
-    <ClInclude Include="Random\URand.hpp" />
-    <ClInclude Include="Traits\Bitwise.hpp" />
-    <ClInclude Include="Traits\Callable.hpp" />
-    <ClInclude Include="Traits\Extents.hpp" />
-    <ClInclude Include="Traits\Formation.hpp" />
-    <ClInclude Include="Traits\Indirection.hpp" />
-    <ClInclude Include="Traits\Modification.hpp" />
+    <ClInclude Include="Traits\include\Bitwise.hpp" />
+    <ClInclude Include="Traits\include\Callable.hpp" />
+    <ClInclude Include="Traits\include\Extents.hpp" />
+    <ClInclude Include="Traits\include\Formation.hpp" />
+    <ClInclude Include="Traits\include\Indirection.hpp" />
+    <ClInclude Include="Traits\include\Modification.hpp" />
     <ClInclude Include="Traits\Traits.hpp" />
-    <ClInclude Include="Utility\Color.hpp" />
-    <ClInclude Include="Utility\Common.hpp" />
-    <ClInclude Include="Utility\Gfx\FullScreenQuad.hpp" />
     <ClInclude Include="Utility\Gfx\Gfx.hpp" />
-    <ClInclude Include="Utility\Gfx\ResourcePack.hpp" />
-    <ClInclude Include="Utility\Gfx\SizePack.hpp" />
-    <ClInclude Include="Utility\Surface.hpp" />
-    <ClInclude Include="Utility\Timer.hpp" />
+    <ClInclude Include="Utility\Gfx\include\FullScreenQuad.hpp" />
+    <ClInclude Include="Utility\Gfx\include\ResourcePack.hpp" />
+    <ClInclude Include="Utility\Gfx\include\SizePack.hpp" />
+    <ClInclude Include="Utility\include\Color.hpp" />
+    <ClInclude Include="Utility\include\Common.hpp" />
+    <ClInclude Include="Utility\include\Surface.hpp" />
+    <ClInclude Include="Utility\include\Timer.hpp" />
+    <ClInclude Include="Utility\include\ViewXM.hpp" />
     <ClInclude Include="Utility\Utility.hpp" />
-    <ClInclude Include="Utility\ViewXM.hpp" />
-    <ClInclude Include="Win32_\Common.hpp" />
     <ClInclude Include="Win32_\COM\COM.hpp" />
-    <ClInclude Include="Win32_\COM\Manager.hpp" />
+    <ClInclude Include="Win32_\COM\include\Manager.hpp" />
     <ClInclude Include="Win32_\D2D\D2D.hpp" />
-    <ClInclude Include="Win32_\D2D\Graphics.hpp" />
+    <ClInclude Include="Win32_\D2D\include\Graphics.hpp" />
     <ClInclude Include="Win32_\D3D11\D3D11.hpp" />
-    <ClInclude Include="Win32_\D3D11\Graphics.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Bindable.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Rasterizer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Viewport.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\InputLayout.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\PixelShader.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\Topology.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\include\Graphics.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Rasterizer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Viewport.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\IndexBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\InputLayout.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\PixelShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\Topology.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\include\Bindable.hpp" />
     <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\CBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelCBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp" />
-    <ClInclude Include="Win32_\DXGI\Common.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\CBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\DepthStencil.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelSBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\RenderTarget.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Sampler.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\SBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\ShaderResource.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Texture2D.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\TransformCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\VertexCBuffer.hpp" />
     <ClInclude Include="Win32_\DXGI\DXGI.hpp" />
-    <ClInclude Include="Win32_\WinAPI.hpp" />
-    <ClInclude Include="Win32_\WinAPI_Settings.hpp" />
+    <ClInclude Include="Win32_\DXGI\include\Common.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />
-    <ClInclude Include="Win32_\GDI_Plus\Manager.hpp" />
-    <ClInclude Include="Win32_\IWindow.hpp" />
+    <ClInclude Include="Win32_\GDI_Plus\include\Manager.hpp" />
+    <ClInclude Include="Win32_\include\Common.hpp" />
+    <ClInclude Include="Win32_\include\IWindow.hpp" />
+    <ClInclude Include="Win32_\include\WinAPI.hpp" />
+    <ClInclude Include="Win32_\include\WinAPI_Settings.hpp" />
+    <ClInclude Include="Win32_\include\WindowEx.hpp" />
     <ClInclude Include="Win32_\Win32.hpp" />
-    <ClInclude Include="Win32_\WindowEx.hpp" />
-    <ClInclude Include="_exp\FatX.hpp" />
-    <ClInclude Include="_exp\OpenCV\Contour.hpp" />
-    <ClInclude Include="_exp\OpenCV\OpenCV.hpp" />
-    <ClInclude Include="_exp\ZeroMQ\Publisher.hpp" />
-    <ClInclude Include="_exp\ZeroMQ\Subscriber.hpp" />
-    <ClInclude Include="_exp\ZeroMQ\ZeroMQ.hpp" />
-    <ClInclude Include="_macros\Compiler.hpp" />
-    <ClInclude Include="_macros\Experimental.hpp" />
-    <ClInclude Include="_macros\Namespaces.hpp" />
-    <ClInclude Include="_macros\STL.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm\Graph\BFS.cpp" />
-    <ClCompile Include="Algorithm\Graph\DFS.cpp" />
-    <ClCompile Include="Automata\CFG.cpp" />
-    <ClCompile Include="Automata\TLT.cpp" />
-    <ClCompile Include="Automata\TLT_v2.cpp" />
-    <ClCompile Include="Concurrency\TaskQueue.cpp" />
-    <ClCompile Include="File\File.cpp" />
-    <ClCompile Include="IO\Keyboard.cpp" />
-    <ClCompile Include="IO\Mouse.cpp" />
-    <ClCompile Include="Math\Geometry\Common.cpp" />
-    <ClCompile Include="Math\Geometry\Shape\Circle.cpp" />
-    <ClCompile Include="Memory\Memory.cpp" />
-    <ClCompile Include="Random\URand.cpp" />
-    <ClCompile Include="Utility\Common.cpp" />
-    <ClCompile Include="Utility\Gfx\FullScreenQuad.cpp" />
-    <ClCompile Include="Utility\Gfx\ResourcePack.cpp" />
-    <ClCompile Include="Utility\Surface.cpp" />
-    <ClCompile Include="Utility\ViewXM.cpp" />
-    <ClCompile Include="Win32_\Common.cpp" />
-    <ClCompile Include="Win32_\COM\Manager.cpp" />
-    <ClCompile Include="Win32_\D2D\Graphics.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\Rasterizer.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\Viewport.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\InputLayout.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\PixelShader.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\Topology.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\VertexBuffer.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\VertexShader.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Sampler.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Texture2D.cpp" />
-    <ClCompile Include="Win32_\DXGI\Common.cpp" />
-    <ClCompile Include="Win32_\GDI_Plus\Manager.cpp" />
-    <ClCompile Include="Win32_\IWindow.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="_misc\notes.txt" />
+    <ClCompile Include="Algorithm\Graph\src\BFS.cpp" />
+    <ClCompile Include="Algorithm\Graph\src\DFS.cpp" />
+    <ClCompile Include="Automata\src\CFG.cpp" />
+    <ClCompile Include="Automata\src\TLT.cpp" />
+    <ClCompile Include="Automata\src\TLT_v2.cpp" />
+    <ClCompile Include="Concurrency\src\TaskQueue.cpp" />
+    <ClCompile Include="File\src\File.cpp" />
+    <ClCompile Include="IO\src\Keyboard.cpp" />
+    <ClCompile Include="IO\src\Mouse.cpp" />
+    <ClCompile Include="Math\Geometry\src\Common.cpp" />
+    <ClCompile Include="Memory\src\Memory.cpp" />
+    <ClCompile Include="Random\src\URand.cpp" />
+    <ClCompile Include="Utility\Gfx\src\FullScreenQuad.cpp" />
+    <ClCompile Include="Utility\Gfx\src\ResourcePack.cpp" />
+    <ClCompile Include="Utility\src\Common.cpp" />
+    <ClCompile Include="Utility\src\Surface.cpp" />
+    <ClCompile Include="Utility\src\ViewXM.cpp" />
+    <ClCompile Include="Win32_\COM\src\Manager.cpp" />
+    <ClCompile Include="Win32_\D2D\src\Graphics.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Rasterizer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Viewport.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\IndexBuffer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\InputLayout.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\PixelShader.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\Topology.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexBuffer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexShader.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\DepthStencil.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\RenderTarget.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Sampler.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\ShaderResource.cpp" />
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Texture2D.cpp" />
+    <ClCompile Include="Win32_\DXGI\src\Common.cpp" />
+    <ClCompile Include="Win32_\GDI_Plus\src\Manager.cpp" />
+    <ClCompile Include="Win32_\src\Common.cpp" />
+    <ClCompile Include="Win32_\src\IWindow.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -258,7 +248,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -272,7 +262,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -286,7 +276,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -300,7 +290,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

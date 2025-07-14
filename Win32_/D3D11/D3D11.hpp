@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include "Pipeline/Pipeline.hpp"
+#include <Win32_/D3D11/Pipeline/Pipeline.hpp>
 
 #include "Graphics.hpp"
 

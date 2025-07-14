@@ -17,52 +17,88 @@
   <ItemGroup>
     <None Include="_misc\FatRules.ruleset" />
     <None Include="_misc\FatLibrary.cd" />
-    <None Include="Math\Geometry\AngularConv.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="_misc\notes.txt" />
+    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Algorithm\Graph\include\BFS.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Graph\include\DFS.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Graph\Graph.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\include\Searching.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\include\Sorting.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\Algorithm.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Automata\include\CFG.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Automata\include\TLT.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Automata\include\TLT_v2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Automata\Automata.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Automata\CFG.hpp">
+    <ClInclude Include="Bit\Bit.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Automata\TLT.hpp">
+    <ClInclude Include="Concurrency\include\TaskQueue.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Concurrency\Concurrency.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Concurrency\TaskQueue.hpp">
+    <ClInclude Include="Cryptography\include\XorCipher.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\LinkedList\Doubly.hpp">
+    <ClInclude Include="Cryptography\Cryptography.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\LinkedList\DoublyCircular.hpp">
+    <ClInclude Include="DSA\include\DirectedGraph.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\LinkedList\include\Doubly.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\LinkedList\include\DoublyCircular.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\LinkedList\include\Singly.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DSA\LinkedList\include\SinglyCircular.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DSA\LinkedList\LinkedList.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\LinkedList\Singly.hpp">
+    <ClInclude Include="DSA\Tree\include\AVL.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\LinkedList\SinglyCircular.hpp">
+    <ClInclude Include="DSA\Tree\include\B.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\AVL.hpp">
+    <ClInclude Include="DSA\Tree\include\B_Plus.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\BST.hpp">
+    <ClInclude Include="DSA\Tree\include\BST.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\Tree\IPR.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSA\Tree\B.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSA\Tree\B_Plus.hpp">
+    <ClInclude Include="DSA\Tree\include\IPR.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DSA\Tree\Tree.hpp">
@@ -71,100 +107,187 @@
     <ClInclude Include="DSA\DSA.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="File\File.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\include\Keyboard.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\include\Mouse.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="IO\IO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IO\Keyboard.hpp">
+    <ClInclude Include="Math\Geometry\include\Shape\Circle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IO\Mouse.hpp">
+    <ClInclude Include="Math\Geometry\include\Shape\Triangle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Geometry\include\AngularConv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Geometry\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Geometry\Geometry.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Multiplicative.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Numbers\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Numbers\include\Primes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Numbers\include\Sets.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Numbers\Numbers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\Math.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Multiplicative.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Memory\Memory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Gfx\FullScreenQuad.hpp">
+    <ClInclude Include="Random\include\URand.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random\Random.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\include\Bitwise.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\include\Callable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\include\Extents.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\include\Formation.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\include\Indirection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\include\Modification.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Traits\Traits.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Gfx\include\FullScreenQuad.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Gfx\include\ResourcePack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Gfx\include\SizePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Gfx\Gfx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Gfx\ResourcePack.hpp">
+    <ClInclude Include="Utility\include\Color.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Color.hpp">
+    <ClInclude Include="Utility\include\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Gfx\SizePack.hpp">
+    <ClInclude Include="Utility\include\Surface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Surface.hpp">
+    <ClInclude Include="Utility\include\Timer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Timer.hpp">
+    <ClInclude Include="Utility\include\ViewXM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Utility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\ViewXM.hpp">
+    <ClInclude Include="Win32_\COM\include\Manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\COM\COM.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\COM\Manager.hpp">
+    <ClInclude Include="Win32_\D2D\include\Graphics.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D2D\D2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D2D\Graphics.hpp">
+    <ClInclude Include="Win32_\D3D11\include\Graphics.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Rasterizer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\InputLayout.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Viewport.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\PixelShader.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\IndexBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\Topology.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\InputLayout.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\PixelShader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\VertexShader.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\Topology.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\CBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelCBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexShader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\PixelSBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\include\Bindable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\SBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\CBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\TransformCBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\DepthStencil.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\VertexCBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelCBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Bindable.hpp">
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelSBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\RenderTarget.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Sampler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\SBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\ShaderResource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Texture2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\TransformCBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\VertexCBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp">
@@ -173,301 +296,148 @@
     <ClInclude Include="Win32_\D3D11\D3D11.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Graphics.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\GDI_Plus\Manager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\WinAPI.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\WinAPI_Settings.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\IWindow.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\Win32.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\WindowEx.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FatLibrary.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Texture2D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\Sampler.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Numbers\Primes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Random\Random.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Numbers\Sets.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Numbers\Numbers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Geometry\Geometry.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="File\File.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\Common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_exp\FatX.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_exp\ZeroMQ\Publisher.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_exp\ZeroMQ\Subscriber.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_exp\ZeroMQ\ZeroMQ.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Numbers\Common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\Common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_exp\OpenCV\OpenCV.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_exp\OpenCV\Contour.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Traits.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Callable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Bitwise.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bit\Bit.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cryptography\Cryptography.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cryptography\XorCipher.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Geometry\Common.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Extents.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Random\URand.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Formation.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Indirection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Algorithm.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Sorting.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DSA\DirectedGraph.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Graph\Graph.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Graph\BFS.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Graph\DFS.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algorithm\Searching.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Geometry\Shape\Circle.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_macros\Compiler.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_macros\Experimental.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_macros\Namespaces.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_macros\STL.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Traits\Modification.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Rasterizer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\Viewport.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Geometry\Shape\Triangle.hpp">
+    <ClInclude Include="Win32_\DXGI\include\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\DXGI\DXGI.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\DXGI\Common.hpp">
+    <ClInclude Include="Win32_\GDI_Plus\include\Manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Automata\TLT_v2.hpp">
+    <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\IWindow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\WinAPI.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\WinAPI_Settings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\WindowEx.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\Win32.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FatLibrary.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm\Graph\BFS.cpp">
+    <ClCompile Include="Algorithm\Graph\src\BFS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Algorithm\Graph\DFS.cpp">
+    <ClCompile Include="Algorithm\Graph\src\DFS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Concurrency\TaskQueue.cpp">
+    <ClCompile Include="Automata\src\CFG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File\File.cpp">
+    <ClCompile Include="Automata\src\TLT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Memory\Memory.cpp">
+    <ClCompile Include="Automata\src\TLT_v2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IO\Keyboard.cpp">
+    <ClCompile Include="Concurrency\src\TaskQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IO\Mouse.cpp">
+    <ClCompile Include="File\src\File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Random\URand.cpp">
+    <ClCompile Include="IO\src\Keyboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\FullScreenQuad.cpp">
+    <ClCompile Include="IO\src\Mouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Geometry\Common.cpp">
+    <ClCompile Include="Math\Geometry\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Geometry\Shape\Circle.cpp">
+    <ClCompile Include="Memory\src\Memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\ResourcePack.cpp">
+    <ClCompile Include="Random\src\URand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Common.cpp">
+    <ClCompile Include="Utility\Gfx\src\FullScreenQuad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Surface.cpp">
+    <ClCompile Include="Utility\Gfx\src\ResourcePack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\ViewXM.cpp">
+    <ClCompile Include="Utility\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\COM\Manager.cpp">
+    <ClCompile Include="Utility\src\Surface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D2D\Graphics.cpp">
+    <ClCompile Include="Utility\src\ViewXM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\DXGI\Common.cpp">
+    <ClCompile Include="Win32_\COM\src\Manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\GDI_Plus\Manager.cpp">
+    <ClCompile Include="Win32_\D2D\src\Graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\Common.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Rasterizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\IWindow.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Viewport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\Rasterizer.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\IndexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\Viewport.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\InputLayout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\IndexBuffer.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\PixelShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\InputLayout.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\Topology.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\PixelShader.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\Topology.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\VertexBuffer.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\DepthStencil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\VertexShader.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\RenderTarget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\DepthStencil.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Sampler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\RenderTarget.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\ShaderResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Sampler.cpp">
+    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\ShaderResource.cpp">
+    <ClCompile Include="Win32_\DXGI\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\Texture2D.cpp">
+    <ClCompile Include="Win32_\GDI_Plus\src\Manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Automata\CFG.cpp">
+    <ClCompile Include="Win32_\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Automata\TLT_v2.cpp">
+    <ClCompile Include="Win32_\src\IWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Automata\TLT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="_misc\notes.txt" />
   </ItemGroup>
 </Project>

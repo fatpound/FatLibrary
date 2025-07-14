@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Traits/Extents.hpp>
+#include <Traits/include/Extents.hpp>
 
 #include <cstdlib>
 
-#if defined(_MSVC_STL_VERSION) or defined(FATLIB_BUILDING_ON_WINDOWS)
+#if defined(_MSC_VER) or defined(FATLIB_BUILDING_ON_WINDOWS)
     #define FATLIB_MEMORY_ALIGNED_ALLOCATOR _aligned_malloc
     #define FATLIB_MEMORY_ALIGNED_FREER     _aligned_free
 #else
@@ -42,7 +42,7 @@ namespace fatpound::memory
     static auto AlignedAlloc(const std::size_t& alignBytes, const std::size_t& size) -> T*
     {
         if (auto* const ptr = static_cast<T*>(
-#if defined(_MSVC_STL_VERSION) or defined(FATLIB_BUILDING_ON_WINDOWS)
+#if defined(_MSC_VER) or defined(FATLIB_BUILDING_ON_WINDOWS)
             FATLIB_MEMORY_ALIGNED_ALLOCATOR(size * sizeof(T), alignBytes)
 #else
             FATLIB_MEMORY_ALIGNED_ALLOCATOR(alignBytes, size * sizeof(T))

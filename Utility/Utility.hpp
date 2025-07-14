@@ -2,10 +2,11 @@
 
 #include <_macros/STL.hpp>
 
-#include <Utility/Gfx/Gfx.hpp>
+#include "include/Common.hpp"
 
-#include <Utility/Common.hpp>
-#include <Utility/Timer.hpp>
-#include <Utility/Color.hpp>
-#include <Utility/Surface.hpp>
-#include <Utility/ViewXM.hpp>
+#include "Timer.hpp"
+#include "Color.hpp"
+#include "Surface.hpp"
+#include "ViewXM.hpp"
+
+#include <Utility/Gfx/Gfx.hpp>

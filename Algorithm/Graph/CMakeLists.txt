@@ -1,0 +1,3 @@
+fatlib_add_component(Algorithm_Graph)
+
+target_link_libraries(Algorithm INTERFACE Algorithm_Graph)

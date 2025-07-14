@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Cryptography/XorCipher.hpp>
+#include <Cryptography/include/XorCipher.hpp>
 
 #include <cstdint>
 
