@@ -53,8 +53,8 @@ namespace fatpound::automata
 
 
     private:
-        void CreateTree_     (Node_* const node);
-        void CreateInnerTree_(Node_* const node);
+        void CreateTree_     (Node_* node);
+        void CreateInnerTree_(Node_* node);
 
         void Clear_();
 

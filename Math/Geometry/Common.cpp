@@ -47,14 +47,6 @@ namespace fatpound::math::geometry
         return DirectX::XMVector4Length(p1 - p0);
     }
 
-    auto CompareDistance2 (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> float
-    {
-        return DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(p0)) > DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(p1));
-    }
-    auto CompareDistance  (const DirectX::XMFLOAT2& p0, const DirectX::XMFLOAT2& p1) noexcept -> float
-    {
-        return CompareDistance2(DirectX::XMLoadFloat2(&p0), DirectX::XMLoadFloat2(&p1));
-    }
     auto Distance2        (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> float
     {
         return DirectX::XMVectorGetX(DistanceVector2(p0, p1));
@@ -78,6 +70,15 @@ namespace fatpound::math::geometry
     auto Distance         (const DirectX::XMFLOAT4& p0, const DirectX::XMFLOAT4& p1) noexcept -> float
     {
         return Distance4(DirectX::XMLoadFloat4(&p0), DirectX::XMLoadFloat4(&p1));
+    }
+
+    auto CompareDistance2 (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> bool
+    {
+        return DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(p0)) > DirectX::XMVectorGetX(DirectX::XMVector2LengthSq(p1));
+    }
+    auto CompareDistance  (const DirectX::XMFLOAT2& p0, const DirectX::XMFLOAT2& p1) noexcept -> bool
+    {
+        return CompareDistance2(DirectX::XMLoadFloat2(&p0), DirectX::XMLoadFloat2(&p1));
     }
 }
 

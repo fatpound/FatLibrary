@@ -1,12 +1,12 @@
 #pragma once
 
-#include <cstdint>
+#include <cstddef>
 
 namespace fatpound::utility::gfx
 {
-    struct alignas(8) SizePack final
+    struct alignas(16) SizePack final
     {
-        std::uint32_t   m_width{};
-        std::uint32_t   m_height{};
+        std::size_t   m_width{};
+        std::size_t   m_height{};
     };
 }

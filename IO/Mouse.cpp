@@ -54,7 +54,7 @@ namespace fatpound::io
         return m_wheel_is_pressed_;
     }
 
-    void Mouse::AddMouseMoveEvent(const int x, const int y)
+    void Mouse::AddMouseMoveEvent(const int& x, const int& y)
     {
         const std::lock_guard<std::mutex> guard{ m_mtx_ };
 
@@ -171,7 +171,7 @@ namespace fatpound::io
         AddWheelDownEvent_NoGuard();
     }
 
-    void Mouse::ProcessWheelDelta(const WheelDelta_t delta)
+    void Mouse::ProcessWheelDelta(const WheelDelta_t& delta)
     {
         const std::lock_guard<std::mutex> guard{ m_mtx_ };
 

@@ -90,7 +90,9 @@ namespace fatpound::automata
                 ss << str;
             }
 
-            for (char ch{}; ss >> ch; void())
+            char ch{};
+
+            while (ss >> ch)
             {
                 alphabet.push_back(ch);
             }
@@ -103,7 +105,9 @@ namespace fatpound::automata
     }
     void CFG::ReadLine2_(std::ifstream& inputFile, const Alphabet_t& alphabet, Grammar_t& grammar)
     {
-        for (std::string str; std::getline<>(inputFile, str, scx_LanguageDelimiter_); void())
+        std::string str;
+
+        while (std::getline<>(inputFile, str, scx_LanguageDelimiter_))
         {
             {
                 const auto& [beg, end] = std::ranges::remove_if(str, [](const auto& ch) noexcept -> bool { return std::isspace(ch) not_eq 0; });

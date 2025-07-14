@@ -67,5 +67,5 @@ namespace fatpound::memory
         return AlignedUniquePtr<T>(AlignedAlloc<T>(alignBytes, 1U), &FATLIB_MEMORY_ALIGNED_FREER);
     }
 
-    void AlignedFree(void* const ptr) noexcept;
+    void AlignedFree(void* ptr) noexcept;
 }

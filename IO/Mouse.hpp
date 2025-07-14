@@ -81,7 +81,7 @@ namespace fatpound::io
         [[nodiscard]] auto RightIsPressed() const noexcept -> bool;
         [[nodiscard]] auto WheelIsPressed() const noexcept -> bool;
 
-        void AddMouseMoveEvent(const int x, const int y);
+        void AddMouseMoveEvent(const int& x, const int& y);
         void AddMouseEnterEvent();
         void AddMouseLeaveEvent();
 
@@ -96,7 +96,7 @@ namespace fatpound::io
         void AddWheelUpEvent           ();
         void AddWheelDownEvent         ();
 
-        void ProcessWheelDelta(const WheelDelta_t delta);
+        void ProcessWheelDelta(const WheelDelta_t& delta);
 
 
     protected:
