@@ -12,12 +12,7 @@ namespace fatpound::win32::d3d11::pipeline
     class Viewport : public Bindable
     {
     public:
-        explicit Viewport(const D3D11_VIEWPORT& vp) noexcept
-            :
-            m_vp_(vp)
-        {
-            
-        }
+        explicit Viewport(const D3D11_VIEWPORT& vp) noexcept;
 
         explicit Viewport()                    = delete;
         explicit Viewport(const Viewport&)     = delete;
@@ -29,10 +24,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
-        {
-            pImmediateContext->RSSetViewports(1U, &m_vp_);
-        }
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override;
 
 
     protected:

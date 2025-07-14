@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Win32_/WinAPI.hpp>
+#ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <stdexcept>
+#include <Win32_/WinAPI.hpp>
 
 namespace fatpound::win32
 {
@@ -12,19 +12,13 @@ namespace fatpound::win32
     /// 
     /// @return HINSTANCE if successful
     /// 
-    static auto ModuleHandleOf(const
+    auto ModuleHandleOf(const
 #ifdef UNICODE
         LPCWSTR&
 #else
         LPCSTR&
 #endif
-        cstr = nullptr) -> HINSTANCE
-    {
-        if (const auto& hInstance{ ::GetModuleHandle(cstr) }; hInstance not_eq nullptr)
-        {
-            return hInstance;
-        }
-
-        throw std::runtime_error("Error occured when obtaining hInstance [GetModuleHandle]");
-    }
+        cstr = nullptr) -> HINSTANCE;
 }
+
+#endif

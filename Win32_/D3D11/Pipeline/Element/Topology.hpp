@@ -12,12 +12,7 @@ namespace fatpound::win32::d3d11::pipeline
     class Topology : public Bindable
     {
     public:
-        explicit Topology(const D3D11_PRIMITIVE_TOPOLOGY& type) noexcept
-            :
-            m_type_(type)
-        {
-
-        }
+        explicit Topology(const D3D11_PRIMITIVE_TOPOLOGY& type) noexcept;
 
         explicit Topology()                    = delete;
         explicit Topology(const Topology&)     = delete;
@@ -29,10 +24,7 @@ namespace fatpound::win32::d3d11::pipeline
 
 
     public:
-        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
-        {
-            pImmediateContext->IASetPrimitiveTopology(m_type_);
-        }
+        virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override;
 
 
     protected:

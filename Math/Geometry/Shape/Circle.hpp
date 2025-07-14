@@ -74,66 +74,24 @@ namespace fatpound::math::geometry
 
 
     public:
-        auto GetCenter    () const noexcept -> DirectX::XMVECTOR
-        {
-            return m_center_;
-        }
-        auto GetRadius    () const noexcept -> float
-        {
-            return m_radius_;
-        }
-        auto GetArea      () const noexcept -> float
-        {
-            return Area<>(GetRadius());
-        }
-        auto GetDiameter  () const noexcept -> float
-        {
-            return Diameter<>(GetRadius());
-        }
-        auto GetPerimeter () const noexcept -> float
-        {
-            return Perimeter<>(GetRadius());
-        }
+        auto GetCenter    () const noexcept -> DirectX::XMVECTOR;
+        auto GetRadius    () const noexcept -> float;
+        auto GetArea      () const noexcept -> float;
+        auto GetDiameter  () const noexcept -> float;
+        auto GetPerimeter () const noexcept -> float;
 
-        auto Distance_CenterToCenter (const Circle& other) const noexcept -> float
-        {
-            return Distance4(GetCenter(), other.GetCenter());
-        }
-        auto Distance_CenterToEdge   (const Circle& other) const noexcept -> float
-        {
-            return Distance_CenterToCenter(other) - other.GetRadius();
-        }
-        auto Distance_EdgeToEdge     (const Circle& other) const noexcept -> float
-        {
-            return Distance_CenterToEdge(other) - GetRadius();
-        }
-        auto Distance_EdgeToCenter   (const Circle& other) const noexcept -> float
-        {
-            return Distance_CenterToCenter(other) - GetRadius();
-        }
+        auto Distance_CenterToCenter (const Circle& other) const noexcept -> float;
+        auto Distance_CenterToEdge   (const Circle& other) const noexcept -> float;
+        auto Distance_EdgeToEdge     (const Circle& other) const noexcept -> float;
+        auto Distance_EdgeToCenter   (const Circle& other) const noexcept -> float;
 
-        auto ArcLengthRad (const float& rad) const noexcept -> float
-        {
-            return GetRadius() * rad;
-        }
-        auto ArcLengthDeg (const float& deg) const noexcept -> float
-        {
-            return ArcLengthRad(DegToRad<>(deg));
-        }
+        auto ArcLengthRad (const float& rad) const noexcept -> float;
+        auto ArcLengthDeg (const float& deg) const noexcept -> float;
 
-        auto IsInsideOf   (const Circle& other) const noexcept -> bool
-        {
-            return Distance_CenterToCenter(other) + GetRadius() <= other.GetRadius();
-        }
-        auto Contains     (const Circle& other) const noexcept -> bool
-        {
-            return Distance_CenterToCenter(other) + other.GetRadius() <= GetRadius();
-        }
+        auto IsInsideOf   (const Circle& other) const noexcept -> bool;
+        auto Contains     (const Circle& other) const noexcept -> bool;
 
-        void TranslateBy  (const DirectX::XMVECTOR& v) noexcept
-        {
-            m_center_ = (m_center_ + v);
-        }
+        void TranslateBy  (const DirectX::XMVECTOR& v) noexcept;
 
 
     protected:

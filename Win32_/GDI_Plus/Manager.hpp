@@ -4,12 +4,7 @@
 
 #define FATPOUND_FULL_WIN_TARGETED
 #include <Win32_/WinAPI.hpp>
-#include <gdiplus.h>
 #undef FATPOUND_FULL_WIN_TARGETED
-
-#include <stdexcept>
-
-#pragma comment(lib, "gdiplus")
 
 namespace fatpound::win32::gdi_plus
 {
@@ -19,36 +14,13 @@ namespace fatpound::win32::gdi_plus
     class Manager final
     {
     public:
-        explicit Manager()
-        {
-            if (s_ref_count_ == 0)
-            {
-                const Gdiplus::GdiplusStartupInput gdiplusStartupInput;
-
-                const auto& status = Gdiplus::GdiplusStartup(&s_gdiPlus_token_, &gdiplusStartupInput, nullptr);
-
-                if (status not_eq Gdiplus::Ok)
-                {
-                    throw std::runtime_error("GDI+ initialization failed");
-                }
-            }
-
-            ++s_ref_count_;
-        }
+        explicit Manager();
         explicit Manager(const Manager&)     = delete;
         explicit Manager(Manager&&) noexcept = delete;
 
         auto operator = (const Manager&)     -> Manager& = delete;
         auto operator = (Manager&&) noexcept -> Manager& = delete;
-        ~Manager() noexcept
-        {
-            --s_ref_count_;
-
-            if (s_ref_count_ == 0)
-            {
-                Gdiplus::GdiplusShutdown(s_gdiPlus_token_);
-            }
-        }
+        ~Manager() noexcept;
 
 
     protected:

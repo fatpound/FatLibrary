@@ -1,13 +1,13 @@
 #pragma once
 
-// for lock_guards without CTAD, see: https://clang.llvm.org/docs/DiagnosticsReference.html#wctad-maybe-unsupported
-
 #include <deque>
 #include <utility>
 #include <type_traits>
 #include <functional>
 #include <future>
+#include <memory>
 #include <mutex>
+#include <concepts>
 
 namespace fatpound::concurrency
 {
@@ -34,7 +34,7 @@ namespace fatpound::concurrency
     public:
         template <typename F, typename... Args>
         requires std::invocable<F, Args...>
-        auto Push(F&& func, Args&&... args) -> auto
+        auto Push(F&& func, Args&&... args)
         {
             using T = std::invoke_result_t<F, Args...>;
 
@@ -66,37 +66,14 @@ namespace fatpound::concurrency
 
 
     public:
-        void ExecuteFirstAndPopOff()
-        {
-            WrappedTask wtask{};
-
-            {
-                const std::lock_guard<std::mutex> lck{ m_mtx_ };
-
-                if (m_tasks_.empty())
-                {
-                    return;
-                }
-
-                wtask = std::move<>(m_tasks_.front());
-
-                m_tasks_.pop_front();
-            }
-
-            wtask();
-        }
+        void ExecuteFirstAndPopOff();
 
 
     protected:
 
 
     private:
-        void Push_(WrappedTask wtask)
-        {
-            const std::lock_guard<std::mutex> lck{ m_mtx_ };
-
-            m_tasks_.push_back(std::move<>(wtask));
-        }
+        void Push_(WrappedTask wtask);
 
 
     private:

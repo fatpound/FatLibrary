@@ -14,7 +14,7 @@
 namespace fatpound::dsa::tree
 {
     template <std::totally_ordered T, std::size_t I, std::size_t S>
-    class B_Plus final
+    class B_Plus
     {
         using Size_t = std::size_t;
         
@@ -148,9 +148,6 @@ namespace fatpound::dsa::tree
 
 
     protected:
-
-
-    private:
         struct alignas(64) Node_ final
         {
             explicit Node_(std::vector<std::pair<T, Node_*>*>& new_items, Node_* const new_lesser, Node_* const new_parent)
@@ -173,6 +170,7 @@ namespace fatpound::dsa::tree
                 lesser(new_lesser),
                 parent(new_parent)
             {
+                items.reserve(I * 2U);
                 items.push_back(new std::pair<T, Node_*>(new_item, nullptr));
             }
 
@@ -184,7 +182,7 @@ namespace fatpound::dsa::tree
         };
 
 
-    private:
+    protected:
         auto GetDepth_(Node_* node, std::size_t depth = 0U) const -> std::size_t
         {
             if (node == nullptr)
@@ -441,10 +439,13 @@ namespace fatpound::dsa::tree
         }
 
 
-    private:
+    protected:
         Node_*          root_{};
         std::size_t     item_count_{};
 
         std::ostream*   m_os_;
+
+
+    private:
     };
 }
