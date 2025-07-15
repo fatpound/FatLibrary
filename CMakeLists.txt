@@ -55,6 +55,8 @@ add_subdirectory(Concurrency)
 add_subdirectory(Cryptography)
 add_subdirectory(DSA)
 add_subdirectory(File)
+add_subdirectory(Geometry)
+add_subdirectory(Graph)
 add_subdirectory(IO)
 add_subdirectory(Math)
 add_subdirectory(Memory)
@@ -72,6 +74,8 @@ target_link_libraries(FatLibrary
         FatLibrary::Cryptography
         FatLibrary::DSA
         FatLibrary::File
+        FatLibrary::Geometry
+        FatLibrary::Graph
         FatLibrary::IO
         FatLibrary::Math
         FatLibrary::Memory

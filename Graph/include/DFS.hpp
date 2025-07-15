@@ -1,10 +1,10 @@
 #pragma once
 
-#include <DSA/include/DirectedGraph.hpp>
+#include <Graph/include/DirectedGraph.hpp>
 
 #include <string>
 
-namespace fatpound::algorithm
+namespace fatpound::graph
 {
     /// @brief Performs a depth-first search (DFS) traversal on a directed graph and returns the traversal order as a string
     /// 
@@ -12,5 +12,5 @@ namespace fatpound::algorithm
     /// 
     /// @return A string representing the order in which the nodes are visited during the DFS traversal
     /// 
-    auto DFS(const dsa::DirectedGraph& graph) -> std::string;
+    auto DFS(const DirectedGraph& graph) -> std::string;
 }

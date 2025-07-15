@@ -22,13 +22,13 @@
     <Text Include="_misc\notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Algorithm\Graph\include\BFS.hpp">
+    <ClInclude Include="Graph\include\BFS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Algorithm\Graph\include\DFS.hpp">
+    <ClInclude Include="Graph\include\DFS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Algorithm\Graph\Graph.hpp">
+    <ClInclude Include="Graph\Graph.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Algorithm\include\Searching.hpp">
@@ -67,7 +67,7 @@
     <ClInclude Include="Cryptography\Cryptography.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DSA\include\DirectedGraph.hpp">
+    <ClInclude Include="Graph\include\DirectedGraph.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DSA\LinkedList\include\Doubly.hpp">
@@ -118,19 +118,19 @@
     <ClInclude Include="IO\IO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\include\Shape\Circle.hpp">
+    <ClInclude Include="Geometry\Shape\include\Circle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\include\Shape\Triangle.hpp">
+    <ClInclude Include="Geometry\Shape\include\Triangle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\include\AngularConv.hpp">
+    <ClInclude Include="Geometry\include\AngularConv.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\include\Common.hpp">
+    <ClInclude Include="Geometry\include\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Geometry\Geometry.hpp">
+    <ClInclude Include="Geometry\Geometry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\include\Common.hpp">
@@ -328,12 +328,27 @@
     <ClInclude Include="FatLibrary.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="_macros\Compiler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_macros\Experimental.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_macros\Namespaces.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_macros\STL.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\Shape\Shape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm\Graph\src\BFS.cpp">
+    <ClCompile Include="Graph\src\BFS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Algorithm\Graph\src\DFS.cpp">
+    <ClCompile Include="Graph\src\DFS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Automata\src\CFG.cpp">
@@ -357,7 +372,7 @@
     <ClCompile Include="IO\src\Mouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Geometry\src\Common.cpp">
+    <ClCompile Include="Geometry\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Memory\src\Memory.cpp">

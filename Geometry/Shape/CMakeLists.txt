@@ -1,0 +1,3 @@
+fatlib_add_component(Geometry_Shape)
+
+target_link_libraries(Geometry PUBLIC Geometry_Shape)

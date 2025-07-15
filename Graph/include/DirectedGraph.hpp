@@ -9,7 +9,7 @@
 #include <string>
 #include <stdexcept>
 
-namespace fatpound::dsa
+namespace fatpound::graph
 {
     class DirectedGraph
     {

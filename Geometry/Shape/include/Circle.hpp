@@ -2,10 +2,11 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
+#include <Geometry/include/Common.hpp>
+#include <Geometry/include/AngularConv.hpp>
+
 #include <Math/include/Multiplicative.hpp>
 #include <Math/Numbers/include/Common.hpp>
-#include <Math/Geometry/include/Common.hpp>
-#include <Math/Geometry/include/AngularConv.hpp>
 #include <Traits/include/Bitwise.hpp>
 
 #include <DirectXMath.h>

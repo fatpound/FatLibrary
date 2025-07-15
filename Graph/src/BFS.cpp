@@ -7,9 +7,9 @@
 #include <vector>
 #include <queue>
 
-namespace fatpound::algorithm
+namespace fatpound::graph
 {
-    auto BFS(const dsa::DirectedGraph& graph) -> std::string
+    auto BFS(const DirectedGraph& graph) -> std::string
     {
         std::vector<utility::Color> colors(graph.GetNodeCount());
 

@@ -27,9 +27,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Algorithm.hpp" />
-    <ClInclude Include="Algorithm\Graph\Graph.hpp" />
-    <ClInclude Include="Algorithm\Graph\include\BFS.hpp" />
-    <ClInclude Include="Algorithm\Graph\include\DFS.hpp" />
+    <ClInclude Include="Geometry\Shape\Shape.hpp" />
+    <ClInclude Include="Graph\Graph.hpp" />
+    <ClInclude Include="Graph\include\BFS.hpp" />
+    <ClInclude Include="Graph\include\DFS.hpp" />
     <ClInclude Include="Algorithm\include\Searching.hpp" />
     <ClInclude Include="Algorithm\include\Sorting.hpp" />
     <ClInclude Include="Automata\Automata.hpp" />
@@ -42,7 +43,7 @@
     <ClInclude Include="Cryptography\Cryptography.hpp" />
     <ClInclude Include="Cryptography\include\XorCipher.hpp" />
     <ClInclude Include="DSA\DSA.hpp" />
-    <ClInclude Include="DSA\include\DirectedGraph.hpp" />
+    <ClInclude Include="Graph\include\DirectedGraph.hpp" />
     <ClInclude Include="DSA\LinkedList\include\Doubly.hpp" />
     <ClInclude Include="DSA\LinkedList\include\DoublyCircular.hpp" />
     <ClInclude Include="DSA\LinkedList\include\Singly.hpp" />
@@ -59,11 +60,11 @@
     <ClInclude Include="IO\include\Keyboard.hpp" />
     <ClInclude Include="IO\include\Mouse.hpp" />
     <ClInclude Include="IO\IO.hpp" />
-    <ClInclude Include="Math\Geometry\Geometry.hpp" />
-    <ClInclude Include="Math\Geometry\include\AngularConv.hpp" />
-    <ClInclude Include="Math\Geometry\include\Common.hpp" />
-    <ClInclude Include="Math\Geometry\include\Shape\Circle.hpp" />
-    <ClInclude Include="Math\Geometry\include\Shape\Triangle.hpp" />
+    <ClInclude Include="Geometry\Geometry.hpp" />
+    <ClInclude Include="Geometry\include\AngularConv.hpp" />
+    <ClInclude Include="Geometry\include\Common.hpp" />
+    <ClInclude Include="Geometry\Shape\include\Circle.hpp" />
+    <ClInclude Include="Geometry\Shape\include\Triangle.hpp" />
     <ClInclude Include="Math\include\Common.hpp" />
     <ClInclude Include="Math\include\Multiplicative.hpp" />
     <ClInclude Include="Math\Math.hpp" />
@@ -128,10 +129,14 @@
     <ClInclude Include="Win32_\include\WinAPI_Settings.hpp" />
     <ClInclude Include="Win32_\include\WindowEx.hpp" />
     <ClInclude Include="Win32_\Win32.hpp" />
+    <ClInclude Include="_macros\Compiler.hpp" />
+    <ClInclude Include="_macros\Experimental.hpp" />
+    <ClInclude Include="_macros\Namespaces.hpp" />
+    <ClInclude Include="_macros\STL.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm\Graph\src\BFS.cpp" />
-    <ClCompile Include="Algorithm\Graph\src\DFS.cpp" />
+    <ClCompile Include="Graph\src\BFS.cpp" />
+    <ClCompile Include="Graph\src\DFS.cpp" />
     <ClCompile Include="Automata\src\CFG.cpp" />
     <ClCompile Include="Automata\src\TLT.cpp" />
     <ClCompile Include="Automata\src\TLT_v2.cpp" />
@@ -139,7 +144,7 @@
     <ClCompile Include="File\src\File.cpp" />
     <ClCompile Include="IO\src\Keyboard.cpp" />
     <ClCompile Include="IO\src\Mouse.cpp" />
-    <ClCompile Include="Math\Geometry\src\Common.cpp" />
+    <ClCompile Include="Geometry\src\Common.cpp" />
     <ClCompile Include="Memory\src\Memory.cpp" />
     <ClCompile Include="Random\src\URand.cpp" />
     <ClCompile Include="Utility\Gfx\src\FullScreenQuad.cpp" />
@@ -247,7 +252,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -261,7 +266,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -275,7 +280,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -289,7 +294,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Algorithm\Graph\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Math\Geometry\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
