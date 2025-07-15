@@ -2,7 +2,8 @@
 
 `General Algorithms & Utilities`
 --------------------------------
-This is my personal header-only library written in C++23 `(ISO/IEC 14882:2024)`, ready to be used with latest versions of GCC, Clang and MSVC compilers.
+This is my personal header-only library written in C++20 `(ISO/IEC 14882:2020)`, ready to be used with latest versions of GCC, Clang and MSVC compilers.
+It also has support for C++23 (ISO/IEC 14882:2024)
 
 `Using The Library`
 -------------------
