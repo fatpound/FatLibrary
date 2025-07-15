@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.30)
 
 project(FatLibrary LANGUAGES CXX)
 
+set (CMAKE_CXX_STANDARD 20)
+set (CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set (CMAKE_CXX_EXTENSIONS OFF)
+set (CMAKE_CXX_SCAN_FOR_MODULES FALSE)
+set (CMAKE_CXX_MODULE_STD OFF)
+
 add_library(FatLibrary INTERFACE)
 
 include(CompileOptions.cmake)
@@ -41,11 +47,6 @@ function(fatlib_add_component COMPONENT_NAME)
     add_library(FatLibrary::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
 
 endfunction()
-
-target_include_directories(FatLibrary
-    INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-)
 
 add_subdirectory(Algorithm)
 add_subdirectory(Automata)
