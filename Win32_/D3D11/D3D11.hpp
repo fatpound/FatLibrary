@@ -4,6 +4,6 @@
 
 #include <Win32_/D3D11/Pipeline/Pipeline.hpp>
 
-#include "Graphics.hpp"
+#include <Win32_/D3D11/include/Graphics.hpp>
 
 #endif

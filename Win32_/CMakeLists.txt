@@ -1,4 +1,4 @@
-fatlib_add_component(Win32)
+fatlib_add_component(Win32_)
 
 add_subdirectory(COM)
 add_subdirectory(D2D)

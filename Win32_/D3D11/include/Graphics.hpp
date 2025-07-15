@@ -5,7 +5,7 @@
 #include <_macros/Compiler.hpp>
 #include <_macros/Namespaces.hpp>
 
-#include <Win32_/WinAPI.hpp>
+#include <Win32_/include/WinAPI.hpp>
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <wrl.h>
@@ -13,12 +13,12 @@
 #include <DirectXMath.h>
 
 #include <Win32_/D3D11/Pipeline/Pipeline.hpp>
-#include <Win32_/DXGI/Common.hpp>
-
-#include <Traits/Bitwise.hpp>
 #include <Utility/Gfx/Gfx.hpp>
-#include <Utility/Color.hpp>
-#include <Utility/Surface.hpp>
+
+#include <Traits/include/Bitwise.hpp>
+#include <Win32_/DXGI/include/Common.hpp>
+#include <Utility/include/Color.hpp>
+#include <Utility/include/Surface.hpp>
 
 #include <cstring>
 

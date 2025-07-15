@@ -1,12 +1,9 @@
 #pragma once
 
-#include <_macros/STL.hpp>
-
-#include "include/Common.hpp"
-
-#include "Timer.hpp"
-#include "Color.hpp"
-#include "Surface.hpp"
-#include "ViewXM.hpp"
-
 #include <Utility/Gfx/Gfx.hpp>
+
+#include <Utility/include/Common.hpp>
+#include <Utility/include/Timer.hpp>
+#include <Utility/include/Color.hpp>
+#include <Utility/include/Surface.hpp>
+#include <Utility/include/ViewXM.hpp>

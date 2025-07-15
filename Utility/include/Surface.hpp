@@ -10,9 +10,8 @@
 #include <Memory/Memory.hpp>
 
 #include <Traits/include/Bitwise.hpp>
+#include <Utility/include/Color.hpp>
 #include <Utility/Gfx/include/SizePack.hpp>
-
-#include "Color.hpp"
 
 #include <cassert>
 #include <cstdint>

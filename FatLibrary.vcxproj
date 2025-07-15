@@ -23,7 +23,6 @@
     <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="CMakeLists.txt" />
     <Text Include="_misc\notes.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BST.hpp"
+#include <DSA/Tree/include/BST.hpp>
 
 #include <concepts>
 

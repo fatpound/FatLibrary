@@ -4,9 +4,9 @@
 
 #include <_macros/STL.hpp>
 
-#include <DirectXMath.h>
-
 #include <Traits/include/Bitwise.hpp>
+
+#include <DirectXMath.h>
 
 #include <cstdlib>
 #include <cmath>

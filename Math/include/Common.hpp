@@ -2,8 +2,7 @@
 
 #include <_macros/STL.hpp>
 
-#include "Multiplicative.hpp"
-
+#include <Math/include/Multiplicative.hpp>
 #include <Math/Numbers/include/Common.hpp>
 #include <Traits/include/Bitwise.hpp>
 

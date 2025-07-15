@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="_misc\notes.txt" />
-    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Graph\include\BFS.hpp">

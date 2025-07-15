@@ -1,4 +1,4 @@
 #pragma once
 
-#include "BFS.hpp"
-#include "DFS.hpp"
+#include <Algorithm/Graph/include/BFS.hpp>
+#include <Algorithm/Graph/include/DFS.hpp>

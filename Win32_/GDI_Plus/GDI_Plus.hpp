@@ -1,3 +1,3 @@
 #pragma once
 
-#include "include/Manager.hpp"
+#include <Win32_/GDI_Plus/include/Manager.hpp>

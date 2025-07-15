@@ -5,8 +5,8 @@
 #include <_macros/Namespaces.hpp>
 #include <_macros/Compiler.hpp>
 
-#include "Common.hpp"
-#include "IWindow.hpp"
+#include <Win32_/include/Common.hpp>
+#include <Win32_/include/IWindow.hpp>
 
 #include <Concurrency/Concurrency.hpp>
 #include <IO/IO.hpp>

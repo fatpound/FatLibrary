@@ -77,5 +77,5 @@ target_link_libraries(FatLibrary
         FatLibrary::Random
         FatLibrary::Traits
         FatLibrary::Utility
-        FatLibrary::Win32
+        FatLibrary::Win32_
 )

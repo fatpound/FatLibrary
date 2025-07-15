@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LinkedList/LinkedList.hpp"
-#include "Tree/Tree.hpp"
+#include <DSA/LinkedList/LinkedList.hpp>
+#include <DSA/Tree/Tree.hpp>
 
-#include "DirectedGraph.hpp"
+#include <DSA/include/DirectedGraph.hpp>

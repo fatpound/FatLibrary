@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Singly.hpp"
+#include <DSA/LinkedList/include/Singly.hpp>
 
 #include <iostream>
 #include <typeinfo>

@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Mouse.hpp"
-#include "Keyboard.hpp"
+#include <IO/include/Keyboard.hpp>
+#include <IO/include/Mouse.hpp>

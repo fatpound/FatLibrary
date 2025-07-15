@@ -2,13 +2,12 @@
 
 #include <_macros/STL.hpp>
 
-#include "include/Common.hpp"
-
-#include "Primes.hpp"
-#include "Sets.hpp"
-
 #include <Math/include/Common.hpp>
 #include <Math/include/Multiplicative.hpp>
+
+#include <Math/Numbers/include/Common.hpp>
+#include <Math/Numbers/include/Primes.hpp>
+#include <Math/Numbers/include/Sets.hpp>
 
 #include <cmath>
 

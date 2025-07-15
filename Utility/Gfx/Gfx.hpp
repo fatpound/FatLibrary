@@ -1,5 +1,5 @@
 #pragma once
 
-#include "FullScreenQuad.hpp"
-#include "ResourcePack.hpp"
-#include "SizePack.hpp"
+#include <Utility/Gfx/include/FullScreenQuad.hpp>
+#include <Utility/Gfx/include/ResourcePack.hpp>
+#include <Utility/Gfx/include/SizePack.hpp>

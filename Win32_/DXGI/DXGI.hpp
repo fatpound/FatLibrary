@@ -1,3 +1,3 @@
 #pragma once
 
-#include "include/Common.hpp"
+#include <Win32_/DXGI/include/Common.hpp>

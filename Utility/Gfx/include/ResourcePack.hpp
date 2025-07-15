@@ -8,7 +8,7 @@
 #include <d3d11.h>
 #include <wrl.h>
 
-#include "SizePack.hpp"
+#include <Utility/Gfx/include/SizePack.hpp>
 
 #include <Utility/include/Surface.hpp>
 #include <Win32_/D3D11/Pipeline/Resource/include/RenderTarget.hpp>

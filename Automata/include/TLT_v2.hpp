@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CFG.hpp"
+#include <Automata/include/CFG.hpp>
 
 #include <cstddef>
 

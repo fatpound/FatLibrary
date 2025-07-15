@@ -1,3 +1,3 @@
 #pragma once
 
-#include "XorCipher.hpp"
+#include <Cryptography/include/XorCipher.hpp>

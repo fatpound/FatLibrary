@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Singly.hpp"
-#include "SinglyCircular.hpp"
-#include "Doubly.hpp"
-#include "DoublyCircular.hpp"
+#include <DSA/LinkedList/include/Singly.hpp>
+#include <DSA/LinkedList/include/SinglyCircular.hpp>
+#include <DSA/LinkedList/include/Doubly.hpp>
+#include <DSA/LinkedList/include/DoublyCircular.hpp>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Doubly.hpp"
+#include <DSA/LinkedList/include/Doubly.hpp>
 
 #include <iostream>
 #include <typeinfo>

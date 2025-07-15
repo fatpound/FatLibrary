@@ -13,7 +13,7 @@ namespace fatpound::random
     class URand final
     {
     public:
-        URand(const std::size_t& count);
+        explicit URand(const std::size_t& count);
 
         URand()                 = delete;
         URand(const URand&)     = delete;
