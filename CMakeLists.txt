@@ -4,7 +4,7 @@ project(FatLibrary LANGUAGES CXX)
 
 add_library(FatLibrary INTERFACE)
 
-include(../../CompileOptions.cmake)
+include(CompileOptions.cmake)
 
 function(fatlib_add_component COMPONENT_NAME)
 
