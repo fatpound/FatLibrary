@@ -150,20 +150,6 @@ namespace fatpound::file
 
 
 
-    /// @brief Returns the name and extension of a regular file from a given filesystem path
-    /// 
-    /// @param path: The filesystem path to the file
-    /// 
-    /// @return A pair containing the file name (without extension) and the file extension as strings
-    /// 
-    auto NameAndExtension    (const std::filesystem::path& path) -> std::pair<std::string, std::string>;
-
-
-
-    auto ToUriPath           (const std::filesystem::path& path) -> std::string;
-
-
-
     /// @brief Counts lines in a given file. Checks neither whether the path exists nor whether it refers to a regular file
     ///
     /// @param path: The path to the file in which the lines will be counted
@@ -196,12 +182,17 @@ namespace fatpound::file
 
 
 
-    /// @brief Prints the contents of a file as hexadecimal values to the specified output stream (with spaces between those values)
+    /// @brief Returns the name and extension of a regular file from a given filesystem path
     /// 
-    /// @param path: The path to the file whose contents will be printed in hexadecimal format
-    /// @param   os: The output stream to which the hexadecimal values will be written. Defaults to std::cout
+    /// @param path: The filesystem path to the file
     /// 
-    void PrintHex            (const std::filesystem::path& path, std::ostream& os = std::cout);
+    /// @return A pair containing the file name (without extension) and the file extension as strings
+    /// 
+    auto NameAndExtension    (const std::filesystem::path& path) -> std::pair<std::string, std::string>;
+
+
+
+    auto ToUriPath           (const std::filesystem::path& path) -> std::string;
 
 
 
@@ -224,4 +215,13 @@ namespace fatpound::file
     /// @param extensionFilter: extensions as a vector of strings to filter the files that will be processed
     /// 
     void EncryptDecrypt_Dir  (const std::filesystem::path& inPath, const std::size_t& key, std::filesystem::path outPath = {}, const bool& recurse = false, const std::vector<std::string>& extensionFilter = {});
+
+
+
+    /// @brief Prints the contents of a file as hexadecimal values to the specified output stream (with spaces between those values)
+    /// 
+    /// @param path: The path to the file whose contents will be printed in hexadecimal format
+    /// @param   os: The output stream to which the hexadecimal values will be written. Defaults to std::cout
+    /// 
+    void PrintHex            (const std::filesystem::path& path, std::ostream& os = std::cout);
 }
