@@ -77,7 +77,7 @@ namespace fatpound::io
 
         m_key_event_queue_.push(KeyEvent{ .type = KeyEvent::Type::Press, .code = keycode });
 
-        TrimBuffer_NoGuard_(m_key_event_queue_);
+        S_TrimBuffer_NoGuard_(m_key_event_queue_);
     }
     void Keyboard::AddKeyReleaseEvent(unsigned char keycode)
     {
@@ -87,7 +87,7 @@ namespace fatpound::io
 
         m_key_event_queue_.push(KeyEvent{ .type = KeyEvent::Type::Release, .code = keycode });
 
-        TrimBuffer_NoGuard_(m_key_event_queue_);
+        S_TrimBuffer_NoGuard_(m_key_event_queue_);
     }
     void Keyboard::AddChar(unsigned char ch)
     {
@@ -95,6 +95,6 @@ namespace fatpound::io
 
         m_char_buffer_.push(ch);
 
-        TrimBuffer_NoGuard_(m_char_buffer_);
+        S_TrimBuffer_NoGuard_(m_char_buffer_);
     }
 }

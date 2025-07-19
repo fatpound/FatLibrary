@@ -21,8 +21,8 @@ namespace fatpound::automata
 
         Alphabet_t alphabet;
 
-        ReadLine1_(inputFile, alphabet);
-        ReadLine2_(inputFile, alphabet, m_grammar_);
+        S_ReadLine1_(inputFile, alphabet);
+        S_ReadLine2_(inputFile, alphabet, m_grammar_);
     }
 
 
@@ -31,7 +31,7 @@ namespace fatpound::automata
         return m_grammar_;
     }
 
-    auto CFG::GenerateLanguageSymbols_(const Symbol_t& symbol, const Alphabet_t& alphabet) -> std::vector<Symbol_t>
+    auto CFG::S_GenerateLanguageSymbols_(const Symbol_t& symbol, const Alphabet_t& alphabet) -> std::vector<Symbol_t>
     {
         std::vector<Symbol_t> symbols;
 
@@ -62,11 +62,11 @@ namespace fatpound::automata
         return symbols;
     }
 
-    auto CFG::GetLanguageName_(const std::string& linestr) -> std::string
+    auto CFG::S_GetLanguageName_(const std::string& linestr) -> std::string
     {
-        return { linestr.cbegin(), linestr.cbegin() + static_cast<std::ptrdiff_t>(GetLanguageCIIdx_(linestr)) };
+        return { linestr.cbegin(), linestr.cbegin() + static_cast<std::ptrdiff_t>(S_GetLanguageCIIdx_(linestr)) };
     }
-    auto CFG::GetLanguageCIIdx_(const std::string& linestr) -> std::size_t
+    auto CFG::S_GetLanguageCIIdx_(const std::string& linestr) -> std::size_t
     {
         const auto idx = linestr.find(scx_LanguageContentIndicator_);
 
@@ -78,7 +78,7 @@ namespace fatpound::automata
         throw std::runtime_error("Cannot find language content indicator in line!");
     }
 
-    void CFG::ReadLine1_(std::ifstream& inputFile, Alphabet_t& alphabet)
+    void CFG::S_ReadLine1_(std::ifstream& inputFile, Alphabet_t& alphabet)
     {
         {
             std::stringstream ss;
@@ -103,7 +103,7 @@ namespace fatpound::automata
         const auto& [beg, end] = std::ranges::unique(alphabet);
         alphabet.erase(beg, end);
     }
-    void CFG::ReadLine2_(std::ifstream& inputFile, const Alphabet_t& alphabet, Grammar_t& grammar)
+    void CFG::S_ReadLine2_(std::ifstream& inputFile, const Alphabet_t& alphabet, Grammar_t& grammar)
     {
         std::string str;
 
@@ -115,8 +115,8 @@ namespace fatpound::automata
             }
 
             grammar.emplace_back(
-                GetLanguageName_(str),
-                GenerateLanguageSymbols_(str.substr(GetLanguageCIIdx_(str) + std::string_view{ scx_LanguageContentIndicator_ }.size()), alphabet)
+                S_GetLanguageName_(str),
+                S_GenerateLanguageSymbols_(str.substr(S_GetLanguageCIIdx_(str) + std::string_view{ scx_LanguageContentIndicator_ }.size()), alphabet)
             );
         }
     }

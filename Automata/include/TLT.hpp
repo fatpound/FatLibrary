@@ -49,7 +49,7 @@ namespace fatpound::automata
 
 
     private:
-        static auto IsTerminal_(const std::string& word) noexcept -> bool;
+        static auto S_IsTerminal_(const std::string& word) noexcept -> bool;
 
 
     private:

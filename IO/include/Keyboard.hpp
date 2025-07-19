@@ -70,7 +70,7 @@ namespace fatpound::io
 
     private:
         template <typename U>
-        static void TrimBuffer_NoGuard_(std::queue<U>& buffer) noexcept
+        static void S_TrimBuffer_NoGuard_(std::queue<U>& buffer) noexcept
         {
             while (buffer.size() > scx_bufferSize_)
             {

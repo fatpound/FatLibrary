@@ -300,7 +300,7 @@ namespace fatpound::win32::d3d11
                 binds.push_back(std::make_unique<pipeline::PixelShader>(GetDevice(), PShaderPath));
 
                 {
-                    const auto& vertices = FATSPACE_UTILITY_GFX::FullScreenQuad::GenerateVertices();
+                    const auto& vertices = FATSPACE_UTILITY_GFX::FullScreenQuad::S_GenerateVertices();
 
                     const D3D11_BUFFER_DESC bd
                     {

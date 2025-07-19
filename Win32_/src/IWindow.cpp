@@ -26,7 +26,7 @@ namespace fatpound::win32
     }
     IWindow::ClassEx::ClassEx(const wchar_t* const clsName)
         :
-        ClassEx(CreateDefaultWNDCLASSEX_<>(ModuleHandleOf(nullptr), clsName))
+        ClassEx(S_CreateDefaultWNDCLASSEX_<>(ModuleHandleOf(nullptr), clsName))
     {
 
     }
@@ -46,7 +46,8 @@ namespace fatpound::win32
         return m_hInstance_;
     }
 
-    auto IWindow::ClassEx::ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
+
+    auto IWindow::ClassEx::S_ForwardMsg_(IWindow* const pWnd, const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
     {
         return pWnd->HandleMsg_(hWnd, msg, wParam, lParam);
     }

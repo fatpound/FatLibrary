@@ -16,6 +16,6 @@ namespace fatpound::utility::gfx
             float v;
         };
 
-        static auto GenerateVertices() -> std::vector<Vertex>;
+        static auto S_GenerateVertices() -> std::vector<Vertex>;
     };
 }

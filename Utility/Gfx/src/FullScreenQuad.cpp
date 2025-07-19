@@ -2,7 +2,7 @@
 
 namespace fatpound::utility::gfx
 {
-    auto FullScreenQuad::GenerateVertices() -> std::vector<Vertex>
+    auto FullScreenQuad::S_GenerateVertices() -> std::vector<Vertex>
     {
         return
         {

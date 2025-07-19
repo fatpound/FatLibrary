@@ -33,6 +33,7 @@ namespace fatpound::geometry::shape
 
     }
 
+
     auto Circle::GetCenter    () const noexcept -> DirectX::XMVECTOR
     {
         return m_center_;
@@ -43,15 +44,15 @@ namespace fatpound::geometry::shape
     }
     auto Circle::GetArea      () const noexcept -> float
     {
-        return Area<>(GetRadius());
+        return S_Area<>(GetRadius());
     }
     auto Circle::GetDiameter  () const noexcept -> float
     {
-        return Diameter<>(GetRadius());
+        return S_Diameter<>(GetRadius());
     }
     auto Circle::GetPerimeter () const noexcept -> float
     {
-        return Perimeter<>(GetRadius());
+        return S_Perimeter<>(GetRadius());
     }
 
     auto Circle::Distance_CenterToCenter (const Circle& other) const noexcept -> float

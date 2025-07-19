@@ -54,13 +54,13 @@ namespace fatpound::automata
 
 
     private:
-        static auto GenerateLanguageSymbols_(const Symbol_t& symbol, const Alphabet_t& alphabet) -> std::vector<Symbol_t>;
+        static auto S_GenerateLanguageSymbols_(const Symbol_t& symbol, const Alphabet_t& alphabet) -> std::vector<Symbol_t>;
 
-        static auto GetLanguageName_  (const std::string& linestr) -> std::string;
-        static auto GetLanguageCIIdx_ (const std::string& linestr) -> std::size_t;
+        static auto S_GetLanguageName_  (const std::string& linestr) -> std::string;
+        static auto S_GetLanguageCIIdx_ (const std::string& linestr) -> std::size_t;
 
-        static void ReadLine1_(std::ifstream& inputFile,       Alphabet_t& alphabet);
-        static void ReadLine2_(std::ifstream& inputFile, const Alphabet_t& alphabet, Grammar_t& grammar);
+        static void S_ReadLine1_(std::ifstream& inputFile,       Alphabet_t& alphabet);
+        static void S_ReadLine2_(std::ifstream& inputFile, const Alphabet_t& alphabet, Grammar_t& grammar);
         
 
     private:

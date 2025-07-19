@@ -44,17 +44,17 @@ namespace fatpound::geometry::shape
 
 
     public:
-        template <traits::UIntegralOrFloating T> static constexpr auto Area      (const T& radius) noexcept -> T
+        template <traits::UIntegralOrFloating T> static constexpr auto S_Area      (const T& radius) noexcept -> T
         {
             return math::Square<>(radius) * math::numbers::Pi<T>;
         }
-        template <traits::UIntegralOrFloating T> static constexpr auto Diameter  (const T& radius) noexcept -> T
+        template <traits::UIntegralOrFloating T> static constexpr auto S_Diameter  (const T& radius) noexcept -> T
         {
             return radius * static_cast<T>(2.0);
         }
-        template <traits::UIntegralOrFloating T> static constexpr auto Perimeter (const T& radius) noexcept -> T
+        template <traits::UIntegralOrFloating T> static constexpr auto S_Perimeter (const T& radius) noexcept -> T
         {
-            return Diameter<>(radius) * math::numbers::Pi<T>;
+            return S_Diameter<>(radius) * math::numbers::Pi<T>;
         }
 
 
