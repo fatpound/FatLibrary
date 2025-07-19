@@ -13,7 +13,7 @@
 
 #include <concepts>
 
-namespace fatpound::math::geometry
+namespace fatpound::geometry::shape
 {
     class alignas(32) Circle
     {
@@ -21,34 +21,18 @@ namespace fatpound::math::geometry
         static constexpr auto scx_Default_W_ = 1.0F;
 
     public:
-        explicit Circle(const DirectX::XMVECTOR& center, const std::convertible_to<float> auto& radius)
-            :
-            m_center_(center),
-            m_radius_(static_cast<float>(radius))
-        {
-
-        }
+        explicit Circle(const DirectX::XMVECTOR& center, const std::convertible_to<float> auto& radius);
 
         explicit Circle(
             const std::convertible_to<float> auto& x,
             const std::convertible_to<float> auto& y,
             const std::convertible_to<float> auto& z,
-            const std::convertible_to<float> auto& radius)
-            :
-            Circle(DirectX::XMVectorSet(x, y, z, scx_Default_W_), radius)
-        {
-
-        }
+            const std::convertible_to<float> auto& radius);
 
         explicit Circle(
             const std::convertible_to<float> auto& x,
             const std::convertible_to<float> auto& y,
-            const std::convertible_to<float> auto& radius)
-            :
-            Circle(x, y, scx_Default_Z_, radius)
-        {
-
-        }
+            const std::convertible_to<float> auto& radius);
 
         explicit Circle()         = delete;
         Circle(const Circle&)     = default;
@@ -62,7 +46,7 @@ namespace fatpound::math::geometry
     public:
         template <traits::UIntegralOrFloating T> static constexpr auto Area      (const T& radius) noexcept -> T
         {
-            return Square<>(radius) * numbers::Pi<T>;
+            return math::Square<>(radius) * math::numbers::Pi<T>;
         }
         template <traits::UIntegralOrFloating T> static constexpr auto Diameter  (const T& radius) noexcept -> T
         {
@@ -70,7 +54,7 @@ namespace fatpound::math::geometry
         }
         template <traits::UIntegralOrFloating T> static constexpr auto Perimeter (const T& radius) noexcept -> T
         {
-            return Diameter<>(radius) * numbers::Pi<T>;
+            return Diameter<>(radius) * math::numbers::Pi<T>;
         }
 
 

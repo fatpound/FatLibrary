@@ -4,7 +4,7 @@
 
 #include <DirectXMath.h>
 
-namespace fatpound::math::geometry
+namespace fatpound::geometry
 {
     auto operator +       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
     auto operator -       (const DirectX::XMVECTOR& p1, const DirectX::XMVECTOR& p0) noexcept -> DirectX::XMVECTOR;

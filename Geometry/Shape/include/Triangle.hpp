@@ -11,7 +11,7 @@
 #include <cstdlib>
 #include <cmath>
 
-namespace fatpound::math::geometry
+namespace fatpound::geometry::shape
 {
     class alignas(32) Triangle
     {
