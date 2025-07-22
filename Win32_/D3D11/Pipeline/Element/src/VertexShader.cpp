@@ -10,7 +10,7 @@ namespace fatpound::win32::d3d11::pipeline
     {
         Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 
-        if (FAILED(::D3DReadFileToBlob(path.c_str(), &pBlob)))
+        if (FAILED(D3DReadFileToBlob(path.c_str(), &pBlob)))
         {
             throw std::runtime_error("CANNOT read Vertex Shader to D3D Blob!");
         }

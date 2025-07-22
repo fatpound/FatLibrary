@@ -6,7 +6,7 @@
 #include <_macros/Namespaces.hpp>
 
 #include <Win32_/include/WinAPI.hpp>
-#include <d2d1.h>
+#include <d2d1_3.h>
 #include <wrl.h>
 
 #include <DirectXMath.h>

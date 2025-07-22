@@ -7,6 +7,8 @@
 #include <Cryptography/Cryptography.hpp>
 #include <DSA/DSA.hpp>
 #include <File/File.hpp>
+#include <Geometry/Geometry.hpp>
+#include <Graph/Graph.hpp>
 #include <IO/IO.hpp>
 #include <Math/Math.hpp>
 #include <Memory/Memory.hpp>

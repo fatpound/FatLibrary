@@ -3,65 +3,14 @@
 #include <cstddef>
 
 #include <vector>
-#include <ios>
-#include <fstream>
-#include <sstream>
 #include <string>
-#include <stdexcept>
 
 namespace fatpound::graph
 {
     class DirectedGraph
     {
     public:
-        explicit DirectedGraph(const std::string& filePath)
-        {
-            std::ifstream my_file(filePath, std::ios_base::binary);
-
-            if (not my_file.is_open())
-            {
-                throw std::runtime_error("Input file cannot be opened!");
-            }
-
-            while (not my_file.eof())
-            {
-                std::string line;
-                std::getline<>(my_file, line);
-
-                std::stringstream ss;
-                ss << line;
-
-                std::vector<std::ptrdiff_t> vec;
-
-                while (not ss.eof())
-                {
-                    std::ptrdiff_t x{};
-                    ss >> x >> std::ws;
-
-                    vec.push_back(x);
-                }
-
-                m_adj_.push_back(std::move<>(vec));
-                m_nexts_.emplace_back();
-            }
-
-            my_file.close();
-
-            m_node_count_ = m_adj_.size();
-
-            for (std::size_t i{}; i < m_node_count_; ++i)
-            {
-                for (std::size_t j{}; j < m_node_count_; ++j)
-                {
-                    if (m_adj_[i][j] not_eq 0)
-                    {
-                        m_nexts_[i].push_back(j);
-
-                        ++m_edge_count_;
-                    }
-                }
-            }
-        }
+        explicit DirectedGraph(const std::string& path);
         
         explicit DirectedGraph()                         = delete;
         explicit DirectedGraph(const DirectedGraph&)     = delete;
@@ -73,28 +22,13 @@ namespace fatpound::graph
 
 
     public:
-        [[nodiscard]] auto GetAdjAt (const std::size_t& u, const std::size_t& v) const noexcept -> std::ptrdiff_t
-        {
-            return m_adj_[u][v];
-        }
-        [[nodiscard]] auto GetNextAt(const std::size_t& u, const std::size_t& v) const noexcept -> std::size_t
-        {
-            return m_nexts_[u][v];
-        }
+        [[nodiscard]] auto GetAdjAt (const std::size_t& u, const std::size_t& v) const noexcept -> std::ptrdiff_t;
+        [[nodiscard]] auto GetNextAt(const std::size_t& u, const std::size_t& v) const noexcept -> std::size_t;
 
-        [[nodiscard]] auto GetNextCount(const std::size_t& idx) const noexcept -> std::size_t
-        {
-            return m_nexts_[idx].size();
-        }
+        [[nodiscard]] auto GetNextCount(const std::size_t& idx) const noexcept -> std::size_t;
 
-        [[nodiscard]] auto GetNodeCount() const noexcept -> std::size_t
-        {
-            return m_node_count_;
-        }
-        [[nodiscard]] auto GetEdgeCount() const noexcept -> std::size_t
-        {
-            return m_edge_count_;
-        }
+        [[nodiscard]] auto GetNodeCount() const noexcept -> std::size_t;
+        [[nodiscard]] auto GetEdgeCount() const noexcept -> std::size_t;
 
 
     protected:

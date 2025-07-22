@@ -3,7 +3,7 @@
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
 #include <Win32_/include/WinAPI.hpp>
-#include <d3d11.h>
+#include <d3d11_4.h>
 #include <wrl.h>
 
 #include <Win32_/D3D11/Pipeline/include/Bindable.hpp>

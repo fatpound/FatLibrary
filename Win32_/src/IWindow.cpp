@@ -11,7 +11,7 @@ namespace fatpound::win32
     IWindow::ClassEx::ClassEx(const WNDCLASSEX& wcx)
         :
         m_hInstance_(wcx.hInstance),
-        m_atom_(::RegisterClassEx(&wcx))
+        m_atom_(RegisterClassEx(&wcx))
     {
         if (m_atom_ == 0)
         {
@@ -33,7 +33,7 @@ namespace fatpound::win32
     IWindow::ClassEx::~ClassEx() noexcept
     {
         [[maybe_unused]]
-        const auto&& retval = ::UnregisterClass(MAKEINTATOM(m_atom_), m_hInstance_);
+        const auto&& retval = UnregisterClass(MAKEINTATOM(m_atom_), m_hInstance_);
     }
 
 

@@ -5,7 +5,7 @@
 #include <_macros/Namespaces.hpp>
 
 #include <Win32_/include/WinAPI.hpp>
-#include <d3d11.h>
+#include <d3d11_4.h>
 #include <wrl.h>
 
 #include <DirectXMath.h>

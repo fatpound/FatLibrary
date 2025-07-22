@@ -2,7 +2,7 @@
 
 #include <_macros/Compiler.hpp>
 
-#include <Bit/Bit.hpp>
+#include <Bit/include/Common.hpp>
 
 #include <cstdint>
 
@@ -27,7 +27,7 @@ namespace fatpound::utility
         static_assert(requires { requires std::unsigned_integral<ChannelR_t>; }, "ChannelR_t is not an Unsigned Integral type!");
         static_assert(requires { requires std::unsigned_integral<ChannelG_t>; }, "ChannelG_t is not an Unsigned Integral type!");
         static_assert(requires { requires std::unsigned_integral<ChannelB_t>; }, "ChannelB_t is not an Unsigned Integral type!");
-        static_assert(requires { requires std::unsigned_integral<   Value_t>; },    "Value_t is not an Unsigned Integral type!");
+        static_assert(requires { requires std::unsigned_integral<Value_t>;    },    "Value_t is not an Unsigned Integral type!");
 
         static_assert(sizeof(Value_t) >= (sizeof(ChannelA_t) + sizeof(ChannelR_t) + sizeof(ChannelG_t) + sizeof(ChannelB_t)), "Value_t size CANNOT be less than the sum of channel sizes!");
 

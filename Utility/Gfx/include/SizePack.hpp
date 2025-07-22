@@ -4,7 +4,7 @@
 
 namespace fatpound::utility::gfx
 {
-    struct alignas(16) SizePack final
+    struct alignas(16) SizePack
     {
         std::size_t   m_width{};
         std::size_t   m_height{};

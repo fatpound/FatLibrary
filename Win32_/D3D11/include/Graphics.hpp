@@ -6,7 +6,7 @@
 #include <_macros/Namespaces.hpp>
 
 #include <Win32_/include/WinAPI.hpp>
-#include <d3d11.h>
+#include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include <wrl.h>
 
@@ -279,7 +279,7 @@ namespace fatpound::win32::d3d11
                 {
                     Microsoft::WRL::ComPtr<ID3DBlob> pVSBlob;
 
-                    if (FAILED(::D3DReadFileToBlob(VShaderPath.c_str(), &pVSBlob)))
+                    if (FAILED(D3DReadFileToBlob(VShaderPath.c_str(), &pVSBlob)))
                     {
                         throw std::runtime_error("CANNOT read file to D3D Blob!");
                     }
@@ -380,7 +380,7 @@ namespace fatpound::win32::d3d11
         {
             D3D_FEATURE_LEVEL featureLevel{};
 
-            if (const auto& hr = ::D3D11CreateDevice(
+            if (const auto& hr = D3D11CreateDevice(
                 nullptr,
                 D3D_DRIVER_TYPE_HARDWARE,
                 nullptr,

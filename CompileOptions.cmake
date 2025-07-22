@@ -20,7 +20,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     target_compile_options(CompileOptions INTERFACE
         #################################
         -pedantic # Conform to ISO/IEC Standard
-
+        
 
         ## Active warnings
         -Wall
@@ -44,10 +44,10 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         $<$<CONFIG:Debug>:
             -O0
 
-            -Werror
-
             -DIN_DEBUG
             $<$<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>: -D_DEBUG>
+
+            $<$<STREQUAL:${FATCXX_STRICT_BUILD},Enabled>: -Werror> # Treat warnings as errors
         >
         $<$<CONFIG:Release>:
             -O3
@@ -100,10 +100,10 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         $<$<CONFIG:Debug>:
             -O0
 
-            -Werror
-
             -DIN_DEBUG
             $<$<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>: -D_DEBUG>
+
+            $<$<STREQUAL:${FATCXX_STRICT_BUILD},Enabled>: -Werror> # Treat warnings as errors
         >
         $<$<CONFIG:Release>:
             -O3
@@ -146,10 +146,10 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "IntelLLVM")
             $<$<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Linux>:   -O0>
             $<$<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>: -Od>
 
-            -Werror
-
             -DIN_DEBUG
             $<$<STREQUAL:${CMAKE_HOST_SYSTEM_NAME},Windows>: -D_DEBUG>
+
+            $<$<STREQUAL:${FATCXX_STRICT_BUILD},Enabled>: -Werror> # Treat warnings as errors
         >
         $<$<CONFIG:Release>:
             -O2
@@ -210,13 +210,13 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
         $<$<CONFIG:Debug>:
             /Od
 
-            /WX # Treat warnings as errors
-
             /wd4710 # Function not inlined
             /wd4711 # Function selected for inline expansion
 
             /DIN_DEBUG
             /D_DEBUG
+
+            $<$<STREQUAL:${FATCXX_STRICT_BUILD},Enabled>: /WX> # Treat warnings as errors
         >
         $<$<CONFIG:Release>:
             /O2

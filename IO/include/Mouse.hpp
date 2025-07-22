@@ -91,8 +91,6 @@ namespace fatpound::io
         void AddRightReleaseEvent      ();
         void AddWheelPressEvent        ();
         void AddWheelReleaseEvent      ();
-        void AddWheelUpEvent_NoGuard   ();
-        void AddWheelDownEvent_NoGuard ();
         void AddWheelUpEvent           ();
         void AddWheelDownEvent         ();
 
@@ -103,6 +101,9 @@ namespace fatpound::io
 
 
     private:
+        void AddWheelUpEvent_NoGuard_   ();
+        void AddWheelDownEvent_NoGuard_ ();
+
         void TrimBuffer_NoGuard_() noexcept;
 
 

@@ -10,7 +10,7 @@ namespace fatpound::win32::d2d
     {
         Microsoft::WRL::ComPtr<ID2D1Factory> pFactory;
 
-        if (FAILED(::D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory)))
+        if (FAILED(D2D1CreateFactory<ID2D1Factory>(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory)))
         {
             throw std::runtime_error("A problem occured when creating the D2D1 factory!");
         }

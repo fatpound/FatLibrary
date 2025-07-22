@@ -2,14 +2,9 @@
 
 #include <_macros/STL.hpp>
 
-#include <Math/include/Multiplicative.hpp>
-#include <Math/Numbers/include/Common.hpp>
-#include <Traits/include/Bitwise.hpp>
-
 #include <cmath>
 
 #include <type_traits>
-#include <numbers>
 #include <concepts>
 
 namespace fatpound::math
@@ -72,13 +67,5 @@ namespace fatpound::math
     static constexpr auto DigitSum(const T& num) noexcept
     {
         return DigitSum<std::make_unsigned_t<T>>(num < 0 ? (-num) : num);
-    }
-
-    template <traits::IntegralOrFloating T>
-    static constexpr auto Gaussian(const T& x, const T& rho)
-    {
-        const auto rhoSq2 = Square<>(rho) * 2.0;
-
-        return (1.0 / std::sqrt(rhoSq2 * numbers::Pi<T>)) * std::exp(-(Square<>(x) / rhoSq2));
     }
 }

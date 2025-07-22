@@ -13,10 +13,13 @@
 #include <cmath>
 
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <vector>
 #include <string>
+#include <stdexcept>
 #include <string_view>
 #include <concepts>
-#include <stdexcept>
 
 namespace fatpound::utility
 {
@@ -77,6 +80,57 @@ namespace fatpound::utility
     static constexpr auto Map(const T& value, const T& fromLow, const T& fromHigh, const T& toLow, const T& toHigh) -> T
     {
         return ((value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow)) + toLow;
+    }
+
+
+
+    template <std::integral T>
+    static void ParseLineToIntegralVector(const std::string& line, std::vector<T>& vec)
+    {
+        vec.reserve((line.length() / 2U) + 1);
+
+        std::stringstream ss(line);
+
+        T value{};
+
+        while (ss >> value)
+        {
+            vec.push_back(value);
+        }
+    }
+
+
+
+    template <std::integral T>
+    static auto ParseLineToIntegralVector(const std::string& line) -> std::vector<T>
+    {
+        std::vector<T> vec;
+
+        ParseLineToIntegralVector<>(line, vec);
+
+        return vec;
+    }
+
+
+
+    template <std::integral T>
+    static auto ParseLineToIntegralVector(std::ifstream& ifs) -> std::vector<T>
+    {
+        std::string line;
+        std::getline<>(ifs, line);
+
+        return ParseLineToIntegralVector<T>(line);
+    }
+
+
+
+    template <std::integral T>
+    static void ParseLineToIntegralVector(std::ifstream& ifs, std::vector<T>& vec)
+    {
+        std::string line;
+        std::getline<>(ifs, line);
+
+        ParseLineToIntegralVector<>(line, vec);
     }
 
 

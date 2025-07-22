@@ -77,7 +77,7 @@ namespace fatpound::win32
                 .cbWndExtra    = 0,
                 .hInstance     = hInst,
                 .hIcon         = nullptr,
-                .hCursor       = ::LoadCursor(nullptr, IDC_ARROW),
+                .hCursor       = LoadCursor(nullptr, IDC_ARROW),
                 .hbrBackground = nullptr,
                 .lpszMenuName  = nullptr,
                 .lpszClassName = clsName,
@@ -128,7 +128,7 @@ namespace fatpound::win32
                 // https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowlongptrw
                 // lets set it to an attribute of our hWnd
                 // user data is fine => "This data is intended for use by the application that created the window. Its value is initially zero."
-                ::SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
+                SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pWnd));
 
 #ifdef _MSC_VER
     #pragma warning (push)
@@ -137,7 +137,7 @@ namespace fatpound::win32
                 // https://learn.microsoft.com/en-us/cpp/error-messages/compiler-warnings/compiler-warnings-c5000-through-c5199?view=msvc-170
                 // 
                 // Then, set the new WndProc function's (S_HandleMsgThunk_) address
-                ::SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&ClassEx::S_HandleMsgThunk_<Wnd>));
+                SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&ClassEx::S_HandleMsgThunk_<Wnd>));
 #ifdef _MSC_VER
     #pragma warning (pop)
 #endif
@@ -152,14 +152,14 @@ namespace fatpound::win32
             // DefWindowProc can handle it
             // Otherwise, the creation message is processed above and this function returns.
 
-            return ::DefWindowProc(hWnd, msg, wParam, lParam);
+            return DefWindowProc(hWnd, msg, wParam, lParam);
         }
         template <typename Wnd = IWindow> static auto CALLBACK S_HandleMsgThunk_(const HWND hWnd, const UINT msg, const WPARAM wParam, const LPARAM lParam) -> LRESULT
         {
             // Get 'userdata' which is a pointer to our custom Window class, from the hWnd
             // Then use that pointer and just call the member function
 
-            Wnd* const pWnd = reinterpret_cast<Wnd*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
+            Wnd* const pWnd = reinterpret_cast<Wnd*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
             if constexpr (std::same_as<Wnd, IWindow>)
             {

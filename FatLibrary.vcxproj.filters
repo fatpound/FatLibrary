@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="_misc\notes.txt" />
+    <Text Include="Win32_\_notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph\include\BFS.hpp">
@@ -343,6 +344,21 @@
     <ClInclude Include="Geometry\Shape\Shape.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Random\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\include\Special.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bit\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="File\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph\src\BFS.cpp">
@@ -363,7 +379,7 @@
     <ClCompile Include="Concurrency\src\TaskQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File\src\File.cpp">
+    <ClCompile Include="File\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IO\src\Keyboard.cpp">
@@ -375,7 +391,7 @@
     <ClCompile Include="Geometry\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Memory\src\Memory.cpp">
+    <ClCompile Include="Memory\src\Common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Random\src\URand.cpp">
@@ -454,6 +470,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Geometry\Shape\src\Circle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph\src\DirectedGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

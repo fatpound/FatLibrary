@@ -89,14 +89,14 @@ public:
                         .bottom = rect.top  + GetClientHeight<LONG>()
                     };
 
-                    if (const auto& retval = ::AdjustWindowRectEx(&rect, styles, false, exStyles); retval == 0)
+                    if (const auto& retval = AdjustWindowRectEx(&rect, styles, false, exStyles); retval == 0)
                     {
                         throw std::runtime_error("Error occured when adjusting RECT");
                     }
 
 #endif
 
-                    m_hWnd_ = ::CreateWindowEx(
+                    m_hWnd_ = CreateWindowEx(
                         exStyles,
                         MAKEINTATOM(m_pWndClassEx_->GetAtom()),
                         theTitle,
@@ -145,30 +145,30 @@ public:
                 [hWnd = GetHandle()]() noexcept -> void
                 {
                     [[maybe_unused]]
-                    const auto&& retval = ::DestroyWindow(hWnd);
+                    const auto&& retval = DestroyWindow(hWnd);
                 }
             );
         }
 
 
     public:
-        virtual auto SetTitle  (const std::wstring& title) -> std::future<void> override final
+        virtual auto SetTitle  (const std::wstring& title) -> std::future<void> override
         {
             auto future = DispatchTaskToQueue_<>(
                 [&title, hWnd = GetHandle()]() noexcept -> void
                 {
                     [[maybe_unused]]
-                    const auto&& retval = ::SetWindowText(hWnd, title.c_str());
+                    const auto&& retval = SetWindowText(hWnd, title.c_str());
                 }
             );
 
             return future;
         }
-        virtual auto GetHandle () const noexcept -> HWND override final
+        virtual auto GetHandle () const noexcept -> HWND override
         {
             return m_hWnd_;
         }
-        virtual auto IsClosing () const noexcept -> bool override final
+        virtual auto IsClosing () const noexcept -> bool override
         {
             return m_is_closing_;
         }
@@ -267,14 +267,13 @@ public:
 
             case WM_DESTROY:
                 m_hWnd_ = nullptr;
-                ::PostQuitMessage(0);
+                PostQuitMessage(0);
                 break;
 
             case scx_customTaskMsgId_:
                 m_tasks_.ExecuteFirstAndPopOff();
                 return 0;
 
-            // this also controls window movement
             case WM_SYSCOMMAND:
                 Process_WM_SYSCOMMAND_(wParam);
                 break;
@@ -283,7 +282,7 @@ public:
                 break;
             }
 
-            return ::DefWindowProc(hWnd, msg, wParam, lParam);
+            return DefWindowProc(hWnd, msg, wParam, lParam);
         }
 
 
@@ -309,7 +308,7 @@ public:
 
                 if (not m_pMouse->IsInWindow())
                 {
-                    ::SetCapture(m_hWnd_);
+                    SetCapture(m_hWnd_);
                     m_pMouse->AddMouseEnterEvent();
                 }
             }
@@ -321,7 +320,7 @@ public:
                 }
                 else
                 {
-                    ::ReleaseCapture();
+                    ReleaseCapture();
                     m_pMouse->AddMouseLeaveEvent();
                 }
             }
@@ -386,7 +385,7 @@ public:
         {
             if ((wParam bitand 0xFFF0U) == SC_CLOSE)
             {
-                ::PostMessage(m_hWnd_, WM_CLOSE, 0, 0);
+                PostMessage(m_hWnd_, WM_CLOSE, 0, 0);
             }
         }
 
@@ -410,7 +409,7 @@ public:
     private:
         void NotifyTaskDispatch_() const
         {
-            if (const auto& retval = ::PostMessage(m_hWnd_, scx_customTaskMsgId_, 0U, 0); retval == 0)
+            if (const auto& retval = PostMessage(m_hWnd_, scx_customTaskMsgId_, 0U, 0); retval == 0)
             {
                 throw std::runtime_error{ "Failed to post task notification message!" };
             }
@@ -422,10 +421,10 @@ public:
 
             MSG msg{};
 
-            while (::GetMessage(&msg, m_hWnd_, 0U, 0U) not_eq 0)
+            while (GetMessage(&msg, m_hWnd_, 0U, 0U) not_eq 0)
             {
-                ::TranslateMessage(&msg);
-                ::DispatchMessage(&msg);
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
             }
         }
     };

@@ -23,10 +23,13 @@
     <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Win32_\_notes.txt" />
     <Text Include="_misc\notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm\Algorithm.hpp" />
+    <ClInclude Include="Bit\include\Common.hpp" />
+    <ClInclude Include="File\include\Common.hpp" />
     <ClInclude Include="Geometry\Shape\Shape.hpp" />
     <ClInclude Include="Graph\Graph.hpp" />
     <ClInclude Include="Graph\include\BFS.hpp" />
@@ -67,12 +70,15 @@
     <ClInclude Include="Geometry\Shape\include\Triangle.hpp" />
     <ClInclude Include="Math\include\Common.hpp" />
     <ClInclude Include="Math\include\Multiplicative.hpp" />
+    <ClInclude Include="Math\include\Special.hpp" />
     <ClInclude Include="Math\Math.hpp" />
     <ClInclude Include="Math\Numbers\include\Common.hpp" />
     <ClInclude Include="Math\Numbers\include\Primes.hpp" />
     <ClInclude Include="Math\Numbers\include\Sets.hpp" />
     <ClInclude Include="Math\Numbers\Numbers.hpp" />
+    <ClInclude Include="Memory\include\Common.hpp" />
     <ClInclude Include="Memory\Memory.hpp" />
+    <ClInclude Include="Random\include\Common.hpp" />
     <ClInclude Include="Random\include\URand.hpp" />
     <ClInclude Include="Random\Random.hpp" />
     <ClInclude Include="Traits\include\Bitwise.hpp" />
@@ -142,11 +148,12 @@
     <ClCompile Include="Automata\src\TLT.cpp" />
     <ClCompile Include="Automata\src\TLT_v2.cpp" />
     <ClCompile Include="Concurrency\src\TaskQueue.cpp" />
-    <ClCompile Include="File\src\File.cpp" />
+    <ClCompile Include="File\src\Common.cpp" />
+    <ClCompile Include="Graph\src\DirectedGraph.cpp" />
     <ClCompile Include="IO\src\Keyboard.cpp" />
     <ClCompile Include="IO\src\Mouse.cpp" />
     <ClCompile Include="Geometry\src\Common.cpp" />
-    <ClCompile Include="Memory\src\Memory.cpp" />
+    <ClCompile Include="Memory\src\Common.cpp" />
     <ClCompile Include="Random\src\URand.cpp" />
     <ClCompile Include="Utility\Gfx\src\FullScreenQuad.cpp" />
     <ClCompile Include="Utility\Gfx\src\ResourcePack.cpp" />
