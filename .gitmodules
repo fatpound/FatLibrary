@@ -2,3 +2,6 @@
 	path = _misc/FatProps
 	url = https://github.com/fatpound/FatProps
 	branch = main
+[submodule "_misc/FatCodex"]
+	path = _misc/FatCodex
+	url = https://github.com/fatpound/FatCodex.git
