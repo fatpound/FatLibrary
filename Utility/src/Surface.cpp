@@ -102,10 +102,10 @@ namespace fatpound::utility
         {
             Reset();
 
-            m_pBuffer_ = memory::MakeAlignedUniquePtr<ColorArr_t>(src.GetAlignment(), static_cast<std::size_t>(src.GetWidth<>() * src.GetHeight<>()));
+            m_pBuffer_     = memory::MakeAlignedUniquePtr<ColorArr_t>(src.GetAlignment(), src.GetWidth<std::size_t>() * src.GetHeight<std::size_t>());
 
-            m_size_pack_ = src.GetSizePack();
-            m_align_byte_ = src.GetAlignment<>();
+            m_size_pack_   = src.GetSizePack();
+            m_align_byte_  = src.GetAlignment<>();
             m_pixel_pitch_ = src.GetPixelPitch<>();
 
             DeepCopyFrom_(src);
@@ -119,10 +119,10 @@ namespace fatpound::utility
         {
             Reset();
 
-            m_pBuffer_ = std::move<>(src.m_pBuffer_);
+            m_pBuffer_     = std::move<>(src.m_pBuffer_);
 
-            m_size_pack_ = src.GetSizePack();
-            m_align_byte_ = src.GetAlignment<>();
+            m_size_pack_   = src.GetSizePack();
+            m_align_byte_  = src.GetAlignment<>();
             m_pixel_pitch_ = src.GetPixelPitch<>();
 
             src.Reset();
@@ -201,10 +201,10 @@ namespace fatpound::utility
             m_pBuffer_.reset();
         }
 
-        m_size_pack_.m_width = static_cast<Size_t>(0);
+        m_size_pack_.m_width  = static_cast<Size_t>(0);
         m_size_pack_.m_height = static_cast<Size_t>(0);
-        m_align_byte_ = static_cast<Size_t>(0);
-        m_pixel_pitch_ = static_cast<Size_t>(0);
+        m_align_byte_         = static_cast<Size_t>(0);
+        m_pixel_pitch_        = static_cast<Size_t>(0);
     }
 
     void Surface::DeepCopyFrom_(const Surface& src) noexcept

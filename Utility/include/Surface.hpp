@@ -32,7 +32,7 @@ namespace fatpound::utility
         using Ptr_t      = memory::AlignedUniquePtr<ColorArr_t>;
 
     public:
-        using Size_t = std::uint32_t;
+        using Size_t     = std::size_t;
 
 
     public:
@@ -114,7 +114,7 @@ namespace fatpound::utility
             assert(x < GetWidth<T>());
             assert(y < GetHeight<T>());
 
-            m_pBuffer_[(y * m_pixel_pitch_) + x] = color;
+            m_pBuffer_[(static_cast<std::size_t>(y) * m_pixel_pitch_) + static_cast<std::size_t>(x)] = color;
         }
         template <std::signed_integral T>                 FATLIB_FORCEINLINE void PutPixel(const T& x, const T& y, const Color& color) noexcept
         {

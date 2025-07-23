@@ -154,13 +154,11 @@ namespace fatpound::automata
                     newstr += cfgstr;
                     newstr += rightstr;
 
-                    auto* newnode = new Node_(newstr);
-
-                    node->m_leaves.push_back(newnode);
+                    node->m_leaves.push_back(new Node_(newstr));
 
                     if (recursed or (not S_IsTerminal_(newstr)))
                     {
-                        CreateInnerTree_(newnode);
+                        CreateInnerTree_(node->m_leaves.back());
                     }
                     else
                     {
