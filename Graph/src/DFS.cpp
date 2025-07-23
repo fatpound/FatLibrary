@@ -7,40 +7,43 @@
 #include <vector>
 #include <format>
 
-namespace fatpound::graph::details
+namespace fatpound::graph
 {
-    /// @brief Performs a depth-first search (DFS) visit on a directed graph starting from a given node index, marking node colors and returning a string representation of the traversal order
-    /// 
-    /// @param  graph: The directed graph to traverse
-    /// @param colors: A vector representing the color (state) of each node during traversal
-    /// @param  index: The index of the node to start the DFS visit from
-    /// 
-    /// @return A string containing the traversal order of visited node indices, each followed by a newline
-    /// 
-    static auto DFS_Visit_(const DirectedGraph& graph, std::vector<utility::Color>& colors, const std::size_t& index) -> std::string
+    namespace
     {
-        colors[index] = colors::Gray;
+        /// @brief Performs a depth-first search (DFS) visit on a directed graph starting from a given node index, marking node colors and returning a string representation of the traversal order
+        /// 
+        /// @param  graph: The directed graph to traverse
+        /// @param colors: A vector representing the color (state) of each node during traversal
+        /// @param  index: The index of the node to start the DFS visit from
+        /// 
+        /// @return A string containing the traversal order of visited node indices, each followed by a newline
+        /// 
+        auto DFS_Visit_(const DirectedGraph& graph, std::vector<utility::Color>& colors, const std::size_t& index) -> std::string
+        {
+            colors[index] = colors::Gray;
 
 #ifdef _MSC_VER
 #pragma warning (push)
 #pragma warning (disable : 4686)
 #endif
-        std::string output = std::format<>("{}\n", index);
+            std::string output = std::format<>("{}\n", index);
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif
 
-        for (std::size_t i{}; i < graph.GetNextCount(index); ++i)
-        {
-            if (const auto& nextIndex = graph.GetNextAt(index, i); colors[nextIndex] == colors::White)
+            for (std::size_t i{}; i < graph.GetNextCount(index); ++i)
             {
-                output += DFS_Visit_(graph, colors, nextIndex);
+                if (const auto& nextIndex = graph.GetNextAt(index, i); colors[nextIndex] == colors::White)
+                {
+                    output += DFS_Visit_(graph, colors, nextIndex);
+                }
             }
+
+            colors[index] = colors::Black;
+
+            return output;
         }
-
-        colors[index] = colors::Black;
-
-        return output;
     }
 }
 
@@ -56,7 +59,7 @@ namespace fatpound::graph
         {
             if (colors[i] == colors::White)
             {
-                output += details::DFS_Visit_(graph, colors, i);
+                output += DFS_Visit_(graph, colors, i);
             }
         }
 

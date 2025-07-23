@@ -1,35 +1,38 @@
 #include "../include/Common.hpp"
 
-namespace fatpound::file::details
+namespace fatpound::file
 {
-    /// @brief Encrypts or decrypts a file using an XOR cipher with the specified key
-    /// 
-    /// @param  inPath: The path to the input file to be encrypted or decrypted
-    /// @param     key: The key to use for the XOR cipher
-    /// @param outPath: The path where the output file will be written. If empty or the same as inPath, a temporary file path is used
-    /// 
-    static void EncryptDecrypt_Impl (const std::filesystem::path& inPath, const std::size_t& key, const std::filesystem::path& outPath)
+    namespace
     {
-        std::ifstream inputFile(inPath, std::ios::binary);
-
-        if (not inputFile.is_open())
+        /// @brief Encrypts or decrypts a file using an XOR cipher with the specified key
+        /// 
+        /// @param  inPath: The path to the input file to be encrypted or decrypted
+        /// @param     key: The key to use for the XOR cipher
+        /// @param outPath: The path where the output file will be written. If empty or the same as inPath, a temporary file path is used
+        /// 
+        void EncryptDecrypt_Impl (const std::filesystem::path& inPath, const std::size_t& key, const std::filesystem::path& outPath)
         {
-            throw std::runtime_error("Input file cannot be opened!");
+            std::ifstream inputFile(inPath, std::ios::binary);
+
+            if (not inputFile.is_open())
+            {
+                throw std::runtime_error("Input file cannot be opened!");
+            }
+
+            std::ofstream outputFile(outPath, std::ios::binary);
+
+            if (not outputFile.is_open())
+            {
+                throw std::runtime_error("Cannot create the new version of file!");
+            }
+
+            cryptography::ApplyXorCipherWithKey<>(
+                std::istreambuf_iterator<char>(inputFile),
+                std::istreambuf_iterator<char>(),
+                std::ostreambuf_iterator<char>(outputFile),
+                key
+            );
         }
-
-        std::ofstream outputFile(outPath, std::ios::binary);
-
-        if (not outputFile.is_open())
-        {
-            throw std::runtime_error("Cannot create the new version of file!");
-        }
-
-        cryptography::ApplyXorCipherWithKey<>(
-            std::istreambuf_iterator<char>(inputFile),
-            std::istreambuf_iterator<char>(),
-            std::ostreambuf_iterator<char>(outputFile),
-            key
-        );
     }
 }
 
@@ -169,7 +172,7 @@ namespace fatpound::file
             std::filesystem::create_directories(dirPath);
         }
 
-        details::EncryptDecrypt_Impl(inPath, key, outPath);
+        EncryptDecrypt_Impl(inPath, key, outPath);
 
         if (outWasEmpty)
         {
