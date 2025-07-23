@@ -10,7 +10,7 @@ set (CMAKE_CXX_MODULE_STD OFF)
 
 add_library(FatLibrary INTERFACE)
 
-include(CompileOptions.cmake)
+include(_misc/FatCodex/CompileOptions.cmake)
 
 function(fatlib_add_component COMPONENT_NAME)
 
@@ -29,7 +29,7 @@ function(fatlib_add_component COMPONENT_NAME)
                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                 ${PROJECT_SOURCE_DIR}
         )
-        target_link_libraries(${COMPONENT_NAME} PUBLIC FatCxx::CompileOptions)
+        target_link_libraries(${COMPONENT_NAME} PUBLIC FatCodex::CompileOptions)
 
     else()
 
@@ -40,7 +40,7 @@ function(fatlib_add_component COMPONENT_NAME)
                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                 ${PROJECT_SOURCE_DIR}
         )
-        target_link_libraries(${COMPONENT_NAME} INTERFACE FatCxx::CompileOptions)
+        target_link_libraries(${COMPONENT_NAME} INTERFACE FatCodex::CompileOptions)
 
     endif()
 
