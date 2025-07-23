@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_misc\FatRules.ruleset" />
     <None Include="_misc\FatLibrary.cd" />
+    <None Include="_misc\FatCodex\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="_misc\notes.txt" />

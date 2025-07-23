@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <None Include="_misc\FatCodex\FatRules.ruleset" />
     <None Include="_misc\FatLibrary.cd" />
-    <None Include="_misc\FatRules.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Win32_\_notes.txt" />
@@ -241,19 +241,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <CodeAnalysisRuleSet>_misc\FatRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>_misc\FatCodex\FatRules.ruleset</CodeAnalysisRuleSet>
     <UseStructuredOutput>false</UseStructuredOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <CodeAnalysisRuleSet>_misc\FatRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>_misc\FatCodex\FatRules.ruleset</CodeAnalysisRuleSet>
     <UseStructuredOutput>false</UseStructuredOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <CodeAnalysisRuleSet>_misc\FatRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>_misc\FatCodex\FatRules.ruleset</CodeAnalysisRuleSet>
     <UseStructuredOutput>false</UseStructuredOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <CodeAnalysisRuleSet>_misc\FatRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>_misc\FatCodex\FatRules.ruleset</CodeAnalysisRuleSet>
     <UseStructuredOutput>false</UseStructuredOutput>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
