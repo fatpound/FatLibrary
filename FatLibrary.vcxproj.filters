@@ -379,7 +379,7 @@
     <ClCompile Include="Concurrency\src\TaskQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File\src\Common.cpp">
+    <ClCompile Include="File\src\Common_File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IO\src\Keyboard.cpp">
@@ -388,10 +388,10 @@
     <ClCompile Include="IO\src\Mouse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\src\Common.cpp">
+    <ClCompile Include="Geometry\src\Common_Geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Memory\src\Common.cpp">
+    <ClCompile Include="Memory\src\Common_Memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Random\src\URand.cpp">
@@ -403,7 +403,7 @@
     <ClCompile Include="Utility\Gfx\src\ResourcePack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\src\Common.cpp">
+    <ClCompile Include="Utility\src\Common_Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Utility\src\Surface.cpp">
@@ -412,7 +412,7 @@
     <ClCompile Include="Utility\src\ViewXM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\COM\src\Manager.cpp">
+    <ClCompile Include="Win32_\COM\src\Manager_COM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\D2D\src\Graphics.cpp">
@@ -457,13 +457,13 @@
     <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\DXGI\src\Common.cpp">
+    <ClCompile Include="Win32_\DXGI\src\Common_DXGI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\GDI_Plus\src\Manager.cpp">
+    <ClCompile Include="Win32_\GDI_Plus\src\Manager_GDI_Plus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\src\Common.cpp">
+    <ClCompile Include="Win32_\src\Common_Win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\src\IWindow.cpp">

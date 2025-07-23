@@ -148,19 +148,19 @@
     <ClCompile Include="Automata\src\TLT.cpp" />
     <ClCompile Include="Automata\src\TLT_v2.cpp" />
     <ClCompile Include="Concurrency\src\TaskQueue.cpp" />
-    <ClCompile Include="File\src\Common.cpp" />
+    <ClCompile Include="File\src\Common_File.cpp" />
     <ClCompile Include="Graph\src\DirectedGraph.cpp" />
     <ClCompile Include="IO\src\Keyboard.cpp" />
     <ClCompile Include="IO\src\Mouse.cpp" />
-    <ClCompile Include="Geometry\src\Common.cpp" />
-    <ClCompile Include="Memory\src\Common.cpp" />
+    <ClCompile Include="Geometry\src\Common_Geometry.cpp" />
+    <ClCompile Include="Memory\src\Common_Memory.cpp" />
     <ClCompile Include="Random\src\URand.cpp" />
     <ClCompile Include="Utility\Gfx\src\FullScreenQuad.cpp" />
     <ClCompile Include="Utility\Gfx\src\ResourcePack.cpp" />
-    <ClCompile Include="Utility\src\Common.cpp" />
+    <ClCompile Include="Utility\src\Common_Utility.cpp" />
     <ClCompile Include="Utility\src\Surface.cpp" />
     <ClCompile Include="Utility\src\ViewXM.cpp" />
-    <ClCompile Include="Win32_\COM\src\Manager.cpp" />
+    <ClCompile Include="Win32_\COM\src\Manager_COM.cpp" />
     <ClCompile Include="Win32_\D2D\src\Graphics.cpp" />
     <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Rasterizer.cpp" />
     <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Viewport.cpp" />
@@ -175,9 +175,9 @@
     <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Sampler.cpp" />
     <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\ShaderResource.cpp" />
     <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Texture2D.cpp" />
-    <ClCompile Include="Win32_\DXGI\src\Common.cpp" />
-    <ClCompile Include="Win32_\GDI_Plus\src\Manager.cpp" />
-    <ClCompile Include="Win32_\src\Common.cpp" />
+    <ClCompile Include="Win32_\DXGI\src\Common_DXGI.cpp" />
+    <ClCompile Include="Win32_\GDI_Plus\src\Manager_GDI_Plus.cpp" />
+    <ClCompile Include="Win32_\src\Common_Win32.cpp" />
     <ClCompile Include="Win32_\src\IWindow.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
