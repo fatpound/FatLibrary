@@ -2,9 +2,9 @@
 
 #include <_macros/Namespaces.hpp>
 
+#include <Colors/ARGB/include/Color.hpp>
 #include <Math/Numbers/include/Primes.hpp>
 #include <Traits/include/Bitwise.hpp>
-#include <Utility/include/Color.hpp>
 
 #include <cstddef>
 
@@ -127,21 +127,21 @@ namespace fatpound::random
     ///
     /// @note Only unsigned integral types for T are supported. Using floating-point types will cause a static assertion failure.
     ///
-    /// @see utility::Color
+    /// @see colors::argb::Color
     /// 
-    template <bool FixedAlpha = true, utility::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
+    template <bool FixedAlpha = true, colors::argb::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
     requires StdUniformOrNormalDist<Dist, T>
-    inline auto RandColor(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> utility::Color
+    inline auto RandColor(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> colors::argb::Color
     {
         if constexpr (std::unsigned_integral<T>)
         {
             if constexpr (FixedAlpha)
             {
-                return utility::Color{ dist(rng), Alpha };
+                return colors::argb::Color{ dist(rng), Alpha };
             }
             else
             {
-                return utility::Color{ dist(rng), bool{} };
+                return colors::argb::Color{ dist(rng), bool{} };
             }
         }
         else
@@ -168,9 +168,9 @@ namespace fatpound::random
     ///
     /// @note Only unsigned integral types for T are supported. Using floating-point types will cause a static assertion failure.
     ///
-    /// @see utility::Color
+    /// @see colors::argb::Color
     /// 
-    template <bool FixedAlpha = true, utility::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
+    template <bool FixedAlpha = true, colors::argb::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
     requires StdUniformOrNormalDist<Dist, T>
     inline auto RandColorString(const std::string& prefix, const bool& withAlpha, std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> std::string
     {

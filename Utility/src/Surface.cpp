@@ -49,7 +49,7 @@ namespace fatpound::utility
                 Gdiplus::Color c;
 
                 bitmap.GetPixel(static_cast<INT>(x), static_cast<INT>(y), &c);
-                surf.PutPixel<>(x, y, Color{ c.GetValue() });
+                surf.PutPixel<>(x, y, Color_t{ c.GetValue() });
             }
         }
 
@@ -132,11 +132,11 @@ namespace fatpound::utility
     }
 
 
-    Surface::operator const Color* () const & noexcept
+    Surface::operator const Color_t* () const & noexcept
     {
         return m_pBuffer_.get();
     }
-    Surface::operator       Color* () & noexcept
+    Surface::operator Color_t* () & noexcept
     {
         return m_pBuffer_.get();
     }
@@ -148,16 +148,16 @@ namespace fatpound::utility
     auto Surface::CalculatePixelPitch(const Size_t& width, const Size_t& alignBytes) noexcept -> Size_t
     {
         assert(alignBytes % 4 == 0);
-        assert(alignBytes >= sizeof(Color));
+        assert(alignBytes >= sizeof(Color_t));
         assert(alignBytes <= width);
 
-        const auto& pixelsPerAlign = alignBytes / static_cast<Size_t>(sizeof(Color));
+        const auto& pixelsPerAlign = alignBytes / static_cast<Size_t>(sizeof(Color_t));
         const auto& overrunCount = width % pixelsPerAlign;
 
         return width + ((pixelsPerAlign - overrunCount) % pixelsPerAlign);
     }
 
-    auto Surface::ReleaseAndReset() noexcept -> Color*
+    auto Surface::ReleaseAndReset() noexcept -> Color_t*
     {
         auto* const ptr = m_pBuffer_.release();
 
@@ -179,7 +179,7 @@ namespace fatpound::utility
         return not IsEmpty();
     }
 
-    void Surface::Fill(const Color& color) noexcept
+    void Surface::Fill(const Color_t& color) noexcept
     {
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -188,7 +188,7 @@ namespace fatpound::utility
         std::memset(
             *this,
             static_cast<int>(color),
-            GetWidth<std::size_t>() * GetHeight<std::size_t>() * sizeof(Color)
+            GetWidth<std::size_t>() * GetHeight<std::size_t>() * sizeof(Color_t)
         );
 #ifdef __clang__
 #pragma clang diagnostic pop
@@ -213,8 +213,8 @@ namespace fatpound::utility
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #endif
-        Color* const pDest = *this;
-        const Color* const pSrc = src;
+              Color_t* const pDest = *this;
+        const Color_t* const pSrc = src;
 
         const auto srcPitch = src.GetPitch<>();
 

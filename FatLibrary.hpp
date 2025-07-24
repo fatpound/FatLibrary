@@ -3,6 +3,7 @@
 #include <Algorithm/Algorithm.hpp>
 #include <Automata/Automata.hpp>
 #include <Bit/Bit.hpp>
+#include <Colors/Colors.hpp>
 #include <Concurrency/Concurrency.hpp>
 #include <Cryptography/Cryptography.hpp>
 #include <DSA/DSA.hpp>

@@ -1,0 +1,1 @@
+fatlib_add_component(Colors_ARGB Colors)

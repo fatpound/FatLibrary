@@ -1,6 +1,6 @@
 #include "BFS.hpp"
 
-#include <Utility/include/Color.hpp>
+#include <Colors/ARGB/ARGB.hpp>
 
 #include <cstddef>
 
@@ -11,7 +11,7 @@ namespace fatpound::graph
 {
     auto BFS(const DirectedGraph& graph) -> std::string
     {
-        std::vector<utility::Color> colors(graph.GetNodeCount());
+        std::vector<colors::argb::Color> colors(graph.GetNodeCount());
 
         std::queue<std::size_t> queue;
         queue.push(0);
@@ -25,14 +25,14 @@ namespace fatpound::graph
 
             for (std::size_t i{}; i < graph.GetNextCount(u); ++i)
             {
-                if (const auto& v = graph.GetNextAt(u, i); colors[v] == colors::White)
+                if (const auto& v = graph.GetNextAt(u, i); colors[v] == colors::argb::White)
                 {
-                    colors[v] = colors::Gray;
+                    colors[v] = colors::argb::Gray;
                     queue.push(v);
                 }
             }
 
-            colors[u] = colors::Black;
+            colors[u] = colors::argb::Black;
 
             output += static_cast<char>('a' + u);
         }

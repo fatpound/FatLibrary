@@ -16,9 +16,8 @@
 #include <Utility/Gfx/Gfx.hpp>
 
 #include <Traits/include/Bitwise.hpp>
-#include <Win32_/DXGI/include/Common.hpp>
-#include <Utility/include/Color.hpp>
 #include <Utility/include/Surface.hpp>
+#include <Win32_/DXGI/include/Common.hpp>
 
 #include <cstring>
 
@@ -45,7 +44,10 @@ namespace fatpound::win32::d3d11
         static constexpr auto NotFramework         = not Framework;
         static constexpr auto RasterizationEnabled = NotFramework;
 
-        using ResourcePack_t = std::conditional_t<Framework, FATSPACE_UTILITY_GFX::FrameworkResourcePack, FATSPACE_UTILITY_GFX::ResourcePack>;
+        using ResourcePack_t   = std::conditional_t<Framework, FATSPACE_UTILITY_GFX::FrameworkResourcePack, FATSPACE_UTILITY_GFX::ResourcePack>;
+        using FullScreenQuad_t = utility::gfx::FullScreenQuad; // for Framework
+        using Surface_t        = utility::Surface;             // for Framework
+        using Color_t          = Surface_t::Color_t;           // for Framework
 
     public:
         using Float_t = float;
@@ -73,7 +75,7 @@ namespace fatpound::win32::d3d11
             InitCommon_();
             InitFramework_(VShaderPath, PShaderPath);
         }
-        explicit Graphics(const HWND& hWnd, std::unique_ptr<FATSPACE_UTILITY::Surface> pSurface, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+        explicit Graphics(const HWND& hWnd, std::unique_ptr<Surface_t> pSurface, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
             Graphics(hWnd, pSurface->GetSizePack(), VShaderPath, PShaderPath)
         {
@@ -113,11 +115,11 @@ namespace fatpound::win32::d3d11
             return static_cast<T>(mc_dimensions_.m_height);
         }
 
-        template <std::integral T> [[nodiscard]] FATLIB_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> FATSPACE_UTILITY::Color               requires(Framework)
+        template <std::integral T> [[nodiscard]] FATLIB_FORCEINLINE auto GetPixel(const T& x, const T& y) const -> Color_t               requires(Framework)
         {
             return m_res_pack_.m_surface.template GetPixel<>(x, y);
         }
-        template <std::integral T>               FATLIB_FORCEINLINE void PutPixel(const T& x, const T& y, const FATSPACE_UTILITY::Color& color) noexcept requires(Framework)
+        template <std::integral T>               FATLIB_FORCEINLINE void PutPixel(const T& x, const T& y, const Color_t& color) noexcept requires(Framework)
         {
             m_res_pack_.m_surface.template PutPixel<>(x, y, color);
         }
@@ -142,7 +144,7 @@ namespace fatpound::win32::d3d11
             void* const ptr = std::memset(
                 m_res_pack_.m_surface,
                 GrayToneValue,
-                GetWidth<UINT>() * GetHeight<UINT>() * sizeof(FATSPACE_UTILITY::Color)
+                GetWidth<UINT>() * GetHeight<UINT>() * sizeof(Color_t)
             );
         }
 
@@ -189,7 +191,7 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        auto GetSurface() noexcept -> FATSPACE_UTILITY::Surface*
+        auto GetSurface() noexcept -> Surface_t*
         {
             return m_pSurface_.get();
         }
@@ -232,7 +234,7 @@ namespace fatpound::win32::d3d11
             return m_msaa_quality_;
         }
 
-        void BindSurface(std::unique_ptr<FATSPACE_UTILITY::Surface> pSurface) requires(Framework)
+        void BindSurface(std::unique_ptr<Surface_t> pSurface) requires(Framework)
         {
             if (m_pSurface_ not_eq nullptr)
             {
@@ -248,7 +250,7 @@ namespace fatpound::win32::d3d11
                 std::memcpy(
                     m_res_pack_.m_surface,
                     pSrc,
-                    GetWidth<UINT>() * GetHeight<UINT>() * sizeof(FATSPACE_UTILITY::Color)
+                    GetWidth<UINT>() * GetHeight<UINT>() * sizeof(Color_t)
                 );
             }
         }
@@ -300,16 +302,16 @@ namespace fatpound::win32::d3d11
                 binds.push_back(std::make_unique<pipeline::PixelShader>(GetDevice(), PShaderPath));
 
                 {
-                    const auto& vertices = FATSPACE_UTILITY_GFX::FullScreenQuad::S_GenerateVertices();
+                    const auto& vertices = FullScreenQuad_t::S_GenerateVertices();
 
                     const D3D11_BUFFER_DESC bd
                     {
-                        .ByteWidth           = static_cast<UINT>(vertices.size() * sizeof(FATSPACE_UTILITY_GFX::FullScreenQuad::Vertex)),
+                        .ByteWidth           = static_cast<UINT>(vertices.size() * sizeof(FullScreenQuad_t::Vertex)),
                         .Usage               = D3D11_USAGE_DEFAULT,
                         .BindFlags           = D3D11_BIND_VERTEX_BUFFER,
                         .CPUAccessFlags      = 0U,
                         .MiscFlags           = 0U,
-                        .StructureByteStride = sizeof(FATSPACE_UTILITY_GFX::FullScreenQuad::Vertex)
+                        .StructureByteStride = sizeof(FullScreenQuad_t::Vertex)
                     };
 
                     binds.push_back(std::make_unique<pipeline::VertexBuffer>(GetDevice(), bd, vertices));
@@ -562,7 +564,7 @@ namespace fatpound::win32::d3d11
         }
         void CopySysbufferToMappedSubresource_ () requires(Framework)
         {
-            using FATSPACE_UTILITY::Color;
+            using Color_t;
 
             auto* const pDst = static_cast<Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
 
@@ -601,7 +603,7 @@ namespace fatpound::win32::d3d11
         UINT                                         m_msaa_quality_{};
         UINT                                         m_dxgi_mode_{};
 
-        std::unique_ptr<FATSPACE_UTILITY::Surface>   m_pSurface_;
+        std::unique_ptr<Surface_t>   m_pSurface_;
     };
 }
 

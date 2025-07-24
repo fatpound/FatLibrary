@@ -68,6 +68,7 @@ endfunction()
 add_subdirectory(Algorithm)
 add_subdirectory(Automata)
 add_subdirectory(Bit)
+add_subdirectory(Colors)
 add_subdirectory(Concurrency)
 add_subdirectory(Cryptography)
 add_subdirectory(DSA)
@@ -87,6 +88,7 @@ target_link_libraries(FatLibrary
         FatLibrary::Algorithm
         FatLibrary::Automata
         FatLibrary::Bit
+        FatLibrary::Colors
         FatLibrary::Concurrency
         FatLibrary::Cryptography
         FatLibrary::DSA

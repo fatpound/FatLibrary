@@ -4,6 +4,5 @@
 
 #include <Utility/include/Common.hpp>
 #include <Utility/include/Timer.hpp>
-#include <Utility/include/Color.hpp>
 #include <Utility/include/Surface.hpp>
 #include <Utility/include/ViewXM.hpp>

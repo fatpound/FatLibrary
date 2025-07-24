@@ -359,6 +359,18 @@
     <ClInclude Include="Memory\include\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Colors\Colors.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors\ARGB\ARGB.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors\ARGB\include\Color.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors\ARGB\include\Common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph\src\BFS.cpp">
