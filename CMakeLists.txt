@@ -1,14 +1,31 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.28)
 
 project(FatLibrary LANGUAGES CXX)
+
+option(FATLIBRARY_ENABLE_MODULES_SUPPORT "Enable C++20 module support" ON)
+
+if (FATLIBRARY_ENABLE_MODULES_SUPPORT)
+    set (CMAKE_CXX_SCAN_FOR_MODULES TRUE)
+else()
+    set (CMAKE_CXX_SCAN_FOR_MODULES FALSE)
+endif()
 
 set (CMAKE_CXX_STANDARD 20)
 set (CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set (CMAKE_CXX_EXTENSIONS OFF)
-set (CMAKE_CXX_SCAN_FOR_MODULES FALSE)
 set (CMAKE_CXX_MODULE_STD OFF)
 
-add_library(FatLibrary INTERFACE)
+if(FATLIBRARY_ENABLE_MODULES_SUPPORT AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/FatPound.ixx")
+    add_library(FatLibrary STATIC FatPound.ixx)
+    message(STATUS "Adding module 'FatPound.ixx'")
+    target_sources(FatLibrary
+        PUBLIC
+            FILE_SET CXX_MODULES FILES
+                "${CMAKE_CURRENT_SOURCE_DIR}/FatPound.ixx"
+    )
+else()
+    add_library(FatLibrary INTERFACE)
+endif()
 
 include(_misc/FatCodex/CompileOptions.cmake)
 
@@ -22,10 +39,36 @@ function(fatlib_add_component COMPONENT_NAME)
                 "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
     )
 
-    if(SRC_FILES)
+    if(FATLIBRARY_ENABLE_MODULES_SUPPORT)
+        file(GLOB
+            MOD_INTF_UNITS
+                CONFIGURE_DEPENDS
+                    "${CMAKE_CURRENT_SOURCE_DIR}/*.ixx"
+                    "${CMAKE_CURRENT_SOURCE_DIR}/modules/*.ixx"
+        )
+
+        message(STATUS "Configuring 'FatLibrary::${COMPONENT_NAME}' as a STATIC library")
+
+        add_library(${COMPONENT_NAME} STATIC ${MOD_INTF_UNITS} ${SRC_FILES})
+
+        target_include_directories(${COMPONENT_NAME}
+            PUBLIC
+                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                ${PROJECT_SOURCE_DIR}
+        )
+        
+        target_sources(${COMPONENT_NAME}
+            PUBLIC
+                FILE_SET
+                    CXX_MODULES FILES ${MOD_INTF_UNITS}
+        )
+
+        target_link_libraries(${COMPONENT_NAME} PUBLIC FatCodex::CompileOptions)
+
+    elseif(SRC_FILES)
 
         message(STATUS "Configuring 'FatLibrary::${COMPONENT_NAME}' as a static library")
-        add_library(${COMPONENT_NAME} ${SRC_FILES})
+        add_library(${COMPONENT_NAME} STATIC ${SRC_FILES})
         target_include_directories(${COMPONENT_NAME}
             PUBLIC
                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -35,13 +78,15 @@ function(fatlib_add_component COMPONENT_NAME)
 
     else()
 
-        message(STATUS "No source files found for '${COMPONENT_NAME}' Configuring as an INTERFACE library")
+        message(STATUS "No source files or modules found for '${COMPONENT_NAME}' configuring as INTERFACE")
         add_library(${COMPONENT_NAME} INTERFACE)
+
         target_include_directories(${COMPONENT_NAME}
             INTERFACE
                 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                 ${PROJECT_SOURCE_DIR}
         )
+
         target_link_libraries(${COMPONENT_NAME} INTERFACE FatCodex::CompileOptions)
 
     endif()
@@ -83,23 +128,46 @@ add_subdirectory(Traits)
 add_subdirectory(Utility)
 add_subdirectory(Win32_)
 
-target_link_libraries(FatLibrary
-    INTERFACE
-        FatLibrary::Algorithm
-        FatLibrary::Automata
-        FatLibrary::Bit
-        FatLibrary::Colors
-        FatLibrary::Concurrency
-        FatLibrary::Cryptography
-        FatLibrary::DSA
-        FatLibrary::File
-        FatLibrary::Geometry
-        FatLibrary::Graph
-        FatLibrary::IO
-        FatLibrary::Math
-        FatLibrary::Memory
-        FatLibrary::Random
-        FatLibrary::Traits
-        FatLibrary::Utility
-        FatLibrary::Win32_
-)
+if(FATLIBRARY_ENABLE_MODULES_SUPPORT)
+    target_link_libraries(FatLibrary
+        PUBLIC
+            FatLibrary::Algorithm
+            FatLibrary::Automata
+            FatLibrary::Bit
+            FatLibrary::Colors
+            FatLibrary::Concurrency
+            FatLibrary::Cryptography
+            FatLibrary::DSA
+            FatLibrary::File
+            FatLibrary::Geometry
+            FatLibrary::Graph
+            FatLibrary::IO
+            FatLibrary::Math
+            FatLibrary::Memory
+            FatLibrary::Random
+            FatLibrary::Traits
+            FatLibrary::Utility
+            FatLibrary::Win32_
+    )
+else()
+    target_link_libraries(FatLibrary
+        INTERFACE
+            FatLibrary::Algorithm
+            FatLibrary::Automata
+            FatLibrary::Bit
+            FatLibrary::Colors
+            FatLibrary::Concurrency
+            FatLibrary::Cryptography
+            FatLibrary::DSA
+            FatLibrary::File
+            FatLibrary::Geometry
+            FatLibrary::Graph
+            FatLibrary::IO
+            FatLibrary::Math
+            FatLibrary::Memory
+            FatLibrary::Random
+            FatLibrary::Traits
+            FatLibrary::Utility
+            FatLibrary::Win32_
+    )
+endif()
