@@ -1,4 +1,4 @@
-#include <Win32_/D2D/include/Graphics.hpp>
+#include "../include/Graphics.hpp"
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 

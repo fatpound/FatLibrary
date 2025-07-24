@@ -1,4 +1,4 @@
-#include <Win32_/DXGI/include/Common.hpp>
+#include "../include/Common.hpp"
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 

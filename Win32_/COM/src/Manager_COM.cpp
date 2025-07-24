@@ -1,4 +1,4 @@
-#include <Win32_/COM/include/Manager.hpp>
+#include "../include/Manager.hpp"
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 

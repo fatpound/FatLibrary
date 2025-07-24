@@ -1,4 +1,4 @@
-#include <Win32_/GDI_Plus/include/Manager.hpp>
+#include "../include/Manager.hpp"
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
