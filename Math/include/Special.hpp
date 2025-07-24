@@ -9,7 +9,7 @@
 namespace fatpound::math
 {
     template <traits::IntegralOrFloating T>
-    static constexpr auto Gaussian(const T& x, const T& rho)
+    inline constexpr auto Gaussian(const T& x, const T& rho)
     {
         const auto rhoSq2 = Square<>(rho) * 2.0;
 

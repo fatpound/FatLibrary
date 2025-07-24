@@ -23,7 +23,7 @@ namespace fatpound::cryptography
     ///  @param      key: A Key to seed the random number generator for the XOR cipher
     /// 
     template <std::integral T = char, std::uniform_random_bit_generator RNG = std::minstd_rand, std::input_iterator InIt, std::output_iterator<T> OutIt>
-    static void ApplyXorCipherWithKey(const InIt& begin, const InIt& end, const OutIt& outBegin, const std::size_t& key)
+    inline void ApplyXorCipherWithKey(const InIt& begin, const InIt& end, const OutIt& outBegin, const std::size_t& key)
     {
         RNG rng{ static_cast<RNG::result_type>(key) };
 

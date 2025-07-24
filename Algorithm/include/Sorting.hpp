@@ -20,7 +20,7 @@ namespace fatpound::algorithm
     ///  @param maxValue: The maximum value present in inVec. Assumed that its equal to the max element of inVec
     /// 
     template <std::unsigned_integral T>
-    constexpr void CountingSort_Unchecked(std::vector<T>& inVec, std::vector<T>& outVec, const std::unsigned_integral auto& maxValue) noexcept
+    inline constexpr void CountingSort_Unchecked(std::vector<T>& inVec, std::vector<T>& outVec, const std::unsigned_integral auto& maxValue) noexcept
     {
         std::vector<T> Counts(maxValue + 1U, 0U);
 
@@ -50,7 +50,7 @@ namespace fatpound::algorithm
     ///  @param outVec: The output vector where the sorted values will be stored
     /// 
     template <std::unsigned_integral T>
-    constexpr void CountingSort(std::vector<T>& inVec, std::vector<T>& outVec)
+    inline constexpr void CountingSort(std::vector<T>& inVec, std::vector<T>& outVec)
     {
         if (inVec.empty())
         {

@@ -32,7 +32,7 @@ namespace fatpound::file
     /// @return The number of times the character appears in the file
     /// 
     template <bool ForNewline = false>
-    static auto CharCount_Unchecked (const std::filesystem::path& path, const char& character) -> std::size_t
+    inline auto CharCount_Unchecked (const std::filesystem::path& path, const char& character) -> std::size_t
     {
         std::ifstream file(path, std::ios::binary);
 
@@ -65,7 +65,7 @@ namespace fatpound::file
     /// @return The number of times the character appears in the file
     /// 
     template <bool ForNewline = false>
-    static auto CharCount           (const std::filesystem::path& path, const char& character) -> std::size_t
+    inline auto CharCount           (const std::filesystem::path& path, const char& character) -> std::size_t
     {
         if (not std::filesystem::exists(path))
         {
@@ -94,7 +94,7 @@ namespace fatpound::file
     /// @return The total number of times the character appears in all regular files found in the directory
     /// 
     template <bool ForNewline = false>
-    static auto CharCount_Dir       (const std::filesystem::path& path, const char& character, const bool& recurse = false, const std::vector<std::string>& extensionFilter = {}) -> std::size_t
+    inline auto CharCount_Dir       (const std::filesystem::path& path, const char& character, const bool& recurse = false, const std::vector<std::string>& extensionFilter = {}) -> std::size_t
     {
         namespace fs = std::filesystem;
 

@@ -89,7 +89,7 @@ namespace fatpound::random
     /// 
     template <std::unsigned_integral T, template <typename> typename Dist>
     requires StdUniformOrNormalDist<Dist, T>
-    static auto RandPrimeNumber(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> T
+    inline auto RandPrimeNumber(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> T
     {
         const auto& num = static_cast<T>(dist(rng));
 
@@ -131,7 +131,7 @@ namespace fatpound::random
     /// 
     template <bool FixedAlpha = true, utility::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
     requires StdUniformOrNormalDist<Dist, T>
-    static auto RandColor(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> utility::Color
+    inline auto RandColor(std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> utility::Color
     {
         if constexpr (std::unsigned_integral<T>)
         {
@@ -172,7 +172,7 @@ namespace fatpound::random
     /// 
     template <bool FixedAlpha = true, utility::Color::ChannelA_t Alpha = 255U, traits::UIntegralOrFloating T = std::size_t, template <typename> typename Dist>
     requires StdUniformOrNormalDist<Dist, T>
-    static auto RandColorString(const std::string& prefix, const bool& withAlpha, std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> std::string
+    inline auto RandColorString(const std::string& prefix, const bool& withAlpha, std::uniform_random_bit_generator auto& rng, Dist<T>& dist) -> std::string
     {
         return RandColor<FixedAlpha, Alpha>(rng, dist).GetString(prefix, withAlpha);
     }
@@ -189,7 +189,7 @@ namespace fatpound::random
     ///
     /// @throws std::invalid_argument if @p charset is empty
     /// 
-    static auto RandString(const std::unsigned_integral auto& length, const std::string_view& charset, std::uniform_random_bit_generator auto& rng) -> std::string
+    inline auto RandString(const std::unsigned_integral auto& length, const std::string_view& charset, std::uniform_random_bit_generator auto& rng) -> std::string
     {
         if (length == 0)
         {
@@ -239,7 +239,7 @@ namespace fatpound::random
     /// @throws std::invalid_argument if @p length is zero
     /// @throws std::invalid_argument if none of the character sets are enabled
     ///
-    static auto RandPassword(
+    inline auto RandPassword(
         const std::unsigned_integral auto& length,
         const bool& withLowercase,
         const bool& withUppercase,

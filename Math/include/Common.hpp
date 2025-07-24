@@ -10,13 +10,13 @@
 namespace fatpound::math
 {
     template <std::unsigned_integral T>
-    static constexpr auto IsPowerOf2(const T& num) noexcept -> bool
+    inline constexpr auto IsPowerOf2(const T& num) noexcept -> bool
     {
         return (num not_eq 0) and (not (num bitand (num - 1)));
     }
 
     template <std::unsigned_integral T>
-    static constexpr auto Factorial(T num) noexcept -> T
+    inline constexpr auto Factorial(T num) noexcept -> T
     {
         T prod{1};
 
@@ -30,7 +30,7 @@ namespace fatpound::math
     }
 
     template <std::unsigned_integral T>
-    static constexpr auto DigitCount(T num) noexcept -> T
+    inline constexpr auto DigitCount(T num) noexcept -> T
     {
         T count{};
 
@@ -44,13 +44,13 @@ namespace fatpound::math
     }
 
     template <std::unsigned_integral T>
-    static CX_MATH26 auto DigitCount_Fast(const T& num) noexcept -> T
+    inline CX_MATH26 auto DigitCount_Fast(const T& num) noexcept -> T
     {
         return std::log10(num) + static_cast<T>(1);
     }
 
     template <std::unsigned_integral T>
-    static constexpr auto DigitSum(T num) noexcept -> T
+    inline constexpr auto DigitSum(T num) noexcept -> T
     {
         T sum{};
 
@@ -64,7 +64,7 @@ namespace fatpound::math
     }
 
     template <std::signed_integral T>
-    static constexpr auto DigitSum(const T& num) noexcept
+    inline constexpr auto DigitSum(const T& num) noexcept
     {
         return DigitSum<std::make_unsigned_t<T>>(num < 0 ? (-num) : num);
     }

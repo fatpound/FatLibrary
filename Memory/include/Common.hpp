@@ -39,7 +39,7 @@ namespace fatpound::memory
     using AlignedUniquePtr = details::AlignedUPtr<T>::ptr_type;
 
     template <typename T>
-    static auto AlignedAlloc(const std::size_t& alignBytes, const std::size_t& size) -> T*
+    inline auto AlignedAlloc(const std::size_t& alignBytes, const std::size_t& size) -> T*
     {
         if (auto* const ptr = static_cast<T*>(
 #if defined(_MSC_VER) or defined(FATLIB_BUILDING_ON_WINDOWS)
@@ -56,13 +56,13 @@ namespace fatpound::memory
     }
 
     template <traits::Array T>
-    static auto MakeAlignedUniquePtr(const std::size_t& alignBytes, const std::size_t& size)
+    inline auto MakeAlignedUniquePtr(const std::size_t& alignBytes, const std::size_t& size)
     {
         return AlignedUniquePtr<T>(AlignedAlloc<std::remove_all_extents_t<T>>(alignBytes, size), &FATLIB_MEMORY_ALIGNED_FREER);
     }
 
     template <typename T>
-    static auto MakeAlignedUniquePtr(const std::size_t& alignBytes)
+    inline auto MakeAlignedUniquePtr(const std::size_t& alignBytes)
     {
         return AlignedUniquePtr<T>(AlignedAlloc<T>(alignBytes, 1U), &FATLIB_MEMORY_ALIGNED_FREER);
     }

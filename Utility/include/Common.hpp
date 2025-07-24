@@ -23,15 +23,15 @@
 
 namespace fatpound::utility
 {
-    static constexpr std::string_view         BinDigits = "01";
-    static constexpr std::string_view         OctDigits = "01234567";
-    static constexpr std::string_view         DecDigits = "0123456789";
-    static constexpr std::string_view         HexDigits = "0123456789ABCDEF";
+    inline constexpr std::string_view         BinDigits = "01";
+    inline constexpr std::string_view         OctDigits = "01234567";
+    inline constexpr std::string_view         DecDigits = "0123456789";
+    inline constexpr std::string_view         HexDigits = "0123456789ABCDEF";
 
-    static constexpr std::string_view      BinaryDigits = BinDigits;
-    static constexpr std::string_view       OctalDigits = OctDigits;
-    static constexpr std::string_view     DecimalDigits = DecDigits;
-    static constexpr std::string_view HexadecimalDigits = HexDigits;
+    inline constexpr std::string_view      BinaryDigits = BinDigits;
+    inline constexpr std::string_view       OctalDigits = OctDigits;
+    inline constexpr std::string_view     DecimalDigits = DecDigits;
+    inline constexpr std::string_view HexadecimalDigits = HexDigits;
 
 
 
@@ -46,7 +46,7 @@ namespace fatpound::utility
     /// @return The smallest angle (in degrees) between the hour and minute hands, as a value of type FP
     /// 
     template <std::floating_point FP = double, std::integral T>
-    static CX_MATH23 auto ClockHandsAngle(T hours, T minutes) noexcept -> FP
+    inline CX_MATH23 auto ClockHandsAngle(T hours, T minutes) noexcept -> FP
     {
         if constexpr (std::signed_integral<T>)
         {
@@ -77,7 +77,7 @@ namespace fatpound::utility
     /// @return The value mapped to the target range
     /// 
     template <traits::IntegralOrFloating T>
-    static constexpr auto Map(const T& value, const T& fromLow, const T& fromHigh, const T& toLow, const T& toHigh) -> T
+    inline constexpr auto Map(const T& value, const T& fromLow, const T& fromHigh, const T& toLow, const T& toHigh) -> T
     {
         return ((value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow)) + toLow;
     }
@@ -85,7 +85,7 @@ namespace fatpound::utility
 
 
     template <std::integral T>
-    static void ParseLineToIntegralVector(const std::string& line, std::vector<T>& vec)
+    inline void ParseLineToIntegralVector(const std::string& line, std::vector<T>& vec)
     {
         vec.reserve((line.length() / 2U) + 1);
 
@@ -102,7 +102,7 @@ namespace fatpound::utility
 
 
     template <std::integral T>
-    static auto ParseLineToIntegralVector(const std::string& line) -> std::vector<T>
+    inline auto ParseLineToIntegralVector(const std::string& line) -> std::vector<T>
     {
         std::vector<T> vec;
 
@@ -114,7 +114,7 @@ namespace fatpound::utility
 
 
     template <std::integral T>
-    static auto ParseLineToIntegralVector(std::ifstream& ifs) -> std::vector<T>
+    inline auto ParseLineToIntegralVector(std::ifstream& ifs) -> std::vector<T>
     {
         std::string line;
         std::getline<>(ifs, line);
@@ -125,7 +125,7 @@ namespace fatpound::utility
 
 
     template <std::integral T>
-    static void ParseLineToIntegralVector(std::ifstream& ifs, std::vector<T>& vec)
+    inline void ParseLineToIntegralVector(std::ifstream& ifs, std::vector<T>& vec)
     {
         std::string line;
         std::getline<>(ifs, line);

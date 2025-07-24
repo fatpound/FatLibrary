@@ -75,13 +75,13 @@ namespace fatpound::math
     template <typename T> concept Cubic_NX = Multiplicable3Left_NX<T, T, T> and Multiplicable3Right_NX<T, T, T>;
 
     template <Squarable T>
-    constexpr auto Square(const T& x) noexcept(Squarable_NX<T>) -> T
+    inline constexpr auto Square(const T& x) noexcept(Squarable_NX<T>) -> T
     {
         return x * x;
     }
 
     template <Cubic T>
-    constexpr auto Cube(const T& x) noexcept(Cubic_NX<T>) -> T
+    inline constexpr auto Cube(const T& x) noexcept(Cubic_NX<T>) -> T
     {
         return Square<T>(x) * x;
     }
