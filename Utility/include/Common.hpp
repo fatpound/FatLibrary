@@ -141,7 +141,7 @@ namespace fatpound::utility
     /// 
     /// @return A new string containing the characters of the input string in reverse order
     /// 
-    static constexpr auto StrRev(const std::string& str) -> std::string
+    inline constexpr auto StrRev(const std::string& str) -> std::string
     {
         auto revstr = str;
 
@@ -157,7 +157,7 @@ namespace fatpound::utility
     /// @param str: The string whose characters will be set
     /// @param  ch: The character to assign to each position in the string
     /// 
-    static constexpr void StrSet(std::string& str, const char ch)
+    inline constexpr void StrSet(std::string& str, const char ch)
     {
         std::ranges::fill(str, ch);
     }
