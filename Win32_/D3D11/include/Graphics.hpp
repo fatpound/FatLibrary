@@ -564,13 +564,11 @@ namespace fatpound::win32::d3d11
         }
         void CopySysbufferToMappedSubresource_ () requires(Framework)
         {
-            using Color_t;
+            auto* const pDst = static_cast<Color_t*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
 
-            auto* const pDst = static_cast<Color*>(m_res_pack_.m_mappedSysbufferTex2d.pData);
-
-            const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(Color);
+            const auto dstPitch = m_res_pack_.m_mappedSysbufferTex2d.RowPitch / sizeof(Color_t);
             const auto srcPitch = mc_dimensions_.m_width;
-            const auto rowBytes = srcPitch * sizeof(Color);
+            const auto rowBytes = srcPitch * sizeof(Color_t);
 
             for (auto y = 0U; y < mc_dimensions_.m_height; ++y)
             {
@@ -594,16 +592,16 @@ namespace fatpound::win32::d3d11
 
 
     private:
-        ResourcePack_t                               m_res_pack_{};
+        ResourcePack_t                         m_res_pack_{};
 
-        const HWND                                   mc_hWnd_;
-        const FATSPACE_UTILITY_GFX::SizePack         mc_dimensions_;
+        const HWND                             mc_hWnd_;
+        const FATSPACE_UTILITY_GFX::SizePack   mc_dimensions_;
 
-        UINT                                         m_msaa_count_{};
-        UINT                                         m_msaa_quality_{};
-        UINT                                         m_dxgi_mode_{};
+        UINT                                   m_msaa_count_{};
+        UINT                                   m_msaa_quality_{};
+        UINT                                   m_dxgi_mode_{};
 
-        std::unique_ptr<Surface_t>   m_pSurface_;
+        std::unique_ptr<Surface_t>             m_pSurface_;
     };
 }
 
