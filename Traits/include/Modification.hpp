@@ -183,7 +183,7 @@ namespace fatpound::traits
     };
 
     template <typename Holder, typename BiPred>
-    static constexpr auto FindIfItem_v = FindIfItem<Holder, BiPred>::value;
+    inline constexpr auto FindIfItem_v = FindIfItem<Holder, BiPred>::value;
 
 
 
@@ -207,7 +207,7 @@ namespace fatpound::traits
     };
 
     template <typename Holder, typename UnPred>
-    static constexpr auto CountIfItem_v = CountIfItem<Holder, UnPred>::value;
+    inline constexpr auto CountIfItem_v = CountIfItem<Holder, UnPred>::value;
 
 
 
@@ -221,7 +221,7 @@ namespace fatpound::traits
     };
 
     template <typename Holder>
-    static constexpr auto MinItem_v = MinItem<Holder>::value;
+    inline constexpr auto MinItem_v = MinItem<Holder>::value;
 
 
 
@@ -235,7 +235,7 @@ namespace fatpound::traits
     };
 
     template <typename Holder>
-    static constexpr auto MaxItem_v = MaxItem<Holder>::value;
+    inline constexpr auto MaxItem_v = MaxItem<Holder>::value;
 }
 
 /// DETAILS
