@@ -30,7 +30,7 @@ jobs:
 
     - name: Run CMake (Configure)
       working-directory: build
-      run: cmake .. -DCMAKE_BUILD_TYPE=Debug -G Ninja
+      run: cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_SCAN_FOR_MODULES=FALSE -DFATLIBRARY_ENABLE_MODULES_SUPPORT=OFF -G Ninja
 
     - name: Run CMake (Build)
       working-directory: build
