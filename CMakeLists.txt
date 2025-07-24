@@ -14,6 +14,8 @@ include(_misc/FatCodex/CompileOptions.cmake)
 
 function(fatlib_add_component COMPONENT_NAME)
 
+    set(PARENT_COMPONENT_NAME ${ARGV1})
+
     file(GLOB_RECURSE
         SRC_FILES
             CONFIGURE_DEPENDS
@@ -22,7 +24,7 @@ function(fatlib_add_component COMPONENT_NAME)
 
     if(SRC_FILES)
 
-        message(STATUS "Configuring 'FatLibrary::${COMPONENT_NAME}' as a static library.")
+        message(STATUS "Configuring 'FatLibrary::${COMPONENT_NAME}' as a static library")
         add_library(${COMPONENT_NAME} ${SRC_FILES})
         target_include_directories(${COMPONENT_NAME}
             PUBLIC
@@ -33,7 +35,7 @@ function(fatlib_add_component COMPONENT_NAME)
 
     else()
 
-        message(STATUS "No source files found for '${COMPONENT_NAME}'. Configuring as an INTERFACE library.")
+        message(STATUS "No source files found for '${COMPONENT_NAME}' Configuring as an INTERFACE library")
         add_library(${COMPONENT_NAME} INTERFACE)
         target_include_directories(${COMPONENT_NAME}
             INTERFACE
@@ -45,6 +47,21 @@ function(fatlib_add_component COMPONENT_NAME)
     endif()
 
     add_library(FatLibrary::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
+
+    if(PARENT_COMPONENT_NAME)
+
+        get_target_property(PARENT_TYPE ${PARENT_COMPONENT_NAME} TYPE)
+
+        if(PARENT_TYPE STREQUAL "INTERFACE_LIBRARY")
+            set(LINK_TYPE INTERFACE)
+        else()
+            set(LINK_TYPE PUBLIC)
+        endif()
+
+        message(STATUS "Linking ${PARENT_COMPONENT_NAME} to ${COMPONENT_NAME} as ${LINK_TYPE}")
+        target_link_libraries(${PARENT_COMPONENT_NAME} ${LINK_TYPE} ${COMPONENT_NAME})
+        
+    endif()
 
 endfunction()
 

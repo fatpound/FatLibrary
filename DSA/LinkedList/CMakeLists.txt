@@ -1,3 +1,1 @@
-fatlib_add_component(DSA_LinkedList)
-
-target_link_libraries(DSA INTERFACE DSA_LinkedList)
+fatlib_add_component(DSA_LinkedList DSA)
