@@ -1,4 +1,4 @@
-name: Linux -- GCC [Release]
+name: Linux -- GCC [Release] [with MODULES]
 
 on:
   push:

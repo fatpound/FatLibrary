@@ -1,4 +1,4 @@
-name: Linux -- GCC [Debug]
+name: Linux -- GCC [Debug] [with MODULES]
 
 on:
   push:
