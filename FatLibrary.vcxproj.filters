@@ -230,67 +230,64 @@
     <ClInclude Include="Win32_\D3D11\include\Graphics.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Rasterizer.hpp">
+    <ClInclude Include="Win32_\D3D11\Core\include\Rasterizer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Viewport.hpp">
+    <ClInclude Include="Win32_\D3D11\Core\include\Viewport.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\IndexBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\IndexBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\InputLayout.hpp">
+    <ClInclude Include="Win32_\D3D11\Core\include\InputLayout.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\PixelShader.hpp">
+    <ClInclude Include="Win32_\D3D11\Shader\include\PixelShader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\Topology.hpp">
+    <ClInclude Include="Win32_\D3D11\Core\include\Topology.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\VertexBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexShader.hpp">
+    <ClInclude Include="Win32_\D3D11\Shader\include\VertexShader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\include\Bindable.hpp">
+    <ClInclude Include="Win32_\D3D11\include\Bindable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\CBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\CBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\DepthStencil.hpp">
+    <ClInclude Include="Win32_\D3D11\Core\include\DepthStencil.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelCBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\PixelCBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelSBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\PixelSBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\RenderTarget.hpp">
+    <ClInclude Include="Win32_\D3D11\Core\include\RenderTarget.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Sampler.hpp">
+    <ClInclude Include="Win32_\D3D11\Shader\include\Sampler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\SBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\SBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\ShaderResource.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\ShaderResource.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Texture2D.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\Texture2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\TransformCBuffer.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\TransformCBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\VertexCBuffer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp">
+    <ClInclude Include="Win32_\D3D11\Resource\include\VertexCBuffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D3D11\D3D11.hpp">
@@ -371,6 +368,15 @@
     <ClInclude Include="Colors\ARGB\include\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Core\Core.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Resource\Resource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Shader\Shader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph\src\BFS.cpp">
@@ -427,46 +433,46 @@
     <ClCompile Include="Win32_\COM\src\Manager_COM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D2D\src\Graphics.cpp">
+    <ClCompile Include="Win32_\D2D\src\Graphics_D2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Rasterizer.cpp">
+    <ClCompile Include="Win32_\D3D11\Core\src\Rasterizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Viewport.cpp">
+    <ClCompile Include="Win32_\D3D11\Core\src\Viewport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\IndexBuffer.cpp">
+    <ClCompile Include="Win32_\D3D11\Resource\src\IndexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\InputLayout.cpp">
+    <ClCompile Include="Win32_\D3D11\Core\src\InputLayout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\PixelShader.cpp">
+    <ClCompile Include="Win32_\D3D11\Shader\src\PixelShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\Topology.cpp">
+    <ClCompile Include="Win32_\D3D11\Core\src\Topology.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexBuffer.cpp">
+    <ClCompile Include="Win32_\D3D11\Resource\src\VertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexShader.cpp">
+    <ClCompile Include="Win32_\D3D11\Shader\src\VertexShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\DepthStencil.cpp">
+    <ClCompile Include="Win32_\D3D11\Core\src\DepthStencil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\RenderTarget.cpp">
+    <ClCompile Include="Win32_\D3D11\Core\src\RenderTarget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Sampler.cpp">
+    <ClCompile Include="Win32_\D3D11\Shader\src\Sampler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\ShaderResource.cpp">
+    <ClCompile Include="Win32_\D3D11\Resource\src\ShaderResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Texture2D.cpp">
+    <ClCompile Include="Win32_\D3D11\Resource\src\Texture2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\DXGI\src\Common_DXGI.cpp">

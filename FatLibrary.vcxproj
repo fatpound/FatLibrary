@@ -106,29 +106,31 @@
     <ClInclude Include="Win32_\COM\include\Manager.hpp" />
     <ClInclude Include="Win32_\D2D\D2D.hpp" />
     <ClInclude Include="Win32_\D2D\include\Graphics.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\Core.hpp" />
     <ClInclude Include="Win32_\D3D11\D3D11.hpp" />
     <ClInclude Include="Win32_\D3D11\include\Graphics.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Rasterizer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Core\include\Viewport.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\IndexBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\InputLayout.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\PixelShader.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\Topology.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Element\include\VertexShader.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\include\Bindable.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Pipeline.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\CBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\DepthStencil.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelCBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\PixelSBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\RenderTarget.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Sampler.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\SBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\ShaderResource.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\Texture2D.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\TransformCBuffer.hpp" />
-    <ClInclude Include="Win32_\D3D11\Pipeline\Resource\include\VertexCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\include\Rasterizer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\include\Viewport.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\IndexBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\include\InputLayout.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\Resource.hpp" />
+    <ClInclude Include="Win32_\D3D11\Shader\include\PixelShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\include\Topology.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\VertexBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Shader\include\VertexShader.hpp" />
+    <ClInclude Include="Win32_\D3D11\include\Bindable.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\CBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\include\DepthStencil.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\PixelCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\PixelSBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Core\include\RenderTarget.hpp" />
+    <ClInclude Include="Win32_\D3D11\Shader\include\Sampler.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\SBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\ShaderResource.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\Texture2D.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\TransformCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\VertexCBuffer.hpp" />
+    <ClInclude Include="Win32_\D3D11\Shader\Shader.hpp" />
     <ClInclude Include="Win32_\DXGI\DXGI.hpp" />
     <ClInclude Include="Win32_\DXGI\include\Common.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />
@@ -165,20 +167,20 @@
     <ClCompile Include="Utility\src\Surface.cpp" />
     <ClCompile Include="Utility\src\ViewXM.cpp" />
     <ClCompile Include="Win32_\COM\src\Manager_COM.cpp" />
-    <ClCompile Include="Win32_\D2D\src\Graphics.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Rasterizer.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Core\src\Viewport.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\IndexBuffer.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\InputLayout.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\PixelShader.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\Topology.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexBuffer.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Element\src\VertexShader.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\DepthStencil.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\RenderTarget.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Sampler.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\ShaderResource.cpp" />
-    <ClCompile Include="Win32_\D3D11\Pipeline\Resource\src\Texture2D.cpp" />
+    <ClCompile Include="Win32_\D2D\src\Graphics_D2D.cpp" />
+    <ClCompile Include="Win32_\D3D11\Core\src\Rasterizer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Core\src\Viewport.cpp" />
+    <ClCompile Include="Win32_\D3D11\Resource\src\IndexBuffer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Core\src\InputLayout.cpp" />
+    <ClCompile Include="Win32_\D3D11\Shader\src\PixelShader.cpp" />
+    <ClCompile Include="Win32_\D3D11\Core\src\Topology.cpp" />
+    <ClCompile Include="Win32_\D3D11\Resource\src\VertexBuffer.cpp" />
+    <ClCompile Include="Win32_\D3D11\Shader\src\VertexShader.cpp" />
+    <ClCompile Include="Win32_\D3D11\Core\src\DepthStencil.cpp" />
+    <ClCompile Include="Win32_\D3D11\Core\src\RenderTarget.cpp" />
+    <ClCompile Include="Win32_\D3D11\Shader\src\Sampler.cpp" />
+    <ClCompile Include="Win32_\D3D11\Resource\src\ShaderResource.cpp" />
+    <ClCompile Include="Win32_\D3D11\Resource\src\Texture2D.cpp" />
     <ClCompile Include="Win32_\DXGI\src\Common_DXGI.cpp" />
     <ClCompile Include="Win32_\GDI_Plus\src\Manager_GDI_Plus.cpp" />
     <ClCompile Include="Win32_\src\Common_Win32.cpp" />
@@ -264,7 +266,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Resource\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Shader\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -278,7 +280,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Resource\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Shader\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -292,7 +294,7 @@
     <ClCompile>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Resource\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Shader\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -306,7 +308,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Element\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Pipeline\Resource\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(MSBuildProjectDirectory)\Algorithm\include;$(MSBuildProjectDirectory)\Automata\include;$(MSBuildProjectDirectory)\Bit\include;$(MSBuildProjectDirectory)\Colors\include;$(MSBuildProjectDirectory)\Concurrency\include;$(MSBuildProjectDirectory)\Cryptography\include;$(MSBuildProjectDirectory)\DSA\include;$(MSBuildProjectDirectory)\DSA\LinkedList\include;$(MSBuildProjectDirectory)\DSA\Tree\include;$(MSBuildProjectDirectory)\File\include;$(MSBuildProjectDirectory)\Geometry\include;$(MSBuildProjectDirectory)\Geometry\Shape\include;$(MSBuildProjectDirectory)\Graph\include;$(MSBuildProjectDirectory)\IO\include;$(MSBuildProjectDirectory)\Math\include;$(MSBuildProjectDirectory)\Math\Numbers\include;$(MSBuildProjectDirectory)\Memory\include;$(MSBuildProjectDirectory)\Random\include;$(MSBuildProjectDirectory)\Traits\include;$(MSBuildProjectDirectory)\Utility\include;$(MSBuildProjectDirectory)\Utility\Gfx\include;$(MSBuildProjectDirectory)\Win32_\include;$(MSBuildProjectDirectory)\Win32_\COM\include;$(MSBuildProjectDirectory)\Win32_\D2D\include;$(MSBuildProjectDirectory)\Win32_\D3D11\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Core\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Resource\include;$(MSBuildProjectDirectory)\Win32_\D3D11\Shader\include;$(MSBuildProjectDirectory)\Win32_\DXGI\include;$(MSBuildProjectDirectory)\Win32_\GDI_Plus\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

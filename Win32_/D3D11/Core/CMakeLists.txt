@@ -1,0 +1,1 @@
+fatlib_add_component(Win32_D3D11_Core Win32_D3D11)

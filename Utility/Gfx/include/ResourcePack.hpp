@@ -11,8 +11,9 @@
 #include <Utility/Gfx/include/SizePack.hpp>
 
 #include <Utility/include/Surface.hpp>
-#include <Win32_/D3D11/Pipeline/Resource/include/RenderTarget.hpp>
-#include <Win32_/D3D11/Pipeline/Resource/include/DepthStencil.hpp>
+#include <Win32_/D3D11/Core/include/RenderTarget.hpp>
+#include <Win32_/D3D11/Core/include/DepthStencil.hpp>
+#include <Win32_/D3D11/Resource/include/Texture2D.hpp>
 
 namespace fatpound::utility::gfx
 {
@@ -29,13 +30,13 @@ namespace fatpound::utility::gfx
         Microsoft::WRL::ComPtr<IDXGISwapChain>        m_pSwapChain;
         Microsoft::WRL::ComPtr<ID3D11Device>          m_pDevice;
         Microsoft::WRL::ComPtr<ID3D11DeviceContext>   m_pImmediateContext;
-        win32::d3d11::pipeline::RenderTarget          m_render_target;
-        win32::d3d11::pipeline::DepthStencil          m_depth_stencil;
+        win32::d3d11::core::RenderTarget              m_render_target;
+        win32::d3d11::core::DepthStencil              m_depth_stencil;
     };
 
     struct FrameworkResourcePack final : public ResourcePack
     {
-        win32::d3d11::pipeline::Texture2D             m_sysbufferTex2d;
+        win32::d3d11::resource::Texture2D             m_sysbufferTex2d;
         D3D11_MAPPED_SUBRESOURCE                      m_mappedSysbufferTex2d{};
         Surface                                       m_surface;
 
