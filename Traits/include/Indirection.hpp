@@ -1,5 +1,7 @@
 #pragma once
 
+#include <_macros/Compiler.hpp>
+
 #include <type_traits>
 
 namespace fatpound::traits
