@@ -323,7 +323,7 @@
     <ClInclude Include="Win32_\Win32.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FatLibrary.hpp">
+    <ClInclude Include="FatPound.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_macros\Compiler.hpp">

@@ -62,7 +62,7 @@
     <ClInclude Include="DSA\Tree\include\B_Plus.hpp" />
     <ClInclude Include="DSA\Tree\include\IPR.hpp" />
     <ClInclude Include="DSA\Tree\Tree.hpp" />
-    <ClInclude Include="FatLibrary.hpp" />
+    <ClInclude Include="FatPound.hpp" />
     <ClInclude Include="File\File.hpp" />
     <ClInclude Include="IO\include\Keyboard.hpp" />
     <ClInclude Include="IO\include\Mouse.hpp" />

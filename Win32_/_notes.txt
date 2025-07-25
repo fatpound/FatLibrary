@@ -1,6 +1,4 @@
-WinAPI.hpp header is for compatibility with FatLibrary, optional
-and useful in ifdef __INTELLISENSE__ conditional compiling within modules
-prefer WinAPI.hxx header-unit in module code
+// fat->pound
 
 
 #define _WIN32_WINNT _WIN32_WINNT_WIN10 // target Windows 10 or later
