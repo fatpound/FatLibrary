@@ -45,13 +45,13 @@ public:
     public:
         explicit WindowEx(
             std::shared_ptr<WndClassEx>             pWndClassEx,
-            const std::wstring                      title,
-            const FATSPACE_UTILITY_GFX::SizePack    clientDimensions,
+            const std::wstring&                     title,
+            const FATSPACE_UTILITY_GFX::SizePack&   clientDimensions,
             std::shared_ptr<io::Keyboard>           pKeyboard         = std::make_shared<io::Keyboard>(),
             std::shared_ptr<io::Mouse>              pMouse            = std::make_shared<io::Mouse>(),
-            const std::optional<DirectX::XMINT2>    position          = std::nullopt,
-            const DWORD                             styles            = scx_DefaultWndStyleEx,
-            const DWORD                             exStyles          = {})
+            const std::optional<DirectX::XMINT2>&   position          = std::nullopt,
+            const DWORD&                            styles            = scx_DefaultWndStyleEx,
+            const DWORD&                            exStyles          = {})
             :
             m_pKeyboard{ std::move<>(pKeyboard) },
             m_pMouse{ std::move<>(pMouse) },
@@ -142,7 +142,7 @@ public:
         {
             [[maybe_unused]]
             const auto future = DispatchTaskToQueue_<>(
-                [hWnd = GetHandle()]() noexcept -> void
+                [hWnd = m_hWnd_]() noexcept -> void
                 {
                     [[maybe_unused]]
                     const auto&& retval = DestroyWindow(hWnd);
@@ -155,7 +155,7 @@ public:
         virtual auto SetTitle  (const std::wstring& title) -> std::future<void> override
         {
             auto future = DispatchTaskToQueue_<>(
-                [&title, hWnd = GetHandle()]() noexcept -> void
+                [&title, hWnd = m_hWnd_]() noexcept -> void
                 {
                     [[maybe_unused]]
                     const auto&& retval = SetWindowText(hWnd, title.c_str());
@@ -287,7 +287,7 @@ public:
 
 
     protected:
-        FATLIB_FORCEINLINE void Process_WM_MOUSEMOVE_  (const WPARAM& wParam, const LPARAM& lParam)
+        FATLIB_FORCEINLINE void Process_WM_MOUSEMOVE_   (const WPARAM& wParam, const LPARAM& lParam)
         {
 #ifdef __clang__
     #pragma clang diagnostic push
@@ -325,63 +325,63 @@ public:
                 }
             }
         }
-        FATLIB_FORCEINLINE void Process_WM_LBUTTONDOWN_()
+        FATLIB_FORCEINLINE void Process_WM_LBUTTONDOWN_ ()
         {
             m_pMouse->AddLeftPressEvent();
         }
-        FATLIB_FORCEINLINE void Process_WM_LBUTTONUP_  ()
+        FATLIB_FORCEINLINE void Process_WM_LBUTTONUP_   ()
         {
             m_pMouse->AddLeftReleaseEvent();
         }
-        FATLIB_FORCEINLINE void Process_WM_RBUTTONDOWN_()
+        FATLIB_FORCEINLINE void Process_WM_RBUTTONDOWN_ ()
         {
             m_pMouse->AddRightPressEvent();
         }
-        FATLIB_FORCEINLINE void Process_WM_RBUTTONUP_  ()
+        FATLIB_FORCEINLINE void Process_WM_RBUTTONUP_   ()
         {
             m_pMouse->AddRightReleaseEvent();
         }
-        FATLIB_FORCEINLINE void Process_WM_MBUTTONDOWN_()
+        FATLIB_FORCEINLINE void Process_WM_MBUTTONDOWN_ ()
         {
             m_pMouse->AddWheelPressEvent();
         }
-        FATLIB_FORCEINLINE void Process_WM_MBUTTONUP_  ()
+        FATLIB_FORCEINLINE void Process_WM_MBUTTONUP_   ()
         {
             m_pMouse->AddWheelReleaseEvent();
         }
-        FATLIB_FORCEINLINE void Process_WM_MOUSEWHEEL_ (const int& delta)
+        FATLIB_FORCEINLINE void Process_WM_MOUSEWHEEL_  (const int& delta)
         {
             m_pMouse->ProcessWheelDelta(delta);
         }
 
-        FATLIB_FORCEINLINE void Process_WM_KILLFOCUS_ () noexcept
+        FATLIB_FORCEINLINE void Process_WM_KILLFOCUS_   () noexcept
         {
             m_pKeyboard->ClearKeyStateBitset();
         }
-        FATLIB_FORCEINLINE void Process_WM_KEYDOWN_   (const WPARAM& wParam, const LPARAM& lParam)
+        FATLIB_FORCEINLINE void Process_WM_KEYDOWN_     (const WPARAM& wParam, const LPARAM& lParam)
         {
             Process_WM_SYSKEYDOWN_(wParam, lParam);
         }
-        FATLIB_FORCEINLINE void Process_WM_SYSKEYDOWN_(const WPARAM& wParam, const LPARAM& lParam)
+        FATLIB_FORCEINLINE void Process_WM_SYSKEYDOWN_  (const WPARAM& wParam, const LPARAM& lParam)
         {
             if ((not (lParam bitand 0x40000000)) or m_pKeyboard->AutoRepeatIsEnabled())
             {
                 m_pKeyboard->AddKeyPressEvent(static_cast<unsigned char>(wParam));
             }
         }
-        FATLIB_FORCEINLINE void Process_WM_KEYUP_     (const WPARAM& wParam)
+        FATLIB_FORCEINLINE void Process_WM_KEYUP_       (const WPARAM& wParam)
         {
             Process_WM_SYSKEYUP_(wParam);
         }
-        FATLIB_FORCEINLINE void Process_WM_SYSKEYUP_  (const WPARAM& wParam)
+        FATLIB_FORCEINLINE void Process_WM_SYSKEYUP_    (const WPARAM& wParam)
         {
             m_pKeyboard->AddKeyReleaseEvent(static_cast<unsigned char>(wParam));
         }
-        FATLIB_FORCEINLINE void Process_WM_CHAR_      (const WPARAM& wParam)
+        FATLIB_FORCEINLINE void Process_WM_CHAR_        (const WPARAM& wParam)
         {
             m_pKeyboard->AddChar(static_cast<unsigned char>(wParam));
         }
-        FATLIB_FORCEINLINE void Process_WM_SYSCOMMAND_(const WPARAM& wParam) noexcept
+        FATLIB_FORCEINLINE void Process_WM_SYSCOMMAND_  (const WPARAM& wParam) noexcept
         {
             if ((wParam bitand 0xFFF0U) == SC_CLOSE)
             {

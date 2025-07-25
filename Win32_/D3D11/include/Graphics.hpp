@@ -69,16 +69,26 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions,    const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions) requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
         {
             InitCommon_();
+
+            if constexpr (RasterizationEnabled)
+            {
+                InitRasterizer_();
+            }
+        }
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+            :
+            Graphics(hWnd, dimensions)
+        {
             InitFramework_(VShaderPath, PShaderPath);
         }
-        explicit Graphics(const HWND& hWnd, std::unique_ptr<Surface_t> pSurface, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+        explicit Graphics(const HWND& hWnd, std::unique_ptr<Surface_t> pSurface,              const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
             Graphics(hWnd, pSurface->GetSizePack(), VShaderPath, PShaderPath)
         {
@@ -279,6 +289,7 @@ namespace fatpound::win32::d3d11
             InitFrameworkBackbufferSampler_();
 
             std::vector<std::unique_ptr<Bindable>> binds;
+            binds.reserve(5U);
 
             {
                 {
