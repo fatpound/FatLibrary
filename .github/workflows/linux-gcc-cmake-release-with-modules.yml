@@ -1,4 +1,4 @@
-name: Linux -- GCC [Release] [with MODULES]
+name: Linux -- GCC -- CMake [Release] [with MODULES]
 
 on:
   push:

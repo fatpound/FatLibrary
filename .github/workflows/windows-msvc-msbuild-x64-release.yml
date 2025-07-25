@@ -1,4 +1,4 @@
-name: Windows -- MSVC -- x64 [Debug]
+name: Windows -- MSVC -- MSBuild -- x64 [Release]
 
 
 on:
@@ -30,4 +30,4 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Build .vcxproj
-      run: msbuild FatLibrary.vcxproj /p:Configuration=Debug /p:Platform=x64 /v:minimal
+      run: msbuild FatLibrary.vcxproj /p:Configuration=Release /p:Platform=x64 /v:minimal

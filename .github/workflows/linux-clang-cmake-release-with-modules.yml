@@ -1,0 +1,40 @@
+name: Linux -- Clang -- CMake [Release] [with MODULES]
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        token: ${{ secrets.FATPOUND_ACCESS_TOKEN }}
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y build-essential cmake ninja-build
+        sudo apt install clang
+        clang --version
+        clang++ --version
+
+    - name: Create Build Directory
+      run: mkdir build
+
+    - name: Run CMake (Configure)
+      working-directory: build
+      run: cmake .. -DCMAKE_CXX_COMPILER=clang+++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_SCAN_FOR_MODULES=ON -DFATLIBRARY_ENABLE_MODULES_SUPPORT=ON -G Ninja
+
+    - name: Run CMake (Build)
+      working-directory: build
+      run: cmake --build . --config Release

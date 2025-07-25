@@ -1,4 +1,4 @@
-name: Linux -- GCC [Debug]
+name: Linux -- GCC -- CMake [Debug] [with MODULES]
 
 on:
   push:
@@ -24,13 +24,17 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y build-essential cmake ninja-build
+        sudo apt install -y gcc-14 g++-14
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100 --slave /usr/bin/g++ g++ /usr/bin/g++-14
+        gcc --version
+        g++ --version
 
     - name: Create Build Directory
       run: mkdir build
 
     - name: Run CMake (Configure)
       working-directory: build
-      run: cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_SCAN_FOR_MODULES=FALSE -DFATLIBRARY_ENABLE_MODULES_SUPPORT=OFF -G Ninja
+      run: cmake .. -DCMAKE_CXX_COMPILER=g++-14 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_SCAN_FOR_MODULES=ON -DFATLIBRARY_ENABLE_MODULES_SUPPORT=ON -G Ninja
 
     - name: Run CMake (Build)
       working-directory: build
