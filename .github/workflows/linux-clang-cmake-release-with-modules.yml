@@ -34,7 +34,7 @@ jobs:
 
     - name: Run CMake (Configure)
       working-directory: build
-      run: cmake .. -DCMAKE_CXX_COMPILER=clang+++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_SCAN_FOR_MODULES=ON -DFATLIBRARY_ENABLE_MODULES_SUPPORT=ON -G Ninja
+      run: cmake .. -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_SCAN_FOR_MODULES=ON -DFATLIBRARY_ENABLE_MODULES_SUPPORT=ON -G Ninja
 
     - name: Run CMake (Build)
       working-directory: build
