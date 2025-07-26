@@ -159,7 +159,7 @@ namespace fatpound::dsa::linkedlist
             }
 
             const Node_* const start = this->GetStartNode_();
-            const Node_*        temp = start;
+                  Node_*        temp = this->GetStartNode_(); // -V656
 
             do
             {
@@ -182,7 +182,7 @@ namespace fatpound::dsa::linkedlist
             }
 
             const Node_* const start = this->GetStartNode_();
-                  Node_*        exes = start;
+                  Node_*        exes = this->GetStartNode_(); // -V656
                   Node_*        temp{};
 
             do
