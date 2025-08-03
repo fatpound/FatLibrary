@@ -180,7 +180,7 @@ namespace fatpound::automata
             return;
         }
 
-        std::deque<Node_*> nodes;
+        std::deque<Node_*> nodes; // -V826
 
         nodes.push_back(m_pTree_);
 
