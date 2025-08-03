@@ -4,7 +4,7 @@
 
 namespace fatpound::win32::d2d
 {
-    Graphics::Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions)
+    Graphics::Graphics(const HWND& hWnd, const utility::SizePack& dimensions)
         :
         mc_dimensions_(dimensions)
     {

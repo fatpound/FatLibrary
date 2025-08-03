@@ -3,7 +3,6 @@
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
 #include <_macros/Compiler.hpp>
-#include <_macros/Namespaces.hpp>
 
 #include <Win32_/include/WinAPI.hpp>
 #include <d2d1_3.h>
@@ -12,7 +11,7 @@
 #include <DirectXMath.h>
 
 #include <Traits/include/Bitwise.hpp>
-#include <Utility/Gfx/include/SizePack.hpp>
+#include <Utility/include/SizePack.hpp>
 
 #include <cstddef>
 
@@ -33,7 +32,7 @@ namespace fatpound::win32::d2d
         
 
     public:
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions);
+        explicit Graphics(const HWND& hWnd, const utility::SizePack& dimensions);
 
         explicit Graphics()                    = delete;
         explicit Graphics(const Graphics&)     = delete;
@@ -90,7 +89,7 @@ namespace fatpound::win32::d2d
         Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget>   m_pRenderTarget_;
         Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>    m_pBrush_;
 
-        const FATSPACE_UTILITY_GFX::SizePack            mc_dimensions_;
+        const utility::SizePack                         mc_dimensions_;
     };
 }
 

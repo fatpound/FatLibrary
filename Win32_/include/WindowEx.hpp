@@ -46,7 +46,7 @@ public:
         explicit WindowEx(
             std::shared_ptr<WndClassEx>             pWndClassEx,
             const std::wstring&                     title,
-            const FATSPACE_UTILITY_GFX::SizePack&   clientDimensions,
+            const utility::SizePack&                clientDimensions,
             std::shared_ptr<io::Keyboard>           pKeyboard         = std::make_shared<io::Keyboard>(),
             std::shared_ptr<io::Mouse>              pMouse            = std::make_shared<io::Mouse>(),
             const std::optional<DirectX::XMINT2>&   position          = std::nullopt,
@@ -395,15 +395,15 @@ public:
 
 
     protected:
-        FATSPACE_CONCURRENCY::TaskQueue        m_tasks_;
-        std::shared_ptr<WndClassEx>            m_pWndClassEx_;
-        const FATSPACE_UTILITY_GFX::SizePack   mc_client_size_;
+        FATSPACE_CONCURRENCY::TaskQueue   m_tasks_;
+        std::shared_ptr<WndClassEx>       m_pWndClassEx_;
+        const utility::SizePack           mc_client_size_;
 
-        HWND                                   m_hWnd_{};
-                                             
-        std::atomic_bool                       m_is_closing_{};
-        std::binary_semaphore                  m_start_signal_{ 0 };
-        std::jthread                           m_msg_jthread_;
+        HWND                              m_hWnd_{};
+                                          
+        std::atomic_bool                  m_is_closing_{};
+        std::binary_semaphore             m_start_signal_{ 0 };
+        std::jthread                      m_msg_jthread_;
 
 
     private:

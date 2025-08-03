@@ -1,1 +1,0 @@
-fatlib_add_component(Utility_Gfx Utility)

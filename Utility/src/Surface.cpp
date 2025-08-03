@@ -58,7 +58,7 @@ namespace fatpound::utility
 
 #endif
 
-    Surface::Surface(const gfx::SizePack& dimensions,           const Size_t& alignBytes)
+    Surface::Surface(const SizePack&        dimensions,         const Size_t& alignBytes)
         :
         m_pBuffer_(memory::MakeAlignedUniquePtr<ColorArr_t>(alignBytes, dimensions.m_width * dimensions.m_height)),
         m_size_pack_(dimensions),
@@ -69,7 +69,7 @@ namespace fatpound::utility
     }
     Surface::Surface(const Size_t& width, const Size_t& height, const Size_t& alignBytes)
         :
-        Surface(gfx::SizePack{ .m_width = width, .m_height = height }, alignBytes)
+        Surface(SizePack{ .m_width = width, .m_height = height }, alignBytes)
     {
 
     }
@@ -166,7 +166,7 @@ namespace fatpound::utility
         return ptr;
     }
 
-    auto Surface::GetSizePack () const noexcept -> gfx::SizePack
+    auto Surface::GetSizePack () const noexcept -> SizePack
     {
         return m_size_pack_;
     }

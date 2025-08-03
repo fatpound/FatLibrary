@@ -1,6 +1,6 @@
 #pragma once
 
-#include <_macros/Experimental.hpp>
+#include <_misc/FatCodex/Macros/ExternalWarnings_MSVC.hpp>
 
 #pragma warning (push)
 #pragma warning (disable : MSVC_EXWARN_CPPZMQ)

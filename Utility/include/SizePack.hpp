@@ -2,7 +2,7 @@
 
 #include <cstddef>
 
-namespace fatpound::utility::gfx
+namespace fatpound::utility
 {
     struct alignas(16) SizePack
     {

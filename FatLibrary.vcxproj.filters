@@ -185,16 +185,13 @@
     <ClInclude Include="Traits\Traits.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Gfx\include\FullScreenQuad.hpp">
+    <ClInclude Include="Win32_\D3D11\include\FullScreenQuad.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Gfx\include\ResourcePack.hpp">
+    <ClInclude Include="Win32_\D3D11\include\ResourcePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Gfx\include\SizePack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility\Gfx\Gfx.hpp">
+    <ClInclude Include="Utility\include\SizePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utility\include\Color.hpp">
@@ -415,10 +412,10 @@
     <ClCompile Include="Random\src\URand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\src\FullScreenQuad.cpp">
+    <ClCompile Include="Win32_\D3D11\src\FullScreenQuad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\src\ResourcePack.cpp">
+    <ClCompile Include="Win32_\D3D11\src\ResourcePack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Utility\src\Common_Utility.cpp">
@@ -700,16 +697,13 @@
     <ClCompile Include="Utility\Utility.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\modules\FullScreenQuad.ixx">
+    <ClCompile Include="Win32_\D3D11\modules\FullScreenQuad.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\modules\ResourcePack.ixx">
+    <ClCompile Include="Win32_\D3D11\modules\ResourcePack.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility\Gfx\modules\SizePack.ixx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\Gfx\Gfx.ixx">
+    <ClCompile Include="Utility\modules\SizePack.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\modules\Common_Win32.ixx">

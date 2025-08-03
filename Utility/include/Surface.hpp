@@ -11,7 +11,7 @@
 
 #include <Colors/ARGB/ARGB.hpp>
 #include <Traits/include/Bitwise.hpp>
-#include <Utility/Gfx/include/SizePack.hpp>
+#include <Utility/include/SizePack.hpp>
 
 #include <cassert>
 #include <cstdint>
@@ -43,7 +43,7 @@ namespace fatpound::utility
         explicit Surface(const std::string&       filename,         const Size_t& alignBytes = scx_DefaultAlignment);
         explicit Surface(const std::wstring&      filename,         const Size_t& alignBytes = scx_DefaultAlignment);
 #endif
-        explicit Surface(const gfx::SizePack& dimensions,           const Size_t& alignBytes = scx_DefaultAlignment);
+        explicit Surface(const SizePack&        dimensions,         const Size_t& alignBytes = scx_DefaultAlignment);
         explicit Surface(const Size_t& width, const Size_t& height, const Size_t& alignBytes = scx_DefaultAlignment);
 
         explicit Surface() noexcept;
@@ -130,7 +130,7 @@ namespace fatpound::utility
     public:
         auto ReleaseAndReset() noexcept -> Color_t*;
 
-        [[nodiscard]] auto GetSizePack () const noexcept -> gfx::SizePack;
+        [[nodiscard]] auto GetSizePack () const noexcept -> SizePack;
         [[nodiscard]] auto IsEmpty     () const noexcept -> bool;
         [[nodiscard]] auto IsNotEmpty  () const noexcept -> bool;
 
@@ -148,7 +148,7 @@ namespace fatpound::utility
     private:
         memory::AlignedUniquePtr<ColorArr_t>   m_pBuffer_;
 
-        gfx::SizePack                          m_size_pack_;
+        SizePack                               m_size_pack_;
 
         Size_t                                 m_align_byte_{};
         Size_t                                 m_pixel_pitch_{};

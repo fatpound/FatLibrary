@@ -1,6 +1,6 @@
 #include "FullScreenQuad.hpp"
 
-namespace fatpound::utility::gfx
+namespace fatpound::win32::d3d11
 {
     auto FullScreenQuad::S_GenerateVertices() -> std::vector<Vertex>
     {

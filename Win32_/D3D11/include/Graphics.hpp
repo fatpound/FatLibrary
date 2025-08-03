@@ -12,14 +12,16 @@
 
 #include <DirectXMath.h>
 
-#include <Utility/Gfx/Gfx.hpp>
 #include <Win32_/D3D11/Core/Core.hpp>
 #include <Win32_/D3D11/Resource/Resource.hpp>
 #include <Win32_/D3D11/Shader/Shader.hpp>
 
 #include <Traits/include/Bitwise.hpp>
+#include <Utility/include/SizePack.hpp>
 #include <Utility/include/Surface.hpp>
 #include <Win32_/D3D11/include/Bindable.hpp>
+#include <Win32_/D3D11/include/FullScreenQuad.hpp>
+#include <Win32_/D3D11/include/ResourcePack.hpp>
 #include <Win32_/DXGI/include/Common.hpp>
 
 #include <cstring>
@@ -47,17 +49,17 @@ namespace fatpound::win32::d3d11
         static constexpr auto NotFramework         = not Framework;
         static constexpr auto RasterizationEnabled = NotFramework;
 
-        using ResourcePack_t   = std::conditional_t<Framework, FATSPACE_UTILITY_GFX::FrameworkResourcePack, FATSPACE_UTILITY_GFX::ResourcePack>;
-        using FullScreenQuad_t = utility::gfx::FullScreenQuad; // for Framework
-        using Surface_t        = utility::Surface;             // for Framework
-        using Color_t          = Surface_t::Color_t;           // for Framework
+        using ResourcePack_t   = std::conditional_t<Framework, FrameworkResourcePack, ResourcePack>;
+        using FullScreenQuad_t = FullScreenQuad;     // for Framework
+        using Surface_t        = utility::Surface;   // for Framework
+        using Color_t          = Surface_t::Color_t; // for Framework
 
     public:
         using Float_t = float;
 
 
     public:
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY::SizePack& dimensions)
             :
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
@@ -69,7 +71,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions) requires(Framework)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY::SizePack& dimensions) requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
@@ -82,13 +84,13 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY_GFX::SizePack& dimensions, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY::SizePack& dimensions, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
             Graphics(hWnd, dimensions)
         {
             InitFramework_(VShaderPath, PShaderPath);
         }
-        explicit Graphics(const HWND& hWnd, std::unique_ptr<Surface_t> pSurface,              const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+        explicit Graphics(const HWND& hWnd, std::unique_ptr<Surface_t> pSurface,          const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
             Graphics(hWnd, pSurface->GetSizePack(), VShaderPath, PShaderPath)
         {
@@ -606,16 +608,16 @@ namespace fatpound::win32::d3d11
 
 
     private:
-        ResourcePack_t                         m_res_pack_{};
-
-        const HWND                             mc_hWnd_;
-        const FATSPACE_UTILITY_GFX::SizePack   mc_dimensions_;
-
-        UINT                                   m_msaa_count_{};
-        UINT                                   m_msaa_quality_{};
-        UINT                                   m_dxgi_mode_{};
-
-        std::unique_ptr<Surface_t>             m_pSurface_;
+        ResourcePack_t                     m_res_pack_{};
+                                           
+        const HWND                         mc_hWnd_;
+        const FATSPACE_UTILITY::SizePack   mc_dimensions_;
+                                           
+        UINT                               m_msaa_count_{};
+        UINT                               m_msaa_quality_{};
+        UINT                               m_dxgi_mode_{};
+                                           
+        std::unique_ptr<Surface_t>         m_pSurface_;
     };
 }
 

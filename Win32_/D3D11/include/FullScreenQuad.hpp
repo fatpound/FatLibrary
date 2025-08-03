@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace fatpound::utility::gfx
+namespace fatpound::win32::d3d11
 {
     struct FullScreenQuad
     {
