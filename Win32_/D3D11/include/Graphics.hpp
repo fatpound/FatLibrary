@@ -598,7 +598,7 @@ namespace fatpound::win32::d3d11
         void UnMapSubresourceAndDraw_          () requires(Framework)
         {
             GetImmediateContext()->Unmap(GetSysbufferTexture(), 0U);
-            GetImmediateContext()->Draw(6U, 0U);
+            GetImmediateContext()->Draw(3U, 0U);
         }
 
         void ToggleAltEnterMode_()
