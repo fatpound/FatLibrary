@@ -7,6 +7,7 @@
 #include <wrl.h>
 
 #include <Win32_/D3D11/include/Bindable.hpp>
+#include <Win32_/D3D11/Core/include/DepthStencil.hpp>
 #include <Win32_/D3D11/Resource/include/Texture2D.hpp>
 
 namespace fatpound::win32::d3d11::core
@@ -15,6 +16,7 @@ namespace fatpound::win32::d3d11::core
     {
     public:
         explicit RenderTarget(ID3D11Device* const pDevice, const resource::Texture2D& tex2d);
+        explicit RenderTarget(ID3D11Device* const pDevice, const resource::Texture2D& tex2d, const DepthStencil& ds);
 
         explicit RenderTarget()                        = default;
         explicit RenderTarget(const RenderTarget&)     = delete;
@@ -30,13 +32,15 @@ namespace fatpound::win32::d3d11::core
 
 
     public:
-        auto GetView() const noexcept -> ID3D11RenderTargetView*;
+        auto GetView   () const noexcept -> ID3D11RenderTargetView*;
+        auto GetDSView () const noexcept -> ID3D11DepthStencilView*;
 
-        void BindWithDepthStencilView(ID3D11DeviceContext* pImmediateContext, ID3D11DepthStencilView* const pDSV);
+        auto HasDepthStencil () const noexcept -> bool;
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11RenderTargetView>  m_pRTV_;
+        Microsoft::WRL::ComPtr<ID3D11RenderTargetView>   m_pRTV_;
+        const DepthStencil*                              m_pDepthStencil_{};
 
 
     private:
