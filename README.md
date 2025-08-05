@@ -17,11 +17,11 @@ Since it is header-only, there is no need to add a reference to that (static) li
 
 `About The Code`
 ----------------
-No warnings on `GCC 14.2` and `GCC 15.1` with [these](https://github.com/fatpound/CxxMade/blob/main/CompileOptions.cmake#L17-L56) compiler options\
-No warnings on `Clang 19` with [these](https://github.com/fatpound/CxxMade/blob/main/CompileOptions.cmake#L58-L101) compiler options\
-No warnings on `MSVC v19.43.34808` and `MSVC 19.44.35208` with [these](https://github.com/fatpound/CxxMade/blob/main/CompileOptions.cmake#L132-L209) compiler options\
-No warnings with `Microsoft C++ Native Recommended Rules` and some more [rules](https://github.com/fatpound/FatLibrary/blob/main/_misc/FatRules.ruleset)\
-No warnings in `clang-tidy 19` with [these](https://github.com/fatpound/CxxMade/blob/main/.clang-tidy) checks\
+No warnings on `GCC 14.2` and `GCC 15.1` with [these](https://github.com/fatpound/FatCodex/blob/main/CompileOptions.cmake#L19-L68) compiler options\
+No warnings on `Clang 19` with [these](https://github.com/fatpound/FatCodex/blob/main/CompileOptions.cmake#L69-L128) compiler options\
+No warnings on `MSVC v19.43.34808` and `MSVC 19.44.35208` with [these](https://github.com/fatpound/FatCodex/blob/main/CompileOptions.cmake#L162-L248) compiler options\
+No warnings with `Microsoft C++ Native Recommended Rules` and some more [rules](https://github.com/fatpound/FatCodex/blob/main/FatRules.ruleset)\
+No warnings in `clang-tidy 19` with [these](https://github.com/fatpound/FatCodex/blob/main/.clang-tidy) checks\
 No warnings in `PVS-Studio v7.35`
 
 `Class Diagram (outdated)`
