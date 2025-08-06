@@ -13,7 +13,7 @@ namespace fatpound::win32::d3d11::shader
     class Sampler : public Bindable
     {
     public:
-        explicit Sampler(ID3D11Device* const pDevice, const D3D11_SAMPLER_DESC& sDesc);
+        explicit Sampler(ID3D11Device* const pDevice, const D3D11_SAMPLER_DESC& sDesc, const UINT& startSlot = 0U);
 
         explicit Sampler()                   = delete;
         explicit Sampler(const Sampler&)     = delete;
@@ -29,7 +29,8 @@ namespace fatpound::win32::d3d11::shader
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11SamplerState>  m_pSamplerState_;
+        Microsoft::WRL::ComPtr<ID3D11SamplerState>   m_pSamplerState_;
+        UINT                                         m_start_slot_{};
 
 
     private:

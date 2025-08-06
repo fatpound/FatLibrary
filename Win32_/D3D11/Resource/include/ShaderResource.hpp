@@ -14,7 +14,7 @@ namespace fatpound::win32::d3d11::resource
     class ShaderResource : public Bindable
     {
     public:
-        explicit ShaderResource(ID3D11Device* const pDevice, const Texture2D& tex2d, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc);
+        explicit ShaderResource(ID3D11Device* const pDevice, const Texture2D& tex2d, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc, const UINT& startSlot = 0U);
 
         explicit ShaderResource()                          = delete;
         explicit ShaderResource(const ShaderResource&)     = delete;
@@ -34,7 +34,8 @@ namespace fatpound::win32::d3d11::resource
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>  m_pSRV_;
+        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>   m_pSRV_;
+        UINT                                               m_start_slot_{};
 
 
     private:
