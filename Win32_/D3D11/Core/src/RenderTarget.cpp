@@ -13,12 +13,17 @@ namespace fatpound::win32::d3d11::core
             throw std::runtime_error("Could NOT create RenderTargetView!");
         }
     }
-    RenderTarget::RenderTarget(ID3D11Device* const pDevice, const resource::Texture2D& tex2d, const DepthStencil& ds)
+    RenderTarget::RenderTarget(
+        ID3D11Device* const pDevice,
+        const resource::Texture2D& rtvTex2d,
+        const resource::Texture2D& dsvTex2d,
+        const D3D11_DEPTH_STENCIL_VIEW_DESC& dsvDesc)
         :
-        RenderTarget(pDevice, tex2d)
+        RenderTarget(pDevice, rtvTex2d)
     {
-        m_pDepthStencil_ = &ds;
+        m_depth_stencil_.emplace(pDevice, dsvTex2d, dsvDesc);
     }
+
 
     void RenderTarget::Bind(ID3D11DeviceContext* pImmediateContext)
     {
@@ -35,12 +40,12 @@ namespace fatpound::win32::d3d11::core
     }
     auto RenderTarget::GetDSView () const noexcept -> ID3D11DepthStencilView*
     {
-        return m_pDepthStencil_ not_eq nullptr ? m_pDepthStencil_->GetView() : nullptr;
+        return HasDepthStencil() ? m_depth_stencil_->GetView() : nullptr;
     }
 
     auto RenderTarget::HasDepthStencil () const noexcept-> bool
     {
-        return m_pDepthStencil_ not_eq nullptr;
+        return m_depth_stencil_.has_value();
     }
 }
 

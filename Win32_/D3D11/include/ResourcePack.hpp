@@ -44,8 +44,6 @@ namespace fatpound::win32::d3d11
         auto operator = (const ResourcePack&)     -> ResourcePack& = delete;
         auto operator = (ResourcePack&&) noexcept -> ResourcePack& = delete;
         ~ResourcePack() noexcept                                   = default;
-
-        win32::d3d11::core::DepthStencil              m_depth_stencil;
     };
 
     struct FrameworkResourcePack : public details_rp::ResourcePackBase

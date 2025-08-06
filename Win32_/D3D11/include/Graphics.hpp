@@ -215,13 +215,13 @@ namespace fatpound::win32::d3d11
         {
             return mc_hWnd_;
         }
-        auto GetDevice           () const noexcept -> ID3D11Device*
-        {
-            return m_res_pack_.m_pDevice.Get();
-        }
         auto GetSwapChain        () const noexcept -> IDXGISwapChain*
         {
             return m_res_pack_.m_pSwapChain.Get();
+        }
+        auto GetDevice           () const noexcept -> ID3D11Device*
+        {
+            return m_res_pack_.m_pDevice.Get();
         }
         auto GetImmediateContext () const noexcept -> ID3D11DeviceContext*
         {
@@ -229,15 +229,15 @@ namespace fatpound::win32::d3d11
         }
         auto GetRenderTargetView () const noexcept -> ID3D11RenderTargetView*
         {
-            return m_res_pack_.m_pRTV.Get();
+            return m_res_pack_.m_render_target.GetView();
         }
         auto GetDepthStencilView () const noexcept -> ID3D11DepthStencilView*
         {
-            return m_res_pack_.m_pDSV.Get();
+            return m_res_pack_.m_render_target.GetDSView();
         }
         auto GetSysbufferTexture () const noexcept -> ID3D11Texture2D* requires(Framework)
         {
-            return m_res_pack_.m_pSysbufferTex2d.Get();
+            return m_res_pack_.m_pSysbufferTex2d.GetBuffer();
         }
 
         auto GetMSAACount        () const noexcept
@@ -523,8 +523,7 @@ namespace fatpound::win32::d3d11
                                    }
                 };
 
-                m_res_pack_.m_depth_stencil = core::DepthStencil{ GetDevice(), resource::Texture2D{ GetDevice(), tex2dDesc }, dsvDesc };
-                m_res_pack_.m_render_target = core::RenderTarget{ GetDevice(), resource::Texture2D{ GetSwapChain() }, m_res_pack_.m_depth_stencil };
+                m_res_pack_.m_render_target = core::RenderTarget{ GetDevice(), resource::Texture2D{ GetSwapChain() }, resource::Texture2D{ GetDevice(), tex2dDesc }, dsvDesc };
             }
             else
             {
