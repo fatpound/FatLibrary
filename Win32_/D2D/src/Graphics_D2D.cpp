@@ -22,27 +22,36 @@ namespace fatpound::win32::d2d
         {
             throw std::runtime_error("A problem occured when creating the HwndRenderTarget!");
         }
+
+        if (FAILED(m_pRenderTarget_->CreateSolidColorBrush(Color_t{}, &m_pSolidBrush_)))
+        {
+            throw std::runtime_error("Could NOT create SolidColorBrush!");
+        }
     }
 
 
-    void Graphics::ClearScreen(const float& r, const float& g, const float& b) noexcept
+    auto Graphics::GetSolidBrushColor() noexcept -> Color_t
     {
-        m_pRenderTarget_->Clear(D2D1::ColorF(r, g, b));
+        return m_pSolidBrush_->GetColor();
+    }
+    void Graphics::SetSolidBrushColor(const Color_t& color) noexcept
+    {
+        m_pSolidBrush_->SetColor(color);
     }
 
     void Graphics::DrawLine(const Point_t& p0, const Point_t& p1) noexcept
     {
-        m_pRenderTarget_->DrawLine(p0, p1, m_pBrush_.Get());
+        m_pRenderTarget_->DrawLine(p0, p1, m_pSolidBrush_.Get());
     }
     void Graphics::DrawLine(const Point_t& p0, const Point_t& p1, const Color_t& color) noexcept
     {
-        m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
+        SetSolidBrushColor(color);
 
         DrawLine(p0, p1);
     }
     void Graphics::DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept
     {
-        m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
+        SetSolidBrushColor(color);
 
         for (std::size_t i{}; i < vertices.size(); ++i)
         {
@@ -57,7 +66,7 @@ namespace fatpound::win32::d2d
     }
     void Graphics::DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color, const DirectX::XMMATRIX& transform) noexcept
     {
-        m_pRenderTarget_->CreateSolidColorBrush(color, &m_pBrush_);
+        SetSolidBrushColor(color);
 
         for (std::size_t i = 1U; i < vertices.size() + 1U; ++i)
         {
@@ -76,6 +85,10 @@ namespace fatpound::win32::d2d
         }
     }
 
+    void Graphics::ClearScreen(const float& r, const float& g, const float& b, const float& a) noexcept
+    {
+        m_pRenderTarget_->Clear(Color_t{ r, g, b, a });
+    }
     void Graphics::EndFrame() noexcept
     {
         m_pRenderTarget_->EndDraw();

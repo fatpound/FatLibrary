@@ -64,21 +64,23 @@ namespace fatpound::win32::d2d
             }
         }
 
-        template <float r = 0.0F, float g = 0.0F, float b = 0.0F>
+        template <float r = 0.0F, float g = 0.0F, float b = 0.0F, float a = 1.0F>
         void ClearScreen() noexcept
         {
-            m_pRenderTarget_->Clear(D2D1::ColorF(r, g, b));
+            m_pRenderTarget_->Clear(Color_t{ r, g, b, a });
         }
 
 
     public:
-        void ClearScreen(const float& r, const float& g, const float& b) noexcept;
+        auto GetSolidBrushColor() noexcept -> Color_t;
+        void SetSolidBrushColor(const Color_t& color) noexcept;
 
         void DrawLine(const Point_t& p0, const Point_t& p1) noexcept;
         void DrawLine(const Point_t& p0, const Point_t& p1, const Color_t& color) noexcept;
         void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept;
         void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color, const DirectX::XMMATRIX& transform) noexcept;
 
+        void ClearScreen(const float& r, const float& g, const float& b, const float& a = 1.0F) noexcept;
         void EndFrame() noexcept;
 
 
@@ -87,7 +89,7 @@ namespace fatpound::win32::d2d
         
     private:
         Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget>   m_pRenderTarget_;
-        Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>    m_pBrush_;
+        Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>    m_pSolidBrush_;
 
         const utility::SizePack                         mc_dimensions_;
     };
