@@ -24,6 +24,8 @@ No warnings with `Microsoft C++ Native Recommended Rules` and some more [rules](
 No warnings in `clang-tidy 19` with [these](https://github.com/fatpound/FatCodex/blob/main/.clang-tidy) checks\
 No warnings in `PVS-Studio v7.35`
 
+Copyright (c) fatpound
+
 `Class Diagram (outdated)`
 --------------------------
 ![FatLibrary](https://github.com/user-attachments/assets/8ad721e9-1bb9-4d4e-a1db-6aec472766eb)
