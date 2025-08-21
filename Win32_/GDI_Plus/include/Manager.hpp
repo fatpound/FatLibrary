@@ -3,7 +3,7 @@
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
 #define FATPOUND_FULL_WIN_TARGETED
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #undef FATPOUND_FULL_WIN_TARGETED
 
 namespace fatpound::win32::gdi_plus

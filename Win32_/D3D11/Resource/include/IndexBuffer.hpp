@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -37,10 +37,10 @@ namespace fatpound::win32::d3d11::resource
 
         explicit IndexBuffer()                       = delete;
         explicit IndexBuffer(const IndexBuffer&)     = delete;
-        explicit IndexBuffer(IndexBuffer&&) noexcept = delete;
+        explicit IndexBuffer(IndexBuffer&&) noexcept = default;
 
         auto operator = (const IndexBuffer&)     -> IndexBuffer& = delete;
-        auto operator = (IndexBuffer&&) noexcept -> IndexBuffer& = delete;
+        auto operator = (IndexBuffer&&) noexcept -> IndexBuffer& = default;
         virtual ~IndexBuffer() noexcept override                 = default;
 
 

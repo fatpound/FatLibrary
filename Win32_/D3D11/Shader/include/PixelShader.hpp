@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include <wrl.h>
@@ -21,10 +21,10 @@ namespace fatpound::win32::d3d11::shader
 
         explicit PixelShader()                       = delete;
         explicit PixelShader(const PixelShader&)     = delete;
-        explicit PixelShader(PixelShader&&) noexcept = delete;
+        explicit PixelShader(PixelShader&&) noexcept = default;
 
         auto operator = (const PixelShader&)     -> PixelShader& = delete;
-        auto operator = (PixelShader&&) noexcept -> PixelShader& = delete;
+        auto operator = (PixelShader&&) noexcept -> PixelShader& = default;
         virtual ~PixelShader() noexcept override                 = default;
 
 

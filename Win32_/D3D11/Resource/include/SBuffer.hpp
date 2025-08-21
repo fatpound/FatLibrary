@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -47,10 +47,10 @@ namespace fatpound::win32::d3d11::resource
 
         explicit SBuffer()                   = delete;
         explicit SBuffer(const SBuffer&)     = delete;
-        explicit SBuffer(SBuffer&&) noexcept = delete;
+        explicit SBuffer(SBuffer&&) noexcept = default;
 
         auto operator = (const SBuffer&)     -> SBuffer& = delete;
-        auto operator = (SBuffer&&) noexcept -> SBuffer& = delete;
+        auto operator = (SBuffer&&) noexcept -> SBuffer& = default;
         virtual ~SBuffer() noexcept override             = default;
 
 

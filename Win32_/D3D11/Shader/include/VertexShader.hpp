@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include <wrl.h>
@@ -21,10 +21,10 @@ namespace fatpound::win32::d3d11::shader
 
         explicit VertexShader()                        = delete;
         explicit VertexShader(const VertexShader&)     = delete;
-        explicit VertexShader(VertexShader&&) noexcept = delete;
+        explicit VertexShader(VertexShader&&) noexcept = default;
 
         auto operator = (const VertexShader&)     -> VertexShader& = delete;
-        auto operator = (VertexShader&&) noexcept -> VertexShader& = delete;
+        auto operator = (VertexShader&&) noexcept -> VertexShader& = default;
         virtual ~VertexShader() noexcept override                  = default;
 
 

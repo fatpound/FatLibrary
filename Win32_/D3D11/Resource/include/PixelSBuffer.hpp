@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -18,10 +18,10 @@ namespace fatpound::win32::d3d11::resource
     public:
         explicit PixelSBuffer()                        = delete;
         explicit PixelSBuffer(const PixelSBuffer&)     = delete;
-        explicit PixelSBuffer(PixelSBuffer&&) noexcept = delete;
+        explicit PixelSBuffer(PixelSBuffer&&) noexcept = default;
 
         auto operator = (const PixelSBuffer&)     -> PixelSBuffer& = delete;
-        auto operator = (PixelSBuffer&&) noexcept -> PixelSBuffer& = delete;
+        auto operator = (PixelSBuffer&&) noexcept -> PixelSBuffer& = default;
         virtual ~PixelSBuffer() noexcept override                  = default;
 
 

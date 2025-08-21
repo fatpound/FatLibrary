@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -18,10 +18,10 @@ namespace fatpound::win32::d3d11::resource
     public:
         explicit VertexCBuffer()                         = delete;
         explicit VertexCBuffer(const VertexCBuffer&)     = delete;
-        explicit VertexCBuffer(VertexCBuffer&&) noexcept = delete;
+        explicit VertexCBuffer(VertexCBuffer&&) noexcept = default;
 
         auto operator = (const VertexCBuffer&)     -> VertexCBuffer& = delete;
-        auto operator = (VertexCBuffer&&) noexcept -> VertexCBuffer& = delete;
+        auto operator = (VertexCBuffer&&) noexcept -> VertexCBuffer& = default;
         virtual ~VertexCBuffer() noexcept override                   = default;
 
 

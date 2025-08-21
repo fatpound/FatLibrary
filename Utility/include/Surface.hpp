@@ -65,7 +65,7 @@ namespace fatpound::utility
 
         
     public:
-        static auto CalculatePixelPitch(const Size_t& width, const Size_t& alignBytes) noexcept -> Size_t;
+        static auto S_CalculatePixelPitch(const Size_t& width, const Size_t& alignBytes) noexcept -> Size_t;
 
 
     public:
@@ -128,11 +128,10 @@ namespace fatpound::utility
 
 
     public:
-        auto ReleaseAndReset() noexcept -> Color_t*;
-
-        [[nodiscard]] auto GetSizePack () const noexcept -> SizePack;
-        [[nodiscard]] auto IsEmpty     () const noexcept -> bool;
-        [[nodiscard]] auto IsNotEmpty  () const noexcept -> bool;
+        [[nodiscard]] auto ReleaseAndReset ()       noexcept -> Color_t*;
+        [[nodiscard]] auto GetSizePack     () const noexcept -> SizePack;
+        [[nodiscard]] auto IsEmpty         () const noexcept -> bool;
+        [[nodiscard]] auto IsNotEmpty      () const noexcept -> bool;
 
         void Fill(const Color_t& color) noexcept;
         void Reset() noexcept;

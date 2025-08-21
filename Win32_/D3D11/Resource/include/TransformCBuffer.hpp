@@ -4,7 +4,7 @@
 
 #include <_macros/Namespaces.hpp>
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -32,10 +32,10 @@ namespace fatpound::win32::d3d11::resource
 
         explicit TransformCBuffer()                            = delete;
         explicit TransformCBuffer(const TransformCBuffer&)     = delete;
-        explicit TransformCBuffer(TransformCBuffer&&) noexcept = delete;
+        explicit TransformCBuffer(TransformCBuffer&&) noexcept = default;
 
         auto operator = (const TransformCBuffer&)     -> TransformCBuffer& = delete;
-        auto operator = (TransformCBuffer&&) noexcept -> TransformCBuffer& = delete;
+        auto operator = (TransformCBuffer&&) noexcept -> TransformCBuffer& = default;
         virtual ~TransformCBuffer() noexcept override                      = default;
 
 

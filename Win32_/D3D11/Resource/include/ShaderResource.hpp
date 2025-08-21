@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -18,10 +18,10 @@ namespace fatpound::win32::d3d11::resource
 
         explicit ShaderResource()                          = delete;
         explicit ShaderResource(const ShaderResource&)     = delete;
-        explicit ShaderResource(ShaderResource&&) noexcept = delete;
+        explicit ShaderResource(ShaderResource&&) noexcept = default;
 
         auto operator = (const ShaderResource&)     -> ShaderResource& = delete;
-        auto operator = (ShaderResource&&) noexcept -> ShaderResource& = delete;
+        auto operator = (ShaderResource&&) noexcept -> ShaderResource& = default;
         virtual ~ShaderResource() noexcept override                    = default;
 
 

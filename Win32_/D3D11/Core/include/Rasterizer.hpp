@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -17,10 +17,10 @@ namespace fatpound::win32::d3d11::core
 
         explicit Rasterizer()                      = delete;
         explicit Rasterizer(const Rasterizer&)     = delete;
-        explicit Rasterizer(Rasterizer&&) noexcept = delete;
+        explicit Rasterizer(Rasterizer&&) noexcept = default;
 
         auto operator = (const Rasterizer&)     -> Rasterizer& = delete;
-        auto operator = (Rasterizer&&) noexcept -> Rasterizer& = delete;
+        auto operator = (Rasterizer&&) noexcept -> Rasterizer& = default;
         virtual ~Rasterizer() noexcept override                = default;
 
 

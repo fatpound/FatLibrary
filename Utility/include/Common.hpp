@@ -3,7 +3,7 @@
 #include <_macros/STL.hpp>
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
-    #include <Win32_/include/WinAPI.hpp>
+    #include <Win32_/include/FatWin.hpp>
 #endif
 
 #include <Traits/include/Bitwise.hpp>

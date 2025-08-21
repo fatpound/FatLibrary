@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 
 #include <Win32_/D3D11/include/Bindable.hpp>
@@ -16,10 +16,10 @@ namespace fatpound::win32::d3d11::core
 
         explicit Viewport()                    = delete;
         explicit Viewport(const Viewport&)     = delete;
-        explicit Viewport(Viewport&&) noexcept = delete;
+        explicit Viewport(Viewport&&) noexcept = default;
 
         auto operator = (const Viewport&)     -> Viewport& = delete;
-        auto operator = (Viewport&&) noexcept -> Viewport& = delete;
+        auto operator = (Viewport&&) noexcept -> Viewport& = default;
         virtual ~Viewport() noexcept override              = default;
 
 

@@ -308,10 +308,10 @@
     <ClInclude Include="Win32_\include\IWindow.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\include\WinAPI.hpp">
+    <ClInclude Include="Win32_\include\FatWin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32_\include\WinAPI_Settings.hpp">
+    <ClInclude Include="Win32_\include\FatWin_Settings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\include\WindowEx.hpp">
@@ -372,6 +372,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Win32_\D3D11\Shader\Shader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -772,7 +775,7 @@
     <ClCompile Include="Win32_\D3D11\Core\modules\Viewport.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Win32_\D3D11\Core\Core.ixx">
+    <ClCompile Include="Win32_\D3D11\Core\Core_D3D11.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\D3D11\Resource\modules\CBuffer.ixx">
@@ -818,6 +821,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\D3D11\Shader\modules\VertexShader.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\modules\Core_Win32.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

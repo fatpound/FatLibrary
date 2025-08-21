@@ -63,7 +63,7 @@ namespace fatpound::utility
         m_pBuffer_(memory::MakeAlignedUniquePtr<ColorArr_t>(alignBytes, dimensions.m_width * dimensions.m_height)),
         m_size_pack_(dimensions),
         m_align_byte_(alignBytes),
-        m_pixel_pitch_(CalculatePixelPitch(GetWidth<>(), GetAlignment<>()))
+        m_pixel_pitch_(S_CalculatePixelPitch(GetWidth<>(), GetAlignment<>()))
     {
 
     }
@@ -145,7 +145,7 @@ namespace fatpound::utility
         return IsEmpty();
     }
 
-    auto Surface::CalculatePixelPitch(const Size_t& width, const Size_t& alignBytes) noexcept -> Size_t
+    auto Surface::S_CalculatePixelPitch(const Size_t& width, const Size_t& alignBytes) noexcept -> Size_t
     {
         assert(alignBytes % 4 == 0);
         assert(alignBytes >= sizeof(Color_t));
@@ -201,10 +201,10 @@ namespace fatpound::utility
             m_pBuffer_.reset();
         }
 
-        m_size_pack_.m_width  = static_cast<Size_t>(0);
-        m_size_pack_.m_height = static_cast<Size_t>(0);
-        m_align_byte_         = static_cast<Size_t>(0);
-        m_pixel_pitch_        = static_cast<Size_t>(0);
+        m_size_pack_.m_width  = {};
+        m_size_pack_.m_height = {};
+        m_align_byte_         = {};
+        m_pixel_pitch_        = {};
     }
 
     void Surface::DeepCopyFrom_(const Surface& src) noexcept

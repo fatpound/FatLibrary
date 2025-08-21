@@ -135,9 +135,10 @@
     <ClInclude Include="Win32_\GDI_Plus\GDI_Plus.hpp" />
     <ClInclude Include="Win32_\GDI_Plus\include\Manager.hpp" />
     <ClInclude Include="Win32_\include\Common.hpp" />
+    <ClInclude Include="Win32_\include\Core.hpp" />
     <ClInclude Include="Win32_\include\IWindow.hpp" />
-    <ClInclude Include="Win32_\include\WinAPI.hpp" />
-    <ClInclude Include="Win32_\include\WinAPI_Settings.hpp" />
+    <ClInclude Include="Win32_\include\FatWin.hpp" />
+    <ClInclude Include="Win32_\include\FatWin_Settings.hpp" />
     <ClInclude Include="Win32_\include\WindowEx.hpp" />
     <ClInclude Include="Win32_\Win32.hpp" />
     <ClInclude Include="_macros\Compiler.hpp" />
@@ -244,7 +245,7 @@
     <ClCompile Include="Win32_\D2D\D2D.ixx" />
     <ClCompile Include="Win32_\D2D\modules\Graphics_D2D.ixx" />
     <ClCompile Include="Win32_\D2D\src\Graphics_D2D.cpp" />
-    <ClCompile Include="Win32_\D3D11\Core\Core.ixx" />
+    <ClCompile Include="Win32_\D3D11\Core\Core_D3D11.ixx" />
     <ClCompile Include="Win32_\D3D11\Core\modules\DepthStencil.ixx" />
     <ClCompile Include="Win32_\D3D11\Core\modules\InputLayout.ixx" />
     <ClCompile Include="Win32_\D3D11\Core\modules\Rasterizer.ixx" />
@@ -289,6 +290,7 @@
     <ClCompile Include="Win32_\GDI_Plus\modules\Manager_GDI_Plus.ixx" />
     <ClCompile Include="Win32_\GDI_Plus\src\Manager_GDI_Plus.cpp" />
     <ClCompile Include="Win32_\modules\Common_Win32.ixx" />
+    <ClCompile Include="Win32_\modules\Core_Win32.ixx" />
     <ClCompile Include="Win32_\modules\IWindow.ixx" />
     <ClCompile Include="Win32_\modules\WindowEx.ixx" />
     <ClCompile Include="Win32_\src\Common_Win32.cpp" />

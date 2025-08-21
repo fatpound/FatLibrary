@@ -2,7 +2,7 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Win32_/include/WinAPI.hpp>
+#include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
 #include <wrl.h>
 
@@ -22,7 +22,7 @@ namespace fatpound::win32::d3d11::resource
 
         explicit Texture2D()                     = default;
         explicit Texture2D(const Texture2D&)     = delete;
-        explicit Texture2D(Texture2D&&) noexcept = delete;
+        explicit Texture2D(Texture2D&&) noexcept = default;
 
         auto operator = (const Texture2D&)     -> Texture2D& = delete;
         auto operator = (Texture2D&&) noexcept -> Texture2D& = default;
