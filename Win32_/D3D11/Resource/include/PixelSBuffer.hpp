@@ -28,7 +28,7 @@ namespace fatpound::win32::d3d11::resource
     public:
         virtual void Bind(ID3D11DeviceContext* const pImmediateContext) override
         {
-            pImmediateContext->PSSetShaderResources(0U, 1U, this->m_pShaderResourceView_.GetAddressOf());
+            pImmediateContext->PSSetShaderResources(this->m_pVShaderResource_->GetStartSlot(), 1U, this->m_pVShaderResource_->GetAddressOfView());
         }
 
 

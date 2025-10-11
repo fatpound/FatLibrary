@@ -49,20 +49,25 @@ namespace fatpound::win32::d2d
 
         DrawLine(p0, p1);
     }
-    void Graphics::DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept
+    
+    void Graphics::DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices) noexcept
     {
-        SetSolidBrushColor(color);
-
         for (std::size_t i{}; i < vertices.size(); ++i)
         {
             const auto& current = vertices[i];
-            const auto& next = vertices[(i + 1U) % vertices.size()];
+            const auto& next    = vertices[(i + 1U) % vertices.size()];
 
             DrawLine(
                 D2D1::Point2F(current.x, current.y),
                 D2D1::Point2F(next.x, next.y)
             );
         }
+    }
+    void Graphics::DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept
+    {
+        SetSolidBrushColor(color);
+
+        DrawClosedPolyLine(vertices);
     }
     void Graphics::DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color, const DirectX::XMMATRIX& transform) noexcept
     {

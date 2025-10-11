@@ -8,6 +8,8 @@
 #include <Win32_/D3D11/Resource/include/PixelSBuffer.hpp>
 #include <Win32_/D3D11/Resource/include/SBuffer.hpp>
 #include <Win32_/D3D11/Resource/include/ShaderResource.hpp>
+#include <Win32_/D3D11/Resource/include/PixelShaderResource.hpp>
+#include <Win32_/D3D11/Resource/include/VertexShaderResource.hpp>
 #include <Win32_/D3D11/Resource/include/Texture2D.hpp>
 #include <Win32_/D3D11/Resource/include/TransformCBuffer.hpp>
 #include <Win32_/D3D11/Resource/include/VertexBuffer.hpp>

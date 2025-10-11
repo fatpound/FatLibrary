@@ -1,5 +1,7 @@
 #pragma once
 
+#include <_macros/STL.hpp>
+
 #include <Math/include/Multiplicative.hpp>
 #include <Math/Numbers/include/Common.hpp>
 #include <Traits/include/Bitwise.hpp>
@@ -9,7 +11,7 @@
 namespace fatpound::math
 {
     template <traits::IntegralOrFloating T>
-    inline constexpr auto Gaussian(const T& x, const T& rho)
+    CX_MATH26 inline auto Gaussian(const T& x, const T& rho)
     {
         const auto rhoSq2 = Square<>(rho) * 2.0;
 

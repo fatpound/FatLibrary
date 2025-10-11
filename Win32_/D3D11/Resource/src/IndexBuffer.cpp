@@ -13,7 +13,7 @@ namespace fatpound::win32::d3d11::resource
     {
         return m_format_;
     }
-    auto IndexBuffer::GetCount() const noexcept -> UINT
+    auto IndexBuffer::GetCount()  const noexcept -> UINT
     {
         return m_count_;
     }

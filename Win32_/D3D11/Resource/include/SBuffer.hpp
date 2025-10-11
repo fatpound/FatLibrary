@@ -7,8 +7,10 @@
 #include <wrl.h>
 
 #include <Win32_/D3D11/include/Bindable.hpp>
+#include <Win32_/D3D11/Resource/include/VertexShaderResource.hpp>
 
 #include <vector>
+#include <memory>
 #include <stdexcept>
 
 namespace fatpound::win32::d3d11::resource
@@ -20,29 +22,22 @@ namespace fatpound::win32::d3d11::resource
         explicit SBuffer(ID3D11Device* const pDevice, ID3D11DeviceContext* const pImmediateContext, const D3D11_BUFFER_DESC& bufDesc, const D3D11_SHADER_RESOURCE_VIEW_DESC& srvDesc, const std::vector<T>& structures)
         {
             {
-                Microsoft::WRL::ComPtr<ID3D11Buffer> pBuffer;
-                 
+                const D3D11_SUBRESOURCE_DATA initData
                 {
-                    const D3D11_SUBRESOURCE_DATA initData
-                    {
-                        .pSysMem          = structures.data(),
-                        .SysMemPitch      = {},
-                        .SysMemSlicePitch = {}
-                    };
+                    .pSysMem          = structures.data(),
+                    .SysMemPitch      = {},
+                    .SysMemSlicePitch = {}
+                };
 
-                    if (FAILED(pDevice->CreateBuffer(&bufDesc, &initData, &pBuffer)))
-                    {
-                        throw std::runtime_error("Could NOT create SBuffer!");
-                    }
-                }
-
-                if (FAILED(pDevice->CreateShaderResourceView(pBuffer.Get(), &srvDesc, &m_pShaderResourceView_)))
+                if (FAILED(pDevice->CreateBuffer(&bufDesc, &initData, &m_pBuffer_)))
                 {
-                    throw std::runtime_error("Could NOT create ShaderResourceView!");
+                    throw std::runtime_error("Could NOT create SBuffer!");
                 }
             }
 
-            pImmediateContext->VSSetShaderResources(0U, 1U, m_pShaderResourceView_.GetAddressOf());
+            m_pVShaderResource_ = std::make_unique<VertexShaderResource>(pDevice, m_pBuffer_.Get(), srvDesc);
+
+            m_pVShaderResource_->Bind(pImmediateContext);
         }
 
         explicit SBuffer()                   = delete;
@@ -55,7 +50,8 @@ namespace fatpound::win32::d3d11::resource
 
 
     protected:
-        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>  m_pShaderResourceView_;
+        Microsoft::WRL::ComPtr<ID3D11Buffer>    m_pBuffer_;
+        std::unique_ptr<VertexShaderResource>   m_pVShaderResource_;
 
 
     private:

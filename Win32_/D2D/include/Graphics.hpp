@@ -77,8 +77,9 @@ namespace fatpound::win32::d2d
 
         void DrawLine(const Point_t& p0, const Point_t& p1) noexcept;
         void DrawLine(const Point_t& p0, const Point_t& p1, const Color_t& color) noexcept;
-        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color) noexcept;
-        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const D2D1_COLOR_F& color, const DirectX::XMMATRIX& transform) noexcept;
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices) noexcept;
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const Color_t& color) noexcept;
+        void DrawClosedPolyLine(const std::vector<DirectX::XMFLOAT2>& vertices, const Color_t& color, const DirectX::XMMATRIX& transform) noexcept;
 
         void ClearScreen(const float& r, const float& g, const float& b, const float& a = 1.0F) noexcept;
         void EndFrame() noexcept;

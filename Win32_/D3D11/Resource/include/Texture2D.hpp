@@ -7,9 +7,6 @@
 #include <wrl.h>
 
 #include <Utility/include/Surface.hpp>
-#include <Win32_/D3D11/include/Bindable.hpp>
-
-#include <memory>
 
 namespace fatpound::win32::d3d11::resource
 {
