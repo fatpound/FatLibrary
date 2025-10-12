@@ -377,6 +377,12 @@
     <ClInclude Include="Win32_\include\Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Resource\include\PixelShaderResource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\D3D11\Resource\include\VertexShaderResource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph\src\BFS.cpp">
@@ -824,6 +830,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\modules\Core_Win32.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\D3D11\Resource\modules\PixelShaderResource.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\D3D11\Resource\modules\VertexShaderResource.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\D3D11\Resource\src\PixelShaderResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\D3D11\Resource\src\VertexShaderResource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

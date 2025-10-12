@@ -112,6 +112,8 @@
     <ClInclude Include="Win32_\D3D11\Core\include\Viewport.hpp" />
     <ClInclude Include="Win32_\D3D11\Resource\include\IndexBuffer.hpp" />
     <ClInclude Include="Win32_\D3D11\Core\include\InputLayout.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\PixelShaderResource.hpp" />
+    <ClInclude Include="Win32_\D3D11\Resource\include\VertexShaderResource.hpp" />
     <ClInclude Include="Win32_\D3D11\Resource\Resource.hpp" />
     <ClInclude Include="Win32_\D3D11\Shader\include\PixelShader.hpp" />
     <ClInclude Include="Win32_\D3D11\Core\include\Topology.hpp" />
@@ -229,6 +231,10 @@
     <ClCompile Include="Win32_\D3D11\modules\FullScreenQuad.ixx" />
     <ClCompile Include="Win32_\D3D11\modules\ResourcePack.ixx" />
     <ClCompile Include="Utility\modules\SizePack.ixx" />
+    <ClCompile Include="Win32_\D3D11\Resource\modules\PixelShaderResource.ixx" />
+    <ClCompile Include="Win32_\D3D11\Resource\modules\VertexShaderResource.ixx" />
+    <ClCompile Include="Win32_\D3D11\Resource\src\PixelShaderResource.cpp" />
+    <ClCompile Include="Win32_\D3D11\Resource\src\VertexShaderResource.cpp" />
     <ClCompile Include="Win32_\D3D11\src\FullScreenQuad.cpp" />
     <ClCompile Include="Win32_\D3D11\src\ResourcePack.cpp" />
     <ClCompile Include="Utility\modules\Common_Utility.ixx" />
