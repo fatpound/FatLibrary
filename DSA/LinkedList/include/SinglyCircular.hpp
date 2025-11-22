@@ -182,8 +182,8 @@ namespace fatpound::dsa::linkedlist
                 return;
             }
 
-            Node_* const start = this->GetStartNode_();
-            Node_*       temp  = this->GetStartNode_(); // -V656
+            const Node_* const start = this->GetStartNode_();
+                  Node_*       temp  = this->GetStartNode_(); // -V656
 
             do
             {

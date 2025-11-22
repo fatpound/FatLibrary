@@ -51,7 +51,7 @@ namespace fatx::gstreamer
 
 
     public:
-        void SetPitchAsync(Pipeline& pipeline, const double newPitch)
+        void SetPitchAsync(Pipeline& pipeline, const double newPitch) noexcept
         {
             pipeline.RunFunc(
                 [pPitch = this->m_pPitch_, newPitch]() noexcept -> void
