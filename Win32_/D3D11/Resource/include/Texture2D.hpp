@@ -14,7 +14,7 @@ namespace fatpound::win32::d3d11::resource
     {
     public:
         explicit Texture2D(IDXGISwapChain* const pSwapChain);
-        explicit Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, std::shared_ptr<FATSPACE_UTILITY::Surface> pSurface);
+        explicit Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, std::shared_ptr<utility::Surface> pSurface);
         explicit Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc);
 
         explicit Texture2D()                     = default;

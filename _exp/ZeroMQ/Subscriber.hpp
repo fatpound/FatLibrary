@@ -1,13 +1,6 @@
 #pragma once
 
-#include <_misc/FatCodex/Macros/ExternalWarnings_MSVC.hpp>
-
-#pragma warning (push)
-#pragma warning (disable : MSVC_EXWARN_CPPZMQ)
-#include <zmq.hpp>
-#pragma warning (pop)
-
-#pragma comment(lib, "iphlpapi")
+#include "FatZmq.hpp"
 
 #include <string>
 
@@ -55,8 +48,8 @@ namespace fatx
 
 
         private:
-            zmq::context_t m_context_;
-            zmq::socket_t  m_subscriber_;
+            zmq::context_t  m_context_;
+            zmq::socket_t   m_subscriber_;
         };
     }
 }

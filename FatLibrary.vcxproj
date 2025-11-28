@@ -33,6 +33,7 @@
     <ClInclude Include="Colors\ARGB\ARGB.hpp" />
     <ClInclude Include="Colors\ARGB\include\Color.hpp" />
     <ClInclude Include="Colors\ARGB\include\Common.hpp" />
+    <ClInclude Include="Concurrency\include\ThreadPool.hpp" />
     <ClInclude Include="File\include\Common.hpp" />
     <ClInclude Include="Geometry\Shape\Shape.hpp" />
     <ClInclude Include="Graph\Graph.hpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Win32_\include\IWindow.hpp" />
     <ClInclude Include="Win32_\include\FatWin.hpp" />
     <ClInclude Include="Win32_\include\FatWin_Settings.hpp" />
+    <ClInclude Include="Win32_\include\MessageMap.hpp" />
     <ClInclude Include="Win32_\include\WindowEx.hpp" />
     <ClInclude Include="Win32_\Win32.hpp" />
     <ClInclude Include="_macros\Compiler.hpp" />
@@ -164,6 +166,8 @@
     <ClCompile Include="Colors\Colors.ixx" />
     <ClCompile Include="Concurrency\Concurrency.ixx" />
     <ClCompile Include="Concurrency\modules\TaskQueue.ixx" />
+    <ClCompile Include="Concurrency\modules\ThreadPool.ixx" />
+    <ClCompile Include="Concurrency\src\ThreadPool.cpp" />
     <ClCompile Include="Cryptography\Cryptography.ixx" />
     <ClCompile Include="Cryptography\modules\XorCipher.ixx" />
     <ClCompile Include="DSA\DSA.ixx" />
@@ -298,9 +302,11 @@
     <ClCompile Include="Win32_\modules\Common_Win32.ixx" />
     <ClCompile Include="Win32_\modules\Core_Win32.ixx" />
     <ClCompile Include="Win32_\modules\IWindow.ixx" />
+    <ClCompile Include="Win32_\modules\MessageMap.ixx" />
     <ClCompile Include="Win32_\modules\WindowEx.ixx" />
     <ClCompile Include="Win32_\src\Common_Win32.cpp" />
     <ClCompile Include="Win32_\src\IWindow.cpp" />
+    <ClCompile Include="Win32_\src\MessageMap.cpp" />
     <ClCompile Include="Win32_\Win32.ixx" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

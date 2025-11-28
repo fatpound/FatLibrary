@@ -12,4 +12,7 @@ namespace fatpound::traits
 
     template <typename T>
     concept Array = std::is_array_v<T>; // or BoundedArray<T> or UnboundedArray<T>
+
+    template <Array T>
+    constexpr auto ArrayRank_v = std::rank_v<T>;
 }

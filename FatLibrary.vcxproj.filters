@@ -383,6 +383,12 @@
     <ClInclude Include="Win32_\D3D11\Resource\include\VertexShaderResource.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Concurrency\include\ThreadPool.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32_\include\MessageMap.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph\src\BFS.cpp">
@@ -842,6 +848,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\D3D11\Resource\src\VertexShaderResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Concurrency\modules\ThreadPool.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Concurrency\src\ThreadPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\modules\MessageMap.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32_\src\MessageMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

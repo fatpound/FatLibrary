@@ -3,7 +3,6 @@
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
 #include <_macros/Compiler.hpp>
-#include <_macros/Namespaces.hpp>
 
 #include <Win32_/include/FatWin.hpp>
 #include <d3d11_4.h>
@@ -59,7 +58,7 @@ namespace fatpound::win32::d3d11
 
 
     public:
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY::SizePack& dimensions)
+        explicit Graphics(const HWND& hWnd, const utility::SizePack& dimensions)
             :
             mc_hWnd_(hWnd),
             mc_dimensions_{ dimensions }
@@ -71,7 +70,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY::SizePack& dimensions) requires(Framework)
+        explicit Graphics(const HWND& hWnd, const utility::SizePack& dimensions) requires(Framework)
             :
             m_res_pack_(dimensions),
             mc_hWnd_(hWnd),
@@ -84,7 +83,7 @@ namespace fatpound::win32::d3d11
                 InitRasterizer_();
             }
         }
-        explicit Graphics(const HWND& hWnd, const FATSPACE_UTILITY::SizePack& dimensions, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
+        explicit Graphics(const HWND& hWnd, const utility::SizePack& dimensions, const std::wstring& VShaderPath, const std::wstring& PShaderPath) requires(Framework)
             :
             Graphics(hWnd, dimensions)
         {
@@ -605,16 +604,16 @@ namespace fatpound::win32::d3d11
 
 
     private:
-        ResourcePack_t                     m_res_pack_{};
-                                           
-        const HWND                         mc_hWnd_;
-        const FATSPACE_UTILITY::SizePack   mc_dimensions_;
-                                           
-        UINT                               m_msaa_count_{};
-        UINT                               m_msaa_quality_{};
-        UINT                               m_dxgi_mode_{};
-                                           
-        std::unique_ptr<Surface_t>         m_pSurface_;
+        ResourcePack_t               m_res_pack_{};
+                                     
+        const HWND                   mc_hWnd_;
+        const utility::SizePack      mc_dimensions_;
+
+        UINT                         m_msaa_count_{};
+        UINT                         m_msaa_quality_{};
+        UINT                         m_dxgi_mode_{};
+
+        std::unique_ptr<Surface_t>   m_pSurface_;
     };
 }
 

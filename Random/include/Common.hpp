@@ -1,7 +1,5 @@
 #pragma once
 
-#include <_macros/Namespaces.hpp>
-
 #include <Colors/ARGB/include/Color.hpp>
 #include <Math/Numbers/include/Primes.hpp>
 #include <Traits/include/Bitwise.hpp>
@@ -93,17 +91,17 @@ namespace fatpound::random
     {
         const auto& num = static_cast<T>(dist(rng));
 
-        if (FATSPACE_NUMBERS::IsPrime<>(num))
+        if (math::numbers::IsPrime<>(num))
         {
             return num;
         }
 
-        if (const auto& next = FATSPACE_NUMBERS::NextPrime<>(num); next <= dist.max())
+        if (const auto& next = math::numbers::NextPrime<>(num); next <= dist.max())
         {
             return next;
         }
 
-        if (const auto& prev = FATSPACE_NUMBERS::PrevPrime<>(num); dist.min() <= prev)
+        if (const auto& prev = math::numbers::PrevPrime<>(num); dist.min() <= prev)
         {
             return prev;
         }

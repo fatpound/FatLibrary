@@ -2,7 +2,6 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <_macros/Namespaces.hpp>
 #include <_macros/Compiler.hpp>
 
 #include <Win32_/include/Common.hpp>
@@ -271,7 +270,7 @@ public:
                 break;
 
             case scx_customTaskMsgId_:
-                m_tasks_.ExecuteFirstAndPopOff();
+                m_tasks_.PopAndExecute();
                 return 0;
 
             case WM_SYSCOMMAND:
@@ -395,15 +394,15 @@ public:
 
 
     protected:
-        FATSPACE_CONCURRENCY::TaskQueue   m_tasks_;
-        std::shared_ptr<WndClassEx>       m_pWndClassEx_;
-        const utility::SizePack           mc_client_size_;
+        concurrency::TaskQueue        m_tasks_;
+        std::shared_ptr<WndClassEx>   m_pWndClassEx_;
+        const utility::SizePack       mc_client_size_;
 
-        HWND                              m_hWnd_{};
-                                          
-        std::atomic_bool                  m_is_closing_{};
-        std::binary_semaphore             m_start_signal_{ 0 };
-        std::jthread                      m_msg_jthread_;
+        HWND                          m_hWnd_{};
+
+        std::atomic_bool              m_is_closing_{};
+        std::binary_semaphore         m_start_signal_{ 0 };
+        std::jthread                  m_msg_jthread_;
 
 
     private:
@@ -417,7 +416,7 @@ public:
         void MessageKernel_()
         {
             m_start_signal_.acquire();
-            m_tasks_.ExecuteFirstAndPopOff();
+            m_tasks_.PopAndExecute();
 
             MSG msg{};
 

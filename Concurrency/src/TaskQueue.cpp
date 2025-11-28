@@ -2,7 +2,13 @@
 
 namespace fatpound::concurrency
 {
-    void TaskQueue::ExecuteFirstAndPopOff()
+    auto TaskQueue::Empty() const -> bool
+    {
+        const std::lock_guard<std::mutex> lck{ m_mtx_ };
+
+        return m_tasks_.empty();
+    }
+    void TaskQueue::PopAndExecute()
     {
         WrappedTask wtask{};
 
@@ -21,7 +27,6 @@ namespace fatpound::concurrency
 
         wtask();
     }
-
 
     void TaskQueue::Push_(WrappedTask wtask)
     {

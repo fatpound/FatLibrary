@@ -13,7 +13,7 @@ namespace fatpound::win32::d3d11::resource
             throw std::runtime_error("Could NOT get the buffer from SwapChain!");
         }
     }
-    Texture2D::Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, std::shared_ptr<FATSPACE_UTILITY::Surface> pSurface)
+    Texture2D::Texture2D(ID3D11Device* const pDevice, const D3D11_TEXTURE2D_DESC& tex2dDesc, std::shared_ptr<utility::Surface> pSurface)
     {
         if (pSurface not_eq nullptr)
         {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <_macros/Compiler.hpp>
-#include <_macros/Namespaces.hpp>
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
     #include <Win32_/GDI_Plus/include/Manager.hpp>

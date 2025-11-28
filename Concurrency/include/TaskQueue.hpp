@@ -34,7 +34,7 @@ namespace fatpound::concurrency
     public:
         template <typename F, typename... Args>
         requires std::invocable<F, Args...>
-        auto Push(F&& func, Args&&... args)
+        auto Push(F&& func, Args&&... args) -> std::future<std::invoke_result_t<F, Args...>>
         {
             using T = std::invoke_result_t<F, Args...>;
 
@@ -66,7 +66,8 @@ namespace fatpound::concurrency
 
 
     public:
-        void ExecuteFirstAndPopOff();
+        auto Empty         () const -> bool;
+        void PopAndExecute ();
 
 
     protected:
@@ -78,6 +79,6 @@ namespace fatpound::concurrency
 
     private:
         std::deque<WrappedTask>   m_tasks_;
-        std::mutex                m_mtx_;
+        mutable std::mutex        m_mtx_;
     };
 }

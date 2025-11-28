@@ -1,12 +1,6 @@
 #pragma once
 
-#include <_misc/FatCodex/Macros/ExternalWarnings_MSVC.hpp>
-
-#pragma warning (push)
-#pragma warning (disable : MSVC_EXWARN_OPENCV)
-#include <opencv2/core.hpp>
-#include <opencv2/imgproc.hpp>
-#pragma warning (pop)
+#include "FatOcv.hpp"
 
 #include <cstddef>
 #include <vector>
