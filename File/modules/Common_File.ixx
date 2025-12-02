@@ -15,6 +15,7 @@ export namespace fatpound
     using file::LineCount;
     using file::LineCount_Dir;
     using file::NameAndExtension;
+    using file::ReadToString;
     using file::ToUriPath;
     using file::PrintHex;
 }

@@ -150,6 +150,17 @@ namespace fatpound::file
 
 
 
+    /// @brief Reads the entire contents of a file into a string
+    ///
+    /// @param path: The path to the file to be read
+    ///
+    /// @return A string containing the contents of the file
+    /// 
+    [[nodiscard]]
+    auto ReadToString        (const std::filesystem::path& path) -> std::string;
+
+
+
     /// @brief Counts lines in a given file. Checks neither whether the path exists nor whether it refers to a regular file
     ///
     /// @param path: The path to the file in which the lines will be counted
@@ -192,6 +203,12 @@ namespace fatpound::file
 
 
 
+    /// @brief Converts a filesystem path to a URI-compatible string
+    /// 
+    /// @param path: The filesystem path to be converted
+    ///
+    /// @return A string representing the URI-compatible version of the path
+    /// 
     auto ToUriPath           (const std::filesystem::path& path) -> std::string;
 
 

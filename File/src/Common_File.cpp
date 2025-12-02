@@ -38,6 +38,37 @@ namespace fatpound::file
 
 namespace fatpound::file
 {
+    auto ReadToString        (const std::filesystem::path& path) -> std::string
+    {
+        std::ifstream file(path, std::ios::binary);
+
+        if (not file.is_open())
+        {
+            throw std::runtime_error("Cannot open file!");
+        }
+
+        file.seekg(0, std::ios::end);
+        const auto size = file.tellg();
+        file.seekg(0, std::ios::beg);
+
+        if (size < 0U)
+        {
+            throw std::runtime_error("Cannot GET file size!");
+        }
+        else if (size == 0U)
+        {
+            throw std::runtime_error("File size is 0!");
+        }
+
+        std::string buffer(static_cast<std::size_t>(size), '\0');
+
+        if (not file.read(buffer.data(), size))
+        {
+            throw std::runtime_error("Cannot read file!");
+        }
+
+        return buffer;
+    }
     auto NameAndExtension    (const std::filesystem::path& path) -> std::pair<std::string, std::string>
     {
         if (not std::filesystem::exists(path))
@@ -75,14 +106,7 @@ namespace fatpound::file
             }
             else
             {
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4686)
-#endif
                 std::format_to<>(std::back_inserter<>(uri), "%{:02X}", static_cast<std::uint8_t>(ch));
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif
             }
         }
 

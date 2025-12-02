@@ -247,6 +247,43 @@ namespace fatx::gstreamer
                 g_info("GST_MESSAGE_INFO\n");
                 break;
 
+            case GST_MESSAGE_UNKNOWN:              [[fallthrough]];
+            case GST_MESSAGE_TAG:                  [[fallthrough]];
+            case GST_MESSAGE_BUFFERING:            [[fallthrough]];
+            case GST_MESSAGE_STATE_CHANGED:        [[fallthrough]];
+            case GST_MESSAGE_STATE_DIRTY:          [[fallthrough]];
+            case GST_MESSAGE_STEP_DONE:            [[fallthrough]];
+            case GST_MESSAGE_CLOCK_PROVIDE:        [[fallthrough]];
+            case GST_MESSAGE_CLOCK_LOST:           [[fallthrough]];
+            case GST_MESSAGE_NEW_CLOCK:            [[fallthrough]];
+            case GST_MESSAGE_STRUCTURE_CHANGE:     [[fallthrough]];
+            case GST_MESSAGE_STREAM_STATUS:        [[fallthrough]];
+            case GST_MESSAGE_APPLICATION:          [[fallthrough]];
+            case GST_MESSAGE_ELEMENT:              [[fallthrough]];
+            case GST_MESSAGE_SEGMENT_START:        [[fallthrough]];
+            case GST_MESSAGE_SEGMENT_DONE:         [[fallthrough]];
+            case GST_MESSAGE_DURATION_CHANGED:     [[fallthrough]];
+            case GST_MESSAGE_LATENCY:              [[fallthrough]];
+            case GST_MESSAGE_ASYNC_START:          [[fallthrough]];
+            case GST_MESSAGE_REQUEST_STATE:        [[fallthrough]];
+            case GST_MESSAGE_STEP_START:           [[fallthrough]];
+            case GST_MESSAGE_QOS:                  [[fallthrough]];
+            case GST_MESSAGE_PROGRESS:             [[fallthrough]];
+            case GST_MESSAGE_TOC:                  [[fallthrough]];
+            case GST_MESSAGE_RESET_TIME:           [[fallthrough]];
+            case GST_MESSAGE_STREAM_START:         [[fallthrough]];
+            case GST_MESSAGE_NEED_CONTEXT:         [[fallthrough]];
+            case GST_MESSAGE_HAVE_CONTEXT:         [[fallthrough]];
+            case GST_MESSAGE_EXTENDED:             [[fallthrough]];
+            case GST_MESSAGE_DEVICE_ADDED:         [[fallthrough]];
+            case GST_MESSAGE_DEVICE_REMOVED:       [[fallthrough]];
+            case GST_MESSAGE_PROPERTY_NOTIFY:      [[fallthrough]];
+            case GST_MESSAGE_STREAM_COLLECTION:    [[fallthrough]];
+            case GST_MESSAGE_STREAMS_SELECTED:     [[fallthrough]];
+            case GST_MESSAGE_REDIRECT:             [[fallthrough]];
+            case GST_MESSAGE_DEVICE_CHANGED:       [[fallthrough]];
+            case GST_MESSAGE_INSTANT_RATE_REQUEST: [[fallthrough]];
+            case GST_MESSAGE_ANY:                  [[fallthrough]];
             default:
                 break;
             }
@@ -255,7 +292,7 @@ namespace fatx::gstreamer
         }
         static auto S_TaskHandler_(const gpointer data) noexcept -> gboolean
         {
-            Task& task = *static_cast<Task*>(data);
+            Task& task     = *static_cast<Task*>(data);
             auto& pipeline = *task.pipeline;
 
             if (pipeline.m_pPipeline_ == nullptr and task.type > Task::Type::BuildPipeline)
@@ -267,6 +304,9 @@ namespace fatx::gstreamer
 
             switch (task.type)
             {
+            case Task::Type::None:
+                break;
+
             case Task::Type::BuildPipeline: pipeline.Setup_();                        break;
             case Task::Type::AttachEffect:  pipeline.AttachAudioEffect_(task.effect); break;
             case Task::Type::DetachEffect:  pipeline.DetachAudioEffect_();            break;
@@ -385,7 +425,15 @@ namespace fatx::gstreamer
             SetupLinks_();
             SetupIdentityBranch_();
             
+#ifdef _MSC_VER
+#pragma warning (push)
+#pragma warning (disable : 4191)
+#endif
             g_signal_connect(m_data_.uridecodebin, "pad-added", G_CALLBACK(&Pipeline::S_PadAddedHandlerOf_uridecodebin_), &m_data_);
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif
 
             SetState_(GST_STATE_NULL);
             SetState_(GST_STATE_READY);
