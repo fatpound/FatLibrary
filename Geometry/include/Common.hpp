@@ -1,11 +1,20 @@
 #pragma once
 
-#ifdef FATLIB_BUILDING_WITH_MSVC
+#include <_macros/STL.hpp>
 
-#include <DirectXMath.h>
+#ifdef FATLIB_BUILDING_WITH_MSVC
+    #include <DirectXMath.h>
+#endif
+
+#include <Math/include/Multiplicative.hpp>
+
+#include <cmath>
+#include <concepts>
 
 namespace fatpound::geometry
 {
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
     auto operator +       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
     auto operator -       (const DirectX::XMVECTOR& p1, const DirectX::XMVECTOR& p0) noexcept -> DirectX::XMVECTOR;
     auto operator *       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
@@ -27,6 +36,12 @@ namespace fatpound::geometry
 
     auto CompareDistance2 (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> bool;
     auto CompareDistance  (const DirectX::XMFLOAT2& p0, const DirectX::XMFLOAT2& p1) noexcept -> bool;
-}
 
 #endif
+
+    template <std::floating_point T = float, std::convertible_to<T> U>
+    CX_MATH26 auto Hypotenuse(const U& x, const U& y) noexcept -> T
+    {
+        return std::sqrt(math::Square<>(x) + math::Square<>(y));
+    }
+}
