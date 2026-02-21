@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Colors/ARGB/include/Color.hpp>
-#include <Math/Numbers/include/Primes.hpp>
+#include <Numbers/include/Primes.hpp>
 #include <Traits/include/Bitwise.hpp>
 
 #include <cstddef>
@@ -91,17 +91,17 @@ namespace fatpound::random
     {
         const auto& num = static_cast<T>(dist(rng));
 
-        if (math::numbers::IsPrime<>(num))
+        if (numbers::IsPrime<>(num))
         {
             return num;
         }
 
-        if (const auto& next = math::numbers::NextPrime<>(num); next <= dist.max())
+        if (const auto& next = numbers::NextPrime<>(num); next <= dist.max())
         {
             return next;
         }
 
-        if (const auto& prev = math::numbers::PrevPrime<>(num); dist.min() <= prev)
+        if (const auto& prev = numbers::PrevPrime<>(num); dist.min() <= prev)
         {
             return prev;
         }

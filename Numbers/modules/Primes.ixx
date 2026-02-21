@@ -2,9 +2,9 @@ module;
 
 #include "Primes.hpp"
 
-export module FatPound.Math.Numbers.Primes;
+export module FatPound.Numbers.Primes;
 
-export namespace fatpound::math
+export namespace fatpound::numbers
 {
     using numbers::IsPrime_GT4;
     using numbers::IsPrime;

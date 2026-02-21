@@ -140,16 +140,16 @@
     <ClInclude Include="Math\include\Multiplicative.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Numbers\include\Common.hpp">
+    <ClInclude Include="Numbers\include\Common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Numbers\include\Primes.hpp">
+    <ClInclude Include="Numbers\include\Primes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Numbers\include\Sets.hpp">
+    <ClInclude Include="Numbers\include\Sets.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Numbers\Numbers.hpp">
+    <ClInclude Include="Numbers\Numbers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\Math.hpp">
@@ -649,16 +649,16 @@
     <ClCompile Include="Math\Math.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Numbers\modules\Common_Numbers.ixx">
+    <ClCompile Include="Numbers\modules\Common_Numbers.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Numbers\modules\Primes.ixx">
+    <ClCompile Include="Numbers\modules\Primes.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Numbers\modules\Sets.ixx">
+    <ClCompile Include="Numbers\modules\Sets.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Numbers\Numbers.ixx">
+    <ClCompile Include="Numbers\Numbers.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Memory\modules\Common_Memory.ixx">

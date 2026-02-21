@@ -10,7 +10,7 @@
 #include <numbers>
 #include <concepts>
 
-namespace fatpound::math::numbers
+namespace fatpound::numbers
 {
     template <std::floating_point T = float> inline constexpr auto       Pi = std::numbers::pi_v<T>;
     template <std::floating_point T = float> inline constexpr auto    twoPi = Pi<T> * static_cast<T>(2.0);

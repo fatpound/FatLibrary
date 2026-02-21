@@ -117,6 +117,7 @@ add_subdirectory(Graph)
 add_subdirectory(IO)
 add_subdirectory(Math)
 add_subdirectory(Memory)
+add_subdirectory(Numbers)
 add_subdirectory(Random)
 add_subdirectory(Traits)
 add_subdirectory(Utility)
@@ -138,6 +139,7 @@ if(FATLIBRARY_ENABLE_MODULES_SUPPORT)
             FatLibrary::IO
             FatLibrary::Math
             FatLibrary::Memory
+            FatLibrary::Numbers
             FatLibrary::Random
             FatLibrary::Traits
             FatLibrary::Utility
@@ -159,6 +161,7 @@ else()
             FatLibrary::IO
             FatLibrary::Math
             FatLibrary::Memory
+            FatLibrary::Numbers
             FatLibrary::Random
             FatLibrary::Traits
             FatLibrary::Utility

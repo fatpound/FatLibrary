@@ -6,7 +6,7 @@
 #include <Geometry/include/AngularConv.hpp>
 
 #include <Math/include/Multiplicative.hpp>
-#include <Math/Numbers/include/Common.hpp>
+#include <Numbers/include/Common.hpp>
 #include <Traits/include/Bitwise.hpp>
 
 #include <DirectXMath.h>
@@ -46,7 +46,7 @@ namespace fatpound::geometry::shape
     public:
         template <traits::UIntegralOrFloating T> static constexpr auto S_Area      (const T& radius) noexcept -> T
         {
-            return math::Square<>(radius) * math::numbers::Pi<T>;
+            return math::Square<>(radius) * numbers::Pi<T>;
         }
         template <traits::UIntegralOrFloating T> static constexpr auto S_Diameter  (const T& radius) noexcept -> T
         {
@@ -54,7 +54,7 @@ namespace fatpound::geometry::shape
         }
         template <traits::UIntegralOrFloating T> static constexpr auto S_Perimeter (const T& radius) noexcept -> T
         {
-            return S_Diameter<>(radius) * math::numbers::Pi<T>;
+            return S_Diameter<>(radius) * numbers::Pi<T>;
         }
 
 

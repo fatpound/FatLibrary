@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <concepts>
 
-namespace fatpound::math::numbers
+namespace fatpound::numbers
 {
     // _GT* postfix => The function will assume that the function argument value is greater than N
 

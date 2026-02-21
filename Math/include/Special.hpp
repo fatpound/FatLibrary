@@ -3,7 +3,7 @@
 #include <_macros/STL.hpp>
 
 #include <Math/include/Multiplicative.hpp>
-#include <Math/Numbers/include/Common.hpp>
+#include <Numbers/include/Common.hpp>
 #include <Traits/include/Bitwise.hpp>
 
 #include <cmath>

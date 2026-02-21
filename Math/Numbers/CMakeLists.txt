@@ -1,1 +1,0 @@
-fatlib_add_component(Math_Numbers Math)

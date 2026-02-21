@@ -2,9 +2,9 @@ module;
 
 #include "Sets.hpp"
 
-export module FatPound.Math.Numbers.Sets;
+export module FatPound.Numbers.Sets;
 
-export namespace fatpound::math
+export namespace fatpound::numbers
 {
     using numbers::Natural;
     using numbers::Integer;

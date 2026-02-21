@@ -2,9 +2,9 @@ module;
 
 #include "../include/Common.hpp"
 
-export module FatPound.Math.Numbers.Common;
+export module FatPound.Numbers.Common;
 
-export namespace fatpound::math
+export namespace fatpound::numbers
 {
     using numbers::Pi;
     using numbers::twoPi;

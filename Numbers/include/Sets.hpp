@@ -4,7 +4,7 @@
 
 #include <concepts>
 
-namespace fatpound::math::numbers
+namespace fatpound::numbers
 {
     template <typename T> concept Natural  = std::unsigned_integral<T>;
     template <typename T> concept Integer  = std::integral<T>;
