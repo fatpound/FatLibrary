@@ -389,6 +389,15 @@
     <ClInclude Include="Win32_\include\MessageMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Geometry\include\EulerAngles.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\include\FieldOfView.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\include\Projection.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graph\src\BFS.cpp">
@@ -860,6 +869,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\src\MessageMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\modules\EulerAngles.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\modules\FieldOfView.ixx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry\modules\Projection.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -35,6 +35,9 @@
     <ClInclude Include="Colors\ARGB\include\Common.hpp" />
     <ClInclude Include="Concurrency\include\ThreadPool.hpp" />
     <ClInclude Include="File\include\Common.hpp" />
+    <ClInclude Include="Geometry\include\EulerAngles.hpp" />
+    <ClInclude Include="Geometry\include\FieldOfView.hpp" />
+    <ClInclude Include="Geometry\include\Projection.hpp" />
     <ClInclude Include="Geometry\Shape\Shape.hpp" />
     <ClInclude Include="Graph\Graph.hpp" />
     <ClInclude Include="Graph\include\BFS.hpp" />
@@ -188,6 +191,9 @@
     <ClCompile Include="Geometry\Geometry.ixx" />
     <ClCompile Include="Geometry\modules\AngularConv.ixx" />
     <ClCompile Include="Geometry\modules\Common_Geometry.ixx" />
+    <ClCompile Include="Geometry\modules\EulerAngles.ixx" />
+    <ClCompile Include="Geometry\modules\FieldOfView.ixx" />
+    <ClCompile Include="Geometry\modules\Projection.ixx" />
     <ClCompile Include="Geometry\Shape\modules\Circle.ixx" />
     <ClCompile Include="Geometry\Shape\modules\Triangle.ixx" />
     <ClCompile Include="Geometry\Shape\Shape.ixx" />
