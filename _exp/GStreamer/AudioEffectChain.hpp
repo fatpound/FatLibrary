@@ -52,13 +52,17 @@ namespace fatx::gstreamer
         {
             if (pEffect == nullptr)
             {
-                g_printerr("%s: null effect, ignoring.\n", __func__);
+                g_printerr(__func__);
+                g_printerr(": null effect, ignoring.\n");
+
                 return;
             }
 
             if (m_pBin_ == nullptr)
             {
-                g_printerr("%s: chain bin does not exist.\n", __func__);
+                g_printerr(__func__);
+                g_printerr(": chain bin does not exist.\n");
+
                 return;
             }
 
@@ -79,7 +83,9 @@ namespace fatx::gstreamer
 
                 if (const auto& ret = gst_pad_link(prevSrc.get(), currSink.get()); GST_PAD_LINK_FAILED(ret))
                 {
-                    g_printerr("%s: failed to link effect bins in chain.\n", __func__);
+                    g_printerr(__func__);
+                    g_printerr(": failed to link effect bins in chain.\n");
+
                     gst_bin_remove(GST_BIN(m_pBin_), pEffectBin);
 
                     return;
