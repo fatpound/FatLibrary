@@ -2,9 +2,11 @@
 
 #include "FatGst.hpp"
 
+#include "AudioEffectChain.hpp"
 #include "Common.hpp"
-#include "IAudioEffectBin.hpp"
+#include "IAudioEffect.hpp"
+#include "IEffectChain.hpp"
 #include "Manager.hpp"
 #include "MediaPlayer.hpp"
-#include "PitchEffectBin.hpp"
 #include "Pipeline.hpp"
+#include "AudioPitchEffect.hpp"

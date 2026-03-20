@@ -2,7 +2,8 @@
 
 #include "FatGst.hpp"
 
-#include "PitchEffectBin.hpp"
+#include "AudioPitchEffect.hpp"
+#include "AudioEffectChain.hpp"
 #include "Pipeline.hpp"
 
 #include <cstddef>
@@ -17,8 +18,8 @@ namespace fatx::gstreamer
     public:
         explicit MediaPlayer()
             :
-            m_pPitchEffect_(std::make_shared<PitchEffectBin>()),
-            m_pipeline_(m_pPitchEffect_)
+            m_pPitchEffect_(std::make_shared<AudioPitchEffect>()),
+            m_pipeline_(MakeEffectChain_())
         {
             g_print("Starting MediaPlayer...\n");
         }
@@ -85,7 +86,17 @@ namespace fatx::gstreamer
 
 
     private:
-        std::shared_ptr<PitchEffectBin>   m_pPitchEffect_;
-        Pipeline                          m_pipeline_;
+        auto MakeEffectChain_() const noexcept -> std::unique_ptr<IEffectChain>
+        {
+            auto chain = std::make_unique<AudioEffectChain>();
+            chain->Add(m_pPitchEffect_);
+
+            return chain;
+        }
+
+
+    private:
+        std::shared_ptr<AudioPitchEffect>   m_pPitchEffect_;
+        Pipeline                            m_pipeline_;
     };
 }
