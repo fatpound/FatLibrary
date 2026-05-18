@@ -1,6 +1,8 @@
 module;
 
-#include "FullScreenQuad.hpp"
+#ifdef FATLIB_BUILDING_WITH_MSVC
+    #include "FullScreenQuad.hpp"
+#endif
 
 export module FatPound.Win32.D3D11.FullScreenQuad;
 

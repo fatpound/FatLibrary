@@ -1,0 +1,1 @@
+fatlib_add_component(Win32_XAudio2 Win32_)

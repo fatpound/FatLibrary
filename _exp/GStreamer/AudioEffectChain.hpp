@@ -31,19 +31,19 @@ namespace fatx::gstreamer
 
 
     public:
-        [[nodiscard]] auto GetBin() const noexcept -> GstElement* override
+        [[nodiscard]] auto GetBin     () const noexcept -> GstElement* override
         {
             return m_pBin_;
         }
-        [[nodiscard]] auto GetSinkPad() const noexcept -> GstPad* override
+        [[nodiscard]] auto GetSinkPad () const noexcept -> GstPad* override
         {
             return gst_element_get_static_pad(m_pBin_, "sink");
         }
-        [[nodiscard]] auto GetSrcPad() const noexcept -> GstPad* override
+        [[nodiscard]] auto GetSrcPad  () const noexcept -> GstPad* override
         {
             return gst_element_get_static_pad(m_pBin_, "src");
         }
-        [[nodiscard]] auto Count() const noexcept -> std::size_t override
+        [[nodiscard]] auto Count      () const noexcept -> std::size_t override
         {
             return m_effects_.size();
         }
@@ -138,8 +138,7 @@ namespace fatx::gstreamer
 
 
     private:
-        GstElement*                                     m_pBin_{};
-
+        GstElement*                                  m_pBin_{};
         std::vector<std::shared_ptr<IAudioEffect>>   m_effects_{};
     };
 }

@@ -30,6 +30,11 @@ namespace fatx::gstreamer
 
     class Pipeline
     {
+#ifdef FATLIB_BUILDING_WITH_MSVC
+#pragma warning (push)
+#pragma warning (disable : 4625 4626)
+#endif
+
         struct alignas(64) Data
         {
             GstElement*   uridecodebin{};
@@ -48,15 +53,15 @@ namespace fatx::gstreamer
         {
             enum class Type : std::uint8_t
             {
-                None              ,
-                BuildPipeline     ,
-                AttachEffectChain ,
-                DetachEffectChain ,
-                LoadAudio         ,
-                Play              ,
-                Pause             ,
-                Seek              ,
-                RunFunc           ,
+                None             ,
+                BuildPipeline    ,
+                AttachEffectChain,
+                DetachEffectChain,
+                LoadAudio        ,
+                Play             ,
+                Pause            ,
+                Seek             ,
+                RunFunc          ,
                 Quit
             };
 
@@ -67,6 +72,10 @@ namespace fatx::gstreamer
             std::unique_ptr<IEffectChain>   effect{};
             Pipeline*                       pipeline{};
         };
+
+#ifdef FATLIB_BUILDING_WITH_MSVC
+#pragma warning (pop)
+#endif
 
 
     public:
@@ -255,43 +264,44 @@ namespace fatx::gstreamer
                 g_info("GST_MESSAGE_INFO\n");
                 break;
 
-            case GST_MESSAGE_UNKNOWN:              [[fallthrough]];
-            case GST_MESSAGE_TAG:                  [[fallthrough]];
-            case GST_MESSAGE_BUFFERING:            [[fallthrough]];
-            case GST_MESSAGE_STATE_CHANGED:        [[fallthrough]];
-            case GST_MESSAGE_STATE_DIRTY:          [[fallthrough]];
-            case GST_MESSAGE_STEP_DONE:            [[fallthrough]];
-            case GST_MESSAGE_CLOCK_PROVIDE:        [[fallthrough]];
-            case GST_MESSAGE_CLOCK_LOST:           [[fallthrough]];
-            case GST_MESSAGE_NEW_CLOCK:            [[fallthrough]];
-            case GST_MESSAGE_STRUCTURE_CHANGE:     [[fallthrough]];
-            case GST_MESSAGE_STREAM_STATUS:        [[fallthrough]];
-            case GST_MESSAGE_APPLICATION:          [[fallthrough]];
-            case GST_MESSAGE_ELEMENT:              [[fallthrough]];
-            case GST_MESSAGE_SEGMENT_START:        [[fallthrough]];
-            case GST_MESSAGE_SEGMENT_DONE:         [[fallthrough]];
-            case GST_MESSAGE_DURATION_CHANGED:     [[fallthrough]];
-            case GST_MESSAGE_LATENCY:              [[fallthrough]];
-            case GST_MESSAGE_ASYNC_START:          [[fallthrough]];
-            case GST_MESSAGE_REQUEST_STATE:        [[fallthrough]];
-            case GST_MESSAGE_STEP_START:           [[fallthrough]];
-            case GST_MESSAGE_QOS:                  [[fallthrough]];
-            case GST_MESSAGE_PROGRESS:             [[fallthrough]];
-            case GST_MESSAGE_TOC:                  [[fallthrough]];
-            case GST_MESSAGE_RESET_TIME:           [[fallthrough]];
-            case GST_MESSAGE_STREAM_START:         [[fallthrough]];
-            case GST_MESSAGE_NEED_CONTEXT:         [[fallthrough]];
-            case GST_MESSAGE_HAVE_CONTEXT:         [[fallthrough]];
-            case GST_MESSAGE_EXTENDED:             [[fallthrough]];
-            case GST_MESSAGE_DEVICE_ADDED:         [[fallthrough]];
-            case GST_MESSAGE_DEVICE_REMOVED:       [[fallthrough]];
-            case GST_MESSAGE_PROPERTY_NOTIFY:      [[fallthrough]];
-            case GST_MESSAGE_STREAM_COLLECTION:    [[fallthrough]];
-            case GST_MESSAGE_STREAMS_SELECTED:     [[fallthrough]];
-            case GST_MESSAGE_REDIRECT:             [[fallthrough]];
-            case GST_MESSAGE_DEVICE_CHANGED:       [[fallthrough]];
-            case GST_MESSAGE_INSTANT_RATE_REQUEST: [[fallthrough]];
-            case GST_MESSAGE_ANY:                  [[fallthrough]];
+            case GST_MESSAGE_UNKNOWN:                [[fallthrough]];
+            case GST_MESSAGE_TAG:                    [[fallthrough]];
+            case GST_MESSAGE_BUFFERING:              [[fallthrough]];
+            case GST_MESSAGE_STATE_CHANGED:          [[fallthrough]];
+            case GST_MESSAGE_STATE_DIRTY:            [[fallthrough]];
+            case GST_MESSAGE_STEP_DONE:              [[fallthrough]];
+            case GST_MESSAGE_CLOCK_PROVIDE:          [[fallthrough]];
+            case GST_MESSAGE_CLOCK_LOST:             [[fallthrough]];
+            case GST_MESSAGE_NEW_CLOCK:              [[fallthrough]];
+            case GST_MESSAGE_STRUCTURE_CHANGE:       [[fallthrough]];
+            case GST_MESSAGE_STREAM_STATUS:          [[fallthrough]];
+            case GST_MESSAGE_APPLICATION:            [[fallthrough]];
+            case GST_MESSAGE_ELEMENT:                [[fallthrough]];
+            case GST_MESSAGE_SEGMENT_START:          [[fallthrough]];
+            case GST_MESSAGE_SEGMENT_DONE:           [[fallthrough]];
+            case GST_MESSAGE_DURATION_CHANGED:       [[fallthrough]];
+            case GST_MESSAGE_LATENCY:                [[fallthrough]];
+            case GST_MESSAGE_ASYNC_START:            [[fallthrough]];
+            case GST_MESSAGE_REQUEST_STATE:          [[fallthrough]];
+            case GST_MESSAGE_STEP_START:             [[fallthrough]];
+            case GST_MESSAGE_QOS:                    [[fallthrough]];
+            case GST_MESSAGE_PROGRESS:               [[fallthrough]];
+            case GST_MESSAGE_TOC:                    [[fallthrough]];
+            case GST_MESSAGE_RESET_TIME:             [[fallthrough]];
+            case GST_MESSAGE_STREAM_START:           [[fallthrough]];
+            case GST_MESSAGE_NEED_CONTEXT:           [[fallthrough]];
+            case GST_MESSAGE_HAVE_CONTEXT:           [[fallthrough]];
+            case GST_MESSAGE_EXTENDED:               [[fallthrough]];
+            case GST_MESSAGE_DEVICE_ADDED:           [[fallthrough]];
+            case GST_MESSAGE_DEVICE_REMOVED:         [[fallthrough]];
+            case GST_MESSAGE_PROPERTY_NOTIFY:        [[fallthrough]];
+            case GST_MESSAGE_STREAM_COLLECTION:      [[fallthrough]];
+            case GST_MESSAGE_STREAMS_SELECTED:       [[fallthrough]];
+            case GST_MESSAGE_REDIRECT:               [[fallthrough]];
+            case GST_MESSAGE_DEVICE_CHANGED:         [[fallthrough]];
+            case GST_MESSAGE_INSTANT_RATE_REQUEST:   [[fallthrough]];
+            case GST_MESSAGE_DEVICE_MONITOR_STARTED: [[fallthrough]];
+            case GST_MESSAGE_ANY:                    [[fallthrough]];
 
             default:
                 break;
@@ -434,7 +444,6 @@ namespace fatx::gstreamer
 #pragma warning (pop)
 #endif
 
-            SetState_(GST_STATE_NULL);
             SetState_(GST_STATE_READY);
 
 #ifdef FATLIB_BUILDING_ON_WINDOWS
@@ -580,7 +589,7 @@ namespace fatx::gstreamer
             g_print("[DONE]\n");
         }
 
-        void AttachEffectChain_(std::unique_ptr<IEffectChain> pChain) noexcept
+        void AttachEffectChain_   (std::unique_ptr<IEffectChain> pChain) noexcept
         {
             if (m_pPipeline_ == nullptr)
             {
@@ -608,6 +617,10 @@ namespace fatx::gstreamer
 
             auto* const pChainBin = pChain->GetBin();
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+#pragma warning (push)
+#pragma warning (disable : 4625 4626)
+#endif
             struct RollbackGuard final
             {
                 GstElement*   pipeline{};
@@ -643,6 +656,9 @@ namespace fatx::gstreamer
                     }
                 }
             };
+#ifdef FATLIB_BUILDING_WITH_MSVC
+#pragma warning (pop)
+#endif
 
             RollbackGuard rg{ .pipeline = m_pPipeline_ };
 
@@ -729,7 +745,7 @@ namespace fatx::gstreamer
 
             g_print("Effect chain attached and active.\n");
         }
-        void DetachEffectChain_() noexcept
+        void DetachEffectChain_   () noexcept
         {
             if (m_pPipeline_ == nullptr)
             {
@@ -941,7 +957,7 @@ namespace fatx::gstreamer
         }
         void Cleanup_             () noexcept
         {
-            g_print("CleanupPipeline_ has been called.\n");
+            g_print("Cleanup_ has been called.\n");
 
             if (m_pPipeline_ == nullptr)
             {
@@ -967,13 +983,13 @@ namespace fatx::gstreamer
             }
             g_print("[DONE]\n");
 
-            SetState_(GST_STATE_VOID_PENDING);
+            g_print("Releasing pipeline resources...\n");
 
             m_data_ = {};
             gst_object_unref(m_pPipeline_);
             m_pPipeline_ = nullptr;
 
-            g_print("Pipeline has been cleared.\n");
+            g_print("Pipeline cleared.\n");
         }
         void CleanupGMainLoop_    () noexcept
         {
@@ -990,21 +1006,21 @@ namespace fatx::gstreamer
         void WorkerLoop_          () noexcept
         {
             m_work_start_signal_.acquire();
-            g_print("Worker thread has just started.\n");
+            g_print("Worker thread has started.\n");
 
-            g_print("Worker thread is setting its default context ... ");
+            g_print("Pushing thread-default GMainContext ... ");
             g_main_context_push_thread_default(m_pContext_);
             g_print("[DONE]\n");
 
-            g_print("GMainLoop is starting to run...\n");
+            g_print("Starting GMainLoop...\n");
             g_main_loop_run(m_pLoop_);
-            g_print("GMainLoop has Stopped.\n");
+            g_print("GMainLoop has stopped.\n");
 
-            g_print("Worker thread is UN-setting its default context ... ");
+            g_print("Popping thread-default GMainContext ... ");
             g_main_context_pop_thread_default(m_pContext_);
             g_print("[DONE]\n");
 
-            g_print("Worker thread is Stopping ... ");
+            g_print("Shutting down worker thread ... ");
         }
 
 

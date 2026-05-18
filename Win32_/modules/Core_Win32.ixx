@@ -1,6 +1,8 @@
 module;
 
-#include "../include/Core.hpp"
+#ifdef FATLIB_BUILDING_WITH_MSVC
+    #include "../include/Core.hpp"
+#endif
 
 export module FatPound.Win32.Core;
 
