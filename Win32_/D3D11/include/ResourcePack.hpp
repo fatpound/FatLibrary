@@ -20,8 +20,8 @@ namespace fatpound::win32::d3d11::details_rp
         explicit ResourcePackBase(const ResourcePackBase&) = delete;
         explicit ResourcePackBase(ResourcePackBase&&) noexcept = delete;
 
-        auto operator = (const ResourcePackBase&)     -> ResourcePackBase & = delete;
-        auto operator = (ResourcePackBase&&) noexcept -> ResourcePackBase & = delete;
+        auto operator = (const ResourcePackBase&)     -> ResourcePackBase& = delete;
+        auto operator = (ResourcePackBase&&) noexcept -> ResourcePackBase& = delete;
         ~ResourcePackBase() noexcept = default;
 
         Microsoft::WRL::ComPtr<IDXGISwapChain>        m_pSwapChain;

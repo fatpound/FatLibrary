@@ -6,9 +6,13 @@ module;
 
 export module FatPound.Win32.D3D11.FullScreenQuad;
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 export namespace fatpound::win32
 {
     using d3d11::FullScreenQuad;
 }
+
+#endif
 
 // module : private;

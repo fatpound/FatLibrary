@@ -1,5 +1,7 @@
 #include "FullScreenQuad.hpp"
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 namespace fatpound::win32::d3d11
 {
     auto FullScreenQuad::S_GenerateVertices() -> std::vector<Vertex>
@@ -12,3 +14,5 @@ namespace fatpound::win32::d3d11
         };
     }
 }
+
+#endif

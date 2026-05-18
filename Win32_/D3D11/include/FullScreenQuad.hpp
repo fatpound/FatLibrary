@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef FATLIB_BUILDING_WITH_MSVC
+
 #include <vector>
 
 namespace fatpound::win32::d3d11
@@ -19,3 +21,5 @@ namespace fatpound::win32::d3d11
         static auto S_GenerateVertices() -> std::vector<Vertex>;
     };
 }
+
+#endif

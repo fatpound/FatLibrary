@@ -7,6 +7,8 @@
 #include <Win32_/D3D11/Shader/Shader.hpp>
 
 #include <Win32_/D3D11/include/Bindable.hpp>
+#include <Win32_/D3D11/include/FullScreenQuad.hpp>
 #include <Win32_/D3D11/include/Graphics.hpp>
+#include <Win32_/D3D11/include/ResourcePack.hpp>
 
 #endif
