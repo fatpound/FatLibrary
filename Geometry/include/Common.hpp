@@ -15,13 +15,22 @@ namespace fatpound::geometry
 {
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-    auto operator +       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
-    auto operator -       (const DirectX::XMVECTOR& p1, const DirectX::XMVECTOR& p0) noexcept -> DirectX::XMVECTOR;
-    auto operator *       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
-    auto operator /       (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
-    auto operator *       (const float&          scale, const DirectX::XMVECTOR&  v) noexcept -> DirectX::XMVECTOR;
+    auto operator +       (const DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR;
+    auto operator -       (const DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR;
+    auto operator *       (const DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR;
+    auto operator /       (const DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR;
+
     auto operator *       (const DirectX::XMVECTOR&  v, const float&          scale) noexcept -> DirectX::XMVECTOR;
+    auto operator *       (const float&          scale, const DirectX::XMVECTOR&  v) noexcept -> DirectX::XMVECTOR;
     auto operator /       (const DirectX::XMVECTOR&  v, const float&          scale) noexcept -> DirectX::XMVECTOR;
+
+    auto operator +=      (DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR&;
+    auto operator -=      (DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR&;
+    auto operator *=      (DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR&;
+    auto operator /=      (DirectX::XMVECTOR& lhs, const DirectX::XMVECTOR& rhs) noexcept -> DirectX::XMVECTOR&;
+
+    auto operator *=      (DirectX::XMVECTOR& lhs, const float& scale) noexcept -> DirectX::XMVECTOR&;
+    auto operator /=      (DirectX::XMVECTOR& lhs, const float& scale) noexcept -> DirectX::XMVECTOR&;
 
     auto DistanceVector2  (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
     auto DistanceVector3  (const DirectX::XMVECTOR& p0, const DirectX::XMVECTOR& p1) noexcept -> DirectX::XMVECTOR;
@@ -40,7 +49,7 @@ namespace fatpound::geometry
 #endif
 
     template <std::floating_point T = float, std::convertible_to<T> U>
-    CX_MATH26 auto Hypotenuse(const U& x, const U& y) noexcept -> T
+    inline CX_MATH26 auto Hypotenuse(const U& x, const U& y) noexcept -> T
     {
         return std::sqrt(math::Square<>(x) + math::Square<>(y));
     }

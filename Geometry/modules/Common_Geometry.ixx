@@ -15,6 +15,11 @@ export namespace fatpound
     using geometry::operator *;
     using geometry::operator /;
 
+    using geometry::operator +=;
+    using geometry::operator -=;
+    using geometry::operator *=;
+    using geometry::operator /=;
+
     using geometry::CompareDistance;
     using geometry::CompareDistance2;
     using geometry::DistanceVector2;
@@ -24,6 +29,8 @@ export namespace fatpound
     using geometry::Distance2;
     using geometry::Distance3;
     using geometry::Distance4;
+
+    using geometry::Hypotenuse;
 }
 
 #endif

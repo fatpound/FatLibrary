@@ -2,7 +2,6 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
-#include <Geometry/include/Common.hpp>
 #include <Geometry/include/AngularConv.hpp>
 
 #include <Math/include/Multiplicative.hpp>
@@ -21,18 +20,43 @@ namespace fatpound::geometry::shape
         static constexpr auto scx_Default_W_ = 1.0F;
 
     public:
-        explicit Circle(const DirectX::XMVECTOR& center, const std::convertible_to<float> auto& radius);
+        explicit Circle(const DirectX::XMVECTOR& center, const std::convertible_to<float> auto& radius) noexcept(noexcept(static_cast<float>(radius)))
+            :
+            m_center_(center),
+            m_radius_(static_cast<float>(radius))
+        {
+
+        }
 
         explicit Circle(
             const std::convertible_to<float> auto& x,
             const std::convertible_to<float> auto& y,
             const std::convertible_to<float> auto& z,
-            const std::convertible_to<float> auto& radius);
+            const std::convertible_to<float> auto& radius)
+            noexcept(
+                noexcept(static_cast<float>(x)) and
+                noexcept(static_cast<float>(y)) and
+                noexcept(static_cast<float>(z)) and
+                noexcept(static_cast<float>(radius)))
+            :
+            Circle(DirectX::XMVectorSet(x, y, z, scx_Default_W_), radius)
+        {
+
+        }
 
         explicit Circle(
             const std::convertible_to<float> auto& x,
             const std::convertible_to<float> auto& y,
-            const std::convertible_to<float> auto& radius);
+            const std::convertible_to<float> auto& radius)
+            noexcept(
+                noexcept(static_cast<float>(x)) and
+                noexcept(static_cast<float>(y)) and
+                noexcept(static_cast<float>(radius)))
+            :
+            Circle(x, y, scx_Default_Z_, radius)
+        {
+
+        }
 
         explicit Circle()         = delete;
         Circle(const Circle&)     = default;
@@ -65,11 +89,6 @@ namespace fatpound::geometry::shape
         auto GetDiameter  () const noexcept -> float;
         auto GetPerimeter () const noexcept -> float;
 
-        auto Distance_CenterToCenter (const Circle& other) const noexcept -> float;
-        auto Distance_CenterToEdge   (const Circle& other) const noexcept -> float;
-        auto Distance_EdgeToEdge     (const Circle& other) const noexcept -> float;
-        auto Distance_EdgeToCenter   (const Circle& other) const noexcept -> float;
-
         auto ArcLengthRad (const float& rad) const noexcept -> float;
         auto ArcLengthDeg (const float& deg) const noexcept -> float;
 
@@ -77,6 +96,11 @@ namespace fatpound::geometry::shape
         auto Contains     (const Circle& other) const noexcept -> bool;
 
         void TranslateBy  (const DirectX::XMVECTOR& v) noexcept;
+
+        auto Distance_CenterToCenter (const Circle& other) const noexcept -> float;
+        auto Distance_CenterToEdge   (const Circle& other) const noexcept -> float;
+        auto Distance_EdgeToEdge     (const Circle& other) const noexcept -> float;
+        auto Distance_EdgeToCenter   (const Circle& other) const noexcept -> float;
 
 
     protected:

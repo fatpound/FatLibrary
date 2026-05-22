@@ -2,38 +2,10 @@
 
 #ifdef FATLIB_BUILDING_WITH_MSVC
 
+#include <Geometry/include/Common.hpp>
+
 namespace fatpound::geometry::shape
 {
-    Circle::Circle(const DirectX::XMVECTOR& center, const std::convertible_to<float> auto& radius)
-        :
-        m_center_(center),
-        m_radius_(static_cast<float>(radius))
-    {
-
-    }
-
-    Circle::Circle(
-        const std::convertible_to<float> auto& x,
-        const std::convertible_to<float> auto& y,
-        const std::convertible_to<float> auto& z,
-        const std::convertible_to<float> auto& radius)
-        :
-        Circle(DirectX::XMVectorSet(x, y, z, scx_Default_W_), radius)
-    {
-
-    }
-
-    Circle::Circle(
-        const std::convertible_to<float> auto& x,
-        const std::convertible_to<float> auto& y,
-        const std::convertible_to<float> auto& radius)
-        :
-        Circle(x, y, scx_Default_Z_, radius)
-    {
-
-    }
-
-
     auto Circle::GetCenter    () const noexcept -> DirectX::XMVECTOR
     {
         return m_center_;
@@ -53,23 +25,6 @@ namespace fatpound::geometry::shape
     auto Circle::GetPerimeter () const noexcept -> float
     {
         return S_Perimeter<>(GetRadius());
-    }
-
-    auto Circle::Distance_CenterToCenter (const Circle& other) const noexcept -> float
-    {
-        return Distance4(GetCenter(), other.GetCenter());
-    }
-    auto Circle::Distance_CenterToEdge   (const Circle& other) const noexcept -> float
-    {
-        return Distance_CenterToCenter(other) - other.GetRadius();
-    }
-    auto Circle::Distance_EdgeToEdge     (const Circle& other) const noexcept -> float
-    {
-        return Distance_CenterToEdge(other) - GetRadius();
-    }
-    auto Circle::Distance_EdgeToCenter   (const Circle& other) const noexcept -> float
-    {
-        return Distance_CenterToCenter(other) - GetRadius();
     }
 
     auto Circle::ArcLengthRad (const float& rad) const noexcept -> float
@@ -92,7 +47,24 @@ namespace fatpound::geometry::shape
 
     void Circle::TranslateBy  (const DirectX::XMVECTOR& v) noexcept
     {
-        m_center_ = (m_center_ + v);
+        m_center_ += v;
+    }
+
+    auto Circle::Distance_CenterToCenter (const Circle& other) const noexcept -> float
+    {
+        return Distance4(GetCenter(), other.GetCenter());
+    }
+    auto Circle::Distance_CenterToEdge   (const Circle& other) const noexcept -> float
+    {
+        return Distance_CenterToCenter(other) - other.GetRadius();
+    }
+    auto Circle::Distance_EdgeToEdge     (const Circle& other) const noexcept -> float
+    {
+        return Distance_CenterToEdge(other) - GetRadius();
+    }
+    auto Circle::Distance_EdgeToCenter   (const Circle& other) const noexcept -> float
+    {
+        return Distance_CenterToCenter(other) - GetRadius();
     }
 }
 

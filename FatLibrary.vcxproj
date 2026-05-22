@@ -204,6 +204,7 @@
     <ClCompile Include="Geometry\Shape\modules\Triangle.ixx" />
     <ClCompile Include="Geometry\Shape\Shape.ixx" />
     <ClCompile Include="Geometry\Shape\src\Circle.cpp" />
+    <ClCompile Include="Geometry\Shape\src\Triangle.cpp" />
     <ClCompile Include="Graph\Graph.ixx" />
     <ClCompile Include="Graph\modules\BFS.ixx" />
     <ClCompile Include="Graph\modules\DFS.ixx" />
