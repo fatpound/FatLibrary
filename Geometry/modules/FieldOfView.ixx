@@ -9,7 +9,7 @@ export namespace fatpound
     using geometry::HFOV;
     using geometry::VFOV;
     using geometry::DFOV;
-    using geometry::DFOV_;
+    using geometry::DFOV_FromHV;
 
     using geometry::HFOV_To_VFOV;
     using geometry::HFOV_To_DFOV;
