@@ -10,7 +10,7 @@
 
 #include <Colors/ARGB/ARGB.hpp>
 #include <Traits/include/Bitwise.hpp>
-#include <Utility/include/SizePack.hpp>
+#include <Utility/include/Common.hpp>
 
 #include <cassert>
 #include <cstdint>

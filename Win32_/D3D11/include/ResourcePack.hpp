@@ -6,7 +6,7 @@
 #include <d3d11_4.h>
 #include <wrl.h>
 
-#include <Utility/include/SizePack.hpp>
+#include <Utility/include/Common.hpp>
 #include <Utility/include/Surface.hpp>
 #include <Win32_/D3D11/Core/include/RenderTarget.hpp>
 #include <Win32_/D3D11/Core/include/DepthStencil.hpp>

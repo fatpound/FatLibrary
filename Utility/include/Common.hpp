@@ -33,7 +33,11 @@ namespace fatpound::utility
     inline constexpr std::string_view     DecimalDigits = DecDigits;
     inline constexpr std::string_view HexadecimalDigits = HexDigits;
 
-
+    struct alignas(16) SizePack
+    {
+        std::size_t   m_width{};
+        std::size_t   m_height{};
+    };
 
     /// @brief Calculates the smallest angle between the hour and minute hands of a clock for a given time
     /// 

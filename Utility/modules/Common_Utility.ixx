@@ -15,6 +15,8 @@ export namespace fatpound
     using utility::DecimalDigits;
     using utility::HexadecimalDigits;
 
+    using utility::SizePack;
+
     using utility::ClockHandsAngle;
     using utility::Map;
     using utility::ParseLineToIntegralVector;

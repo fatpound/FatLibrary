@@ -39,6 +39,7 @@ export import FatPound.Graph;
 export import FatPound.IO;
 export import FatPound.Math;
 export import FatPound.Memory;
+export import FatPound.Numbers;
 export import FatPound.Random;
 export import FatPound.Traits;
 export import FatPound.Utility;

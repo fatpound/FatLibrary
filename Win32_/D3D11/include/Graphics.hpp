@@ -16,7 +16,7 @@
 #include <Win32_/D3D11/Shader/Shader.hpp>
 
 #include <Traits/include/Bitwise.hpp>
-#include <Utility/include/SizePack.hpp>
+#include <Utility/include/Common.hpp>
 #include <Utility/include/Surface.hpp>
 #include <Win32_/D3D11/include/Bindable.hpp>
 #include <Win32_/D3D11/include/FullScreenQuad.hpp>

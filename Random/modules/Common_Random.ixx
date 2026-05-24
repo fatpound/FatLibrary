@@ -19,6 +19,9 @@ export namespace fatpound
     using random::RandColorString;
     using random::RandString;
     using random::RandPassword;
+    using random::RandDateBetween;
+    using random::RandDateInYear;
+    using random::RandDate;
 }
 
 // module : private;

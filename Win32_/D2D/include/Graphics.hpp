@@ -11,7 +11,7 @@
 #include <DirectXMath.h>
 
 #include <Traits/include/Bitwise.hpp>
-#include <Utility/include/SizePack.hpp>
+#include <Utility/include/Common.hpp>
 
 #include <cstddef>
 

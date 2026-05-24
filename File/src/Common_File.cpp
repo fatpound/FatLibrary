@@ -2,42 +2,6 @@
 
 namespace fatpound::file
 {
-    namespace
-    {
-        /// @brief Encrypts or decrypts a file using an XOR cipher with the specified key
-        /// 
-        /// @param  inPath: The path to the input file to be encrypted or decrypted
-        /// @param     key: The key to use for the XOR cipher
-        /// @param outPath: The path where the output file will be written. If empty or the same as inPath, a temporary file path is used
-        /// 
-        void EncryptDecrypt_Impl (const std::filesystem::path& inPath, const std::size_t& key, const std::filesystem::path& outPath)
-        {
-            std::ifstream inputFile(inPath, std::ios::binary);
-
-            if (not inputFile.is_open())
-            {
-                throw std::runtime_error("Input file cannot be opened!");
-            }
-
-            std::ofstream outputFile(outPath, std::ios::binary);
-
-            if (not outputFile.is_open())
-            {
-                throw std::runtime_error("Cannot create the new version of file!");
-            }
-
-            cryptography::ApplyXorCipherWithKey<>(
-                std::istreambuf_iterator<char>(inputFile),
-                std::istreambuf_iterator<char>(),
-                std::ostreambuf_iterator<char>(outputFile),
-                key
-            );
-        }
-    }
-}
-
-namespace fatpound::file
-{
     auto ReadToString        (const std::filesystem::path& path) -> std::string
     {
         std::ifstream file(path, std::ios::binary);
@@ -197,7 +161,28 @@ namespace fatpound::file
             std::filesystem::create_directories(dirPath);
         }
 
-        EncryptDecrypt_Impl(inPath, key, outPath);
+        {
+            std::ifstream inputFile(inPath, std::ios::binary);
+
+            if (not inputFile.is_open())
+            {
+                throw std::runtime_error("Input file cannot be opened!");
+            }
+
+            std::ofstream outputFile(outPath, std::ios::binary);
+
+            if (not outputFile.is_open())
+            {
+                throw std::runtime_error("Cannot create the new version of file!");
+            }
+
+            cryptography::ApplyXorCipherWithKey<>(
+                std::istreambuf_iterator<char>(inputFile),
+                std::istreambuf_iterator<char>(),
+                std::ostreambuf_iterator<char>(outputFile),
+                key
+            );
+        }
 
         if (outWasEmpty)
         {

@@ -191,9 +191,6 @@
     <ClInclude Include="Win32_\D3D11\include\ResourcePack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\include\SizePack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utility\include\Color.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -743,9 +740,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\D3D11\modules\ResourcePack.ixx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility\modules\SizePack.ixx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Win32_\modules\Common_Win32.ixx">
